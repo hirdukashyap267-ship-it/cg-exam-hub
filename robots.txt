@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hirdukashyap267-ship-it.github.io/cg-exam-hub/sitemap.xml
