@@ -25,8 +25,6 @@ content="7hOPBFgrvc1MMrbWQQQuV4BCgzkjSQCa1FilD1cqXHw">
 <link rel="canonical"
 href="https://hirdukashyap267-ship-it.github.io/cg-exam-hub/">
 
-<!-- Open Graph -->
-
 <meta property="og:title"
 content="CG Exam Hub | Chhattisgarh GK & Exam Preparation">
 
@@ -38,11 +36,16 @@ content="CGPSC, CG Vyapam, Patwari, Transport और अन्य प्रत�
 <meta property="og:url"
 content="https://hirdukashyap267-ship-it.github.io/cg-exam-hub/">
 
+<meta property="og:site_name"
+content="CG Exam Hub">
+
+
 <!-- Bootstrap -->
 
 <link
 href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
 rel="stylesheet">
+
 
 <!-- Bootstrap Icons -->
 
@@ -53,9 +56,9 @@ href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.m
 
 <style>
 
-/* =========================
+/* =====================================================
    GLOBAL
-========================= */
+===================================================== */
 
 *{
     margin:0;
@@ -77,6 +80,8 @@ body{
 
     background:#f6f8fc;
     color:#101828;
+
+    overflow-x:hidden;
 }
 
 a{
@@ -84,45 +89,58 @@ a{
 }
 
 
-/* =========================
+/* =====================================================
    TOP BAR
-========================= */
+===================================================== */
 
 .topbar{
     background:#071b3a;
     color:white;
+
     padding:9px 0;
+
     font-size:13px;
 }
 
 .topbar-right{
     display:flex;
     gap:22px;
+
     justify-content:flex-end;
 }
 
 .topbar-right a{
     color:white;
+
+    transition:.2s;
+}
+
+.topbar-right a:hover{
+    color:#8fc1ff;
 }
 
 
-/* =========================
+/* =====================================================
    NAVBAR
-========================= */
+===================================================== */
 
 .main-navbar{
     background:white;
+
     border-bottom:1px solid #e9edf3;
+
     padding:14px 0;
 
     position:sticky;
     top:0;
+
     z-index:1000;
 }
 
 .logo-box{
     display:flex;
     align-items:center;
+
     gap:10px;
 }
 
@@ -143,13 +161,20 @@ a{
     );
 
     color:white;
+
     font-size:24px;
+
+    box-shadow:
+    0 8px 20px rgba(8,102,255,.18);
 }
 
 .logo-title{
     font-size:23px;
+
     font-weight:800;
+
     line-height:1;
+
     color:#111827;
 }
 
@@ -159,7 +184,9 @@ a{
 
 .logo-subtitle{
     font-size:11px;
+
     color:#667085;
+
     margin-top:5px;
 }
 
@@ -169,32 +196,47 @@ a{
 
 .nav-link{
     color:#172033 !important;
+
     font-weight:600;
+
     padding:9px 13px !important;
+
     border-radius:9px;
+
+    transition:.2s;
 }
 
 .nav-link:hover,
 .nav-link.active{
     color:#0866ff !important;
+
     background:#edf5ff;
 }
 
-.quiz-btn{
+
+/* SUBJECT BUTTON */
+
+.subject-nav-btn{
     background:#0866ff !important;
+
     color:white !important;
+
     padding:10px 17px !important;
+
+    box-shadow:
+    0 6px 18px rgba(8,102,255,.18);
 }
 
-.quiz-btn:hover{
+.subject-nav-btn:hover{
     background:#0055df !important;
+
     color:white !important;
 }
 
 
-/* =========================
+/* =====================================================
    HERO
-========================= */
+===================================================== */
 
 .hero{
     padding:70px 0 60px;
@@ -219,6 +261,7 @@ a{
     display:inline-block;
 
     background:#eaf3ff;
+
     color:#0866ff;
 
     padding:8px 15px;
@@ -226,6 +269,7 @@ a{
     border-radius:30px;
 
     font-size:14px;
+
     font-weight:700;
 
     margin-bottom:20px;
@@ -233,8 +277,11 @@ a{
 
 .hero h1{
     font-size:58px;
+
     font-weight:850;
+
     line-height:1.05;
+
     letter-spacing:-2px;
 }
 
@@ -250,12 +297,15 @@ a{
     color:#475467;
 
     font-size:18px;
+
     line-height:1.8;
 }
 
 .hero-buttons{
     display:flex;
+
     gap:13px;
+
     flex-wrap:wrap;
 
     margin-top:28px;
@@ -263,6 +313,7 @@ a{
 
 .btn-primary-custom{
     background:#0866ff;
+
     color:white;
 
     padding:13px 22px;
@@ -273,16 +324,21 @@ a{
 
     box-shadow:
     0 8px 25px rgba(8,102,255,.20);
+
+    transition:.2s;
 }
 
 .btn-primary-custom:hover{
     background:#0055df;
+
     color:white;
+
     transform:translateY(-2px);
 }
 
 .btn-outline-custom{
     background:white;
+
     color:#172033;
 
     padding:13px 22px;
@@ -292,20 +348,24 @@ a{
     border:1px solid #d8dee8;
 
     font-weight:700;
+
+    transition:.2s;
 }
 
 .btn-outline-custom:hover{
     border-color:#0866ff;
+
     color:#0866ff;
 }
 
 
-/* =========================
+/* =====================================================
    HERO POINTS
-========================= */
+===================================================== */
 
 .hero-points{
     display:flex;
+
     flex-wrap:wrap;
 
     gap:18px;
@@ -315,7 +375,9 @@ a{
 
 .hero-point{
     display:flex;
+
     align-items:center;
+
     gap:7px;
 
     color:#475467;
@@ -325,13 +387,14 @@ a{
 
 .hero-point i{
     color:#0866ff;
+
     font-size:17px;
 }
 
 
-/* =========================
+/* =====================================================
    HERO CARD
-========================= */
+===================================================== */
 
 .hero-card{
     position:relative;
@@ -380,6 +443,7 @@ a{
     height:72px;
 
     display:flex;
+
     align-items:center;
     justify-content:center;
 
@@ -394,16 +458,19 @@ a{
 
 .hero-card h2{
     font-size:31px;
+
     font-weight:800;
 }
 
 .hero-card p{
     color:#eaf3ff;
+
     line-height:1.7;
 }
 
 .exam-mini-list{
     list-style:none;
+
     padding:0;
 
     margin-top:20px;
@@ -420,14 +487,15 @@ a{
 }
 
 
-/* =========================
+/* =====================================================
    UPDATE
-========================= */
+===================================================== */
 
 .update-area{
     margin-top:-22px;
 
     position:relative;
+
     z-index:10;
 }
 
@@ -444,6 +512,7 @@ a{
     0 10px 30px rgba(16,24,40,.08);
 
     display:flex;
+
     align-items:center;
 
     gap:15px;
@@ -459,6 +528,7 @@ a{
     border-radius:9px;
 
     font-size:13px;
+
     font-weight:700;
 
     white-space:nowrap;
@@ -466,13 +536,14 @@ a{
 
 .update-text{
     color:#475467;
+
     font-size:13px;
 }
 
 
-/* =========================
+/* =====================================================
    SECTION
-========================= */
+===================================================== */
 
 .section{
     padding:75px 0;
@@ -480,30 +551,36 @@ a{
 
 .section-heading{
     text-align:center;
+
     margin-bottom:42px;
 }
 
 .section-label{
     color:#0866ff;
+
     font-size:14px;
+
     font-weight:700;
 }
 
 .section-heading h2{
     font-size:34px;
+
     font-weight:800;
+
     margin-top:7px;
 }
 
 .section-heading p{
     color:#667085;
+
     margin-top:9px;
 }
 
 
-/* =========================
+/* =====================================================
    SUBJECT CARDS
-========================= */
+===================================================== */
 
 .subject-card{
     background:white;
@@ -540,7 +617,9 @@ a{
     border-radius:18px;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     font-size:29px;
@@ -548,36 +627,49 @@ a{
 
 .cg-gk{
     background:#e8faf2;
+
     color:#079455;
 }
 
 .history{
     background:#f1eaff;
+
     color:#7542df;
 }
 
 .geography{
     background:#e7f4ff;
+
     color:#0875d1;
 }
 
 .computer{
     background:#fff0e7;
+
     color:#e85d04;
 }
 
 .mock{
     background:#fff8d9;
+
     color:#ad7700;
 }
 
 .current{
     background:#ffe9ee;
+
     color:#d92d5f;
+}
+
+.more{
+    background:#e8faf2;
+
+    color:#079455;
 }
 
 .subject-card h3{
     font-size:19px;
+
     font-weight:800;
 }
 
@@ -607,22 +699,26 @@ a{
     font-size:13px;
 
     font-weight:700;
+
+    transition:.2s;
 }
 
 .card-link:hover{
     background:#0866ff;
+
     color:white;
 }
 
 
-/* =========================
+/* =====================================================
    EXAM SECTION
-========================= */
+===================================================== */
 
 .exam-section{
     background:white;
 
     border-top:1px solid #edf0f5;
+
     border-bottom:1px solid #edf0f5;
 }
 
@@ -648,25 +744,34 @@ a{
 
 .exam-card i{
     font-size:27px;
+
     color:#0866ff;
 }
 
 .exam-card h4{
     font-size:17px;
+
     font-weight:800;
+
     margin-top:13px;
 }
 
 .exam-card p{
     color:#667085;
+
     font-size:13px;
+
     line-height:1.6;
 }
 
 
-/* =========================
+/* =====================================================
    ABOUT
-========================= */
+===================================================== */
+
+.about-section{
+    background:#f6f8fc;
+}
 
 .about-box{
     background:#071b3a;
@@ -680,34 +785,40 @@ a{
 
 .about-box h2{
     font-size:30px;
+
     font-weight:800;
 }
 
 .about-box p{
     color:#d5e1f0;
+
     line-height:1.8;
 }
 
 .about-list{
     list-style:none;
+
     padding:0;
+
     margin-top:25px;
 }
 
 .about-list li{
     margin-bottom:12px;
+
     color:#d5e1f0;
 }
 
 .about-list i{
     color:#32d583;
+
     margin-right:8px;
 }
 
 
-/* =========================
+/* =====================================================
    MOTIVATION
-========================= */
+===================================================== */
 
 .motivation{
     background:#edf5ff;
@@ -715,10 +826,13 @@ a{
     border-radius:22px;
 
     padding:45px;
+
+    margin-top:25px;
 }
 
 .motivation h2{
     color:#0866ff;
+
     font-weight:800;
 }
 
@@ -733,9 +847,9 @@ a{
 }
 
 
-/* =========================
+/* =====================================================
    FOOTER
-========================= */
+===================================================== */
 
 .footer{
     background:#071b3a;
@@ -747,6 +861,7 @@ a{
 
 .footer h3{
     color:white;
+
     font-weight:800;
 }
 
@@ -768,6 +883,7 @@ a{
 
 .footer ul{
     list-style:none;
+
     padding:0;
 }
 
@@ -777,7 +893,10 @@ a{
 
 .footer a{
     color:#a9bad0;
+
     font-size:13px;
+
+    transition:.2s;
 }
 
 .footer a:hover{
@@ -799,9 +918,9 @@ a{
 }
 
 
-/* =========================
+/* =====================================================
    MOBILE
-========================= */
+===================================================== */
 
 @media(max-width:991px){
 
@@ -832,6 +951,7 @@ a{
     .logo-icon{
         width:41px;
         height:41px;
+
         font-size:20px;
     }
 
@@ -845,6 +965,7 @@ a{
 
     .hero h1{
         font-size:38px;
+
         letter-spacing:-1px;
     }
 
@@ -859,6 +980,7 @@ a{
     .btn-primary-custom,
     .btn-outline-custom{
         width:100%;
+
         text-align:center;
     }
 
@@ -868,6 +990,7 @@ a{
 
     .update-box{
         flex-direction:column;
+
         align-items:flex-start;
     }
 
@@ -887,9 +1010,9 @@ a{
 }
 
 
-/* =========================
+/* =====================================================
    EXTRA
-========================= */
+===================================================== */
 
 .text-blue{
     color:#0866ff;
@@ -903,9 +1026,9 @@ a{
 <body>
 
 
-<!-- =========================
+<!-- =====================================================
      TOP BAR
-========================= -->
+===================================================== -->
 
 <div class="topbar">
 
@@ -923,18 +1046,29 @@ a{
 <div class="topbar-right">
 
 <a href="#subjects">
+
 <i class="bi bi-book"></i>
+
 Subjects
+
 </a>
+
 
 <a href="#exams">
+
 <i class="bi bi-award"></i>
+
 Exams
+
 </a>
+
 
 <a href="#about">
+
 <i class="bi bi-info-circle"></i>
+
 About
+
 </a>
 
 </div>
@@ -944,16 +1078,19 @@ About
 </div>
 
 
-<!-- =========================
+<!-- =====================================================
      NAVBAR
-========================= -->
+===================================================== -->
 
 <nav class="navbar navbar-expand-lg main-navbar">
 
 <div class="container">
 
 
-<a class="navbar-brand p-0" href="index.html">
+<!-- LOGO -->
+
+<a class="navbar-brand p-0"
+href="index.html">
 
 <div class="logo-box">
 
@@ -963,14 +1100,20 @@ About
 
 </div>
 
+
 <div>
 
 <div class="logo-title">
+
 CG <span>EXAM HUB</span>
+
 </div>
 
+
 <div class="logo-subtitle">
+
 छत्तीसगढ़ की तैयारी, एक ही जगह
+
 </div>
 
 </div>
@@ -980,11 +1123,16 @@ CG <span>EXAM HUB</span>
 </a>
 
 
+<!-- MOBILE MENU -->
+
 <button
 class="navbar-toggler"
 type="button"
 data-bs-toggle="collapse"
-data-bs-target="#mainMenu">
+data-bs-target="#mainMenu"
+aria-controls="mainMenu"
+aria-expanded="false"
+aria-label="Menu">
 
 <span class="navbar-toggler-icon"></span>
 
@@ -999,6 +1147,8 @@ id="mainMenu">
 <ul class="navbar-nav ms-auto align-items-lg-center">
 
 
+<!-- HOME -->
+
 <li class="nav-item">
 
 <a class="nav-link active"
@@ -1011,10 +1161,12 @@ Home
 </li>
 
 
+<!-- CG GK -->
+
 <li class="nav-item">
 
 <a class="nav-link"
-href="gk.html">
+href="#subjects">
 
 CG GK
 
@@ -1023,10 +1175,12 @@ CG GK
 </li>
 
 
+<!-- HISTORY -->
+
 <li class="nav-item">
 
 <a class="nav-link"
-href="history.html">
+href="#subjects">
 
 History
 
@@ -1035,10 +1189,12 @@ History
 </li>
 
 
+<!-- GEOGRAPHY -->
+
 <li class="nav-item">
 
 <a class="nav-link"
-href="geography.html">
+href="#subjects">
 
 Geography
 
@@ -1047,10 +1203,12 @@ Geography
 </li>
 
 
+<!-- COMPUTER -->
+
 <li class="nav-item">
 
 <a class="nav-link"
-href="computer.html">
+href="#subjects">
 
 Computer
 
@@ -1058,6 +1216,8 @@ Computer
 
 </li>
 
+
+<!-- EXAMS -->
 
 <li class="nav-item">
 
@@ -1071,14 +1231,16 @@ Exams
 </li>
 
 
+<!-- SUBJECT BUTTON -->
+
 <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
 
-<a class="nav-link quiz-btn"
-href="gk.html">
+<a class="nav-link subject-nav-btn"
+href="#subjects">
 
-<i class="bi bi-play-circle"></i>
+<i class="bi bi-grid-3x3-gap-fill"></i>
 
-&nbsp;Start Quiz
+&nbsp;Subjects चुनें
 
 </a>
 
@@ -1094,9 +1256,9 @@ href="gk.html">
 </nav>
 
 
-<!-- =========================
+<!-- =====================================================
      HERO
-========================= -->
+===================================================== -->
 
 <section class="hero">
 
@@ -1104,6 +1266,8 @@ href="gk.html">
 
 <div class="row align-items-center">
 
+
+<!-- HERO LEFT -->
 
 <div class="col-lg-7">
 
@@ -1139,12 +1303,15 @@ Police, Forest, Teacher और अन्य प्रतियोगी पर�
 <div class="hero-buttons">
 
 
-<a href="gk.html"
+<!-- IMPORTANT:
+     अब सीधे GK QUIZ नहीं खुलेगा -->
+
+<a href="#subjects"
 class="btn-primary-custom">
 
-<i class="bi bi-play-circle"></i>
+<i class="bi bi-grid-3x3-gap-fill"></i>
 
-&nbsp;CG GK Quiz शुरू करें
+&nbsp;Subject चुनें
 
 &nbsp;<i class="bi bi-arrow-right"></i>
 
@@ -1200,7 +1367,7 @@ Mobile Friendly
 </div>
 
 
-<!-- HERO CARD -->
+<!-- HERO RIGHT -->
 
 <div class="col-lg-5">
 
@@ -1218,6 +1385,7 @@ Mobile Friendly
 <h2>
 
 आपकी परीक्षा,<br>
+
 आपकी तैयारी।
 
 </h2>
@@ -1294,9 +1462,9 @@ Police • Forest • Teacher
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      UPDATE BAR
-========================= -->
+===================================================== -->
 
 <div class="container update-area">
 
@@ -1325,9 +1493,9 @@ Computer Quiz का अभ्यास करें।
 </div>
 
 
-<!-- =========================
+<!-- =====================================================
      SUBJECTS
-========================= -->
+===================================================== -->
 
 <section class="section"
 id="subjects">
@@ -1338,15 +1506,23 @@ id="subjects">
 <div class="section-heading">
 
 <div class="section-label">
+
 SUBJECTS
+
 </div>
 
+
 <h2>
+
 अपने विषय से तैयारी शुरू करें
+
 </h2>
 
+
 <p>
-महत्वपूर्ण विषय चुनें और Quiz के माध्यम से अभ्यास करें।
+
+पहले अपना विषय चुनें और फिर उस विषय का Quiz शुरू करें।
+
 </p>
 
 </div>
@@ -1355,7 +1531,9 @@ SUBJECTS
 <div class="row g-4">
 
 
-<!-- CG GK -->
+<!-- =================================================
+     CG GK
+================================================= -->
 
 <div class="col-6 col-lg-3">
 
@@ -1370,7 +1548,9 @@ SUBJECTS
 
 
 <h3>
+
 CG GK
+
 </h3>
 
 
@@ -1385,7 +1565,7 @@ CG GK
 <a href="gk.html"
 class="card-link">
 
-Quiz दें →
+CG GK देखें →
 
 </a>
 
@@ -1395,7 +1575,9 @@ Quiz दें →
 </div>
 
 
-<!-- HISTORY -->
+<!-- =================================================
+     HISTORY
+================================================= -->
 
 <div class="col-6 col-lg-3">
 
@@ -1410,7 +1592,9 @@ Quiz दें →
 
 
 <h3>
+
 History
+
 </h3>
 
 
@@ -1425,7 +1609,7 @@ History
 <a href="history.html"
 class="card-link">
 
-Quiz दें →
+History देखें →
 
 </a>
 
@@ -1435,7 +1619,9 @@ Quiz दें →
 </div>
 
 
-<!-- GEOGRAPHY -->
+<!-- =================================================
+     GEOGRAPHY
+================================================= -->
 
 <div class="col-6 col-lg-3">
 
@@ -1450,7 +1636,9 @@ Quiz दें →
 
 
 <h3>
+
 Geography
+
 </h3>
 
 
@@ -1465,7 +1653,7 @@ Geography
 <a href="geography.html"
 class="card-link">
 
-Quiz दें →
+Geography देखें →
 
 </a>
 
@@ -1475,7 +1663,9 @@ Quiz दें →
 </div>
 
 
-<!-- COMPUTER -->
+<!-- =================================================
+     COMPUTER
+================================================= -->
 
 <div class="col-6 col-lg-3">
 
@@ -1490,7 +1680,9 @@ Quiz दें →
 
 
 <h3>
+
 Computer
+
 </h3>
 
 
@@ -1505,7 +1697,7 @@ Computer और Basic IT
 <a href="computer.html"
 class="card-link">
 
-Quiz दें →
+Computer देखें →
 
 </a>
 
@@ -1515,7 +1707,9 @@ Quiz दें →
 </div>
 
 
-<!-- MOCK -->
+<!-- =================================================
+     MOCK TEST
+================================================= -->
 
 <div class="col-6 col-lg-4">
 
@@ -1530,7 +1724,9 @@ Quiz दें →
 
 
 <h3>
+
 Mock Test
+
 </h3>
 
 
@@ -1542,7 +1738,7 @@ Practice Mock Tests।
 </p>
 
 
-<a href="#"
+<a href="#subjects"
 class="card-link">
 
 जल्द उपलब्ध →
@@ -1555,7 +1751,9 @@ class="card-link">
 </div>
 
 
-<!-- CURRENT -->
+<!-- =================================================
+     CURRENT AFFAIRS
+================================================= -->
 
 <div class="col-6 col-lg-4">
 
@@ -1570,7 +1768,9 @@ class="card-link">
 
 
 <h3>
+
 Current Affairs
+
 </h3>
 
 
@@ -1582,7 +1782,7 @@ Affairs और Updates।
 </p>
 
 
-<a href="#"
+<a href="#subjects"
 class="card-link">
 
 जल्द उपलब्ध →
@@ -1595,14 +1795,16 @@ class="card-link">
 </div>
 
 
-<!-- ALL -->
+<!-- =================================================
+     MORE SUBJECTS
+================================================= -->
 
 <div class="col-12 col-lg-4">
 
 <div class="subject-card">
 
 
-<div class="subject-icon cg-gk">
+<div class="subject-icon more">
 
 <i class="bi bi-grid-3x3-gap-fill"></i>
 
@@ -1610,7 +1812,9 @@ class="card-link">
 
 
 <h3>
+
 More Subjects
+
 </h3>
 
 
@@ -1622,7 +1826,7 @@ More Subjects
 </p>
 
 
-<a href="#"
+<a href="#subjects"
 class="card-link">
 
 Coming Soon →
@@ -1642,9 +1846,9 @@ Coming Soon →
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      EXAM SECTION
-========================= -->
+===================================================== -->
 
 <section class="section exam-section"
 id="exams">
@@ -1655,15 +1859,23 @@ id="exams">
 <div class="section-heading">
 
 <div class="section-label">
+
 EXAM PREPARATION
+
 </div>
 
+
 <h2>
+
 किस परीक्षा की तैयारी कर रहे हैं?
+
 </h2>
 
+
 <p>
+
 अपने लक्ष्य के अनुसार तैयारी को आगे बढ़ाएं।
+
 </p>
 
 </div>
@@ -1672,23 +1884,33 @@ EXAM PREPARATION
 <div class="row g-4">
 
 
+<!-- CGPSC -->
+
 <div class="col-6 col-md-4">
 
 <div class="exam-card">
 
 <i class="bi bi-building"></i>
 
-<h4>CGPSC</h4>
+<h4>
+
+CGPSC
+
+</h4>
 
 <p>
+
 छत्तीसगढ़ लोक सेवा आयोग
 की प्रतियोगी परीक्षा।
+
 </p>
 
 </div>
 
 </div>
 
+
+<!-- CG VYAPAM -->
 
 <div class="col-6 col-md-4">
 
@@ -1696,17 +1918,25 @@ EXAM PREPARATION
 
 <i class="bi bi-journal-text"></i>
 
-<h4>CG Vyapam</h4>
+<h4>
+
+CG Vyapam
+
+</h4>
 
 <p>
+
 CG Vyapam की विभिन्न
 परीक्षाओं के लिए अभ्यास।
+
 </p>
 
 </div>
 
 </div>
 
+
+<!-- PATWARI -->
 
 <div class="col-6 col-md-4">
 
@@ -1714,17 +1944,25 @@ CG Vyapam की विभिन्न
 
 <i class="bi bi-person-workspace"></i>
 
-<h4>Patwari</h4>
+<h4>
+
+Patwari
+
+</h4>
 
 <p>
+
 पटवारी परीक्षा के लिए
 सामान्य ज्ञान और अभ्यास।
+
 </p>
 
 </div>
 
 </div>
 
+
+<!-- TRANSPORT -->
 
 <div class="col-6 col-md-4">
 
@@ -1732,17 +1970,25 @@ CG Vyapam की विभिन्न
 
 <i class="bi bi-truck"></i>
 
-<h4>Transport Department</h4>
+<h4>
+
+Transport Department
+
+</h4>
 
 <p>
+
 परिवहन विभाग परीक्षा के
 लिए उपयोगी प्रश्न।
+
 </p>
 
 </div>
 
 </div>
 
+
+<!-- POLICE -->
 
 <div class="col-6 col-md-4">
 
@@ -1750,11 +1996,17 @@ CG Vyapam की विभिन्न
 
 <i class="bi bi-shield-check"></i>
 
-<h4>Police</h4>
+<h4>
+
+Police
+
+</h4>
 
 <p>
+
 पुलिस भर्ती परीक्षाओं के
-लिए सामान्य तैयारी।
+लिए महत्वपूर्ण अभ्यास।
+
 </p>
 
 </div>
@@ -1762,17 +2014,25 @@ CG Vyapam की विभिन्न
 </div>
 
 
+<!-- TEACHER -->
+
 <div class="col-6 col-md-4">
 
 <div class="exam-card">
 
-<i class="bi bi-tree"></i>
+<i class="bi bi-person-badge"></i>
 
-<h4>Forest & Teacher</h4>
+<h4>
+
+Teacher
+
+</h4>
 
 <p>
-Forest और Teacher जैसी
-परीक्षाओं के लिए अभ्यास।
+
+शिक्षक भर्ती परीक्षाओं के
+लिए उपयोगी प्रश्न।
+
 </p>
 
 </div>
@@ -1787,37 +2047,49 @@ Forest और Teacher जैसी
 </section>
 
 
-<!-- =========================
-     ABOUT + MOTIVATION
-========================= -->
+<!-- =====================================================
+     ABOUT
+===================================================== -->
 
-<section class="section"
+<section class="section about-section"
 id="about">
 
 <div class="container">
 
 
-<div class="row g-4">
-
-
-<div class="col-lg-6">
-
-
 <div class="about-box">
 
+
+<div class="row align-items-center">
+
+
+<div class="col-lg-7">
+
+
 <h2>
+
 CG Exam Hub के बारे में
+
 </h2>
 
 
 <p class="mt-3">
 
-CG Exam Hub छत्तीसगढ़ और भारत की
-प्रतियोगी परीक्षाओं की तैयारी करने वाले
-विद्यार्थियों के लिए बनाया गया Online
-Learning Platform है।
+CG Exam Hub छत्तीसगढ़ की प्रतियोगी परीक्षाओं
+की तैयारी करने वाले विद्यार्थियों के लिए एक
+Digital Learning Platform है।
+
+यहाँ CG GK, History, Geography, Computer और
+आने वाले समय में अन्य विषयों के Quiz और
+महत्वपूर्ण प्रश्न उपलब्ध कराए जाएंगे।
 
 </p>
+
+
+</div>
+
+
+<div class="col-lg-5">
 
 
 <ul class="about-list">
@@ -1827,7 +2099,7 @@ Learning Platform है।
 
 <i class="bi bi-check-circle-fill"></i>
 
-CG GK और महत्वपूर्ण प्रश्न
+CG GK Practice
 
 </li>
 
@@ -1836,7 +2108,25 @@ CG GK और महत्वपूर्ण प्रश्न
 
 <i class="bi bi-check-circle-fill"></i>
 
-विषयवार Quiz Practice
+History & Geography
+
+</li>
+
+
+<li>
+
+<i class="bi bi-check-circle-fill"></i>
+
+Computer Questions
+
+</li>
+
+
+<li>
+
+<i class="bi bi-check-circle-fill"></i>
+
+Exam Useful MCQs
 
 </li>
 
@@ -1850,24 +2140,9 @@ Mobile Friendly Website
 </li>
 
 
-<li>
-
-<i class="bi bi-check-circle-fill"></i>
-
-नियमित रूप से नए Content का विस्तार
-
-</li>
-
-
 </ul>
 
-
-<a href="gk.html"
-class="btn btn-light mt-2">
-
-अभी Quiz शुरू करें →
-
-</a>
+</div>
 
 
 </div>
@@ -1875,52 +2150,31 @@ class="btn btn-light mt-2">
 </div>
 
 
-<div class="col-lg-6">
-
+<!-- MOTIVATION -->
 
 <div class="motivation">
 
 
 <h2>
-आज का लक्ष्य 🎯
+
+आज की तैयारी ही कल की सफलता है।
+
 </h2>
 
 
 <p>
 
-हर दिन थोड़ा पढ़ें,<br>
-
-हर दिन कुछ नया सीखें,<br>
-
-और अपने लक्ष्य की ओर
-एक कदम आगे बढ़ें।
-
-</p>
-
-
-<p>
+हर दिन थोड़ा-थोड़ा अभ्यास करें।
+गलत उत्तरों से सीखें और लगातार अपनी तैयारी
+को बेहतर बनाते रहें।
 
 <strong>
 
-“सफलता लगातार किए गए
-छोटे-छोटे प्रयासों का परिणाम है।”
+CG Exam Hub के साथ अपनी तैयारी जारी रखें।
 
 </strong>
 
 </p>
-
-
-<a href="gk.html"
-class="btn-primary-custom d-inline-block">
-
-आज का Quiz दें →
-
-</a>
-
-
-</div>
-
-</div>
 
 
 </div>
@@ -1930,12 +2184,11 @@ class="btn-primary-custom d-inline-block">
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      FOOTER
-========================= -->
+===================================================== -->
 
 <footer class="footer">
-
 
 <div class="container">
 
@@ -1943,19 +2196,23 @@ class="btn-primary-custom d-inline-block">
 <div class="row g-4">
 
 
+<!-- BRAND -->
+
 <div class="col-lg-5">
 
 
 <h3>
+
 CG EXAM HUB
+
 </h3>
 
 
 <p class="mt-3">
 
-छत्तीसगढ़ की प्रतियोगी परीक्षाओं की
-तैयारी के लिए Quiz और महत्वपूर्ण
-प्रश्नों का Online Platform।
+छत्तीसगढ़ की प्रतियोगी परीक्षाओं की तैयारी
+के लिए GK, Quiz और महत्वपूर्ण प्रश्नों का
+Digital Platform।
 
 </p>
 
@@ -1963,103 +2220,98 @@ CG EXAM HUB
 </div>
 
 
-<div class="col-6 col-lg-2">
+<!-- QUICK LINKS -->
+
+<div class="col-6 col-lg-3">
 
 
 <h5>
+
 Quick Links
+
 </h5>
 
 
 <ul>
 
+
 <li>
+
 <a href="index.html">
-Home
+
+<i class="bi bi-house"></i>
+
+&nbsp;Home
+
 </a>
+
 </li>
 
+
 <li>
-<a href="gk.html">
-CG GK
+
+<a href="#subjects">
+
+<i class="bi bi-book"></i>
+
+&nbsp;Subjects
+
 </a>
+
 </li>
 
-<li>
-<a href="history.html">
-History
-</a>
-</li>
 
 <li>
-<a href="geography.html">
-Geography
-</a>
-</li>
 
-</ul>
-
-
-</div>
-
-
-<div class="col-6 col-lg-2">
-
-
-<h5>
-Subjects
-</h5>
-
-
-<ul>
-
-<li>
-<a href="computer.html">
-Computer
-</a>
-</li>
-
-<li>
 <a href="#exams">
-Mock Test
+
+<i class="bi bi-award"></i>
+
+&nbsp;Exams
+
 </a>
+
 </li>
 
-<li>
-<a href="#exams">
-Current Affairs
-</a>
-</li>
 
 <li>
+
 <a href="#about">
-About
+
+<i class="bi bi-info-circle"></i>
+
+&nbsp;About
+
 </a>
+
 </li>
 
-</ul>
 
+</ul>
 
 </div>
 
 
-<div class="col-lg-3">
+<!-- SUBJECTS -->
+
+<div class="col-6 col-lg-4">
 
 
 <h5>
-Official Websites
+
+Subjects
+
 </h5>
 
 
 <ul>
 
+
 <li>
 
-<a
-href="https://psc.cg.gov.in/"
-target="_blank">
+<a href="gk.html">
 
-CGPSC Official
+CG GK
 
 </a>
 
@@ -2068,11 +2320,9 @@ CGPSC Official
 
 <li>
 
-<a
-href="https://vyapam.cgstate.gov.in/"
-target="_blank">
+<a href="history.html">
 
-CG Vyapam Official
+History
 
 </a>
 
@@ -2081,28 +2331,43 @@ CG Vyapam Official
 
 <li>
 
-<a
-href="https://www.cgstate.gov.in/"
-target="_blank">
+<a href="geography.html">
 
-Chhattisgarh Government
+Geography
 
 </a>
 
 </li>
+
+
+<li>
+
+<a href="computer.html">
+
+Computer
+
+</a>
+
+</li>
+
 
 </ul>
 
-
 </div>
 
 
 </div>
 
+
+<!-- FOOTER BOTTOM -->
 
 <div class="footer-bottom">
 
 © 2026 CG Exam Hub. All Rights Reserved.
+
+<br>
+
+Made for Chhattisgarh Exam Preparation.
 
 </div>
 
@@ -2112,7 +2377,9 @@ Chhattisgarh Government
 </footer>
 
 
-<!-- Bootstrap JS -->
+<!-- =====================================================
+     BOOTSTRAP JS
+===================================================== -->
 
 <script
 src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
