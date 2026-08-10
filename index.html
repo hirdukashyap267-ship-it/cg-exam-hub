@@ -1,504 +1,2124 @@
 <!DOCTYPE html>
 <html lang="hi">
+
 <head>
-  <meta name="google-site-verification" content="7hOPBFgrvc1MMrbWQQQuV4BCgzkjSQCa1FilD1cqXHw" />
 
-<title>CG Exam Hub</title>
+<meta charset="UTF-8">
 
-<meta name="description" content="CG Exam Hub - CGPSC, Vyapam, Patwari, Transport, GK, Mock Test">
-<!-- SEO -->
-<meta name="keywords" content="CG GK, Chhattisgarh GK, CGPSC GK, CG Vyapam, Patwari GK, Transport Department, Chhattisgarh Current Affairs, CG Mock Test">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CG Exam Hub | Chhattisgarh GK, Quiz & Exam Preparation</title>
+
+<meta name="description"
+content="CG Exam Hub पर CGPSC, CG Vyapam, Patwari, Transport Department, Police, Forest और Teacher परीक्षाओं की तैयारी करें। CG GK, History, Geography, Computer Quiz और महत्वपूर्ण प्रश्नों का अभ्यास करें।">
+
+<meta name="keywords"
+content="CG GK, Chhattisgarh GK, CGPSC GK, CG Vyapam, Patwari GK, Transport Department, CG Exam Hub, Chhattisgarh Quiz">
 
 <meta name="robots" content="index, follow">
 
 <meta name="author" content="CG Exam Hub">
 
-<link rel="canonical" href="https://hirdukashyap267-ship-it.github.io/cg-exam-hub/">
+<meta name="google-site-verification"
+content="7hOPBFgrvc1MMrbWQQQuV4BCgzkjSQCa1FilD1cqXHw">
+
+<link rel="canonical"
+href="https://hirdukashyap267-ship-it.github.io/cg-exam-hub/">
 
 <!-- Open Graph -->
-<meta property="og:title" content="CG Exam Hub - Chhattisgarh GK & Mock Tests">
-<meta property="og:description" content="CGPSC, CG Vyapam, Patwari, Transport Department और अन्य प्रतियोगी परीक्षाओं के लिए GK, Practice Questions और Mock Tests।">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://hirdukashyap267-ship-it.github.io/cg-exam-hub/">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<link rel="stylesheet" href="style.css">
+<meta property="og:title"
+content="CG Exam Hub | Chhattisgarh GK & Exam Preparation">
+
+<meta property="og:description"
+content="CGPSC, CG Vyapam, Patwari, Transport और अन्य प्रतियोगी परीक्षाओं के लिए CG GK, History, Geography, Computer Quiz और महत्वपूर्ण प्रश्न।">
+
+<meta property="og:type" content="website">
+
+<meta property="og:url"
+content="https://hirdukashyap267-ship-it.github.io/cg-exam-hub/">
+
+<!-- Bootstrap -->
+
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+<!-- Bootstrap Icons -->
+
+<link
+rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
+<style>
+
+/* =========================
+   GLOBAL
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+    background:#f6f8fc;
+    color:#101828;
+}
+
+a{
+    text-decoration:none;
+}
+
+
+/* =========================
+   TOP BAR
+========================= */
+
+.topbar{
+    background:#071b3a;
+    color:white;
+    padding:9px 0;
+    font-size:13px;
+}
+
+.topbar-right{
+    display:flex;
+    gap:22px;
+    justify-content:flex-end;
+}
+
+.topbar-right a{
+    color:white;
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+.main-navbar{
+    background:white;
+    border-bottom:1px solid #e9edf3;
+    padding:14px 0;
+
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo-box{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.logo-icon{
+    width:47px;
+    height:47px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:13px;
+
+    background:linear-gradient(
+        135deg,
+        #0866ff,
+        #58a7ff
+    );
+
+    color:white;
+    font-size:24px;
+}
+
+.logo-title{
+    font-size:23px;
+    font-weight:800;
+    line-height:1;
+    color:#111827;
+}
+
+.logo-title span{
+    color:#0866ff;
+}
+
+.logo-subtitle{
+    font-size:11px;
+    color:#667085;
+    margin-top:5px;
+}
+
+.navbar-nav{
+    gap:5px;
+}
+
+.nav-link{
+    color:#172033 !important;
+    font-weight:600;
+    padding:9px 13px !important;
+    border-radius:9px;
+}
+
+.nav-link:hover,
+.nav-link.active{
+    color:#0866ff !important;
+    background:#edf5ff;
+}
+
+.quiz-btn{
+    background:#0866ff !important;
+    color:white !important;
+    padding:10px 17px !important;
+}
+
+.quiz-btn:hover{
+    background:#0055df !important;
+    color:white !important;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    padding:70px 0 60px;
+
+    background:
+    radial-gradient(
+        circle at 85% 25%,
+        rgba(8,102,255,.15),
+        transparent 35%
+    ),
+
+    linear-gradient(
+        135deg,
+        #ffffff,
+        #f0f6ff
+    );
+
+    overflow:hidden;
+}
+
+.hero-small{
+    display:inline-block;
+
+    background:#eaf3ff;
+    color:#0866ff;
+
+    padding:8px 15px;
+
+    border-radius:30px;
+
+    font-size:14px;
+    font-weight:700;
+
+    margin-bottom:20px;
+}
+
+.hero h1{
+    font-size:58px;
+    font-weight:850;
+    line-height:1.05;
+    letter-spacing:-2px;
+}
+
+.hero h1 span{
+    color:#0866ff;
+}
+
+.hero-text{
+    max-width:650px;
+
+    margin-top:22px;
+
+    color:#475467;
+
+    font-size:18px;
+    line-height:1.8;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:13px;
+    flex-wrap:wrap;
+
+    margin-top:28px;
+}
+
+.btn-primary-custom{
+    background:#0866ff;
+    color:white;
+
+    padding:13px 22px;
+
+    border-radius:11px;
+
+    font-weight:700;
+
+    box-shadow:
+    0 8px 25px rgba(8,102,255,.20);
+}
+
+.btn-primary-custom:hover{
+    background:#0055df;
+    color:white;
+    transform:translateY(-2px);
+}
+
+.btn-outline-custom{
+    background:white;
+    color:#172033;
+
+    padding:13px 22px;
+
+    border-radius:11px;
+
+    border:1px solid #d8dee8;
+
+    font-weight:700;
+}
+
+.btn-outline-custom:hover{
+    border-color:#0866ff;
+    color:#0866ff;
+}
+
+
+/* =========================
+   HERO POINTS
+========================= */
+
+.hero-points{
+    display:flex;
+    flex-wrap:wrap;
+
+    gap:18px;
+
+    margin-top:27px;
+}
+
+.hero-point{
+    display:flex;
+    align-items:center;
+    gap:7px;
+
+    color:#475467;
+
+    font-size:13px;
+}
+
+.hero-point i{
+    color:#0866ff;
+    font-size:17px;
+}
+
+
+/* =========================
+   HERO CARD
+========================= */
+
+.hero-card{
+    position:relative;
+
+    max-width:430px;
+
+    margin:auto;
+
+    padding:30px;
+
+    border-radius:25px;
+
+    background:
+    linear-gradient(
+        145deg,
+        #0866ff,
+        #4da2ff
+    );
+
+    color:white;
+
+    box-shadow:
+    0 25px 60px rgba(8,102,255,.25);
+
+    overflow:hidden;
+}
+
+.hero-card::before{
+    content:"";
+
+    position:absolute;
+
+    width:220px;
+    height:220px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.08);
+
+    right:-80px;
+    top:-80px;
+}
+
+.hero-card-icon{
+    width:72px;
+    height:72px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:rgba(255,255,255,.15);
+
+    border-radius:20px;
+
+    font-size:35px;
+
+    margin-bottom:22px;
+}
+
+.hero-card h2{
+    font-size:31px;
+    font-weight:800;
+}
+
+.hero-card p{
+    color:#eaf3ff;
+    line-height:1.7;
+}
+
+.exam-mini-list{
+    list-style:none;
+    padding:0;
+
+    margin-top:20px;
+}
+
+.exam-mini-list li{
+    padding:9px 0;
+
+    border-bottom:1px solid rgba(255,255,255,.16);
+}
+
+.exam-mini-list i{
+    margin-right:8px;
+}
+
+
+/* =========================
+   UPDATE
+========================= */
+
+.update-area{
+    margin-top:-22px;
+
+    position:relative;
+    z-index:10;
+}
+
+.update-box{
+    background:white;
+
+    border:1px solid #e5e9f0;
+
+    border-radius:15px;
+
+    padding:13px 18px;
+
+    box-shadow:
+    0 10px 30px rgba(16,24,40,.08);
+
+    display:flex;
+    align-items:center;
+
+    gap:15px;
+}
+
+.update-title{
+    background:#0866ff;
+
+    color:white;
+
+    padding:8px 14px;
+
+    border-radius:9px;
+
+    font-size:13px;
+    font-weight:700;
+
+    white-space:nowrap;
+}
+
+.update-text{
+    color:#475467;
+    font-size:13px;
+}
+
+
+/* =========================
+   SECTION
+========================= */
+
+.section{
+    padding:75px 0;
+}
+
+.section-heading{
+    text-align:center;
+    margin-bottom:42px;
+}
+
+.section-label{
+    color:#0866ff;
+    font-size:14px;
+    font-weight:700;
+}
+
+.section-heading h2{
+    font-size:34px;
+    font-weight:800;
+    margin-top:7px;
+}
+
+.section-heading p{
+    color:#667085;
+    margin-top:9px;
+}
+
+
+/* =========================
+   SUBJECT CARDS
+========================= */
+
+.subject-card{
+    background:white;
+
+    border:1px solid #e6eaf0;
+
+    border-radius:18px;
+
+    padding:28px 20px;
+
+    text-align:center;
+
+    height:100%;
+
+    transition:.25s;
+
+    box-shadow:
+    0 5px 20px rgba(16,24,40,.04);
+}
+
+.subject-card:hover{
+    transform:translateY(-7px);
+
+    box-shadow:
+    0 18px 40px rgba(16,24,40,.10);
+}
+
+.subject-icon{
+    width:68px;
+    height:68px;
+
+    margin:0 auto 17px;
+
+    border-radius:18px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:29px;
+}
+
+.cg-gk{
+    background:#e8faf2;
+    color:#079455;
+}
+
+.history{
+    background:#f1eaff;
+    color:#7542df;
+}
+
+.geography{
+    background:#e7f4ff;
+    color:#0875d1;
+}
+
+.computer{
+    background:#fff0e7;
+    color:#e85d04;
+}
+
+.mock{
+    background:#fff8d9;
+    color:#ad7700;
+}
+
+.current{
+    background:#ffe9ee;
+    color:#d92d5f;
+}
+
+.subject-card h3{
+    font-size:19px;
+    font-weight:800;
+}
+
+.subject-card p{
+    color:#667085;
+
+    font-size:13px;
+
+    line-height:1.6;
+
+    min-height:43px;
+}
+
+.card-link{
+    display:inline-block;
+
+    margin-top:10px;
+
+    padding:8px 17px;
+
+    border-radius:9px;
+
+    border:1px solid #b8d5ff;
+
+    color:#0866ff;
+
+    font-size:13px;
+
+    font-weight:700;
+}
+
+.card-link:hover{
+    background:#0866ff;
+    color:white;
+}
+
+
+/* =========================
+   EXAM SECTION
+========================= */
+
+.exam-section{
+    background:white;
+
+    border-top:1px solid #edf0f5;
+    border-bottom:1px solid #edf0f5;
+}
+
+.exam-card{
+    padding:22px;
+
+    border-radius:16px;
+
+    background:#f7f9fc;
+
+    border:1px solid #e9edf3;
+
+    height:100%;
+
+    transition:.2s;
+}
+
+.exam-card:hover{
+    border-color:#a9caff;
+
+    transform:translateY(-4px);
+}
+
+.exam-card i{
+    font-size:27px;
+    color:#0866ff;
+}
+
+.exam-card h4{
+    font-size:17px;
+    font-weight:800;
+    margin-top:13px;
+}
+
+.exam-card p{
+    color:#667085;
+    font-size:13px;
+    line-height:1.6;
+}
+
+
+/* =========================
+   ABOUT
+========================= */
+
+.about-box{
+    background:#071b3a;
+
+    color:white;
+
+    border-radius:22px;
+
+    padding:45px;
+}
+
+.about-box h2{
+    font-size:30px;
+    font-weight:800;
+}
+
+.about-box p{
+    color:#d5e1f0;
+    line-height:1.8;
+}
+
+.about-list{
+    list-style:none;
+    padding:0;
+    margin-top:25px;
+}
+
+.about-list li{
+    margin-bottom:12px;
+    color:#d5e1f0;
+}
+
+.about-list i{
+    color:#32d583;
+    margin-right:8px;
+}
+
+
+/* =========================
+   MOTIVATION
+========================= */
+
+.motivation{
+    background:#edf5ff;
+
+    border-radius:22px;
+
+    padding:45px;
+}
+
+.motivation h2{
+    color:#0866ff;
+    font-weight:800;
+}
+
+.motivation p{
+    color:#344054;
+
+    font-size:18px;
+
+    line-height:1.8;
+
+    margin-top:18px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+    background:#071b3a;
+
+    color:#d5e1f0;
+
+    padding:55px 0 20px;
+}
+
+.footer h3{
+    color:white;
+    font-weight:800;
+}
+
+.footer h5{
+    color:white;
+
+    font-size:15px;
+
+    margin-bottom:17px;
+}
+
+.footer p{
+    color:#a9bad0;
+
+    font-size:13px;
+
+    line-height:1.8;
+}
+
+.footer ul{
+    list-style:none;
+    padding:0;
+}
+
+.footer li{
+    margin-bottom:9px;
+}
+
+.footer a{
+    color:#a9bad0;
+    font-size:13px;
+}
+
+.footer a:hover{
+    color:white;
+}
+
+.footer-bottom{
+    border-top:1px solid #193556;
+
+    margin-top:35px;
+
+    padding-top:18px;
+
+    text-align:center;
+
+    color:#8ea5c1;
+
+    font-size:12px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:991px){
+
+    .topbar-right{
+        display:none;
+    }
+
+    .hero{
+        padding:50px 0;
+    }
+
+    .hero h1{
+        font-size:45px;
+    }
+
+    .hero-card{
+        margin-top:35px;
+    }
+
+}
+
+@media(max-width:576px){
+
+    .logo-title{
+        font-size:19px;
+    }
+
+    .logo-icon{
+        width:41px;
+        height:41px;
+        font-size:20px;
+    }
+
+    .logo-subtitle{
+        font-size:9px;
+    }
+
+    .hero{
+        padding:42px 0;
+    }
+
+    .hero h1{
+        font-size:38px;
+        letter-spacing:-1px;
+    }
+
+    .hero-text{
+        font-size:16px;
+    }
+
+    .hero-buttons{
+        flex-direction:column;
+    }
+
+    .btn-primary-custom,
+    .btn-outline-custom{
+        width:100%;
+        text-align:center;
+    }
+
+    .hero-card{
+        padding:25px;
+    }
+
+    .update-box{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .section{
+        padding:55px 0;
+    }
+
+    .section-heading h2{
+        font-size:28px;
+    }
+
+    .about-box,
+    .motivation{
+        padding:30px 22px;
+    }
+
+}
+
+
+/* =========================
+   EXTRA
+========================= */
+
+.text-blue{
+    color:#0866ff;
+}
+
+</style>
 
 </head>
 
+
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
-<div class="container">
 
-<a class="navbar-brand fw-bold" href="#">
-CG Exam Hub
+<!-- =========================
+     TOP BAR
+========================= -->
+
+<div class="topbar">
+
+<div class="container d-flex justify-content-between">
+
+<div>
+
+<i class="bi bi-mortarboard-fill"></i>
+
+&nbsp;छत्तीसगढ़ की प्रतियोगी परीक्षाओं की तैयारी
+
+</div>
+
+
+<div class="topbar-right">
+
+<a href="#subjects">
+<i class="bi bi-book"></i>
+Subjects
 </a>
 
-<button class="navbar-toggler"
+<a href="#exams">
+<i class="bi bi-award"></i>
+Exams
+</a>
+
+<a href="#about">
+<i class="bi bi-info-circle"></i>
+About
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav class="navbar navbar-expand-lg main-navbar">
+
+<div class="container">
+
+
+<a class="navbar-brand p-0" href="index.html">
+
+<div class="logo-box">
+
+<div class="logo-icon">
+
+<i class="bi bi-mortarboard-fill"></i>
+
+</div>
+
+<div>
+
+<div class="logo-title">
+CG <span>EXAM HUB</span>
+</div>
+
+<div class="logo-subtitle">
+छत्तीसगढ़ की तैयारी, एक ही जगह
+</div>
+
+</div>
+
+</div>
+
+</a>
+
+
+<button
+class="navbar-toggler"
 type="button"
 data-bs-toggle="collapse"
-data-bs-target="#menu">
+data-bs-target="#mainMenu">
 
 <span class="navbar-toggler-icon"></span>
 
 </button>
 
-<div class="collapse navbar-collapse" id="menu">
 
-<ul class="navbar-nav ms-auto">
+<div
+class="collapse navbar-collapse"
+id="mainMenu">
 
-<li class="nav-item">
-<a class="nav-link active" href="index.html">Home</a>
-</li>
 
-<li class="nav-item">
-<a class="nav-link" href="gk.html">CG GK</a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="history.html">History</a>
-</li>
+<ul class="navbar-nav ms-auto align-items-lg-center">
+
 
 <li class="nav-item">
-<a class="nav-link" href="geography.html">Geography</a>
+
+<a class="nav-link active"
+href="index.html">
+
+Home
+
+</a>
+
 </li>
 
-<li class="nav-item">
-<a class="nav-link" href="computer.html">Computer</a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="#">Mock Test</a>
-</li>
 
 <li class="nav-item">
-<a class="nav-link" href="#">Current Affairs</a>
+
+<a class="nav-link"
+href="gk.html">
+
+CG GK
+
+</a>
+
 </li>
 
+
 <li class="nav-item">
-<a class="nav-link" href="#">Contact</a>
+
+<a class="nav-link"
+href="history.html">
+
+History
+
+</a>
+
 </li>
+
+
+<li class="nav-item">
+
+<a class="nav-link"
+href="geography.html">
+
+Geography
+
+</a>
+
+</li>
+
+
+<li class="nav-item">
+
+<a class="nav-link"
+href="computer.html">
+
+Computer
+
+</a>
+
+</li>
+
+
+<li class="nav-item">
+
+<a class="nav-link"
+href="#exams">
+
+Exams
+
+</a>
+
+</li>
+
+
+<li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+
+<a class="nav-link quiz-btn"
+href="gk.html">
+
+<i class="bi bi-play-circle"></i>
+
+&nbsp;Start Quiz
+
+</a>
+
+</li>
+
 
 </ul>
 
 </div>
 
 </div>
+
 </nav>
 
-<section class="bg-primary text-white text-center py-5">
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
 
 <div class="container">
 
-<h1 class="display-4 fw-bold">
+<div class="row align-items-center">
 
-Welcome to CG Exam Hub
+
+<div class="col-lg-7">
+
+
+<div class="hero-small">
+
+<i class="bi bi-stars"></i>
+
+&nbsp;आपकी तैयारी का Digital साथी
+
+</div>
+
+
+<h1>
+
+CG <span>EXAM</span><br>
+
+HUB
 
 </h1>
 
-<p class="lead mt-3">
 
-CGPSC • CG Vyapam • Patwari • Transport Department • Police • Forest • Teacher
+<p class="hero-text">
 
-</p>
-<div class="container my-5">
-
-<h2>CG Exam Hub – Chhattisgarh Competitive Exam Quiz</h2>
-
-<p>
-CG Exam Hub छत्तीसगढ़ और भारत की प्रतियोगी परीक्षाओं की तैयारी के लिए
-ऑनलाइन Quiz और अभ्यास प्रश्न उपलब्ध कराता है। यहाँ CG GK, History,
-Geography और Computer जैसे विषयों के महत्वपूर्ण प्रश्नों का अभ्यास किया
-जा सकता है।
-</p>
-
-<h2>किस परीक्षा की तैयारी करें?</h2>
-
-<p>
-CGPSC, CG Vyapam, Patwari, Transport Department, Police, Forest और
-Teacher जैसी प्रतियोगी परीक्षाओं की तैयारी के लिए उपयोगी सामान्य ज्ञान
-और विषयवार Quiz यहाँ उपलब्ध हैं।
-</p>
-
-</div>
-<a href="gk.html" class="btn btn-warning btn-lg mt-3">
-
-Start Free Quiz
-
-</a>
-
-</div>
-
-</section>
-
-<section class="container py-5">
-
-<div class="row text-center">
-
-<div class="col-md-3 mb-4">
-
-<div class="card shadow">
-
-<div class="card-body">
-
-<h2>1000+</h2>
-
-<p>Practice Questions</p>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="col-md-3 mb-4">
-
-<div class="card shadow">
-
-<div class="card-body">
-
-<h2>100+</h2>
-
-<p>Mock Tests</p>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="col-md-3 mb-4">
-
-<div class="card shadow">
-
-<div class="card-body">
-
-<h2>500+</h2>
-
-<p>Study Notes</p>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="col-md-3 mb-4">
-
-<div class="card shadow">
-
-<div class="card-body">
-
-<h2>Daily</h2>
-
-<p>Current Affairs</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-<!-- Features Section -->
-
-<section class="container py-5">
-
-<h2 class="text-center fw-bold mb-5">
-Why Choose CG Exam Hub?
-</h2>
-
-<div class="row g-4">
-
-<div class="col-md-4">
-<div class="card h-100 shadow text-center">
-<div class="card-body">
-<h3>📚</h3>
-<h5>Free Study Notes</h5>
-<p>CGPSC, Vyapam, Patwari, Transport एवं अन्य परीक्षाओं के लिए नोट्स।</p>
-</div>
-</div>
-</div>
-
-<div class="col-md-4">
-<div class="card h-100 shadow text-center">
-<div class="card-body">
-<h3>📝</h3>
-<h5>Daily Quiz</h5>
-<p>प्रतिदिन नए MCQ प्रश्नों के साथ अभ्यास करें।</p>
-</div>
-</div>
-</div>
-
-<div class="col-md-4">
-<div class="card h-100 shadow text-center">
-<div class="card-body">
-<h3>🏆</h3>
-<h5>Mock Tests</h5>
-<p>रियल एग्जाम जैसा ऑनलाइन टेस्ट अनुभव।</p>
-</div>
-</div>
-</div>
-
-</div>
-
-</section>
-
-<!-- Categories -->
-
-<section class="container py-5">
-
-<h2 class="text-center fw-bold mb-5">
-Exam Categories
-</h2>
-
-<div class="row g-4">
-
-<<div class="col-md-3">
-
-<a href="gk.html" class="text-decoration-none">
-
-<div class="card shadow text-center">
-
-<div class="card-body">
-
-<h4>📘 CG GK</h4>
-
-<p class="text-dark">
-Chhattisgarh General Knowledge Quiz
-</p>
-
-<button class="btn btn-primary">
-Start Quiz
-</button>
-
-</div>
-
-</div>
-
-</a>
-
-</div>
-
-<div class="col-md-3">
-
-<a href="history.html" class="text-decoration-none">
-
-<div class="card shadow text-center">
-
-<div class="card-body">
-
-<h4>🏛 History</h4>
-
-<p class="text-dark">
-Indian History Quiz
-</p>
-
-<button class="btn btn-primary">
-  Start Quiz
-</button>
-
-</div>
-
-</div>
-
-</a>
-
-</div>
-
-<div class="col-md-3">
-
-<a href="geography.html" class="text-decoration-none">
-
-<div class="card shadow text-center">
-
-<div class="card-body">
-
-<h4>🌍 Geography</h4>
-
-<p class="text-dark">
-Geography Quiz
-</p>
-
-<button class="btn btn-primary">
-Start Quiz
-</button>
-
-</div>
-
-</div>
-
-</a>
-
-</div>
-<<div class="col-md-3">
-
-<a href="computer.html" class="text-decoration-none">
-
-<div class="card shadow text-center">
-
-<div class="card-body">
-
-<h4>💻 Computer</h4>
-
-<p class="text-dark">
-Computer Quiz
-</p>
-
-<button class="btn btn-primary">
-Start Quiz
-</button>
-
-</div>
-
-</div>
-
-</a>
-
-</div>
-<h4>📰 Current Affairs</h4>
-</div>
-</div>
-</div>
-
-<div class="col-md-3">
-<div class="card shadow text-center">
-<div class="card-body">
-<h4>⚖ Constitution</h4>
-</div>
-</div>
-</div>
-
-<div class="col-md-3">
-<div class="card shadow text-center">
-<div class="card-body">
-<h4>🔬 Science</h4>
-</div>
-</div>
-</div>
-
-<div class="col-md-3">
-<div class="card shadow text-center">
-<div class="card-body">
-<h4>🧮 Mathematics</h4>
-</div>
-</div>
-</div>
-
-</div>
-
-</section>
-
-<!-- Latest Update -->
-
-<section class="container py-5">
-
-<div class="alert alert-success text-center">
-
-<h4>📢 Latest Update</h4>
-
-<p>
-CGPSC, Vyapam, Transport Department एवं अन्य परीक्षाओं के लिए
-नए प्रश्न प्रतिदिन जोड़े जाते हैं।
-</p>
-
-</div>
-
-</section>
-<!-- About Section -->
-
-<section class="container py-5">
-
-<div class="row">
-
-<div class="col-lg-6">
-
-<h2 class="fw-bold">About CG Exam Hub</h2>
-
-<p class="mt-3">
-CG Exam Hub एक ऑनलाइन प्लेटफ़ॉर्म है जहाँ आप
 CGPSC, CG Vyapam, Patwari, Transport Department,
-Police, Forest, Teacher तथा अन्य प्रतियोगी परीक्षाओं
-की तैयारी कर सकते हैं।
+Police, Forest, Teacher और अन्य प्रतियोगी परीक्षाओं
+की तैयारी के लिए CG Exam Hub पर विषयवार Quiz
+और महत्वपूर्ण प्रश्नों का अभ्यास करें।
+
 </p>
+
+
+<div class="hero-buttons">
+
+
+<a href="gk.html"
+class="btn-primary-custom">
+
+<i class="bi bi-play-circle"></i>
+
+&nbsp;CG GK Quiz शुरू करें
+
+&nbsp;<i class="bi bi-arrow-right"></i>
+
+</a>
+
+
+<a href="#subjects"
+class="btn-outline-custom">
+
+<i class="bi bi-book"></i>
+
+&nbsp;Subjects देखें
+
+</a>
+
+
+</div>
+
+
+<div class="hero-points">
+
+
+<div class="hero-point">
+
+<i class="bi bi-check-circle-fill"></i>
+
+Free Practice
+
+</div>
+
+
+<div class="hero-point">
+
+<i class="bi bi-check-circle-fill"></i>
+
+Exam Useful Questions
+
+</div>
+
+
+<div class="hero-point">
+
+<i class="bi bi-check-circle-fill"></i>
+
+Mobile Friendly
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<!-- HERO CARD -->
+
+<div class="col-lg-5">
+
+
+<div class="hero-card">
+
+
+<div class="hero-card-icon">
+
+<i class="bi bi-mortarboard-fill"></i>
+
+</div>
+
+
+<h2>
+
+आपकी परीक्षा,<br>
+आपकी तैयारी।
+
+</h2>
+
 
 <p>
-यहाँ आपको Quiz, Notes, Mock Test, Previous Year Questions
-और Daily Current Affairs मिलेंगे।
+
+सही दिशा में नियमित अभ्यास
+आपको अपने लक्ष्य के करीब ले जाता है।
+
 </p>
 
-</div>
 
-<div class="col-lg-6 text-center">
+<ul class="exam-mini-list">
 
-<img src="https://via.placeholder.com/500x300"
-class="img-fluid rounded shadow"
-alt="CG Exam Hub">
 
-</div>
+<li>
 
-</div>
+<i class="bi bi-check-circle-fill"></i>
 
-</section>
+CGPSC
 
-<!-- Footer -->
+</li>
 
-<footer class="bg-dark text-white mt-5">
 
-<div class="container py-4">
+<li>
 
-<div class="row">
+<i class="bi bi-check-circle-fill"></i>
 
-<div class="col-md-4">
-<h4>CG Exam Hub</h4>
-<p>Prepare Smart, Score Better.</p>
-</div>
+CG Vyapam
 
-<div class="col-md-4">
-<h4>Quick Links</h4>
+</li>
 
-<ul class="list-unstyled">
 
-<li><a href="index.html" class="text-white text-decoration-none">Home</a></li>
+<li>
 
-<li><a href="gk.html" class="text-white text-decoration-none">CG GK</a></li>
+<i class="bi bi-check-circle-fill"></i>
 
-<li><a href="#" class="text-white text-decoration-none">Mock Test</a></li>
+Patwari
 
-<li><a href="#" class="text-white text-decoration-none">Current Affairs</a></li>
+</li>
+
+
+<li>
+
+<i class="bi bi-check-circle-fill"></i>
+
+Transport Department
+
+</li>
+
+
+<li>
+
+<i class="bi bi-check-circle-fill"></i>
+
+Police • Forest • Teacher
+
+</li>
+
 
 </ul>
 
-</div>
-
-<div class="col-md-4">
-
-<h4>Contact</h4>
-
-<p>Email: support@cgexamhub.in</p>
-
-<p>Website: www.cgexamhub.in</p>
 
 </div>
 
 </div>
 
-<hr>
-
-<div class="text-center">
-
-<p>© 2026 CG Exam Hub. All Rights Reserved.</p>
 
 </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     UPDATE BAR
+========================= -->
+
+<div class="container update-area">
+
+<div class="update-box">
+
+
+<div class="update-title">
+
+<i class="bi bi-megaphone-fill"></i>
+
+&nbsp; Latest Update
+
+</div>
+
+
+<div class="update-text">
+
+CG Exam Hub पर CG GK, History, Geography और
+Computer Quiz का अभ्यास करें।
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     SUBJECTS
+========================= -->
+
+<section class="section"
+id="subjects">
+
+<div class="container">
+
+
+<div class="section-heading">
+
+<div class="section-label">
+SUBJECTS
+</div>
+
+<h2>
+अपने विषय से तैयारी शुरू करें
+</h2>
+
+<p>
+महत्वपूर्ण विषय चुनें और Quiz के माध्यम से अभ्यास करें।
+</p>
+
+</div>
+
+
+<div class="row g-4">
+
+
+<!-- CG GK -->
+
+<div class="col-6 col-lg-3">
+
+<div class="subject-card">
+
+
+<div class="subject-icon cg-gk">
+
+<i class="bi bi-lightbulb-fill"></i>
+
+</div>
+
+
+<h3>
+CG GK
+</h3>
+
+
+<p>
+
+छत्तीसगढ़ सामान्य ज्ञान के
+महत्वपूर्ण प्रश्न।
+
+</p>
+
+
+<a href="gk.html"
+class="card-link">
+
+Quiz दें →
+
+</a>
+
+
+</div>
+
+</div>
+
+
+<!-- HISTORY -->
+
+<div class="col-6 col-lg-3">
+
+<div class="subject-card">
+
+
+<div class="subject-icon history">
+
+<i class="bi bi-bank"></i>
+
+</div>
+
+
+<h3>
+History
+</h3>
+
+
+<p>
+
+भारत एवं छत्तीसगढ़ के
+इतिहास से जुड़े प्रश्न।
+
+</p>
+
+
+<a href="history.html"
+class="card-link">
+
+Quiz दें →
+
+</a>
+
+
+</div>
+
+</div>
+
+
+<!-- GEOGRAPHY -->
+
+<div class="col-6 col-lg-3">
+
+<div class="subject-card">
+
+
+<div class="subject-icon geography">
+
+<i class="bi bi-globe-asia-australia"></i>
+
+</div>
+
+
+<h3>
+Geography
+</h3>
+
+
+<p>
+
+भारत और छत्तीसगढ़
+भूगोल का अभ्यास।
+
+</p>
+
+
+<a href="geography.html"
+class="card-link">
+
+Quiz दें →
+
+</a>
+
+
+</div>
+
+</div>
+
+
+<!-- COMPUTER -->
+
+<div class="col-6 col-lg-3">
+
+<div class="subject-card">
+
+
+<div class="subject-icon computer">
+
+<i class="bi bi-pc-display"></i>
+
+</div>
+
+
+<h3>
+Computer
+</h3>
+
+
+<p>
+
+Computer और Basic IT
+के महत्वपूर्ण प्रश्न।
+
+</p>
+
+
+<a href="computer.html"
+class="card-link">
+
+Quiz दें →
+
+</a>
+
+
+</div>
+
+</div>
+
+
+<!-- MOCK -->
+
+<div class="col-6 col-lg-4">
+
+<div class="subject-card">
+
+
+<div class="subject-icon mock">
+
+<i class="bi bi-clipboard-check"></i>
+
+</div>
+
+
+<h3>
+Mock Test
+</h3>
+
+
+<p>
+
+प्रतियोगी परीक्षाओं के
+Practice Mock Tests।
+
+</p>
+
+
+<a href="#"
+class="card-link">
+
+जल्द उपलब्ध →
+
+</a>
+
+
+</div>
+
+</div>
+
+
+<!-- CURRENT -->
+
+<div class="col-6 col-lg-4">
+
+<div class="subject-card">
+
+
+<div class="subject-icon current">
+
+<i class="bi bi-newspaper"></i>
+
+</div>
+
+
+<h3>
+Current Affairs
+</h3>
+
+
+<p>
+
+परीक्षा उपयोगी Current
+Affairs और Updates।
+
+</p>
+
+
+<a href="#"
+class="card-link">
+
+जल्द उपलब्ध →
+
+</a>
+
+
+</div>
+
+</div>
+
+
+<!-- ALL -->
+
+<div class="col-12 col-lg-4">
+
+<div class="subject-card">
+
+
+<div class="subject-icon cg-gk">
+
+<i class="bi bi-grid-3x3-gap-fill"></i>
+
+</div>
+
+
+<h3>
+More Subjects
+</h3>
+
+
+<p>
+
+आने वाले समय में और भी
+विषय जोड़े जाएंगे।
+
+</p>
+
+
+<a href="#"
+class="card-link">
+
+Coming Soon →
+
+</a>
+
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     EXAM SECTION
+========================= -->
+
+<section class="section exam-section"
+id="exams">
+
+<div class="container">
+
+
+<div class="section-heading">
+
+<div class="section-label">
+EXAM PREPARATION
+</div>
+
+<h2>
+किस परीक्षा की तैयारी कर रहे हैं?
+</h2>
+
+<p>
+अपने लक्ष्य के अनुसार तैयारी को आगे बढ़ाएं।
+</p>
+
+</div>
+
+
+<div class="row g-4">
+
+
+<div class="col-6 col-md-4">
+
+<div class="exam-card">
+
+<i class="bi bi-building"></i>
+
+<h4>CGPSC</h4>
+
+<p>
+छत्तीसगढ़ लोक सेवा आयोग
+की प्रतियोगी परीक्षा।
+</p>
+
+</div>
+
+</div>
+
+
+<div class="col-6 col-md-4">
+
+<div class="exam-card">
+
+<i class="bi bi-journal-text"></i>
+
+<h4>CG Vyapam</h4>
+
+<p>
+CG Vyapam की विभिन्न
+परीक्षाओं के लिए अभ्यास।
+</p>
+
+</div>
+
+</div>
+
+
+<div class="col-6 col-md-4">
+
+<div class="exam-card">
+
+<i class="bi bi-person-workspace"></i>
+
+<h4>Patwari</h4>
+
+<p>
+पटवारी परीक्षा के लिए
+सामान्य ज्ञान और अभ्यास।
+</p>
+
+</div>
+
+</div>
+
+
+<div class="col-6 col-md-4">
+
+<div class="exam-card">
+
+<i class="bi bi-truck"></i>
+
+<h4>Transport Department</h4>
+
+<p>
+परिवहन विभाग परीक्षा के
+लिए उपयोगी प्रश्न।
+</p>
+
+</div>
+
+</div>
+
+
+<div class="col-6 col-md-4">
+
+<div class="exam-card">
+
+<i class="bi bi-shield-check"></i>
+
+<h4>Police</h4>
+
+<p>
+पुलिस भर्ती परीक्षाओं के
+लिए सामान्य तैयारी।
+</p>
+
+</div>
+
+</div>
+
+
+<div class="col-6 col-md-4">
+
+<div class="exam-card">
+
+<i class="bi bi-tree"></i>
+
+<h4>Forest & Teacher</h4>
+
+<p>
+Forest और Teacher जैसी
+परीक्षाओं के लिए अभ्यास।
+</p>
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     ABOUT + MOTIVATION
+========================= -->
+
+<section class="section"
+id="about">
+
+<div class="container">
+
+
+<div class="row g-4">
+
+
+<div class="col-lg-6">
+
+
+<div class="about-box">
+
+<h2>
+CG Exam Hub के बारे में
+</h2>
+
+
+<p class="mt-3">
+
+CG Exam Hub छत्तीसगढ़ और भारत की
+प्रतियोगी परीक्षाओं की तैयारी करने वाले
+विद्यार्थियों के लिए बनाया गया Online
+Learning Platform है।
+
+</p>
+
+
+<ul class="about-list">
+
+
+<li>
+
+<i class="bi bi-check-circle-fill"></i>
+
+CG GK और महत्वपूर्ण प्रश्न
+
+</li>
+
+
+<li>
+
+<i class="bi bi-check-circle-fill"></i>
+
+विषयवार Quiz Practice
+
+</li>
+
+
+<li>
+
+<i class="bi bi-check-circle-fill"></i>
+
+Mobile Friendly Website
+
+</li>
+
+
+<li>
+
+<i class="bi bi-check-circle-fill"></i>
+
+नियमित रूप से नए Content का विस्तार
+
+</li>
+
+
+</ul>
+
+
+<a href="gk.html"
+class="btn btn-light mt-2">
+
+अभी Quiz शुरू करें →
+
+</a>
+
+
+</div>
+
+</div>
+
+
+<div class="col-lg-6">
+
+
+<div class="motivation">
+
+
+<h2>
+आज का लक्ष्य 🎯
+</h2>
+
+
+<p>
+
+हर दिन थोड़ा पढ़ें,<br>
+
+हर दिन कुछ नया सीखें,<br>
+
+और अपने लक्ष्य की ओर
+एक कदम आगे बढ़ें।
+
+</p>
+
+
+<p>
+
+<strong>
+
+“सफलता लगातार किए गए
+छोटे-छोटे प्रयासों का परिणाम है।”
+
+</strong>
+
+</p>
+
+
+<a href="gk.html"
+class="btn-primary-custom d-inline-block">
+
+आज का Quiz दें →
+
+</a>
+
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="footer">
+
+
+<div class="container">
+
+
+<div class="row g-4">
+
+
+<div class="col-lg-5">
+
+
+<h3>
+CG EXAM HUB
+</h3>
+
+
+<p class="mt-3">
+
+छत्तीसगढ़ की प्रतियोगी परीक्षाओं की
+तैयारी के लिए Quiz और महत्वपूर्ण
+प्रश्नों का Online Platform।
+
+</p>
+
+
+</div>
+
+
+<div class="col-6 col-lg-2">
+
+
+<h5>
+Quick Links
+</h5>
+
+
+<ul>
+
+<li>
+<a href="index.html">
+Home
+</a>
+</li>
+
+<li>
+<a href="gk.html">
+CG GK
+</a>
+</li>
+
+<li>
+<a href="history.html">
+History
+</a>
+</li>
+
+<li>
+<a href="geography.html">
+Geography
+</a>
+</li>
+
+</ul>
+
+
+</div>
+
+
+<div class="col-6 col-lg-2">
+
+
+<h5>
+Subjects
+</h5>
+
+
+<ul>
+
+<li>
+<a href="computer.html">
+Computer
+</a>
+</li>
+
+<li>
+<a href="#exams">
+Mock Test
+</a>
+</li>
+
+<li>
+<a href="#exams">
+Current Affairs
+</a>
+</li>
+
+<li>
+<a href="#about">
+About
+</a>
+</li>
+
+</ul>
+
+
+</div>
+
+
+<div class="col-lg-3">
+
+
+<h5>
+Official Websites
+</h5>
+
+
+<ul>
+
+<li>
+
+<a
+href="https://psc.cg.gov.in/"
+target="_blank">
+
+CGPSC Official
+
+</a>
+
+</li>
+
+
+<li>
+
+<a
+href="https://vyapam.cgstate.gov.in/"
+target="_blank">
+
+CG Vyapam Official
+
+</a>
+
+</li>
+
+
+<li>
+
+<a
+href="https://www.cgstate.gov.in/"
+target="_blank">
+
+Chhattisgarh Government
+
+</a>
+
+</li>
+
+</ul>
+
+
+</div>
+
+
+</div>
+
+
+<div class="footer-bottom">
+
+© 2026 CG Exam Hub. All Rights Reserved.
+
+</div>
+
 
 </div>
 
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<script src="script.js"></script>
+<!-- Bootstrap JS -->
+
+<script
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
 
 </body>
+
 </html>
