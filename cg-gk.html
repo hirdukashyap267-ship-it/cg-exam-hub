@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>छत्तीसगढ़ GK Quiz | CG Exam Hub</title>
+
+<meta name="description"
+content="छत्तीसगढ़ सामान्य ज्ञान GK Quiz। CG Exam Hub पर छत्तीसगढ़ GK के महत्वपूर्ण प्रश्नों का अभ्यास करें।">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+    background:#f4f7fb;
+    color:#172033;
+}
+
+.quiz-header{
+    background:linear-gradient(135deg,#0866ff,#4da2ff);
+    color:white;
+    padding:35px 20px;
+    text-align:center;
+}
+
+.quiz-header h1{
+    font-size:32px;
+    font-weight:800;
+}
+
+.quiz-header p{
+    margin:8px 0 0;
+    opacity:.9;
+}
+
+.quiz-box{
+    max-width:750px;
+    margin:35px auto;
+    padding:25px;
+}
+
+.question-card{
+    background:white;
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.progress{
+    height:9px;
+    border-radius:20px;
+    margin-bottom:25px;
+}
+
+.question-number{
+    color:#0866ff;
+    font-weight:700;
+    margin-bottom:10px;
+}
+
+.question{
+    font-size:21px;
+    font-weight:800;
+    line-height:1.5;
+    margin-bottom:22px;
+}
+
+.option{
+    width:100%;
+    text-align:left;
+    border:1px solid #dfe5ee;
+    background:white;
+    padding:14px 16px;
+    border-radius:12px;
+    margin-bottom:12px;
+    font-size:16px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.option:hover{
+    border-color:#0866ff;
+    background:#edf5ff;
+}
+
+.option.correct{
+    background:#dff7e8;
+    border-color:#18a957;
+}
+
+.option.wrong{
+    background:#ffe5e5;
+    border-color:#dc3545;
+}
+
+.next-btn{
+    width:100%;
+    border:0;
+    background:#0866ff;
+    color:white;
+    padding:14px;
+    border-radius:12px;
+    font-weight:700;
+    margin-top:8px;
+}
+
+.next-btn:hover{
+    background:#0055df;
+}
+
+.result{
+    display:none;
+    text-align:center;
+    background:white;
+    border-radius:20px;
+    padding:35px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.result h2{
+    font-weight:800;
+}
+
+.score{
+    font-size:42px;
+    font-weight:900;
+    color:#0866ff;
+    margin:15px 0;
+}
+
+.home-btn{
+    display:inline-block;
+    background:#071b3a;
+    color:white;
+    padding:12px 22px;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:700;
+}
+
+@media(max-width:576px){
+    .quiz-header h1{
+        font-size:26px;
+    }
+
+    .quiz-box{
+        margin:20px auto;
+        padding:15px;
+    }
+
+    .question-card{
+        padding:20px;
+    }
+
+    .question{
+        font-size:18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="quiz-header">
+    <h1>📚 छत्तीसगढ़ GK Quiz</h1>
+    <p>छत्तीसगढ़ सामान्य ज्ञान के महत्वपूर्ण प्रश्न</p>
+</header>
+
+<main class="quiz-box">
+
+<div id="quiz">
+
+    <div class="question-card">
+
+        <div class="question-number" id="questionNumber"></div>
+
+        <div class="progress">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="question" id="question"></div>
+
+        <div id="options"></div>
+
+        <button class="next-btn" id="nextBtn" onclick="nextQuestion()" disabled>
+            अगला प्रश्न →
+        </button>
+
+    </div>
+
+</div>
+
+<div class="result" id="result">
+
+    <h2>🎉 Quiz पूरा हुआ!</h2>
+
+    <div class="score" id="score"></div>
+
+    <p id="resultText"></p>
+
+    <a href="cg-gk-start.html" class="home-btn">
+        दूसरे CG GK Quiz चुनें
+    </a>
+
+</div>
+
+</main>
+
+<script>
+
+const questions = [
+
+{
+question:"छत्तीसगढ़ राज्य का गठन कब हुआ?",
+options:["1 नवंबर 1998","1 नवंबर 2000","15 अगस्त 2000","26 जनवरी 2001"],
+answer:1
+},
+
+{
+question:"छत्तीसगढ़ की राजधानी कौन-सी है?",
+options:["बिलासपुर","दुर्ग","रायपुर","जगदलपुर"],
+answer:2
+},
+
+{
+question:"छत्तीसगढ़ का राजकीय पशु कौन-सा है?",
+options:["वन भैंसा","बाघ","हाथी","बारहसिंगा"],
+answer:0
+},
+
+{
+question:"छत्तीसगढ़ का राजकीय पक्षी कौन-सा है?",
+options:["मोर","पहाड़ी मैना","तोता","सारस"],
+answer:1
+},
+
+{
+question:"छत्तीसगढ़ का राजकीय वृक्ष कौन-सा है?",
+options:["साल","बरगद","पीपल","नीम"],
+answer:0
+},
+
+{
+question:"छत्तीसगढ़ का सबसे बड़ा शहर कौन-सा है?",
+options:["बिलासपुर","रायपुर","दुर्ग","राजनांदगांव"],
+answer:1
+},
+
+{
+question:"छत्तीसगढ़ की प्रमुख नदी कौन-सी है?",
+options:["नर्मदा","महानदी","ताप्ती","गोदावरी"],
+answer:1
+},
+
+{
+question:"चित्रकोट जलप्रपात किस जिले में स्थित है?",
+options:["बस्तर","रायपुर","कोरबा","बिलासपुर"],
+answer:0
+},
+
+{
+question:"छत्तीसगढ़ को किस नाम से भी जाना जाता है?",
+options:["धान का कटोरा","भारत का द्वार","झीलों का प्रदेश","मरुस्थल प्रदेश"],
+answer:0
+},
+
+{
+question:"सिरपुर किस नदी के किनारे स्थित है?",
+options:["महानदी","शिवनाथ","इंद्रावती","हसदेव"],
+answer:0
+}
+
+];
+
+let currentQuestion = 0;
+let score = 0;
+let selected = false;
+
+function loadQuestion(){
+
+    selected = false;
+
+    const q = questions[currentQuestion];
+
+    document.getElementById("questionNumber").innerText =
+        "प्रश्न " + (currentQuestion + 1) + " / " + questions.length;
+
+    document.getElementById("question").innerText =
+        q.question;
+
+    document.getElementById("progressBar").style.width =
+        ((currentQuestion + 1) / questions.length * 100) + "%";
+
+    const optionsBox = document.getElementById("options");
+
+    optionsBox.innerHTML = "";
+
+    q.options.forEach((option,index)=>{
+
+        const button = document.createElement("button");
+
+        button.className = "option";
+
+        button.innerText =
+            String.fromCharCode(65 + index) + ". " + option;
+
+        button.onclick = () => selectAnswer(button,index);
+
+        optionsBox.appendChild(button);
+
+    });
+
+    document.getElementById("nextBtn").disabled = true;
+
+}
+
+function selectAnswer(button,index){
+
+    if(selected) return;
+
+    selected = true;
+
+    const q = questions[currentQuestion];
+
+    const buttons = document.querySelectorAll(".option");
+
+    buttons.forEach((btn,i)=>{
+
+        if(i === q.answer){
+            btn.classList.add("correct");
+        }
+
+    });
+
+    if(index === q.answer){
+
+        score++;
+
+    }else{
+
+        button.classList.add("wrong");
+
+    }
+
+    document.getElementById("nextBtn").disabled = false;
+
+}
+
+function nextQuestion(){
+
+    if(!selected) return;
+
+    currentQuestion++;
+
+    if(currentQuestion < questions.length){
+
+        loadQuestion();
+
+    }else{
+
+        document.getElementById("quiz").style.display = "none";
+
+        document.getElementById("result").style.display = "block";
+
+        document.getElementById("score").innerText =
+            score + " / " + questions.length;
+
+        document.getElementById("resultText").innerText =
+            "आपने " + questions.length + " में से " +
+            score + " प्रश्नों के सही उत्तर दिए।";
+
+    }
+
+}
+
+loadQuestion();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>CG GK Quiz | CG Exam Hub</title>
+
+<meta name="description"
+content="CG Exam Hub पर छत्तीसगढ़ GK, राजनीतिक GK और खेल GK Quiz में से अपना विषय चुनें।">
+
+<meta name="robots"
+content="index, follow">
+
+<link rel="canonical"
+href="https://hirdukashyap267-ship-it.github.io/cg-exam-hub/cg-gk-start.html">
+
+<!-- Bootstrap -->
+
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+<!-- Bootstrap Icons -->
+
+<link
+rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
+<style>
+
+/* =========================
+   GLOBAL
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+    background:
+    linear-gradient(
+        135deg,
+        #f5f9ff,
+        #ffffff
+    );
+
+    color:#101828;
+
+    min-height:100vh;
+}
+
+a{
+    text-decoration:none;
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar{
+    background:white;
+
+    border-bottom:1px solid #e7ebf2;
+
+    padding:13px 0;
+
+    box-shadow:
+    0 4px 20px rgba(16,24,40,.04);
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.logo-icon{
+    width:45px;
+    height:45px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:13px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #0866ff,
+        #58a7ff
+    );
+
+    color:white;
+
+    font-size:23px;
+}
+
+.logo-text{
+    line-height:1;
+}
+
+.logo-title{
+    font-size:21px;
+    font-weight:850;
+    color:#111827;
+}
+
+.logo-title span{
+    color:#0866ff;
+}
+
+.logo-subtitle{
+    font-size:10px;
+    color:#667085;
+    margin-top:5px;
+}
+
+
+/* =========================
+   BACK BUTTON
+========================= */
+
+.back-btn{
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    padding:9px 15px;
+
+    border-radius:10px;
+
+    color:#344054;
+
+    border:1px solid #dfe4ec;
+
+    background:white;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    transition:.2s;
+}
+
+.back-btn:hover{
+    border-color:#0866ff;
+
+    color:#0866ff;
+
+    transform:translateY(-2px);
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.quiz-hero{
+
+    position:relative;
+
+    padding:65px 0 35px;
+
+    text-align:center;
+
+    overflow:hidden;
+
+    background:
+    radial-gradient(
+        circle at 10% 20%,
+        rgba(8,102,255,.10),
+        transparent 28%
+    ),
+
+    radial-gradient(
+        circle at 90% 30%,
+        rgba(0,190,130,.10),
+        transparent 28%
+    );
+}
+
+.quiz-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    padding:8px 16px;
+
+    border-radius:30px;
+
+    background:#edf5ff;
+
+    color:#0866ff;
+
+    font-size:13px;
+
+    font-weight:800;
+
+    margin-bottom:17px;
+}
+
+.quiz-hero h1{
+
+    font-size:46px;
+
+    font-weight:900;
+
+    letter-spacing:-1.5px;
+
+    color:#101828;
+}
+
+.quiz-hero h1 span{
+    color:#0866ff;
+}
+
+.quiz-hero p{
+
+    max-width:650px;
+
+    margin:15px auto 0;
+
+    color:#667085;
+
+    font-size:16px;
+
+    line-height:1.7;
+}
+
+
+/* =========================
+   CATEGORY SECTION
+========================= */
+
+.category-section{
+
+    padding:25px 0 75px;
+}
+
+.category-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:22px;
+}
+
+
+/* =========================
+   CATEGORY CARD
+========================= */
+
+.category-card{
+
+    position:relative;
+
+    background:white;
+
+    border:1px solid #e4e9f1;
+
+    border-radius:22px;
+
+    padding:30px 24px;
+
+    text-align:center;
+
+    min-height:350px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    overflow:hidden;
+
+    transition:
+    transform .25s,
+    box-shadow .25s,
+    border-color .25s;
+
+    box-shadow:
+    0 8px 30px rgba(16,24,40,.05);
+}
+
+.category-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+
+    height:180px;
+
+    border-radius:50%;
+
+    top:-90px;
+
+    right:-70px;
+
+    background:rgba(8,102,255,.06);
+}
+
+.category-card:hover{
+
+    transform:translateY(-8px);
+
+    border-color:#b7d1ff;
+
+    box-shadow:
+    0 20px 45px rgba(16,24,40,.11);
+}
+
+
+/* =========================
+   ICON
+========================= */
+
+.category-icon{
+
+    width:92px;
+
+    height:92px;
+
+    border-radius:27px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:42px;
+
+    margin-bottom:22px;
+
+    position:relative;
+
+    z-index:2;
+}
+
+
+/* CG GK */
+
+.cg-icon{
+
+    background:#e8faf2;
+
+    color:#079455;
+
+    box-shadow:
+    0 10px 25px rgba(7,148,85,.10);
+}
+
+
+/* POLITICAL */
+
+.political-icon{
+
+    background:#f1eaff;
+
+    color:#7542df;
+
+    box-shadow:
+    0 10px 25px rgba(117,66,223,.10);
+}
+
+
+/* SPORTS */
+
+.sports-icon{
+
+    background:#fff0e7;
+
+    color:#e85d04;
+
+    box-shadow:
+    0 10px 25px rgba(232,93,4,.10);
+}
+
+
+/* =========================
+   CARD CONTENT
+========================= */
+
+.category-card h2{
+
+    font-size:22px;
+
+    font-weight:850;
+
+    margin-bottom:9px;
+
+    position:relative;
+
+    z-index:2;
+}
+
+.category-card p{
+
+    color:#667085;
+
+    font-size:14px;
+
+    line-height:1.6;
+
+    min-height:45px;
+
+    position:relative;
+
+    z-index:2;
+}
+
+
+/* =========================
+   START BUTTON
+========================= */
+
+.start-btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+
+    margin-top:17px;
+
+    padding:11px 20px;
+
+    border-radius:11px;
+
+    background:#0866ff;
+
+    color:white;
+
+    font-size:13px;
+
+    font-weight:800;
+
+    position:relative;
+
+    z-index:2;
+
+    transition:.2s;
+
+    box-shadow:
+    0 7px 18px rgba(8,102,255,.18);
+}
+
+.start-btn:hover{
+
+    background:#0055df;
+
+    color:white;
+
+    transform:translateY(-2px);
+}
+
+
+/* Different buttons */
+
+.political-btn{
+    background:#7542df;
+}
+
+.political-btn:hover{
+    background:#6130ca;
+}
+
+.sports-btn{
+    background:#e85d04;
+}
+
+.sports-btn:hover{
+    background:#cc4f00;
+}
+
+
+/* =========================
+   INFO BOX
+========================= */
+
+.info-box{
+
+    margin-top:30px;
+
+    background:white;
+
+    border:1px solid #e5e9f0;
+
+    border-radius:17px;
+
+    padding:17px 20px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    color:#475467;
+
+    font-size:13px;
+
+    box-shadow:
+    0 7px 25px rgba(16,24,40,.04);
+}
+
+.info-box i{
+    color:#0866ff;
+
+    font-size:19px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+
+    background:#071b3a;
+
+    color:#a9bad0;
+
+    padding:25px 0;
+
+    text-align:center;
+
+    font-size:12px;
+}
+
+.footer strong{
+    color:white;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:991px){
+
+    .category-grid{
+
+        grid-template-columns:
+        repeat(2,1fr);
+
+    }
+
+    .category-card:last-child{
+
+        grid-column:
+        1 / -1;
+
+        max-width:480px;
+
+        width:100%;
+
+        margin:auto;
+    }
+
+}
+
+@media(max-width:576px){
+
+    .navbar{
+        padding:10px 0;
+    }
+
+    .logo-icon{
+        width:40px;
+        height:40px;
+        font-size:20px;
+    }
+
+    .logo-title{
+        font-size:18px;
+    }
+
+    .logo-subtitle{
+        font-size:9px;
+    }
+
+    .back-btn{
+        padding:8px 11px;
+        font-size:12px;
+    }
+
+    .quiz-hero{
+
+        padding:45px 15px 25px;
+
+    }
+
+    .quiz-hero h1{
+
+        font-size:34px;
+
+        letter-spacing:-.8px;
+    }
+
+    .quiz-hero p{
+
+        font-size:14px;
+
+    }
+
+    .category-section{
+
+        padding:
+        20px 12px 55px;
+    }
+
+    .category-grid{
+
+        grid-template-columns:
+        1fr;
+
+        gap:16px;
+    }
+
+    .category-card{
+
+        min-height:310px;
+
+        padding:27px 20px;
+    }
+
+    .category-card:last-child{
+
+        grid-column:auto;
+
+        max-width:none;
+    }
+
+    .category-icon{
+
+        width:82px;
+        height:82px;
+
+        font-size:37px;
+    }
+
+    .category-card h2{
+
+        font-size:20px;
+    }
+
+    .info-box{
+
+        text-align:center;
+
+        line-height:1.6;
+
+        padding:15px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav class="navbar">
+
+<div class="container">
+
+<div class="d-flex align-items-center justify-content-between">
+
+
+<a href="index.html">
+
+<div class="logo">
+
+<div class="logo-icon">
+
+<i class="bi bi-mortarboard-fill"></i>
+
+</div>
+
+<div class="logo-text">
+
+<div class="logo-title">
+CG <span>EXAM HUB</span>
+</div>
+
+<div class="logo-subtitle">
+छत्तीसगढ़ की तैयारी, एक ही जगह
+</div>
+
+</div>
+
+</div>
+
+</a>
+
+
+<a href="index.html"
+class="back-btn">
+
+<i class="bi bi-arrow-left"></i>
+
+Home
+
+</a>
+
+
+</div>
+
+</div>
+
+</nav>
+
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="quiz-hero">
+
+<div class="container">
+
+
+<div class="quiz-badge">
+
+<i class="bi bi-stars"></i>
+
+CG GK QUIZ
+
+</div>
+
+
+<h1>
+
+अपनी <span>Quiz Category</span><br>
+
+चुनें
+
+</h1>
+
+
+<p>
+
+आप किस विषय का Quiz देना चाहते हैं?
+नीचे दिए गए विकल्प में से अपना विषय चुनें
+और Quiz शुरू करें।
+
+</p>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     CATEGORY
+========================= -->
+
+<section class="category-section">
+
+<div class="container">
+
+
+<div class="category-grid">
+
+
+<!-- =====================
+     CG GK
+===================== -->
+
+<div class="category-card">
+
+
+<div class="category-icon cg-icon">
+
+<i class="bi bi-lightbulb-fill"></i>
+
+</div>
+
+
+<h2>
+छत्तीसगढ़ GK
+</h2>
+
+
+<p>
+
+छत्तीसगढ़ के इतिहास, भूगोल,
+संस्कृति, जनजाति और सामान्य
+ज्ञान से जुड़े महत्वपूर्ण प्रश्न।
+
+</p>
+
+
+<a href="gk.html"
+class="start-btn">
+
+<i class="bi bi-play-fill"></i>
+
+Quiz शुरू करें
+
+<i class="bi bi-arrow-right"></i>
+
+</a>
+
+
+</div>
+
+
+
+<!-- =====================
+     POLITICAL GK
+===================== -->
+
+<div class="category-card">
+
+
+<div class="category-icon political-icon">
+
+<i class="bi bi-bank"></i>
+
+</div>
+
+
+<h2>
+छत्तीसगढ़ राजनीतिक GK
+</h2>
+
+
+<p>
+
+छत्तीसगढ़ की राजनीति,
+प्रशासन, विधानसभा और
+राजनीतिक सामान्य ज्ञान।
+
+</p>
+
+
+<a href="political-gk.html"
+class="start-btn political-btn">
+
+<i class="bi bi-play-fill"></i>
+
+Quiz शुरू करें
+
+<i class="bi bi-arrow-right"></i>
+
+</a>
+
+
+</div>
+
+
+
+<!-- =====================
+     SPORTS GK
+===================== -->
+
+<div class="category-card">
+
+
+<div class="category-icon sports-icon">
+
+<i class="bi bi-trophy-fill"></i>
+
+</div>
+
+
+<h2>
+छत्तीसगढ़ खेल GK
+</h2>
+
+
+<p>
+
+छत्तीसगढ़ के खेल, खिलाड़ी,
+खेल पुरस्कार और खेल से
+जुड़े महत्वपूर्ण प्रश्न।
+
+</p>
+
+
+<a href="sports-gk.html"
+class="start-btn sports-btn">
+
+<i class="bi bi-play-fill"></i>
+
+Quiz शुरू करें
+
+<i class="bi bi-arrow-right"></i>
+
+</a>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- =====================
+     INFO
+===================== -->
+
+<div class="info-box">
+
+<i class="bi bi-info-circle-fill"></i>
+
+<span>
+
+प्रत्येक Category में अलग-अलग प्रश्न होंगे।
+अपनी तैयारी के अनुसार Quiz चुनें।
+
+</span>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="footer">
+
+<div class="container">
+
+<div>
+
+<strong>CG EXAM HUB</strong>
+
+&nbsp; | &nbsp;
+
+छत्तीसगढ़ की प्रतियोगी परीक्षाओं की तैयारी
+
+</div>
+
+<div style="margin-top:7px;">
+
+© 2026 CG Exam Hub • Free Practice Quiz
+
+</div>
+
+</div>
+
+</footer>
+
+
+</body>
+
+</html>
