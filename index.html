@@ -999,7 +999,95 @@ a{
     font-size:12px;
 }
 
+/* =====================================================
+   FOOTER SOCIAL SHARE
+===================================================== */
 
+.social-share-footer{
+    text-align:center;
+    margin-top:35px;
+    padding:30px 15px;
+    border-top:1px solid #193556;
+}
+
+.social-share-footer h4{
+    color:white;
+    font-size:20px;
+    font-weight:800;
+    margin-bottom:7px;
+}
+
+.social-share-footer p{
+    color:#a9bad0;
+    font-size:13px;
+    margin-bottom:20px;
+}
+
+.share-buttons{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:14px;
+}
+
+.share{
+    width:48px;
+    height:48px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    color:white;
+    font-size:21px;
+
+    transition:.25s;
+
+    text-decoration:none;
+}
+
+.share:hover{
+    color:white;
+    transform:translateY(-5px) scale(1.06);
+}
+
+.whatsapp{
+    background:#25D366;
+}
+
+.facebook{
+    background:#1877F2;
+}
+
+.instagram{
+    background:linear-gradient(
+        135deg,
+        #833AB4,
+        #E1306C,
+        #F77737
+    );
+}
+
+.twitter{
+    background:#111827;
+}
+
+@media(max-width:576px){
+
+    .social-share-footer{
+        margin-top:25px;
+        padding:25px 10px;
+    }
+
+    .share{
+        width:45px;
+        height:45px;
+        font-size:20px;
+    }
+
+}
 /* =====================================================
    MOBILE
 ===================================================== */
@@ -2442,7 +2530,65 @@ Computer
 
 
 <!-- FOOTER BOTTOM -->
+<!-- SOCIAL SHARE -->
 
+<div class="social-share-footer">
+
+    <h4>CG Exam Hub को Share करें</h4>
+
+    <p>
+        अपने दोस्तों के साथ CG Exam Hub साझा करें
+    </p>
+
+    <div class="share-buttons">
+
+        <!-- WhatsApp -->
+        <a
+            href="https://wa.me/?text=CG%20Exam%20Hub%20-%20Chhattisgarh%20GK%20और%20Exam%20Preparation%20https://hirdukashyap267-ship-it.github.io/cg-exam-hub/"
+            target="_blank"
+            class="share whatsapp"
+            aria-label="WhatsApp पर Share करें">
+
+            <i class="bi bi-whatsapp"></i>
+
+        </a>
+
+        <!-- Facebook -->
+        <a
+            href="https://www.facebook.com/sharer/sharer.php?u=https://hirdukashyap267-ship-it.github.io/cg-exam-hub/"
+            target="_blank"
+            class="share facebook"
+            aria-label="Facebook पर Share करें">
+
+            <i class="bi bi-facebook"></i>
+
+        </a>
+
+        <!-- Instagram -->
+        <a
+            href="https://www.instagram.com/"
+            target="_blank"
+            class="share instagram"
+            aria-label="Instagram">
+
+            <i class="bi bi-instagram"></i>
+
+        </a>
+
+        <!-- X / Twitter -->
+        <a
+            href="https://twitter.com/intent/tweet?text=CG%20Exam%20Hub%20-%20Chhattisgarh%20GK%20और%20Exam%20Preparation&url=https://hirdukashyap267-ship-it.github.io/cg-exam-hub/"
+            target="_blank"
+            class="share twitter"
+            aria-label="X पर Share करें">
+
+            <i class="bi bi-twitter-x"></i>
+
+        </a>
+
+    </div>
+
+</div>
 <div class="footer-bottom">
 
 © 2026 CG Exam Hub. All Rights Reserved.
