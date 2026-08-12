@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Computer Quiz | CG Exam Hub</title>
+
+<meta name="description"
+content="CG Exam Hub पर Computer Quiz, MS Word, MS Excel, PowerPoint, MS Access, Tally, Shortcut Keys और Computer GK का अभ्यास करें.">
+
+<meta name="robots" content="index, follow">
+
+<link rel="canonical"
+href="https://hirdukashyap267-ship-it.github.io/cg-exam-hub/computer-quiz.html">
+
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+<link
+rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
+<style>
+
+/* =========================
+   GLOBAL
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+    background:#f5f8ff;
+
+    color:#101828;
+}
+
+a{
+    text-decoration:none;
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar{
+    background:
+    linear-gradient(
+        135deg,
+        #1236c9,
+        #174de5
+    );
+
+    padding:14px 0;
+
+    box-shadow:
+    0 5px 25px rgba(20,60,180,.20);
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.logo-icon{
+    width:45px;
+    height:45px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:14px;
+
+    background:rgba(255,255,255,.15);
+
+    color:white;
+
+    font-size:24px;
+}
+
+.logo-title{
+    color:white;
+
+    font-size:22px;
+
+    font-weight:900;
+}
+
+.logo-title span{
+    color:#ffd21f;
+}
+
+.logo-subtitle{
+    color:#dce6ff;
+
+    font-size:10px;
+
+    margin-top:3px;
+}
+
+.menu-btn{
+    width:48px;
+    height:43px;
+
+    border:1px solid
+    rgba(255,255,255,.45);
+
+    border-radius:12px;
+
+    background:
+    rgba(255,255,255,.10);
+
+    color:white;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:25px;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+
+    margin:20px auto 0;
+
+    max-width:1100px;
+
+    border-radius:28px;
+
+    overflow:hidden;
+
+    color:white;
+
+    padding:45px 30px;
+
+    position:relative;
+
+    background:
+    linear-gradient(
+        135deg,
+        #1738c8,
+        #2837a9 45%,
+        #176bbd
+    );
+
+    box-shadow:
+    0 15px 40px
+    rgba(26,62,190,.20);
+}
+
+.hero::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:220px;
+    height:220px;
+
+    border-radius:50%;
+
+    background:
+    rgba(255,255,255,.06);
+
+    top:-90px;
+    right:-50px;
+}
+
+.hero::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+    height:180px;
+
+    border-radius:50%;
+
+    background:
+    rgba(0,255,190,.06);
+
+    bottom:-90px;
+    left:-50px;
+}
+
+.hero-content{
+
+    position:relative;
+
+    z-index:2;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:30px;
+}
+
+.hero-icon{
+
+    width:145px;
+    height:145px;
+
+    border-radius:30px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:
+    rgba(255,255,255,.12);
+
+    border:
+    1px solid
+    rgba(255,255,255,.20);
+
+    font-size:75px;
+
+    flex-shrink:0;
+}
+
+.hero h1{
+
+    font-size:46px;
+
+    font-weight:900;
+
+    margin-bottom:10px;
+}
+
+.hero h1 span{
+
+    color:#ffd21f;
+}
+
+.hero p{
+
+    font-size:17px;
+
+    margin:0;
+
+    color:#edf2ff;
+
+    line-height:1.7;
+}
+
+.hero-tags{
+
+    margin-top:18px;
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:8px;
+}
+
+.hero-tag{
+
+    padding:7px 13px;
+
+    border-radius:30px;
+
+    background:
+    rgba(255,255,255,.12);
+
+    font-size:12px;
+
+    font-weight:700;
+}
+
+
+/* =========================
+   SECTION TITLE
+========================= */
+
+.section{
+
+    max-width:1100px;
+
+    margin:auto;
+
+    padding:40px 15px 60px;
+}
+
+.section-title{
+
+    text-align:center;
+
+    margin-bottom:25px;
+}
+
+.section-title h2{
+
+    font-size:29px;
+
+    font-weight:900;
+
+    color:#142653;
+}
+
+.section-title p{
+
+    color:#667085;
+
+    margin-top:7px;
+}
+
+
+/* =========================
+   CATEGORY GRID
+========================= */
+
+.category-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:18px;
+}
+
+
+/* =========================
+   CATEGORY CARD
+========================= */
+
+.category-card{
+
+    min-height:145px;
+
+    padding:20px;
+
+    border-radius:20px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    background:white;
+
+    border:1px solid #e2e8f3;
+
+    box-shadow:
+    0 8px 25px
+    rgba(16,24,40,.06);
+
+    transition:.25s;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.category-card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+    0 16px 35px
+    rgba(16,24,40,.12);
+}
+
+.category-icon{
+
+    width:65px;
+    height:65px;
+
+    border-radius:17px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    font-size:32px;
+
+    flex-shrink:0;
+}
+
+.category-content{
+
+    flex:1;
+}
+
+.category-content h3{
+
+    font-size:18px;
+
+    font-weight:850;
+
+    margin-bottom:4px;
+}
+
+.category-content p{
+
+    color:#667085;
+
+    font-size:12px;
+
+    margin:0;
+
+    line-height:1.5;
+}
+
+.arrow{
+
+    width:36px;
+    height:36px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    color:white;
+
+    font-size:18px;
+
+    flex-shrink:0;
+}
+
+
+/* =========================
+   COLORS
+========================= */
+
+.word .category-icon{
+    background:#e9f0ff;
+    color:#1769e0;
+}
+
+.word .arrow{
+    background:#1769e0;
+}
+
+
+.excel .category-icon{
+    background:#e5f8eb;
+    color:#159447;
+}
+
+.excel .arrow{
+    background:#159447;
+}
+
+
+.powerpoint .category-icon{
+    background:#fff0e8;
+    color:#e64a19;
+}
+
+.powerpoint .arrow{
+    background:#e64a19;
+}
+
+
+.access .category-icon{
+    background:#ffe8ed;
+    color:#c62850;
+}
+
+.access .arrow{
+    background:#c62850;
+}
+
+
+.tally .category-icon{
+    background:#e5f8f8;
+    color:#008f91;
+}
+
+.tally .arrow{
+    background:#008f91;
+}
+
+
+.shortcut .category-icon{
+    background:#eee7ff;
+    color:#7042df;
+}
+
+.shortcut .arrow{
+    background:#7042df;
+}
+
+
+.fundamental .category-icon{
+    background:#e7f1ff;
+    color:#1565d8;
+}
+
+.fundamental .arrow{
+    background:#1565d8;
+}
+
+
+.hardware .category-icon{
+    background:#e7faec;
+    color:#159447;
+}
+
+.hardware .arrow{
+    background:#159447;
+}
+
+
+.os .category-icon{
+    background:#e5f8ff;
+    color:#0088b8;
+}
+
+.os .arrow{
+    background:#0088b8;
+}
+
+
+.internet .category-icon{
+    background:#e9eaff;
+    color:#4655d9;
+}
+
+.internet .arrow{
+    background:#4655d9;
+}
+
+
+.security .category-icon{
+    background:#ffe8f0;
+    color:#d62967;
+}
+
+.security .arrow{
+    background:#d62967;
+}
+
+
+.dbms .category-icon{
+    background:#fff0dc;
+    color:#b66b00;
+}
+
+.dbms .arrow{
+    background:#b66b00;
+}
+
+
+/* =========================
+   COMING SOON
+========================= */
+
+.coming{
+
+    opacity:.82;
+
+    cursor:default;
+}
+
+.coming:hover{
+
+    transform:none;
+
+}
+
+.coming .arrow{
+
+    background:#98a2b3;
+
+}
+
+
+/* =========================
+   INFO BOX
+========================= */
+
+.info{
+
+    margin-top:28px;
+
+    padding:20px;
+
+    border-radius:18px;
+
+    background:white;
+
+    border:1px solid #e3e8f2;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:13px;
+
+    color:#475467;
+
+    box-shadow:
+    0 7px 25px
+    rgba(16,24,40,.04);
+}
+
+.info i{
+
+    font-size:27px;
+
+    color:#1769e0;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+
+    background:#071b3a;
+
+    color:#aebdd2;
+
+    text-align:center;
+
+    padding:28px 15px;
+
+    font-size:12px;
+}
+
+.footer strong{
+
+    color:white;
+
+    font-size:15px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:900px){
+
+    .category-grid{
+
+        grid-template-columns:
+        repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:600px){
+
+    .navbar{
+
+        padding:10px 0;
+    }
+
+    .logo-title{
+
+        font-size:19px;
+    }
+
+    .logo-icon{
+
+        width:40px;
+        height:40px;
+        font-size:21px;
+    }
+
+    .hero{
+
+        margin:12px 10px 0;
+
+        padding:30px 20px;
+
+        border-radius:22px;
+    }
+
+    .hero-content{
+
+        flex-direction:column;
+
+        text-align:center;
+
+        gap:18px;
+    }
+
+    .hero-icon{
+
+        width:90px;
+        height:90px;
+
+        font-size:48px;
+
+        border-radius:22px;
+    }
+
+    .hero h1{
+
+        font-size:32px;
+    }
+
+    .hero p{
+
+        font-size:14px;
+    }
+
+    .hero-tags{
+
+        justify-content:center;
+    }
+
+    .section{
+
+        padding:
+        30px 12px 50px;
+    }
+
+    .section-title h2{
+
+        font-size:24px;
+    }
+
+    .category-grid{
+
+        grid-template-columns:1fr;
+
+        gap:14px;
+    }
+
+    .category-card{
+
+        min-height:115px;
+
+        padding:17px;
+    }
+
+    .category-icon{
+
+        width:58px;
+        height:58px;
+
+        font-size:28px;
+    }
+
+    .category-content h3{
+
+        font-size:17px;
+    }
+
+    .info{
+
+        font-size:13px;
+
+        line-height:1.6;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav class="navbar">
+
+<div class="container">
+
+<div class="d-flex align-items-center justify-content-between">
+
+<a href="index.html">
+
+<div class="logo">
+
+<div class="logo-icon">
+<i class="bi bi-mortarboard-fill"></i>
+</div>
+
+<div>
+
+<div class="logo-title">
+CG <span>Exam Hub</span>
+</div>
+
+<div class="logo-subtitle">
+छत्तीसगढ़ की प्रतियोगी परीक्षाओं की तैयारी
+</div>
+
+</div>
+
+</div>
+
+</a>
+
+
+<div class="menu-btn">
+
+<i class="bi bi-list"></i>
+
+</div>
+
+</div>
+
+</div>
+
+</nav>
+
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+<div class="hero-content">
+
+<div class="hero-icon">
+
+<i class="bi bi-laptop"></i>
+
+</div>
+
+
+<div>
+
+<h1>
+Computer <span>Quiz</span>
+</h1>
+
+<p>
+Computer और Basic IT के महत्वपूर्ण प्रश्नों
+का अभ्यास करें और अपनी तैयारी मजबूत करें।
+</p>
+
+
+<div class="hero-tags">
+
+<span class="hero-tag">
+CGPSC
+</span>
+
+<span class="hero-tag">
+Vyapam
+</span>
+
+<span class="hero-tag">
+Patwari
+</span>
+
+<span class="hero-tag">
+Transport Department
+</span>
+
+<span class="hero-tag">
+Other Exams
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     CATEGORIES
+========================= -->
+
+<section class="section">
+
+
+<div class="section-title">
+
+<h2>
+<i class="bi bi-pc-display"></i>
+Computer Quiz Categories
+</h2>
+
+<p>
+अपना विषय चुनें और Quiz शुरू करें
+</p>
+
+</div>
+
+
+
+<div class="category-grid">
+
+
+<!-- MS WORD -->
+
+<a href="ms-word-quiz.html"
+class="category-card word">
+
+<div class="category-icon">
+<i class="bi bi-file-earmark-word-fill"></i>
+</div>
+
+<div class="category-content">
+
+<h3>MS Word Quiz</h3>
+
+<p>
+MS Word के महत्वपूर्ण प्रश्न
+</p>
+
+</div>
+
+<div class="arrow">
+<i class="bi bi-arrow-right"></i>
+</div>
+
+</a>
+
+
+
+<!-- MS EXCEL -->
+
+<a href="ms-excel-quiz.html"
+class="category-card excel">
+
+<div class="category-icon">
+<i class="bi bi-file-earmark-spreadsheet-fill"></i>
+</div>
+
+<div class="category-content">
+
+<h3>MS Excel Quiz</h3>
+
+<p>
+Excel एवं Formula से जुड़े प्रश्न
+</p>
+
+</div>
+
+<div class="arrow">
+<i class="bi bi-arrow-right"></i>
+</div>
+
+</a>
+
+
+
+<!-- POWERPOINT -->
+
+<a href="ms-powerpoint-quiz.html"
+class="category-card powerpoint">
+
+<div class="category-icon">
+<i class="bi bi-file-earmark-ppt-fill"></i>
+</div>
+
+<div class="category-content">
+
+<h3>MS PowerPoint Quiz</h3>
+
+<p>
+Presentation से जुड़े प्रश्न
+</p>
+
+</div>
+
+<div class="arrow">
+<i class="bi bi-arrow-right"></i>
+</div>
+
+</a>
+
+
+
+<!-- ACCESS -->
+
+<a href="ms-access-quiz.html"
+class="category-card access">
+
+<div class="category-icon">
+<i class="bi bi-database-fill"></i>
+</div>
+
+<div class="category-content">
+
+<h3>MS Access Quiz</h3>
+
+<p>
+Database एवं Access के प्रश्न
+</p>
+
+</div>
+
+<div class="arrow">
+<i class="bi bi-arrow-right"></i>
+</div>
+
+</a>
+
+
+
+<!-- TALLY -->
+
+<a href="tally-quiz.html"
+class="category-card tally">
+
+<div class="category-icon">
+<i class="bi bi-calculator-fill"></i>
+</div>
+
+<div class="category-content">
+
+<h3>Tally Quiz</h3>
+
+<p>
+Tally एवं Accounting के प्रश्न
+</p>
+
+</div>
+
+<div class="arrow">
+<i class="bi bi-arrow-right"></i>
+</div>
+
+</a>
+
+
+
+<!-- SHORTCUT -->
+
+<a href="computer-shortcut-quiz.html"
+class="category-card shortcut">
+
+<div class="category-icon">
+<i class="bi bi-keyboard-fill"></i>
+</div>
+
+<div class="category-content">
+
+<h3>Computer Shortcut Keys</h3>
+
+<p>
+Important Shortcut Keys का Quiz
+</p>
+
+</div>
+
+<div class="arrow">
+<i class="bi bi-arrow-right"></i>
+</div>
+
+</a>
+
+
+
+<!-- FUNDAMENTALS -->
+
+<a href="computer-fundamentals-quiz.html"
+class="category-card fundamental">
+
+<div class="category-icon">
+<i class="bi bi-pc-display-horizontal"></i>
+</div>
+
+<div class="category-content">
+
+<h3>Computer Fundamentals</h3>
+
+<p>
+Computer Basics के महत्वपूर्ण प्रश्न
+</p>
+
+</div>
+
+<div class="arrow">
+<i class="bi bi-arrow-right"></i>
+</div>
+
+</a>
+
+
+
+<!-- HARDWARE -->
+
+<a href="computer-hardware-quiz.html"
+class="category-card hardware">
+
+<div class="category-icon">
+<i class="bi bi-cpu-fill"></i>
+</div>
+
+<div class="category-content">
+
+<h3>Computer Hardware</h3>
+
+<p>
+Hardware एवं Components के प्रश्न
+</p>
+
+</div>
+
+<div class="arrow">
+<i class="bi bi-arrow-right"></i>
+</div>
+
+</a>
+
+
+
+<!-- OS -->
+
+<a href="operating-system-quiz.html"
+class="category-card os">
+
+<div class="category-icon">
+<i class="bi bi-windows"></i>
+</div>
+
+<div class="category-content">
+
+<h3>Operating System Quiz</h3>
+
+<p>
+Windows एवं OS से जुड़े प्रश्न
+</p>
+
+</div>
+
+<div class="arrow">
+<i class="bi bi-arrow-right"></i>
+</div>
+
+</a>
+
+
+
+<!-- INTERNET -->
+
+<a href="internet-quiz.html"
+class="category-card internet">
+
+<div class="category-icon">
+<i class="bi bi-globe2"></i>
+</div>
+
+<div class="category-content">
+
+<h3>Internet Quiz</h3>
+
+<p>
+Internet एवं Networking के प्रश्न
+</p>
+
+</div>
+
+<div class="arrow">
+<i class="bi bi-arrow-right"></i>
+</div>
+
+</a>
+
+
+
+<!-- SECURITY -->
+
+<a href="cyber-security-quiz.html"
+class="category-card security">
+
+<div class="category-icon">
+<i class="bi bi-shield-lock-fill"></i>
+</div>
+
+<div class="category-content">
+
+<h3>Cyber Security Quiz</h3>
+
+<p>
+Cyber Security के महत्वपूर्ण प्रश्न
+</p>
+
+</div>
+
+<div class="arrow">
+<i class="bi bi-arrow-right"></i>
+</div>
+
+</a>
+
+
+
+<!-- DBMS -->
+
+<a href="dbms-quiz.html"
+class="category-card dbms">
+
+<div class="category-icon">
+<i class="bi bi-server"></i>
+</div>
+
+<div class="category-content">
+
+<h3>DBMS Quiz</h3>
+
+<p>
+Database Management के प्रश्न
+</p>
+
+</div>
+
+<div class="arrow">
+<i class="bi bi-arrow-right"></i>
+</div>
+
+</a>
+
+
+</div>
+
+
+
+<!-- INFO -->
+
+<div class="info">
+
+<i class="bi bi-info-circle-fill"></i>
+
+<div>
+
+<strong>
+Quiz धीरे-धीरे बढ़ाए जाएंगे
+</strong>
+
+<br>
+
+MS Word, Excel, PowerPoint, Access,
+Tally, Shortcut Keys और अन्य Computer
+Topics के अलग-अलग Quiz यहाँ जोड़े जाएंगे।
+
+</div>
+
+</div>
+
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="footer">
+
+<strong>
+CG EXAM HUB
+</strong>
+
+<br><br>
+
+Computer • GK • Quiz • Competitive Exams
+
+<br>
+
+© 2026 CG Exam Hub
+
+</footer>
+
+
+</body>
+
+</html>
