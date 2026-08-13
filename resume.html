@@ -5474,37 +5474,97 @@ function checkResumeBeforeExport(){
    SAVE PDF
 ========================================= */
 
-function saveResumePDF(){
+async function saveResumePDF(){
 
-    if(
-        !checkResumeBeforeExport()
-    ){
-
+    if(!checkResumeBeforeExport()){
         return;
+    }
+
+    const resume = document.getElementById("resume");
+
+    if(!resume){
+        alert("Resume नहीं मिला!");
+        return;
+    }
+
+    try{
+
+        // Resume को पूरी तरह render होने दें
+        await new Promise(function(resolve){
+            setTimeout(resolve,500);
+        });
+
+        const canvas = await html2canvas(resume,{
+            scale:2,
+            useCORS:true,
+            allowTaint:true,
+            backgroundColor:"#ffffff",
+            logging:false
+        });
+
+        const imgData = canvas.toDataURL("image/png");
+
+        const { jsPDF } = window.jspdf;
+
+        const pdf = new jsPDF({
+            orientation:"portrait",
+            unit:"mm",
+            format:"a4"
+        });
+
+        const pageWidth = 210;
+        const pageHeight = 297;
+
+        const imgWidth = pageWidth;
+        const imgHeight =
+            (canvas.height * imgWidth) / canvas.width;
+
+        let heightLeft = imgHeight;
+        let position = 0;
+
+        pdf.addImage(
+            imgData,
+            "PNG",
+            0,
+            position,
+            imgWidth,
+            imgHeight
+        );
+
+        heightLeft -= pageHeight;
+
+        while(heightLeft > 0){
+
+            position = heightLeft - imgHeight;
+
+            pdf.addPage();
+
+            pdf.addImage(
+                imgData,
+                "PNG",
+                0,
+                position,
+                imgWidth,
+                imgHeight
+            );
+
+            heightLeft -= pageHeight;
+        }
+
+        pdf.save("CG-Exam-Hub-Resume.pdf");
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        alert(
+            "PDF बनाने में समस्या हुई। कृपया फिर से कोशिश करें।"
+        );
 
     }
 
-
-    alert(
-        "अब Print window में 'Save as PDF' चुनें।"
-    );
-
-
-    setTimeout(
-        function(){
-
-            window.print();
-
-        },
-        300
-    );
-
 }
-
-
-/* =========================================
-   PRINT
-========================================= */
 
 function printResume(){
 
