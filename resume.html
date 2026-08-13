@@ -5136,102 +5136,101 @@ document.addEventListener(
     </p>
 
 
-    <!-- ================================ -->
-    <!-- DOWNLOAD BUTTONS -->
-    <!-- ================================ -->
+<!-- ================================ -->
+<!-- DOWNLOAD BUTTONS -->
+<!-- ================================ -->
 
-    <div class="download-buttons">
-
-
-        <!-- PREVIEW -->
-
-        <button
-            type="button"
-            class="download-btn preview-btn"
-            onclick="generateResume()"
-        >
-
-            👁️
-
-            <span>
-                Preview
-                <small>
-                    Resume देखें
-                </small>
-            </span>
-
-        </button>
+<div class="download-buttons">
 
 
-        <!-- PDF -->
+    <!-- PREVIEW -->
 
-        <button
-            type="button"
-            class="download-btn pdf-btn"
-            onclick="downloadsaveResumePDF()"
-        >
+    <button
+        type="button"
+        class="download-btn preview-btn"
+        onclick="generateResume()"
+    >
 
-            📄
+        👁️
 
-            <span>
-                Save PDF
-                <small>
-                    PDF में सेव करें
-                </small>
-            </span>
+        <span>
+            Preview
+            <small>
+                Resume देखें
+            </small>
+        </span>
 
-        </button>
-
-
-        <!-- PRINT -->
-
-        <button
-            type="button"
-            class="download-btn print-btn"
-            onclick="downloadprintResume()"
-        >
-
-            🖨️
-
-            <span>
-                Print
-                <small>
-                    Print करें
-                </small>
-            </span>
-
-        </button>
+    </button>
 
 
-        <!-- PNG -->
+    <!-- PDF -->
 
-        <button
-            type="button"
-            class="download-btn image-btn"
-            onclick="downloadResumePNG()"
-        >
+    <button
+        type="button"
+        class="download-btn pdf-btn"
+        onclick="saveResumePDF()"
+    >
 
-            🖼️
+        📄
 
-            <span>
-                Save Image
-                <small>
-                    PNG में सेव करें
-                </small>
-            </span>
+        <span>
+            Save PDF
+            <small>
+                PDF में सेव करें
+            </small>
+        </span>
 
-        </button>
-
-    </div>
+    </button>
 
 
-    <div class="download-note">
+    <!-- PRINT -->
 
-        💡 <strong>Tip:</strong>
-        PDF बनाने के लिए "Save PDF" दबाएँ और
-        Print window में <b>Save as PDF</b> चुनें।
+    <button
+        type="button"
+        class="download-btn print-btn"
+        onclick="printResume()"
+    >
 
-    </div>
+        🖨️
+
+        <span>
+            Print
+            <small>
+                Print करें
+            </small>
+        </span>
+
+    </button>
+
+
+    <!-- PNG -->
+
+    <button
+        type="button"
+        class="download-btn image-btn"
+        onclick="downloadResumePNG()"
+    >
+
+        🖼️
+
+        <span>
+            Save Image
+            <small>
+                PNG में सेव करें
+            </small>
+        </span>
+
+    </button>
+
+</div>
+
+
+<div class="download-note">
+
+    💡 <strong>Tip:</strong>
+    PDF बनाने के लिए "Save PDF" दबाएँ।
+
+</div>
 
 </div>
 
@@ -5350,7 +5349,7 @@ document.addEventListener(
 
 
 /* ================================= */
-/* ACTIVE BUTTON */
+/* PDF BUTTON */
 /* ================================= */
 
 .pdf-btn{
@@ -5428,11 +5427,18 @@ document.addEventListener(
 
 function checkResumeBeforeExport(){
 
-    updateResume();
+    if(
+        typeof generateResume ===
+        "function"
+    ){
+
+        generateResume();
+
+    }
 
 
     const name =
-    getValue("fullName");
+        getValue("fullName");
 
 
     if(!name){
@@ -5443,9 +5449,9 @@ function checkResumeBeforeExport(){
 
 
         const nameField =
-        document.getElementById(
-            "fullName"
-        );
+            document.getElementById(
+                "fullName"
+            );
 
 
         if(nameField){
@@ -5476,87 +5482,243 @@ function checkResumeBeforeExport(){
 
 async function saveResumePDF(){
 
-    if(!checkResumeBeforeExport()){
+    if(
+        !checkResumeBeforeExport()
+    ){
+
         return;
+
     }
 
-    const resume = document.getElementById("resume");
+
+    /* FIND ACTUAL RESUME */
+
+    const resume =
+        document.getElementById(
+            "resume"
+        );
+
 
     if(!resume){
-        alert("Resume नहीं मिला!");
+
+        alert(
+            "Resume नहीं मिला। कृपया Resume Preview का id=\"resume\" check करें।"
+        );
+
         return;
+
     }
+
+
+    /* CHECK HTML2CANVAS */
+
+    if(
+        typeof html2canvas ===
+        "undefined"
+    ){
+
+        alert(
+            "PDF सुविधा लोड नहीं हुई। कृपया Page Reload करें।"
+        );
+
+        return;
+
+    }
+
+
+    /* CHECK JSPDF */
+
+    if(
+        !window.jspdf ||
+        !window.jspdf.jsPDF
+    ){
+
+        alert(
+            "PDF Library लोड नहीं हुई। Internet ON करके Page Reload करें।"
+        );
+
+        return;
+
+    }
+
 
     try{
 
-        // Resume को पूरी तरह render होने दें
-        await new Promise(function(resolve){
-            setTimeout(resolve,500);
-        });
+        /* WAIT FOR RENDER */
 
-        const canvas = await html2canvas(resume,{
-            scale:2,
-            useCORS:true,
-            allowTaint:true,
-            backgroundColor:"#ffffff",
-            logging:false
-        });
+        await new Promise(
+            function(resolve){
 
-        const imgData = canvas.toDataURL("image/png");
+                setTimeout(
+                    resolve,
+                    500
+                );
 
-        const { jsPDF } = window.jspdf;
-
-        const pdf = new jsPDF({
-            orientation:"portrait",
-            unit:"mm",
-            format:"a4"
-        });
-
-        const pageWidth = 210;
-        const pageHeight = 297;
-
-        const imgWidth = pageWidth;
-        const imgHeight =
-            (canvas.height * imgWidth) / canvas.width;
-
-        let heightLeft = imgHeight;
-        let position = 0;
-
-        pdf.addImage(
-            imgData,
-            "PNG",
-            0,
-            position,
-            imgWidth,
-            imgHeight
+            }
         );
 
-        heightLeft -= pageHeight;
 
-        while(heightLeft > 0){
+        /* CREATE CANVAS */
 
-            position = heightLeft - imgHeight;
+        const canvas =
+            await html2canvas(
+                resume,
+                {
+                    scale:2,
+
+                    useCORS:true,
+
+                    allowTaint:true,
+
+                    backgroundColor:"#ffffff",
+
+                    logging:false
+                }
+            );
+
+
+        /* IMAGE */
+
+        const imgData =
+            canvas.toDataURL(
+                "image/png"
+            );
+
+
+        /* PDF */
+
+        const { jsPDF } =
+            window.jspdf;
+
+
+        const pdf =
+            new jsPDF({
+
+                orientation:"portrait",
+
+                unit:"mm",
+
+                format:"a4"
+
+            });
+
+
+        const pageWidth =
+            210;
+
+
+        const pageHeight =
+            297;
+
+
+        const imgWidth =
+            pageWidth;
+
+
+        const imgHeight =
+            (
+                canvas.height *
+                imgWidth
+            )
+            /
+            canvas.width;
+
+
+        let heightLeft =
+            imgHeight;
+
+
+        let position =
+            0;
+
+
+        /* FIRST PAGE */
+
+        pdf.addImage(
+
+            imgData,
+
+            "PNG",
+
+            0,
+
+            position,
+
+            imgWidth,
+
+            imgHeight
+
+        );
+
+
+        heightLeft -=
+            pageHeight;
+
+
+        /* NEXT PAGES */
+
+        while(
+            heightLeft > 0
+        ){
+
+            position =
+                heightLeft -
+                imgHeight;
+
 
             pdf.addPage();
 
+
             pdf.addImage(
+
                 imgData,
+
                 "PNG",
+
                 0,
+
                 position,
+
                 imgWidth,
+
                 imgHeight
+
             );
 
-            heightLeft -= pageHeight;
+
+            heightLeft -=
+                pageHeight;
+
         }
 
-        pdf.save("CG-Exam-Hub-Resume.pdf");
+
+        /* FILE NAME */
+
+        const name =
+            getValue("fullName") ||
+            "CG-Exam-Hub-Resume";
+
+
+        pdf.save(
+
+            name.replace(
+                /\s+/g,
+                "-"
+            )
+            +
+            "-Resume.pdf"
+
+        );
 
     }
+
     catch(error){
 
-        console.error(error);
+        console.error(
+            "PDF ERROR:",
+            error
+        );
+
 
         alert(
             "PDF बनाने में समस्या हुई। कृपया फिर से कोशिश करें।"
@@ -5565,6 +5727,11 @@ async function saveResumePDF(){
     }
 
 }
+
+
+/* =========================================
+   PRINT
+========================================= */
 
 function printResume(){
 
@@ -5583,7 +5750,7 @@ function printResume(){
             window.print();
 
         },
-        200
+        300
     );
 
 }
@@ -5605,9 +5772,9 @@ function downloadResumePNG(){
 
 
     const resume =
-    document.querySelector(
-        ".modern-resume"
-    );
+        document.querySelector(
+            ".modern-resume"
+        );
 
 
     if(!resume){
@@ -5621,15 +5788,13 @@ function downloadResumePNG(){
     }
 
 
-    /* CHECK HTML2CANVAS */
-
     if(
         typeof html2canvas ===
         "undefined"
     ){
 
         alert(
-            "Image download सुविधा के लिए थोड़ा इंतजार करें या page reload करें।"
+            "Image download सुविधा लोड नहीं हुई। कृपया Page Reload करें।"
         );
 
         return;
@@ -5638,56 +5803,77 @@ function downloadResumePNG(){
 
 
     html2canvas(
+
         resume,
+
         {
+
             scale:2,
 
             useCORS:true,
 
-            backgroundColor:"#ffffff"
+            allowTaint:true,
+
+            backgroundColor:"#ffffff",
+
+            logging:false
+
         }
+
     )
+
     .then(
+
         function(canvas){
 
             const link =
-            document.createElement(
-                "a"
-            );
+                document.createElement(
+                    "a"
+                );
 
 
             const name =
-            getValue("fullName") ||
-            "My-Resume";
+                getValue("fullName") ||
+                "My-Resume";
 
 
             link.download =
-            name
-            .replace(
-                /\s+/g,
-                "-"
-            )
-            + "-Resume.png";
+                name.replace(
+                    /\s+/g,
+                    "-"
+                )
+                +
+                "-Resume.png";
 
 
             link.href =
-            canvas.toDataURL(
-                "image/png"
-            );
+                canvas.toDataURL(
+                    "image/png"
+                );
 
 
             link.click();
 
         }
+
     )
+
     .catch(
-        function(){
+
+        function(error){
+
+            console.error(
+                "PNG ERROR:",
+                error
+            );
+
 
             alert(
                 "Image बनाने में समस्या हुई। कृपया दोबारा कोशिश करें।"
             );
 
         }
+
     );
 
 }
@@ -5703,7 +5889,15 @@ function downloadResumePNG(){
 <script
 src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js">
 </script>
-</main>
+
+
+<!-- ========================================= -->
+<!-- JSPDF LIBRARY -->
+<!-- ========================================= -->
+
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js">
+</script>
 
 
 </body>
