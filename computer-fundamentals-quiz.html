@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Computer Fundamentals Quiz | CG Exam Hub</title>
+
+<meta name="description"
+content="Computer Fundamentals के 100 महत्वपूर्ण MCQ प्रश्नों का Quiz। CGPSC, CG Vyapam, Patwari और अन्य प्रतियोगी परीक्षाओं की तैयारी के लिए।">
+
+<meta name="robots" content="index, follow">
+
+<style>
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+    background:#f4f7fb;
+    color:#172033;
+}
+
+.header{
+    background:linear-gradient(135deg,#1565c0,#42a5f5);
+    color:white;
+    text-align:center;
+    padding:30px 15px;
+}
+
+.header h1{
+    margin:0;
+    font-size:30px;
+    font-weight:900;
+}
+
+.header p{
+    margin:8px 0 0;
+}
+
+.quiz-container{
+    max-width:760px;
+    margin:25px auto;
+    padding:15px;
+}
+
+.card{
+    background:white;
+    border-radius:22px;
+    padding:25px;
+    box-shadow:0 10px 35px rgba(0,0,0,.08);
+    border:1px solid #e2e8f0;
+}
+
+.number{
+    color:#1565c0;
+    font-weight:800;
+}
+
+.progress-box{
+    width:100%;
+    height:9px;
+    background:#e8edf3;
+    border-radius:20px;
+    overflow:hidden;
+    margin:12px 0 20px;
+}
+
+.progress{
+    height:100%;
+    width:0%;
+    background:#1565c0;
+    transition:.3s;
+}
+
+.question{
+    font-size:21px;
+    font-weight:800;
+    line-height:1.55;
+    margin-bottom:22px;
+}
+
+.option{
+    width:100%;
+    display:block;
+    text-align:left;
+    border:1px solid #d7dde7;
+    background:white;
+    color:#172033;
+    border-radius:13px;
+    padding:14px 15px;
+    margin:10px 0;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.option:hover{
+    background:#eef6ff;
+    border-color:#1565c0;
+}
+
+.correct{
+    background:#dff7e8!important;
+    border-color:#18a957!important;
+    color:#087536;
+    font-weight:700;
+}
+
+.wrong{
+    background:#ffe5e5!important;
+    border-color:#dc3545!important;
+    color:#a30000;
+    font-weight:700;
+}
+
+.next{
+    width:100%;
+    border:0;
+    background:#1565c0;
+    color:white;
+    padding:14px;
+    border-radius:13px;
+    font-size:16px;
+    font-weight:800;
+    margin-top:12px;
+    cursor:pointer;
+}
+
+.next:disabled{
+    background:#aab4c3;
+    cursor:not-allowed;
+}
+
+.result{
+    display:none;
+    text-align:center;
+}
+
+.score{
+    font-size:50px;
+    font-weight:900;
+    color:#1565c0;
+    margin:15px 0;
+}
+
+.back,.restart{
+    display:inline-block;
+    margin-top:15px;
+    padding:12px 20px;
+    border-radius:11px;
+    color:white;
+    text-decoration:none;
+    font-weight:700;
+    border:0;
+    cursor:pointer;
+}
+
+.back{
+    background:#071b3a;
+}
+
+.restart{
+    background:#1565c0;
+    margin-left:8px;
+}
+
+@media(max-width:576px){
+    .header h1{font-size:25px}
+    .card{padding:19px}
+    .question{font-size:18px}
+    .option{font-size:15px}
+    .back,.restart{
+        display:block;
+        margin:10px 0 0;
+        width:100%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+    <h1>💻 Computer Fundamentals Quiz</h1>
+    <p>Computer Basics के 100 महत्वपूर्ण प्रश्न</p>
+</header>
+
+<div class="quiz-container">
+
+<div class="card" id="quiz">
+
+<div class="number" id="number"></div>
+
+<div class="progress-box">
+<div class="progress" id="progress"></div>
+</div>
+
+<div class="question" id="question"></div>
+
+<div id="options"></div>
+
+<button class="next" id="next"
+onclick="nextQuestion()" disabled>
+अगला प्रश्न →
+</button>
+
+</div>
+
+<div class="card result" id="result">
+
+<h2>🎉 Quiz पूरा हुआ!</h2>
+
+<div class="score" id="score"></div>
+
+<p id="resultText"></p>
+
+<a href="computer.html" class="back">
+← Computer Quiz
+</a>
+
+<button class="restart" onclick="restartQuiz()">
+🔄 फिर से शुरू करें
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+const questions=[
+
+{
+q:"Computer क्या है?",
+o:["एक इलेक्ट्रॉनिक उपकरण","एक प्रकार की किताब","एक फर्नीचर","एक नेटवर्क केबल"],
+a:0
+},
+
+{
+q:"Computer का मुख्य कार्य क्या है?",
+o:["Data को Process करना","केवल संगीत बजाना","केवल फोटो लेना","केवल गेम चलाना"],
+a:0
+},
+
+{
+q:"Computer में Raw Facts को क्या कहा जाता है?",
+o:["Data","Information","Program","Output"],
+a:0
+},
+
+{
+q:"Processed Data को क्या कहा जाता है?",
+o:["Information","Input","Hardware","Keyboard"],
+a:0
+},
+
+{
+q:"Computer में Data डालने की प्रक्रिया क्या कहलाती है?",
+o:["Input","Output","Processing","Storage"],
+a:0
+},
+
+{
+q:"Computer द्वारा प्राप्त परिणाम क्या कहलाता है?",
+o:["Output","Input","Data","Command"],
+a:0
+},
+
+{
+q:"CPU का पूरा नाम क्या है?",
+o:["Central Processing Unit","Computer Processing Unit","Central Program Unit","Control Processing Utility"],
+a:0
+},
+
+{
+q:"CPU को सामान्यतः क्या कहा जाता है?",
+o:["Computer का Brain","Computer की Screen","Computer की Memory","Computer का Keyboard"],
+a:0
+},
+
+{
+q:"CPU के मुख्य भागों में कौन शामिल है?",
+o:["ALU और Control Unit","Keyboard और Mouse","Monitor और Printer","Hard Disk और Speaker"],
+a:0
+},
+
+{
+q:"ALU का पूरा नाम क्या है?",
+o:["Arithmetic Logic Unit","Advanced Logic Unit","Arithmetic Local Unit","Automatic Logic Utility"],
+a:0
+},
+
+{
+q:"ALU का मुख्य कार्य क्या है?",
+o:["Arithmetic और Logical Operations","Printing","Internet चलाना","Sound Record करना"],
+a:0
+},
+
+{
+q:"CU का पूरा नाम क्या है?",
+o:["Control Unit","Computer Unit","Central Utility","Control Utility"],
+a:0
+},
+
+{
+q:"Control Unit का मुख्य कार्य क्या है?",
+o:["Computer की विभिन्न गतिविधियों को नियंत्रित करना","केवल गणना करना","केवल Print करना","केवल Data Store करना"],
+a:0
+},
+
+{
+q:"Computer की Primary Memory कौन-सी है?",
+o:["RAM","Pen Drive","DVD","Hard Disk"],
+a:0
+},
+
+{
+q:"RAM का पूरा नाम क्या है?",
+o:["Random Access Memory","Read Access Memory","Rapid Access Machine","Random Application Memory"],
+a:0
+},
+
+{
+q:"RAM किस प्रकार की Memory है?",
+o:["Volatile Memory","Permanent Memory","Optical Memory","Mechanical Memory"],
+a:0
+},
+
+{
+q:"ROM का पूरा नाम क्या है?",
+o:["Read Only Memory","Random Only Memory","Read Open Memory","Run Only Memory"],
+a:0
+},
+
+{
+q:"ROM किस प्रकार की Memory है?",
+o:["Non-Volatile Memory","Volatile Memory","Temporary Memory","Cache Only Memory"],
+a:0
+},
+
+{
+q:"Cache Memory का मुख्य उद्देश्य क्या है?",
+o:["CPU को तेजी से Data उपलब्ध कराना","Document Print करना","Internet चलाना","Sound बढ़ाना"],
+a:0
+},
+
+{
+q:"Secondary Storage का उदाहरण कौन-सा है?",
+o:["Hard Disk","Register","Cache","RAM"],
+a:0
+},
+
+{
+q:"Hard Disk का उपयोग किसके लिए किया जाता है?",
+o:["Data Store करने के लिए","केवल Typing के लिए","केवल Display के लिए","केवल Sound के लिए"],
+a:0
+},
+
+{
+q:"SSD का पूरा नाम क्या है?",
+o:["Solid State Drive","System Storage Disk","Secure State Device","Solid Storage Data"],
+a:0
+},
+
+{
+q:"Pen Drive किस प्रकार का उपकरण है?",
+o:["Storage Device","Input Device","Output Device","Processing Device"],
+a:0
+},
+
+{
+q:"CD का पूरा नाम क्या है?",
+o:["Compact Disc","Computer Disc","Central Disc","Common Data"],
+a:0
+},
+
+{
+q:"DVD का पूरा नाम क्या है?",
+o:["Digital Versatile Disc","Digital Video Data","Data Versatile Device","Digital Visual Disk"],
+a:0
+},
+
+{
+q:"Keyboard किस प्रकार का Device है?",
+o:["Input Device","Output Device","Storage Device","Processing Device"],
+a:0
+},
+
+{
+q:"Mouse किस प्रकार का Device है?",
+o:["Input Device","Output Device","Storage Device","Memory Device"],
+a:0
+},
+
+{
+q:"Monitor किस प्रकार का Device है?",
+o:["Output Device","Input Device","Storage Device","Processing Device"],
+a:0
+},
+
+{
+q:"Printer किस प्रकार का Device है?",
+o:["Output Device","Input Device","Memory Device","Processing Device"],
+a:0
+},
+
+{
+q:"Scanner किस प्रकार का Device है?",
+o:["Input Device","Output Device","Storage Device","Processing Device"],
+a:0
+},
+
+{
+q:"Speaker किस प्रकार का Device है?",
+o:["Output Device","Input Device","Storage Device","Processing Device"],
+a:0
+},
+
+{
+q:"Microphone किस प्रकार का Device है?",
+o:["Input Device","Output Device","Storage Device","Processing Device"],
+a:0
+},
+
+{
+q:"Touchscreen किस प्रकार का Device माना जाता है?",
+o:["Input और Output दोनों","केवल Storage","केवल Processing","केवल Memory"],
+a:0
+},
+
+{
+q:"Webcam का उपयोग मुख्यतः किसके लिए होता है?",
+o:["Video Capture करने के लिए","Printing के लिए","Data Processing के लिए","Storage बढ़ाने के लिए"],
+a:0
+},
+
+{
+q:"Computer में सबसे छोटी Data Unit कौन-सी है?",
+o:["Bit","Byte","KB","MB"],
+a:0
+},
+
+{
+q:"8 Bits बराबर होते हैं?",
+o:["1 Byte","1 KB","1 MB","1 GB"],
+a:0
+},
+
+{
+q:"1024 Bytes बराबर होते हैं?",
+o:["1 KB","1 MB","1 GB","1 TB"],
+a:0
+},
+
+{
+q:"1024 KB बराबर होते हैं?",
+o:["1 MB","1 GB","1 TB","1 Byte"],
+a:0
+},
+
+{
+q:"1024 MB बराबर होते हैं?",
+o:["1 GB","1 TB","1 KB","1 Byte"],
+a:0
+},
+
+{
+q:"1024 GB बराबर होते हैं?",
+o:["1 TB","1 MB","1 KB","1 PB"],
+a:0
+},
+
+{
+q:"Binary Number System में कौन-से अंक होते हैं?",
+o:["0 और 1","1 और 2","0 से 9","A से F"],
+a:0
+},
+
+{
+q:"Decimal Number System का Base क्या है?",
+o:["10","2","8","16"],
+a:0
+},
+
+{
+q:"Binary Number System का Base क्या है?",
+o:["2","8","10","16"],
+a:0
+},
+
+{
+q:"Octal Number System का Base क्या है?",
+o:["8","2","10","16"],
+a:0
+},
+
+{
+q:"Hexadecimal Number System का Base क्या है?",
+o:["16","8","10","2"],
+a:0
+},
+
+{
+q:"Computer किस Number System पर मुख्यतः कार्य करता है?",
+o:["Binary","Decimal","Octal","Roman"],
+a:0
+},
+
+{
+q:"Hardware क्या है?",
+o:["Computer के भौतिक भाग","Computer Program","Internet","Operating System"],
+a:0
+},
+
+{
+q:"Software क्या है?",
+o:["Programs और Instructions का समूह","Computer का Cabinet","Keyboard","Monitor"],
+a:0
+},
+
+{
+q:"Hardware को नियंत्रित करने के लिए किसकी आवश्यकता होती है?",
+o:["Software","Paper","Printer","Table"],
+a:0
+},
+
+{
+q:"Operating System क्या है?",
+o:["System Software","Application Software","Hardware","Input Device"],
+a:0
+},
+
+{
+q:"Windows किस प्रकार का Software है?",
+o:["Operating System","Word Processor","Antivirus","Browser"],
+a:0
+},
+
+{
+q:"Linux क्या है?",
+o:["Operating System","Printer","Keyboard","Spreadsheet"],
+a:0
+},
+
+{
+q:"Android किस प्रकार का Software है?",
+o:["Operating System","Database","Printer Driver","Web Browser"],
+a:0
+},
+
+{
+q:"Application Software का उदाहरण कौन-सा है?",
+o:["MS Word","BIOS","Device Driver","Operating System"],
+a:0
+},
+
+{
+q:"MS Word किस प्रकार का Software है?",
+o:["Word Processing Software","Operating System","Antivirus","Database"],
+a:0
+},
+
+{
+q:"MS Excel किस प्रकार का Software है?",
+o:["Spreadsheet Software","Operating System","Browser","Antivirus"],
+a:0
+},
+
+{
+q:"MS PowerPoint का उपयोग मुख्यतः किसके लिए होता है?",
+o:["Presentation बनाने के लिए","Database बनाने के लिए","Operating System चलाने के लिए","Antivirus Scan के लिए"],
+a:0
+},
+
+{
+q:"Antivirus का मुख्य कार्य क्या है?",
+o:["Malware से सुरक्षा करना","Document लिखना","Video Edit करना","Internet Speed बढ़ाना"],
+a:0
+},
+
+{
+q:"Computer Virus क्या है?",
+o:["हानिकारक Program","Hardware Device","Input Device","Operating System"],
+a:0
+},
+
+{
+q:"Malware का अर्थ क्या है?",
+o:["Malicious Software","Manual Software","Main Software","Memory Software"],
+a:0
+},
+
+{
+q:"Booting क्या है?",
+o:["Computer को Start करने की प्रक्रिया","Computer को Print करने की प्रक्रिया","File Delete करने की प्रक्रिया","Internet बंद करने की प्रक्रिया"],
+a:0
+},
+
+{
+q:"Cold Boot क्या होता है?",
+o:["बंद Computer को Start करना","चल रहे Computer को Restart करना","File Open करना","Printer चालू करना"],
+a:0
+},
+
+{
+q:"Restart करने की प्रक्रिया को क्या कहा जाता है?",
+o:["Warm Boot","Cold Storage","Formatting","Scanning"],
+a:0
+},
+
+{
+q:"BIOS का पूरा नाम क्या है?",
+o:["Basic Input/Output System","Binary Input Operating System","Basic Internet Operating Software","Boot Input Output Service"],
+a:0
+},
+
+{
+q:"BIOS का मुख्य कार्य क्या है?",
+o:["Computer के Hardware को प्रारंभिक रूप से Initialize करना","Document लिखना","Internet चलाना","Video बनाना"],
+a:0
+},
+
+{
+q:"GUI का पूरा नाम क्या है?",
+o:["Graphical User Interface","General User Internet","Graphic Utility Input","General Utility Interface"],
+a:0
+},
+
+{
+q:"GUI में किसका उपयोग किया जाता है?",
+o:["Icons और Graphical Elements","केवल Commands","केवल Numbers","केवल Binary Code"],
+a:0
+},
+
+{
+q:"CLI का पूरा नाम क्या है?",
+o:["Command Line Interface","Computer Line Input","Command Logic Interface","Central Line Internet"],
+a:0
+},
+
+{
+q:"CLI में User मुख्यतः किसके माध्यम से Command देता है?",
+o:["Text Commands","Pictures","Touch only","Printer"],
+a:0
+},
+
+{
+q:"File क्या है?",
+o:["Data का संग्रह","केवल Folder","Hardware","Network Cable"],
+a:0
+},
+
+{
+q:"Folder का उपयोग किसके लिए होता है?",
+o:["Files को व्यवस्थित रखने के लिए","Computer Process करने के लिए","Screen Display करने के लिए","Sound Record करने के लिए"],
+a:0
+},
+
+{
+q:"File Extension किसकी पहचान में मदद करता है?",
+o:["File के प्रकार की","Computer की Speed की","RAM की","CPU की"],
+a:0
+},
+
+{
+q:".txt किस प्रकार की File का सामान्य Extension है?",
+o:["Text File","Image File","Audio File","Video File"],
+a:0
+},
+
+{
+q:".jpg सामान्यतः किस प्रकार की File है?",
+o:["Image File","Text File","Audio File","Program File"],
+a:0
+},
+
+{
+q:".mp3 सामान्यतः किस प्रकार की File है?",
+o:["Audio File","Image File","Text File","Spreadsheet"],
+a:0
+},
+
+{
+q:".mp4 सामान्यतः किस प्रकार की File है?",
+o:["Video File","Text File","Audio Only File","Database File"],
+a:0
+},
+
+{
+q:".pdf का पूरा नाम क्या है?",
+o:["Portable Document Format","Personal Data File","Public Document File","Program Data Format"],
+a:0
+},
+
+{
+q:"Recycle Bin का उपयोग किसके लिए होता है?",
+o:["Deleted Files को अस्थायी रूप से रखने के लिए","Files को Compress करने के लिए","Internet चलाने के लिए","RAM बढ़ाने के लिए"],
+a:0
+},
+
+{
+q:"File को स्थायी रूप से Delete करने के लिए Windows में सामान्यतः कौन-सी Key Combination उपयोग होती है?",
+o:["Shift + Delete","Ctrl + C","Alt + Tab","Ctrl + S"],
+a:0
+},
+
+{
+q:"Copy की सामान्य Shortcut Key क्या है?",
+o:["Ctrl + C","Ctrl + V","Ctrl + X","Ctrl + Z"],
+a:0
+},
+
+{
+q:"Paste की सामान्य Shortcut Key क्या है?",
+o:["Ctrl + V","Ctrl + C","Ctrl + X","Ctrl + P"],
+a:0
+},
+
+{
+q:"Cut की सामान्य Shortcut Key क्या है?",
+o:["Ctrl + X","Ctrl + C","Ctrl + V","Ctrl + A"],
+a:0
+},
+
+{
+q:"Undo की सामान्य Shortcut Key क्या है?",
+o:["Ctrl + Z","Ctrl + Y","Ctrl + U","Ctrl + D"],
+a:0
+},
+
+{
+q:"Select All की Shortcut Key क्या है?",
+o:["Ctrl + A","Ctrl + S","Ctrl + P","Ctrl + F"],
+a:0
+},
+
+{
+q:"Save की सामान्य Shortcut Key क्या है?",
+o:["Ctrl + S","Ctrl + A","Ctrl + C","Ctrl + X"],
+a:0
+},
+
+{
+q:"Print की सामान्य Shortcut Key क्या है?",
+o:["Ctrl + P","Ctrl + R","Ctrl + T","Ctrl + W"],
+a:0
+},
+
+{
+q:"Internet क्या है?",
+o:["दुनिया भर के Networks का Network","एक Keyboard","एक Printer","एक Operating System"],
+a:0
+},
+
+{
+q:"Web Browser का उदाहरण कौन-सा है?",
+o:["Google Chrome","MS Word","Windows Calculator","Notepad"],
+a:0
+},
+
+{
+q:"Search Engine का उदाहरण कौन-सा है?",
+o:["Google","Windows","Keyboard","Excel"],
+a:0
+},
+
+{
+q:"URL का पूरा नाम क्या है?",
+o:["Uniform Resource Locator","Universal Record Link","User Resource Location","Uniform Read Link"],
+a:0
+},
+
+{
+q:"HTTP का पूरा नाम क्या है?",
+o:["HyperText Transfer Protocol","High Transfer Text Program","Hyper Tool Transfer Process","Host Text Transfer Protocol"],
+a:0
+},
+
+{
+q:"HTTPS में S सामान्यतः किसका संकेत देता है?",
+o:["Secure","System","Search","Service"],
+a:0
+},
+
+{
+q:"Email का पूरा अर्थ क्या है?",
+o:["Electronic Mail","Easy Mail","Electronic Message Link","External Mail"],
+a:0
+},
+
+{
+q:"Cloud Computing में Data कहाँ उपलब्ध कराया जा सकता है?",
+o:["Remote Internet-based Servers पर","केवल Keyboard में","केवल Monitor में","केवल Mouse में"],
+a:0
+},
+
+{
+q:"Computer Network क्या है?",
+o:["आपस में जुड़े Computers/Devices का समूह","एक अकेला Keyboard","एक Printer","एक Software"],
+a:0
+},
+
+{
+q:"LAN का पूरा नाम क्या है?",
+o:["Local Area Network","Large Area Network","Long Access Network","Local Access Node"],
+a:0
+},
+
+{
+q:"WAN का पूरा नाम क्या है?",
+o:["Wide Area Network","Web Area Network","Wireless Access Network","World Access Node"],
+a:0
+},
+
+{
+q:"Wi-Fi का उपयोग मुख्यतः किसके लिए होता है?",
+o:["Wireless Network Connection","Printing Ink","Data Typing","Computer Cooling"],
+a:0
+},
+
+{
+q:"Bluetooth किस प्रकार की Technology है?",
+o:["Short-range Wireless Communication","Long-distance Satellite Communication","Wired Network","Storage Technology"],
+a:0
+},
+
+{
+q:"Computer की Performance को प्रभावित करने वाला प्रमुख घटक कौन-सा है?",
+o:["CPU","Mouse Pad","Speaker Cover","Printer Paper"],
+a:0
+},
+
+{
+q:"Multitasking का अर्थ क्या है?",
+o:["एक समय में कई Tasks चलाना","एक File Delete करना","Computer बंद करना","केवल एक Program चलाना"],
+a:0
+},
+
+{
+q:"Backup का उद्देश्य क्या है?",
+o:["Data की अतिरिक्त Copy सुरक्षित रखना","Data Delete करना","RAM बढ़ाना","Monitor साफ करना"],
+a:0
+},
+
+{
+q:"Formatting का सामान्य अर्थ क्या है?",
+o:["Storage Device को उपयोग के लिए तैयार करना","Keyboard को बंद करना","Monitor की Brightness बढ़ाना","Internet Speed बढ़ाना"],
+a:0
+},
+
+{
+q:"Computer में Power बंद करने की प्रक्रिया को क्या कहा जाता है?",
+o:["Shutdown","Booting","Scanning","Formatting"],
+a:0
+},
+
+{
+q:"Password का उपयोग मुख्यतः किसके लिए किया जाता है?",
+o:["Authentication और सुरक्षा के लिए","Printing के लिए","Typing Speed बढ़ाने के लिए","Screen Resolution बदलने के लिए"],
+a:0
+},
+
+{
+q:"Biometric Authentication का उदाहरण कौन-सा है?",
+o:["Fingerprint","File Name","Folder","Keyboard"],
+a:0
+},
+
+{
+q:"Two-Factor Authentication का उद्देश्य क्या है?",
+o:["Account Security बढ़ाना","Computer Speed बढ़ाना","Storage घटाना","Printer चलाना"],
+a:0
+},
+
+{
+q:"Digital Literacy का संबंध किससे है?",
+o:["Digital Technology के प्रभावी और सुरक्षित उपयोग से","केवल Typing से","केवल Gaming से","केवल Printing से"],
+a:0
+}
+
+];
+
+let current=0;
+let score=0;
+let answered=false;
+
+function loadQuestion(){
+
+    answered=false;
+
+    const q=questions[current];
+
+    document.getElementById("number").innerText=
+    "प्रश्न "+(current+1)+" / "+questions.length;
+
+    document.getElementById("question").innerText=q.q;
+
+    const box=document.getElementById("options");
+
+    box.innerHTML="";
+
+    q.o.forEach((text,i)=>{
+
+        const btn=document.createElement("button");
+
+        btn.className="option";
+
+        btn.innerText=
+        String.fromCharCode(65+i)+". "+text;
+
+        btn.onclick=function(){
+            answer(btn,i);
+        };
+
+        box.appendChild(btn);
+
+    });
+
+    document.getElementById("next").disabled=true;
+
+    document.getElementById("progress").style.width=
+    ((current+1)/questions.length*100)+"%";
+}
+
+function answer(btn,index){
+
+    if(answered)return;
+
+    answered=true;
+
+    const q=questions[current];
+
+    const buttons=document.querySelectorAll(".option");
+
+    buttons.forEach((b,i)=>{
+
+        if(i===q.a){
+            b.classList.add("correct");
+        }
+
+    });
+
+    if(index===q.a){
+        score++;
+    }else{
+        btn.classList.add("wrong");
+    }
+
+    document.getElementById("next").disabled=false;
+}
+
+function nextQuestion(){
+
+    current++;
+
+    if(current<questions.length){
+
+        loadQuestion();
+
+    }else{
+
+        document.getElementById("quiz").style.display="none";
+
+        document.getElementById("result").style.display="block";
+
+        document.getElementById("score").innerText=
+        score+" / "+questions.length;
+
+        document.getElementById("resultText").innerText=
+        "आपने "+questions.length+
+        " में से "+score+
+        " प्रश्नों के सही उत्तर दिए।";
+    }
+}
+
+function restartQuiz(){
+
+    current=0;
+    score=0;
+
+    document.getElementById("quiz").style.display="block";
+
+    document.getElementById("result").style.display="none";
+
+    loadQuestion();
+}
+
+loadQuestion();
+
+</script>
+
+</body>
+</html>

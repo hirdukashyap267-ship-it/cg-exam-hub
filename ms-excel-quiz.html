@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MS Excel Quiz | CG Exam Hub</title>
+
+<meta name="description"
+content="MS Excel के 100 महत्वपूर्ण प्रश्नों का ऑनलाइन Quiz। Formula, Function, Cell, Row, Column, Worksheet, Shortcut Keys और Excel Basics की तैयारी करें।">
+
+<meta name="robots" content="index, follow">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+    background:#f4f8f5;
+    color:#172033;
+}
+
+.header{
+    background:linear-gradient(135deg,#107c41,#21a366);
+    color:white;
+    text-align:center;
+    padding:35px 20px;
+    box-shadow:0 5px 25px rgba(16,124,65,.20);
+}
+
+.header h1{
+    font-size:30px;
+    font-weight:900;
+    margin-bottom:8px;
+}
+
+.header p{
+    margin:0;
+    font-size:15px;
+}
+
+.quiz{
+    max-width:760px;
+    margin:30px auto;
+    padding:15px;
+}
+
+.card{
+    background:white;
+    border:0;
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.number{
+    color:#107c41;
+    font-weight:800;
+    font-size:14px;
+}
+
+.progress{
+    height:8px;
+    margin-top:10px;
+    margin-bottom:20px;
+    border-radius:20px;
+    background:#e5eee8;
+}
+
+.progress-bar{
+    background:#107c41;
+}
+
+.question{
+    font-size:21px;
+    font-weight:850;
+    line-height:1.5;
+    margin:15px 0 22px;
+}
+
+.option{
+    width:100%;
+    display:block;
+    text-align:left;
+    border:1px solid #d9e1dc;
+    background:white;
+    border-radius:12px;
+    padding:14px;
+    margin:10px 0;
+    cursor:pointer;
+    font-size:15px;
+    transition:.2s;
+}
+
+.option:hover{
+    background:#edf9f2;
+    border-color:#21a366;
+}
+
+.correct{
+    background:#dff7e8!important;
+    border-color:#159447!important;
+    color:#087333;
+    font-weight:700;
+}
+
+.wrong{
+    background:#ffe5e5!important;
+    border-color:#dc3545!important;
+    color:#b42318;
+    font-weight:700;
+}
+
+.next{
+    width:100%;
+    border:0;
+    background:#107c41;
+    color:white;
+    padding:14px;
+    border-radius:12px;
+    font-weight:800;
+    margin-top:15px;
+    cursor:pointer;
+}
+
+.next:disabled{
+    opacity:.5;
+    cursor:not-allowed;
+}
+
+.result{
+    display:none;
+    text-align:center;
+}
+
+.result h2{
+    font-weight:900;
+}
+
+.score{
+    font-size:48px;
+    color:#107c41;
+    font-weight:900;
+    margin:15px;
+}
+
+.result-btn{
+    display:inline-block;
+    background:#107c41;
+    color:white;
+    padding:12px 20px;
+    border-radius:10px;
+    text-decoration:none;
+    margin:5px;
+    border:0;
+    font-weight:700;
+}
+
+.home-btn{
+    background:#071b3a;
+}
+
+.footer{
+    background:#071b3a;
+    color:#aebdd2;
+    text-align:center;
+    padding:25px 15px;
+    margin-top:40px;
+    font-size:12px;
+}
+
+.footer strong{
+    color:white;
+}
+
+@media(max-width:576px){
+
+    .header{
+        padding:28px 15px;
+    }
+
+    .header h1{
+        font-size:25px;
+    }
+
+    .question{
+        font-size:18px;
+    }
+
+    .card{
+        padding:20px;
+    }
+
+    .option{
+        font-size:14px;
+        padding:13px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header class="header">
+
+<h1>📊 MS Excel Quiz</h1>
+
+<p>MS Excel के 100 महत्वपूर्ण प्रश्नों का अभ्यास करें</p>
+
+</header>
+
+
+<div class="quiz">
+
+<div class="card" id="quiz">
+
+<div class="number" id="number"></div>
+
+<div class="progress">
+<div class="progress-bar"
+id="progressBar"
+style="width:1%">
+</div>
+</div>
+
+<div class="question" id="question"></div>
+
+<div id="options"></div>
+
+<button class="next"
+id="next"
+onclick="nextQuestion()"
+disabled>
+
+अगला प्रश्न →
+
+</button>
+
+</div>
+
+
+<div class="card result" id="result">
+
+<h2>🎉 Quiz पूरा हुआ!</h2>
+
+<div class="score" id="score"></div>
+
+<p id="text"></p>
+
+<button class="result-btn"
+onclick="restartQuiz()">
+
+🔄 फिर से Quiz दें
+
+</button>
+
+<a href="computer-quiz.html"
+class="result-btn home-btn">
+
+← Computer Quiz
+
+</a>
+
+</div>
+
+</div>
+
+
+<footer class="footer">
+
+<strong>CG EXAM HUB</strong>
+
+<br><br>
+
+MS Excel • Computer Quiz • Competitive Exams
+
+<br><br>
+
+© 2026 CG Exam Hub
+
+</footer>
+
+
+<script>
+
+const questions=[
+
+{
+q:"MS Excel किस प्रकार का सॉफ्टवेयर है?",
+o:["Word Processor","Spreadsheet","Presentation Software","Web Browser"],
+a:1
+},
+
+{
+q:"MS Excel किस कंपनी द्वारा विकसित किया गया है?",
+o:["Google","Microsoft","Apple","IBM"],
+a:1
+},
+
+{
+q:"Excel में एक नई Workbook खोलने की Shortcut Key क्या है?",
+o:["Ctrl + N","Ctrl + O","Ctrl + W","Ctrl + E"],
+a:0
+},
+
+{
+q:"Excel में पहले से बनी Workbook खोलने की Shortcut Key क्या है?",
+o:["Ctrl + N","Ctrl + O","Ctrl + P","Ctrl + K"],
+a:1
+},
+
+{
+q:"Excel Workbook को Save करने की Shortcut Key क्या है?",
+o:["Ctrl + S","Ctrl + A","Ctrl + D","Ctrl + F"],
+a:0
+},
+
+{
+q:"Excel में Print करने की Shortcut Key क्या है?",
+o:["Ctrl + T","Ctrl + P","Ctrl + R","Ctrl + L"],
+a:1
+},
+
+{
+q:"Excel में किसी Cell को Edit करने की Shortcut Key क्या है?",
+o:["F1","F2","F5","F12"],
+a:1
+},
+
+{
+q:"Excel में वर्तमान Cell की सामग्री को हटाने के लिए सामान्यतः कौन-सी Key दबाई जाती है?",
+o:["Delete","Shift","Tab","Alt"],
+a:0
+},
+
+{
+q:"Excel में पूरी Row चुनने की Shortcut Key क्या है?",
+o:["Ctrl + Space","Shift + Space","Alt + Space","Ctrl + R"],
+a:1
+},
+
+{
+q:"Excel में पूरा Column चुनने की Shortcut Key क्या है?",
+o:["Ctrl + Space","Shift + Space","Alt + C","Ctrl + L"],
+a:0
+},
+
+{
+q:"Excel में सभी Cells Select करने की Shortcut Key क्या है?",
+o:["Ctrl + A","Ctrl + S","Ctrl + Z","Ctrl + X"],
+a:0
+},
+
+{
+q:"Excel में Copy की Shortcut Key क्या है?",
+o:["Ctrl + C","Ctrl + V","Ctrl + X","Ctrl + B"],
+a:0
+},
+
+{
+q:"Excel में Paste की Shortcut Key क्या है?",
+o:["Ctrl + P","Ctrl + V","Ctrl + G","Ctrl + Y"],
+a:1
+},
+
+{
+q:"Excel में Cut की Shortcut Key क्या है?",
+o:["Ctrl + C","Ctrl + X","Ctrl + K","Ctrl + D"],
+a:1
+},
+
+{
+q:"Excel में Undo की Shortcut Key क्या है?",
+o:["Ctrl + Z","Ctrl + U","Ctrl + Y","Ctrl + H"],
+a:0
+},
+
+{
+q:"Excel में Redo की Shortcut Key क्या है?",
+o:["Ctrl + R","Ctrl + Y","Ctrl + E","Ctrl + B"],
+a:1
+},
+
+{
+q:"Excel में Bold करने की Shortcut Key क्या है?",
+o:["Ctrl + B","Ctrl + I","Ctrl + U","Ctrl + D"],
+a:0
+},
+
+{
+q:"Excel में Italic करने की Shortcut Key क्या है?",
+o:["Ctrl + B","Ctrl + I","Ctrl + U","Ctrl + T"],
+a:1
+},
+
+{
+q:"Excel में Underline करने की Shortcut Key क्या है?",
+o:["Ctrl + U","Ctrl + L","Ctrl + I","Ctrl + E"],
+a:0
+},
+
+{
+q:"Excel में Find करने की Shortcut Key क्या है?",
+o:["Ctrl + F","Ctrl + H","Ctrl + G","Ctrl + J"],
+a:0
+},
+
+{
+q:"Excel में Replace करने की Shortcut Key क्या है?",
+o:["Ctrl + R","Ctrl + H","Ctrl + E","Ctrl + T"],
+a:1
+},
+
+{
+q:"Excel में Go To संवाद बॉक्स खोलने की Shortcut Key क्या है?",
+o:["Ctrl + G","Ctrl + J","Ctrl + M","Ctrl + Q"],
+a:0
+},
+
+{
+q:"Excel में Formula किस चिन्ह से शुरू होता है?",
+o:["+","=","#","@"],
+a:1
+},
+
+{
+q:"Excel में जोड़ करने के लिए कौन-सा Function प्रयोग किया जाता है?",
+o:["ADD","SUM","TOTAL","PLUS"],
+a:1
+},
+
+{
+q:"SUM Function का उपयोग किसके लिए किया जाता है?",
+o:["जोड़ने के लिए","घटाने के लिए","गुणा करने के लिए","भाग देने के लिए"],
+a:0
+},
+
+{
+q:"AVERAGE Function का उपयोग किसके लिए किया जाता है?",
+o:["योग","औसत","अधिकतम","न्यूनतम"],
+a:1
+},
+
+{
+q:"MAX Function क्या बताता है?",
+o:["सबसे छोटा मान","सबसे बड़ा मान","औसत","कुल संख्या"],
+a:1
+},
+
+{
+q:"MIN Function क्या बताता है?",
+o:["सबसे बड़ा मान","सबसे छोटा मान","योग","औसत"],
+a:1
+},
+
+{
+q:"COUNT Function मुख्यतः क्या गिनता है?",
+o:["Text Cells","Numbers वाले Cells","Blank Cells","Colors"],
+a:1
+},
+
+{
+q:"COUNTA Function क्या गिनता है?",
+o:["खाली Cells","Non-empty Cells","केवल Numbers","केवल Formulas"],
+a:1
+},
+
+{
+q:"COUNTBLANK Function क्या गिनता है?",
+o:["भरे हुए Cells","खाली Cells","Numbers","Rows"],
+a:1
+},
+
+{
+q:"IF Function का उपयोग किसके लिए किया जाता है?",
+o:["Logical Test","Printing","Formatting","Saving"],
+a:0
+},
+
+{
+q:"Excel में Cell का पता किससे बनता है?",
+o:["Row और Column","केवल Row","केवल Column","Sheet और File"],
+a:0
+},
+
+{
+q:"Excel में Columns को किससे दर्शाया जाता है?",
+o:["Numbers","Letters","Symbols","Colors"],
+a:1
+},
+
+{
+q:"Excel में Rows को किससे दर्शाया जाता है?",
+o:["Letters","Numbers","Symbols","Colors"],
+a:1
+},
+
+{
+q:"Excel में पहला Cell कौन-सा होता है?",
+o:["A1","A0","1A","AA1"],
+a:0
+},
+
+{
+q:"Excel में A1 क्या दर्शाता है?",
+o:["File Name","Cell Address","Sheet Name","Formula"],
+a:1
+},
+
+{
+q:"Excel में एक Cell क्या होता है?",
+o:["Row और Column का Intersection","केवल Row","केवल Column","एक पूरी Sheet"],
+a:0
+},
+
+{
+q:"Excel में Workbook में क्या होता है?",
+o:["Worksheets","केवल एक Cell","केवल एक Row","केवल एक Formula"],
+a:0
+},
+
+{
+q:"Excel में Worksheet क्या है?",
+o:["Workbook का एक Sheet","एक Formula","एक Row","एक Column"],
+a:0
+},
+
+{
+q:"Excel की आधुनिक Version में एक Worksheet में कितनी Rows होती हैं?",
+o:["65,536","1,048,576","10,000","100,000"],
+a:1
+},
+
+{
+q:"Excel की आधुनिक Version में एक Worksheet में कितने Columns होते हैं?",
+o:["256","1,024","16,384","65,536"],
+a:2
+},
+
+{
+q:"Excel में अंतिम Column का नाम क्या है?",
+o:["ZZZ","XFD","AAA","END"],
+a:1
+},
+
+{
+q:"Excel में Formula Bar का उपयोग किसके लिए होता है?",
+o:["Formula या Cell Content देखने/संपादित करने के लिए","Print करने के लिए","Internet चलाने के लिए","Computer बंद करने के लिए"],
+a:0
+},
+
+{
+q:"Excel में Name Box कहाँ दिखाई देता है?",
+o:["Formula Bar के पास","Footer में","Status Bar के नीचे","Desktop पर"],
+a:0
+},
+
+{
+q:"Excel में Status Bar सामान्यतः कहाँ होता है?",
+o:["ऊपर","नीचे","बाएँ","बीच में"],
+a:1
+},
+
+{
+q:"Excel में Sheet Tabs सामान्यतः कहाँ दिखाई देते हैं?",
+o:["नीचे","ऊपर","केवल Formula Bar में","Ribbon के अंदर"],
+a:0
+},
+
+{
+q:"Excel में नई Worksheet जोड़ने के लिए सामान्यतः किस चिन्ह का उपयोग होता है?",
+o:["+","-","=","#"],
+a:0
+},
+
+{
+q:"Excel में एक Worksheet का नाम बदलने के लिए क्या किया जा सकता है?",
+o:["Sheet Tab पर Double Click","Computer Restart","Ctrl + P","F1"],
+a:0
+},
+
+{
+q:"Excel में Row Height बदलने के लिए क्या उपयोग किया जा सकता है?",
+o:["Format विकल्प","Insert Picture","Print Preview","Spell Check"],
+a:0
+},
+
+{
+q:"Excel में Column Width बदलने के लिए क्या उपयोग किया जा सकता है?",
+o:["Format विकल्प","Mail Merge","Slide Show","Page Number"],
+a:0
+},
+
+{
+q:"Excel में Merge & Center का उपयोग किस लिए होता है?",
+o:["Cells को Merge करके Text को Center करने के लिए","Cells Delete करने के लिए","Formula हटाने के लिए","File Save करने के लिए"],
+a:0
+},
+
+{
+q:"Excel में Wrap Text का उपयोग किसके लिए होता है?",
+o:["Cell के अंदर Text को कई Lines में दिखाने के लिए","Cell Delete करने के लिए","Workbook बंद करने के लिए","Formula बनाने के लिए"],
+a:0
+},
+
+{
+q:"Excel में Sort का उपयोग किसके लिए किया जाता है?",
+o:["Data को क्रम में लगाने के लिए","Data Delete करने के लिए","File Print करने के लिए","Formula हटाने के लिए"],
+a:0
+},
+
+{
+q:"Excel में Filter का उपयोग किसके लिए किया जाता है?",
+o:["विशिष्ट Data दिखाने के लिए","Workbook बंद करने के लिए","Font बदलने के लिए","Computer बंद करने के लिए"],
+a:0
+},
+
+{
+q:"Excel में Chart का उपयोग किसके लिए किया जाता है?",
+o:["Data का Graphical Representation","केवल Text लिखने","File Rename करने","Formula हटाने"],
+a:0
+},
+
+{
+q:"Excel में Pie Chart किस प्रकार के Data को प्रदर्शित करने में उपयोगी है?",
+o:["भागों का प्रतिशत/अनुपात","केवल लंबा Text","केवल तारीख","केवल Formula"],
+a:0
+},
+
+{
+q:"Excel में Column Chart किसके लिए उपयोगी है?",
+o:["Data की तुलना","केवल Text Editing","Password बनाने","File Delete करने"],
+a:0
+},
+
+{
+q:"Excel में Line Chart किसे दिखाने के लिए उपयोगी है?",
+o:["Trend","केवल Font","केवल Password","File Size"],
+a:0
+},
+
+{
+q:"Excel में Conditional Formatting का उपयोग किसके लिए होता है?",
+o:["शर्त के आधार पर Formatting","File Save","Print","Internet"],
+a:0
+},
+
+{
+q:"Excel में Freeze Panes का उपयोग किसके लिए होता है?",
+o:["कुछ Rows/Columns को Scroll करते समय स्थिर रखने के लिए","Cells Delete करने के लिए","Workbook बंद करने के लिए","Formula बनाने के लिए"],
+a:0
+},
+
+{
+q:"Excel में Data Validation का उपयोग किसके लिए किया जाता है?",
+o:["Data Entry को नियंत्रित करने के लिए","Computer बंद करने के लिए","Chart Delete करने के लिए","File Rename करने के लिए"],
+a:0
+},
+
+{
+q:"Excel में AutoFill का उपयोग किसके लिए किया जाता है?",
+o:["Pattern या Formula को आगे भरने के लिए","File Print करने के लिए","Sheet Delete करने के लिए","Computer Restart करने के लिए"],
+a:0
+},
+
+{
+q:"Excel में Fill Handle कहाँ दिखाई देता है?",
+o:["Selected Cell के निचले-दाएँ कोने पर","Ribbon के ऊपर","Status Bar में","Title Bar में"],
+a:0
+},
+
+{
+q:"Excel में Relative Reference का उदाहरण कौन-सा है?",
+o:["A1","$A$1","$A1","A$1"],
+a:0
+},
+
+{
+q:"Excel में Absolute Reference का उदाहरण कौन-सा है?",
+o:["A1","$A$1","A$1","$A1"],
+a:1
+},
+
+{
+q:"Excel में Mixed Reference का उदाहरण कौन-सा है?",
+o:["A1","$A$1","$A1","दोनों $A1 और A$1"],
+a:3
+},
+
+{
+q:"Excel में किसी Cell को Absolute Reference बनाने के लिए किस चिन्ह का उपयोग होता है?",
+o:["#","$","@","&"],
+a:1
+},
+
+{
+q:"Excel में Formula Copy करने पर Relative Reference सामान्यतः क्या होता है?",
+o:["नहीं बदलता","Position के अनुसार बदलता है","Delete हो जाता है","Text बन जाता है"],
+a:1
+},
+
+{
+q:"Excel में #DIV/0! Error कब आ सकती है?",
+o:["शून्य से Division करने पर","Text Bold करने पर","File Save करने पर","Sheet Rename करने पर"],
+a:0
+},
+
+{
+q:"Excel में #VALUE! Error सामान्यतः किससे संबंधित है?",
+o:["गलत प्रकार के Data/Argument से","Printer से","Internet से","Font Size से"],
+a:0
+},
+
+{
+q:"Excel में #REF! Error किससे संबंधित है?",
+o:["Invalid Cell Reference","गलत Password","Printer Error","Font Error"],
+a:0
+},
+
+{
+q:"Excel में #NAME? Error सामान्यतः कब आती है?",
+o:["Excel किसी Name/Function को पहचान नहीं पाता","Cell खाली होने पर","File Save होने पर","Chart बनने पर"],
+a:0
+},
+
+{
+q:"Excel में SUM(A1:A5) क्या करेगा?",
+o:["A1 से A5 तक का योग","केवल A1","केवल A5","A1 और A5 का औसत"],
+a:0
+},
+
+{
+q:"Excel में A1:A10 किसे दर्शाता है?",
+o:["एक Cell","Cells की Range","एक Row","एक Workbook"],
+a:1
+},
+
+{
+q:"Excel में Range क्या होती है?",
+o:["Cells का समूह","एक अकेला अक्षर","एक File","एक Printer"],
+a:0
+},
+
+{
+q:"Excel में Formula =A1+B1 क्या करेगा?",
+o:["A1 और B1 के मान जोड़ देगा","A1 Delete करेगा","B1 Delete करेगा","दोनों Cells Hide करेगा"],
+a:0
+},
+
+{
+q:"Excel में =A1*B1 किस Operation को दर्शाता है?",
+o:["जोड़","घटाव","गुणा","भाग"],
+a:2
+},
+
+{
+q:"Excel में =A1/B1 किस Operation को दर्शाता है?",
+o:["जोड़","भाग","गुणा","घटाव"],
+a:1
+},
+
+{
+q:"Excel में =A1-B1 किस Operation को दर्शाता है?",
+o:["घटाव","जोड़","भाग","गुणा"],
+a:0
+},
+
+{
+q:"Excel में प्रतिशत निकालने के लिए % Operator का उपयोग किया जा सकता है?",
+o:["हाँ","नहीं","केवल Word में","केवल PowerPoint में"],
+a:0
+},
+
+{
+q:"Excel में TODAY() Function क्या देता है?",
+o:["वर्तमान Date","वर्तमान Time","कल की Date","केवल Year"],
+a:0
+},
+
+{
+q:"Excel में NOW() Function क्या देता है?",
+o:["Current Date और Time","केवल Date","केवल Year","केवल Month"],
+a:0
+},
+
+{
+q:"Excel में LEN Function किसकी संख्या बताता है?",
+o:["Characters","Rows","Columns","Sheets"],
+a:0
+},
+
+{
+q:"Excel में LEFT Function किसके लिए उपयोग होता है?",
+o:["Text के बाएँ तरफ के Characters निकालने के लिए","Text Delete करने के लिए","Number जोड़ने के लिए","Cell रंगने के लिए"],
+a:0
+},
+
+{
+q:"Excel में RIGHT Function किसके लिए उपयोग होता है?",
+o:["Text के दाएँ तरफ के Characters निकालने के लिए","Text Bold करने के लिए","Row Delete करने के लिए","Sheet Hide करने के लिए"],
+a:0
+},
+
+{
+q:"Excel में MID Function का उपयोग किसके लिए होता है?",
+o:["Text के बीच से Characters निकालने के लिए","Data Sort करने के लिए","File Save करने के लिए","Chart बनाने के लिए"],
+a:0
+},
+
+{
+q:"Excel में UPPER Function क्या करता है?",
+o:["Text को Uppercase में बदलता है","Text Delete करता है","Number जोड़ता है","Cell Merge करता है"],
+a:0
+},
+
+{
+q:"Excel में LOWER Function क्या करता है?",
+o:["Text को Lowercase में बदलता है","Text को Bold करता है","Data Sort करता है","Chart बनाता है"],
+a:0
+},
+
+{
+q:"Excel में PROPER Function का उपयोग किसके लिए किया जाता है?",
+o:["हर Word के पहले अक्षर को Capital करने के लिए","Number जोड़ने के लिए","Cells Delete करने के लिए","File Print करने के लिए"],
+a:0
+},
+
+{
+q:"Excel में ROUND Function का उपयोग किसके लिए किया जाता है?",
+o:["Number को निर्दिष्ट दशमलव स्थान तक Round करने के लिए","Text लिखने के लिए","Row Delete करने के लिए","Chart बनाने के लिए"],
+a:0
+},
+
+{
+q:"Excel में PRODUCT Function क्या करता है?",
+o:["Numbers को Multiply करता है","Numbers को Divide करता है","Text को Bold करता है","Rows को Sort करता है"],
+a:0
+},
+
+{
+q:"Excel में SUBTOTAL Function का उपयोग किसके लिए किया जा सकता है?",
+o:["List/Database में Subtotal निकालने के लिए","File Rename करने के लिए","Computer बंद करने के लिए","Font बदलने के लिए"],
+a:0
+},
+
+{
+q:"Excel में VLOOKUP का उपयोग सामान्यतः किसके लिए किया जाता है?",
+o:["Table में Vertical Lookup","केवल Formatting","Printing","File Compression"],
+a:0
+},
+
+{
+q:"Excel में HLOOKUP किस प्रकार का Lookup करता है?",
+o:["Horizontal","Vertical","Circular","Random"],
+a:0
+},
+
+{
+q:"Excel में PivotTable का उपयोग किसके लिए किया जाता है?",
+o:["Data को Summarize और Analyze करने के लिए","Computer बंद करने के लिए","Font Install करने के लिए","File Delete करने के लिए"],
+a:0
+},
+
+{
+q:"Excel में Protect Sheet का उपयोग किसके लिए किया जाता है?",
+o:["Worksheet में बदलावों को नियंत्रित/रोकने के लिए","Chart बनाने के लिए","Data जोड़ने के लिए","Computer Restart करने के लिए"],
+a:0
+},
+
+{
+q:"Excel में Hide Sheet का उपयोग किसके लिए होता है?",
+o:["Worksheet को छिपाने के लिए","Worksheet Delete करने के लिए","Formula बनाने के लिए","Print करने के लिए"],
+a:0
+},
+
+{
+q:"Excel Workbook की सामान्य आधुनिक File Extension क्या है?",
+o:[".docx",".xlsx",".pptx",".txt"],
+a:1
+},
+
+{
+q:"पुराने Excel Workbook की सामान्य Extension क्या थी?",
+o:[".xls",".doc",".ppt",".exe"],
+a:0
+},
+
+{
+q:"Excel में Ribbon में क्या होते हैं?",
+o:["Commands और Tools","केवल Files","केवल Images","केवल Formulas"],
+a:0
+},
+
+{
+q:"Excel में Formula को Cancel करने के लिए कौन-सी Key उपयोग की जाती है?",
+o:["Esc","Enter","Tab","F2"],
+a:0
+},
+
+{
+q:"Excel में Formula Enter करने के लिए सामान्यतः कौन-सी Key दबाई जाती है?",
+o:["Enter","Esc","Alt","Ctrl"],
+a:0
+},
+
+{
+q:"Excel में अगले Cell पर जाने के लिए Tab Key का उपयोग किया जा सकता है?",
+o:["हाँ","नहीं","केवल Word में","केवल Access में"],
+a:0
+},
+
+{
+q:"Excel में नीचे वाले Cell पर जाने के लिए सामान्यतः कौन-सी Key उपयोग होती है?",
+o:["Enter","Tab","Shift","Alt"],
+a:0
+},
+
+{
+q:"Excel में Data को Alphabetical Order में लगाने के लिए Sort का कौन-सा विकल्प उपयोग किया जा सकता है?",
+o:["A to Z","Z to A","Both Delete","No Sort"],
+a:0
+},
+
+{
+q:"Excel में Data को Reverse Alphabetical Order में लगाने का विकल्प कौन-सा है?",
+o:["A to Z","Z to A","A to A","Sort Off"],
+a:1
+},
+
+{
+q:"Excel में Page Layout का उपयोग मुख्यतः किससे संबंधित है?",
+o:["Page और Printing Layout","केवल Formula","केवल Database","Internet"],
+a:0
+},
+
+{
+q:"Excel में Print Area का उपयोग किसके लिए किया जाता है?",
+o:["Worksheet के चुने हुए हिस्से को Print करने के लिए","File Delete करने के लिए","Formula बनाने के लिए","Cell Color बदलने के लिए"],
+a:0
+},
+
+{
+q:"Excel में Header और Footer कहाँ उपयोग किए जाते हैं?",
+o:["Page के ऊपर और नीचे","केवल Cell के अंदर","केवल Formula Bar में","केवल Ribbon में"],
+a:0
+},
+
+{
+q:"Excel में Zoom Slider सामान्यतः कहाँ होता है?",
+o:["Status Bar पर","Formula Bar में","Ribbon के ऊपर","Name Box में"],
+a:0
+},
+
+{
+q:"Excel में Spell Check की Shortcut Key क्या है?",
+o:["F7","F2","F5","F12"],
+a:0
+}
+
+];
+
+
+let current=0;
+let score=0;
+let answered=false;
+
+
+function loadQuestion(){
+
+    answered = false;
+
+    const q = questions[current];
+
+    document.getElementById("number").innerText =
+        "प्रश्न " + (current + 1) + " / " + questions.length;
+
+    document.getElementById("question").innerText = q.q;
+
+    const box = document.getElementById("options");
+
+    box.innerHTML = "";
+
+    q.o.forEach((text, i) => {
+
+        const btn = document.createElement("button");
+
+        btn.className = "option";
+
+        btn.innerText =
+            String.fromCharCode(65 + i) + ". " + text;
+
+        btn.onclick = function(){
+            answerQuestion(btn, i);
+        };
+
+        box.appendChild(btn);
+
+    });
+
+    document.getElementById("next").disabled = true;
+
+    const percent =
+        ((current + 1) / questions.length) * 100;
+
+    document.getElementById("progress").style.width =
+        percent + "%";
+}
+
+
+function answerQuestion(btn, index){
+
+    if(answered) return;
+
+    answered = true;
+
+    const q = questions[current];
+
+    const buttons =
+        document.querySelectorAll(".option");
+
+    buttons.forEach((button, i) => {
+
+        if(i === q.a){
+            button.classList.add("correct");
+        }
+
+    });
+
+    if(index === q.a){
+
+        score++;
+
+    }else{
+
+        btn.classList.add("wrong");
+
+    }
+
+    document.getElementById("next").disabled = false;
+}
+
+
+function nextQuestion(){
+
+    current++;
+
+    if(current < questions.length){
+
+        loadQuestion();
+
+    }else{
+
+        document.getElementById("quiz").style.display =
+            "none";
+
+        document.getElementById("result").style.display =
+            "block";
+
+        document.getElementById("score").innerText =
+            score + " / " + questions.length;
+
+        document.getElementById("resultText").innerText =
+            "आपने " + questions.length +
+            " में से " + score +
+            " प्रश्नों के सही उत्तर दिए।";
+    }
+}
+
+
+function restartQuiz(){
+
+    current = 0;
+
+    score = 0;
+
+    answered = false;
+
+    document.getElementById("quiz").style.display =
+        "block";
+
+    document.getElementById("result").style.display =
+        "none";
+
+    loadQuestion();
+}
+
+
+loadQuestion();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MS Access Quiz | CG Exam Hub</title>
+
+<meta name="description"
+content="MS Access के 100 महत्वपूर्ण MCQ प्रश्नों का Quiz। CGPSC, CG Vyapam, Patwari और अन्य प्रतियोगी परीक्षाओं की तैयारी के लिए।">
+
+<meta name="robots" content="index, follow">
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+    background:#f4f7fb;
+    color:#172033;
+}
+
+.header{
+    background:linear-gradient(135deg,#c62850,#ef476f);
+    color:white;
+    text-align:center;
+    padding:30px 15px;
+}
+
+.header h1{
+    margin:0;
+    font-size:30px;
+    font-weight:900;
+}
+
+.header p{
+    margin:8px 0 0;
+}
+
+.quiz-container{
+    max-width:760px;
+    margin:25px auto;
+    padding:15px;
+}
+
+.quiz-card{
+    background:white;
+    border-radius:22px;
+    padding:25px;
+    box-shadow:0 10px 35px rgba(0,0,0,.08);
+    border:1px solid #e2e8f0;
+}
+
+.number{
+    color:#c62850;
+    font-weight:800;
+}
+
+.progress-box{
+    width:100%;
+    height:9px;
+    background:#e8edf3;
+    border-radius:20px;
+    overflow:hidden;
+    margin:12px 0 20px;
+}
+
+.progress{
+    height:100%;
+    width:0%;
+    background:#c62850;
+    transition:.3s;
+}
+
+.question{
+    font-size:21px;
+    font-weight:800;
+    line-height:1.55;
+    margin-bottom:22px;
+}
+
+.option{
+    width:100%;
+    display:block;
+    text-align:left;
+    border:1px solid #d7dde7;
+    background:white;
+    color:#172033;
+    border-radius:13px;
+    padding:14px 15px;
+    margin:10px 0;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.option:hover{
+    background:#fff0f4;
+    border-color:#c62850;
+}
+
+.correct{
+    background:#dff7e8!important;
+    border-color:#18a957!important;
+    color:#087536;
+    font-weight:700;
+}
+
+.wrong{
+    background:#ffe5e5!important;
+    border-color:#dc3545!important;
+    color:#a30000;
+    font-weight:700;
+}
+
+.next{
+    width:100%;
+    border:0;
+    background:#c62850;
+    color:white;
+    padding:14px;
+    border-radius:13px;
+    font-size:16px;
+    font-weight:800;
+    margin-top:12px;
+    cursor:pointer;
+}
+
+.next:disabled{
+    background:#aab4c3;
+    cursor:not-allowed;
+}
+
+.result{
+    display:none;
+    text-align:center;
+}
+
+.result h2{
+    font-size:28px;
+    font-weight:900;
+}
+
+.score{
+    font-size:50px;
+    font-weight:900;
+    color:#c62850;
+    margin:15px 0;
+}
+
+.result-text{
+    color:#667085;
+    line-height:1.7;
+}
+
+.back,
+.restart{
+    display:inline-block;
+    margin-top:15px;
+    padding:12px 20px;
+    border-radius:11px;
+    color:white;
+    font-weight:700;
+    border:0;
+    cursor:pointer;
+    text-decoration:none;
+}
+
+.back{
+    background:#071b3a;
+}
+
+.restart{
+    background:#c62850;
+    margin-left:8px;
+}
+
+@media(max-width:576px){
+
+    .header h1{
+        font-size:25px;
+    }
+
+    .quiz-card{
+        padding:19px;
+    }
+
+    .question{
+        font-size:18px;
+    }
+
+    .option{
+        font-size:15px;
+    }
+
+    .back,
+    .restart{
+        display:block;
+        margin:10px 0 0;
+        width:100%;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="header">
+
+<h1>🗄️ MS Access Quiz</h1>
+
+<p>MS Access के 100 महत्वपूर्ण प्रश्नों का अभ्यास</p>
+
+</header>
+
+
+<div class="quiz-container">
+
+<div class="quiz-card" id="quiz">
+
+<div class="number" id="number"></div>
+
+<div class="progress-box">
+<div class="progress" id="progress"></div>
+</div>
+
+<div class="question" id="question"></div>
+
+<div id="options"></div>
+
+<button
+class="next"
+id="next"
+onclick="nextQuestion()"
+disabled>
+
+अगला प्रश्न →
+
+</button>
+
+</div>
+
+
+<div class="quiz-card result" id="result">
+
+<h2>🎉 Quiz पूरा हुआ!</h2>
+
+<div class="score" id="score"></div>
+
+<p class="result-text" id="resultText"></p>
+
+<a href="computer.html" class="back">
+← Computer Quiz
+</a>
+
+<button
+class="restart"
+onclick="restartQuiz()">
+
+🔄 फिर से शुरू करें
+
+</button>
+
+</div>
+
+</div>
+
+
+<script>
+
+const questions = [
+
+/* 1 */
+
+{
+q:"MS Access क्या है?",
+o:["Word Processor","Database Management System","Web Browser","Operating System"],
+a:1
+},
+
+/* 2 */
+
+{
+q:"MS Access किस कंपनी का उत्पाद है?",
+o:["Google","Microsoft","Adobe","IBM"],
+a:1
+},
+
+/* 3 */
+
+{
+q:"MS Access का मुख्य उपयोग किसके लिए किया जाता है?",
+o:["Database बनाने और प्रबंधित करने के लिए","Video Editing के लिए","Photo Editing के लिए","Music बनाने के लिए"],
+a:0
+},
+
+/* 4 */
+
+{
+q:"MS Access में Data मुख्य रूप से कहाँ संग्रहीत किया जाता है?",
+o:["Table","Slide","Document","Worksheet"],
+a:0
+},
+
+/* 5 */
+
+{
+q:"Database क्या है?",
+o:["व्यवस्थित Data का संग्रह","केवल एक Image","केवल एक Program","केवल एक Folder"],
+a:0
+},
+
+/* 6 */
+
+{
+q:"MS Access में Table का उपयोग किसके लिए होता है?",
+o:["Data Store करने के लिए","Presentation बनाने के लिए","Video चलाने के लिए","Internet चलाने के लिए"],
+a:0
+},
+
+/* 7 */
+
+{
+q:"Table में क्षैतिज पंक्ति को क्या कहा जाता है?",
+o:["Field","Record","Column","Query"],
+a:1
+},
+
+/* 8 */
+
+{
+q:"Table में ऊर्ध्वाधर स्तंभ को क्या कहा जाता है?",
+o:["Record","Field","Row","Form"],
+a:1
+},
+
+/* 9 */
+
+{
+q:"Record और Field के मिलने से क्या बनता है?",
+o:["Cell","Database","Report","Query"],
+a:0
+},
+
+/* 10 */
+
+{
+q:"MS Access में Field किसका प्रतिनिधित्व करता है?",
+o:["एक Attribute/Data Category","पूरे Database","एक Report","एक Form"],
+a:0
+},
+
+/* 11 */
+
+{
+q:"Primary Key का मुख्य उद्देश्य क्या है?",
+o:["Record की विशिष्ट पहचान करना","Font बदलना","Page Print करना","Picture Insert करना"],
+a:0
+},
+
+/* 12 */
+
+{
+q:"Primary Key में सामान्यतः किस प्रकार का मान होना चाहिए?",
+o:["Unique","Duplicate","Blank","Random only"],
+a:0
+},
+
+/* 13 */
+
+{
+q:"एक Table में कितनी Primary Key हो सकती है?",
+o:["एक Primary Key","दो अनिवार्य Primary Keys","दस","कोई सीमा नहीं"],
+a:0
+},
+
+/* 14 */
+
+{
+q:"MS Access में Query का उपयोग किसके लिए किया जाता है?",
+o:["Data को खोजने और प्राप्त करने के लिए","Computer बंद करने के लिए","Font बदलने के लिए","Image बनाने के लिए"],
+a:0
+},
+
+/* 15 */
+
+{
+q:"Query में Criteria का उपयोग किसके लिए किया जाता है?",
+o:["विशिष्ट Data को Filter करने के लिए","Database Delete करने के लिए","Font बदलने के लिए","Form Print करने के लिए"],
+a:0
+},
+
+/* 16 */
+
+{
+q:"MS Access में Form का मुख्य उपयोग क्या है?",
+o:["Data Enter और View करने के लिए","Operating System Install करने के लिए","Video बनाने के लिए","Internet Search करने के लिए"],
+a:0
+},
+
+/* 17 */
+
+{
+q:"Report का उपयोग मुख्यतः किसके लिए होता है?",
+o:["Data को व्यवस्थित रूप में प्रस्तुत/Print करने के लिए","Data Type बदलने के लिए","Database खोलने के लिए","Keyboard सेट करने के लिए"],
+a:0
+},
+
+/* 18 */
+
+{
+q:"MS Access Database का आधुनिक सामान्य File Extension क्या है?",
+o:[".accdb",".docx",".xlsx",".pptx"],
+a:0
+},
+
+/* 19 */
+
+{
+q:"पुराने MS Access Database का सामान्य Extension क्या था?",
+o:[".mdb",".doc",".xls",".ppt"],
+a:0
+},
+
+/* 20 */
+
+{
+q:"MS Access में कौन-सा Data Type सामान्य Text के लिए उपयोग होता है?",
+o:["Short Text","Currency","Date/Time","AutoNumber"],
+a:0
+},
+
+/* 21 */
+
+{
+q:"MS Access में Long Text Data Type का उपयोग किसके लिए होता है?",
+o:["लंबे Text के लिए","केवल संख्या के लिए","Date के लिए","Currency के लिए"],
+a:0
+},
+
+/* 22 */
+
+{
+q:"MS Access में Number Data Type का उपयोग किसके लिए किया जाता है?",
+o:["संख्यात्मक Data के लिए","केवल Text के लिए","Images के लिए","Paragraph Formatting के लिए"],
+a:0
+},
+
+/* 23 */
+
+{
+q:"Currency Data Type का उपयोग किसके लिए होता है?",
+o:["मौद्रिक मान के लिए","नाम के लिए","Date के लिए","Yes/No के लिए"],
+a:0
+},
+
+/* 24 */
+
+{
+q:"Date/Time Data Type किसके लिए प्रयोग होता है?",
+o:["तिथि और समय के लिए","केवल नाम के लिए","केवल Currency के लिए","Image के लिए"],
+a:0
+},
+
+/* 25 */
+
+{
+q:"Yes/No Data Type किस प्रकार के Data के लिए उपयोगी है?",
+o:["Boolean/Logical Data","Long Text","Currency","Date"],
+a:0
+},
+
+/* 26 */
+
+{
+q:"AutoNumber Data Type का उपयोग किसके लिए किया जा सकता है?",
+o:["स्वचालित Unique Number देने के लिए","Image Insert करने के लिए","Text Color बदलने के लिए","Report Print करने के लिए"],
+a:0
+},
+
+/* 27 */
+
+{
+q:"Attachment Data Type का उपयोग किसके लिए किया जा सकता है?",
+o:["Files/Attachments रखने के लिए","केवल Date के लिए","केवल Currency के लिए","केवल Boolean के लिए"],
+a:0
+},
+
+/* 28 */
+
+{
+q:"Hyperlink Data Type किसके लिए उपयोगी है?",
+o:["Web या अन्य स्थान के Link के लिए","केवल संख्या के लिए","Currency के लिए","Primary Key के लिए"],
+a:0
+},
+
+/* 29 */
+
+{
+q:"Calculated Field का उपयोग किसके लिए किया जाता है?",
+o:["अन्य Fields के आधार पर Calculation करने के लिए","Database बंद करने के लिए","Picture बनाने के लिए","Font Install करने के लिए"],
+a:0
+},
+
+/* 30 */
+
+{
+q:"Table Design View का उपयोग किसके लिए किया जाता है?",
+o:["Table की Structure और Fields निर्धारित करने के लिए","केवल Report Print करने के लिए","Video देखने के लिए","Internet चलाने के लिए"],
+a:0
+},
+
+/* 31 */
+
+{
+q:"Datasheet View में क्या दिखाई देता है?",
+o:["Table का Data","केवल Database Name","केवल Formula","केवल Report Title"],
+a:0
+},
+
+/* 32 */
+
+{
+q:"Design View में क्या निर्धारित किया जा सकता है?",
+o:["Fields और Data Types","केवल Page Color","केवल Font Size","केवल Printer"],
+a:0
+},
+
+/* 33 */
+
+{
+q:"Relationship का उपयोग किसके लिए किया जाता है?",
+o:["Tables के बीच संबंध स्थापित करने के लिए","Font बदलने के लिए","Report Print करने के लिए","Computer Shutdown करने के लिए"],
+a:0
+},
+
+/* 34 */
+
+{
+q:"One-to-Many Relationship का अर्थ क्या है?",
+o:["एक Record से कई संबंधित Records","कई Records से एक ही Record","एक Field से एक Character","एक Table से कोई संबंध नहीं"],
+a:0
+},
+
+/* 35 */
+
+{
+q:"One-to-One Relationship में क्या होता है?",
+o:["एक Record का एक संबंधित Record","एक Record के कई Records","कोई संबंध नहीं","केवल Query होती है"],
+a:0
+},
+
+/* 36 */
+
+{
+q:"Many-to-Many Relationship में सामान्यतः क्या आवश्यक हो सकता है?",
+o:["Junction/Intermediate Table","केवल Report","केवल Form","केवल Primary Key नहीं"],
+a:0
+},
+
+/* 37 */
+
+{
+q:"Foreign Key का उपयोग किसके लिए होता है?",
+o:["दूसरी Table की Primary Key को Reference करने के लिए","Font बदलने के लिए","Report बनाने के लिए","File Rename करने के लिए"],
+a:0
+},
+
+/* 38 */
+
+{
+q:"Referential Integrity का संबंध किससे है?",
+o:["Related Tables में Data Consistency बनाए रखने से","Font Formatting से","Page Layout से","Printing से"],
+a:0
+},
+
+/* 39 */
+
+{
+q:"MS Access में Select Query क्या करती है?",
+o:["Data को Select/Display करती है","Database को अनिवार्य रूप से Delete करती है","Computer Shutdown करती है","Font बदलती है"],
+a:0
+},
+
+/* 40 */
+
+{
+q:"Action Query का उपयोग किस प्रकार के कार्यों के लिए किया जाता है?",
+o:["Data में परिवर्तन करने के लिए","केवल Data देखने के लिए","केवल Font बदलने के लिए","केवल Page Print करने के लिए"],
+a:0
+},
+
+/* 41 */
+
+{
+q:"Append Query का उपयोग किसके लिए होता है?",
+o:["Records को दूसरी Table में जोड़ने के लिए","Records को Print करने के लिए","Database Rename करने के लिए","Form बनाने के लिए"],
+a:0
+},
+
+/* 42 */
+
+{
+q:"Update Query का उपयोग किसके लिए होता है?",
+o:["मौजूदा Records को बदलने के लिए","नई Database File बनाने के लिए","Report Print करने के लिए","Form Delete करने के लिए"],
+a:0
+},
+
+/* 43 */
+
+{
+q:"Delete Query का उपयोग किसके लिए किया जाता है?",
+o:["Records Delete करने के लिए","Fields का नाम बदलने के लिए","Database Open करने के लिए","Font बदलने के लिए"],
+a:0
+},
+
+/* 44 */
+
+{
+q:"Make-Table Query का उपयोग किसके लिए होता है?",
+o:["Query के परिणाम से नई Table बनाने के लिए","नई Form बनाने के लिए","नई Report बनाने के लिए","Font बदलने के लिए"],
+a:0
+},
+
+/* 45 */
+
+{
+q:"Parameter Query में क्या माँगा जा सकता है?",
+o:["User से Input","केवल Password","केवल Font","केवल Printer"],
+a:0
+},
+
+/* 46 */
+
+{
+q:"Crosstab Query का उपयोग किस प्रकार के Data Analysis में उपयोगी है?",
+o:["Summary Data को Rows और Columns में दिखाने में","Image Editing में","Video Editing में","Operating System में"],
+a:0
+},
+
+/* 47 */
+
+{
+q:"SQL का पूरा नाम क्या है?",
+o:["Structured Query Language","Simple Question Language","System Query List","Structured Quick Link"],
+a:0
+},
+
+/* 48 */
+
+{
+q:"SQL में SELECT का उपयोग किसके लिए किया जाता है?",
+o:["Data प्राप्त करने के लिए","Data Delete करने के लिए ही","Database बंद करने के लिए","Computer Restart करने के लिए"],
+a:0
+},
+
+/* 49 */
+
+{
+q:"SQL में WHERE Clause का उपयोग किसके लिए होता है?",
+o:["Records को Condition के आधार पर Filter करने के लिए","Table Rename करने के लिए","Database Print करने के लिए","Form बनाने के लिए"],
+a:0
+},
+
+/* 50 */
+
+{
+q:"SQL में ORDER BY का उपयोग किसके लिए होता है?",
+o:["Data को Sort करने के लिए","Data Delete करने के लिए","Table बनाने के लिए ही","Database Close करने के लिए"],
+a:0
+},
+
+/* 51 */
+
+{
+q:"SQL में GROUP BY का उपयोग किसके लिए किया जाता है?",
+o:["Records को Groups में बाँटने के लिए","Font बदलने के लिए","File Save करने के लिए","Picture Insert करने के लिए"],
+a:0
+},
+
+/* 52 */
+
+{
+q:"SQL में COUNT() का उपयोग किसके लिए होता है?",
+o:["Records की संख्या गिनने के लिए","Records Delete करने के लिए","Text Color बदलने के लिए","Database Rename करने के लिए"],
+a:0
+},
+
+/* 53 */
+
+{
+q:"SQL में SUM() Function किसके लिए उपयोग होता है?",
+o:["संख्याओं का योग करने के लिए","Text Search करने के लिए","Record Delete करने के लिए","Table Rename करने के लिए"],
+a:0
+},
+
+/* 54 */
+
+{
+q:"SQL में AVG() Function क्या करता है?",
+o:["औसत निकालता है","Maximum निकालता है","Records Delete करता है","Table बनाता है"],
+a:0
+},
+
+/* 55 */
+
+{
+q:"SQL में MAX() Function क्या देता है?",
+o:["सबसे बड़ा मान","सबसे छोटा मान","औसत","कुल Records"],
+a:0
+},
+
+/* 56 */
+
+{
+q:"SQL में MIN() Function क्या देता है?",
+o:["सबसे छोटा मान","सबसे बड़ा मान","औसत","कुल योग"],
+a:0
+},
+
+/* 57 */
+
+{
+q:"MS Access में Sort Ascending का अर्थ क्या है?",
+o:["छोटे से बड़े/ A से Z क्रम में","बड़े से छोटे क्रम में","Random क्रम","केवल Date क्रम"],
+a:0
+},
+
+/* 58 */
+
+{
+q:"Sort Descending का अर्थ क्या है?",
+o:["बड़े से छोटे/ Z से A क्रम में","छोटे से बड़े क्रम में","Random क्रम","केवल Text क्रम"],
+a:0
+},
+
+/* 59 */
+
+{
+q:"Filter का उपयोग किसके लिए किया जाता है?",
+o:["आवश्यक Records दिखाने के लिए","सभी Records Delete करने के लिए","Database Close करने के लिए","Font बदलने के लिए"],
+a:0
+},
+
+/* 60 */
+
+{
+q:"Filter By Selection का उपयोग किसके लिए किया जाता है?",
+o:["Selected Value से संबंधित Records दिखाने के लिए","पूरी Table Delete करने के लिए","नई Database बनाने के लिए","Report Print करने के लिए"],
+a:0
+},
+
+/* 61 */
+
+{
+q:"MS Access में Navigation Pane का उपयोग किसके लिए किया जाता है?",
+o:["Database Objects तक पहुँचने के लिए","Internet चलाने के लिए","Computer बंद करने के लिए","Font बदलने के लिए"],
+a:0
+},
+
+/* 62 */
+
+{
+q:"MS Access के Database Objects में कौन शामिल है?",
+o:["Tables, Queries, Forms और Reports","केवल Images","केवल Videos","केवल Audio"],
+a:0
+},
+
+/* 63 */
+
+{
+q:"Form का एक प्रमुख लाभ क्या है?",
+o:["User-friendly Data Entry","Computer Gaming","Video Editing","Internet Browsing"],
+a:0
+},
+
+/* 64 */
+
+{
+q:"Report में Grouping का उपयोग किसके लिए किया जाता है?",
+o:["समान Data को समूह में प्रस्तुत करने के लिए","Database Delete करने के लिए","Font बदलने के लिए","Table बनाने के लिए"],
+a:0
+},
+
+/* 65 */
+
+{
+q:"Report में Sorting का उपयोग किसके लिए किया जाता है?",
+o:["Data को क्रमबद्ध करने के लिए","Data Delete करने के लिए","Form बनाने के लिए","Database Close करने के लिए"],
+a:0
+},
+
+/* 66 */
+
+{
+q:"Report में Page Header सामान्यतः कहाँ दिखाई देता है?",
+o:["प्रत्येक Page के ऊपर","केवल अंतिम Page पर","Database के बाहर","केवल Table में"],
+a:0
+},
+
+/* 67 */
+
+{
+q:"Report में Page Footer सामान्यतः कहाँ दिखाई देता है?",
+o:["प्रत्येक Page के नीचे","केवल पहले Page पर","Table के बीच","Query के अंदर"],
+a:0
+},
+
+/* 68 */
+
+{
+q:"Form Header कहाँ उपयोगी होता है?",
+o:["Form के ऊपरी भाग में","केवल Database के बाहर","केवल Report में","केवल Table में"],
+a:0
+},
+
+/* 69 */
+
+{
+q:"Form Footer कहाँ होता है?",
+o:["Form के निचले भाग में","Database के बाहर","Table के ऊपर","Query के बाहर"],
+a:0
+},
+
+/* 70 */
+
+{
+q:"Control क्या होता है?",
+o:["Form या Report पर रखा गया Interface Element","Database File","Operating System","Printer"],
+a:0
+},
+
+/* 71 */
+
+{
+q:"Text Box Control का उपयोग किसके लिए होता है?",
+o:["Text/Value दिखाने या Enter करने के लिए","केवल Database Delete करने के लिए","केवल Printer चलाने के लिए","केवल File Rename करने के लिए"],
+a:0
+},
+
+/* 72 */
+
+{
+q:"Label Control का उपयोग किसके लिए होता है?",
+o:["Text/Caption दिखाने के लिए","Records Delete करने के लिए","Database Sort करने के लिए","Query Execute करने के लिए"],
+a:0
+},
+
+/* 73 */
+
+{
+q:"Combo Box क्या प्रदान करता है?",
+o:["एक सूची से Value चुनने की सुविधा","केवल Image","केवल Audio","केवल Report"],
+a:0
+},
+
+/* 74 */
+
+{
+q:"Check Box सामान्यतः किस प्रकार के Data के लिए उपयोगी है?",
+o:["Yes/No","Long Text","Currency","Date only"],
+a:0
+},
+
+/* 75 */
+
+{
+q:"Option Button सामान्यतः किसके लिए उपयोगी है?",
+o:["विकल्पों में से एक चयन के लिए","एक साथ सभी Records Delete करने के लिए","Image बनाने के लिए","Database Rename करने के लिए"],
+a:0
+},
+
+/* 76 */
+
+{
+q:"Command Button का उपयोग किसके लिए किया जा सकता है?",
+o:["किसी Action को शुरू करने के लिए","केवल Text Store करने के लिए","केवल Currency Store करने के लिए","केवल Date Store करने के लिए"],
+a:0
+},
+
+/* 77 */
+
+{
+q:"Lookup Field का उपयोग किसके लिए किया जा सकता है?",
+o:["दूसरी सूची/स्रोत से Value चुनने के लिए","Database Delete करने के लिए","Report Print करने के लिए","Font बदलने के लिए"],
+a:0
+},
+
+/* 78 */
+
+{
+q:"Validation Rule का उपयोग किसके लिए होता है?",
+o:["Data Entry पर Condition लागू करने के लिए","Database बंद करने के लिए","Font बदलने के लिए","Picture Insert करने के लिए"],
+a:0
+},
+
+/* 79 */
+
+{
+q:"Validation Text का उपयोग किसके लिए किया जाता है?",
+o:["गलत Data Enter होने पर संदेश दिखाने के लिए","Table बनाने के लिए","Database Delete करने के लिए","Report Sort करने के लिए"],
+a:0
+},
+
+/* 80 */
+
+{
+q:"Required Property का अर्थ क्या है?",
+o:["Field में Value आवश्यक है","Field हमेशा खाली रहेगा","Field केवल Image लेगा","Field Delete हो जाएगा"],
+a:0
+},
+
+/* 81 */
+
+{
+q:"Field Size Property किससे संबंधित है?",
+o:["Field में Stored Data के Size/Type को नियंत्रित करने से","Page Size से","Monitor Size से","Printer Size से"],
+a:0
+},
+
+/* 82 */
+
+{
+q:"Default Value Property का उपयोग किसके लिए होता है?",
+o:["नया Record बनाते समय स्वतः Value देने के लिए","Database Delete करने के लिए","Font बदलने के लिए","Report Print करने के लिए"],
+a:0
+},
+
+/* 83 */
+
+{
+q:"Input Mask का उपयोग किसके लिए किया जाता है?",
+o:["Data Entry का Format निर्धारित करने के लिए","Database Delete करने के लिए","Table Rename करने के लिए","Report बनाने के लिए"],
+a:0
+},
+
+/* 84 */
+
+{
+q:"Index का मुख्य उद्देश्य क्या हो सकता है?",
+o:["Data Searching/Sorting को तेज करना","Font बदलना","Image बनाना","Database Print करना"],
+a:0
+},
+
+/* 85 */
+
+{
+q:"Indexed Property में No Duplicates का अर्थ क्या है?",
+o:["Duplicate Values की अनुमति नहीं","सभी Values Duplicate होंगी","Field खाली रहेगा","Table Delete होगी"],
+a:0
+},
+
+/* 86 */
+
+{
+q:"Compact and Repair Database का उपयोग किसके लिए किया जाता है?",
+o:["Database को Maintain/Optimize करने और कुछ समस्याएँ सुधारने के लिए","Video Edit करने के लिए","Internet चलाने के लिए","Font बदलने के लिए"],
+a:0
+},
+
+/* 87 */
+
+{
+q:"Database Backup क्यों लेना चाहिए?",
+o:["Data Loss से बचाव के लिए","Font बदलने के लिए","Screen Brightness बढ़ाने के लिए","Internet Speed बढ़ाने के लिए"],
+a:0
+},
+
+/* 88 */
+
+{
+q:"MS Access में Import का अर्थ क्या है?",
+o:["बाहरी स्रोत से Data/Object लाना","Data हमेशा Delete करना","Computer बंद करना","Printer Install करना"],
+a:0
+},
+
+/* 89 */
+
+{
+q:"Export का अर्थ क्या है?",
+o:["Access Data को दूसरे Format/Program में भेजना","Database Delete करना","Font बदलना","Computer Restart करना"],
+a:0
+},
+
+/* 90 */
+
+{
+q:"MS Access में Excel Data को Import किया जा सकता है?",
+o:["हाँ","नहीं","केवल Image के रूप में","केवल PDF के रूप में"],
+a:0
+},
+
+/* 91 */
+
+{
+q:"MS Access में CSV जैसे बाहरी Data Source के साथ काम किया जा सकता है?",
+o:["हाँ","नहीं","केवल Audio में","केवल Video में"],
+a:0
+},
+
+/* 92 */
+
+{
+q:"Database में Duplicate Records का क्या अर्थ है?",
+o:["एक जैसे या दोहराए गए Records","Deleted Records","Hidden Reports","Empty Database"],
+a:0
+},
+
+/* 93 */
+
+{
+q:"Normalization का मुख्य उद्देश्य क्या है?",
+o:["Database में Redundancy कम करना और Data को व्यवस्थित करना","Font बदलना","Report Print करना","Picture Insert करना"],
+a:0
+},
+
+/* 94 */
+
+{
+q:"Data Redundancy का अर्थ क्या है?",
+o:["Data का अनावश्यक दोहराव","Data का Encryption","Data का Printing","Data का Sorting"],
+a:0
+},
+
+/* 95 */
+
+{
+q:"Database Schema किससे संबंधित है?",
+o:["Database की Structure से","Font Color से","Printer से","Screen Resolution से"],
+a:0
+},
+
+{
+q:"MS Access में Database को सुरक्षित रखने के लिए कौन-सा विकल्प उपयोगी है?",
+o:["Password Protection","WordArt","Slide Show","Page Break"],
+a:0
+},
+
+{
+q:"MS Access में किसी Field में केवल निश्चित प्रकार का डेटा रखने के लिए किसका उपयोग किया जाता है?",
+o:["Data Type","Font Size","Page Layout","Slide Design"],
+a:0
+},
+
+{
+q:"MS Access में Table की संरचना बदलने के लिए कौन-सा View उपयोगी है?",
+o:["Design View","Slide View","Reading View","Print View"],
+a:0
+},
+
+{
+q:"MS Access में Database की जानकारी को Print करने के लिए सामान्यतः किस Object का उपयोग किया जाता है?",
+o:["Report","Table","Form","Query"],
+a:0
+},
+
+{
+q:"MS Access में Database में डेटा जोड़ने और देखने के लिए उपयोगकर्ता के अनुकूल Interface देने वाला Object कौन-सा है?",
+o:["Form","Report","Macro","Module"],
+a:0
+}
+
+];
+
+let current = 0;
+let score = 0;
+let answered = false;
+
+function loadQuestion(){
+
+    answered = false;
+
+    const q = questions[current];
+
+    document.getElementById("number").innerText =
+    "प्रश्न " + (current + 1) + " / " + questions.length;
+
+    document.getElementById("question").innerText = q.q;
+
+    const box = document.getElementById("options");
+
+    box.innerHTML = "";
+
+    q.o.forEach((text, i) => {
+
+        const btn = document.createElement("button");
+
+        btn.className = "option";
+
+        btn.innerText =
+        String.fromCharCode(65 + i) + ". " + text;
+
+        btn.onclick = function(){
+            answer(btn, i);
+        };
+
+        box.appendChild(btn);
+
+    });
+
+    document.getElementById("next").disabled = true;
+
+    const progress =
+    ((current + 1) / questions.length) * 100;
+
+    document.getElementById("progress").style.width =
+    progress + "%";
+}
+
+
+function answer(btn, index){
+
+    if(answered) return;
+
+    answered = true;
+
+    const q = questions[current];
+
+    const buttons =
+    document.querySelectorAll(".option");
+
+    buttons.forEach((b, i) => {
+
+        if(i === q.a){
+            b.classList.add("correct");
+        }
+
+        b.disabled = true;
+
+    });
+
+    if(index === q.a){
+
+        score++;
+
+    }else{
+
+        btn.classList.add("wrong");
+
+    }
+
+    document.getElementById("next").disabled = false;
+}
+
+
+function nextQuestion(){
+
+    current++;
+
+    if(current < questions.length){
+
+        loadQuestion();
+
+    }else{
+
+        document.getElementById("quiz").style.display =
+        "none";
+
+        document.getElementById("result").style.display =
+        "block";
+
+        document.getElementById("score").innerText =
+        score + " / " + questions.length;
+
+        document.getElementById("resultText").innerText =
+        "आपने " + questions.length +
+        " में से " + score +
+        " प्रश्नों के सही उत्तर दिए।";
+
+    }
+}
+
+
+function restartQuiz(){
+
+    current = 0;
+
+    score = 0;
+
+    answered = false;
+
+    document.getElementById("quiz").style.display =
+    "block";
+
+    document.getElementById("result").style.display =
+    "none";
+
+    loadQuestion();
+}
+
+
+loadQuestion();
+
+</script>
+
+</body>
+</html>

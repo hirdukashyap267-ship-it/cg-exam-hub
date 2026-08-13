@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MS PowerPoint Quiz | CG Exam Hub</title>
+
+<meta name="description"
+content="MS PowerPoint के 100 महत्वपूर्ण MCQ प्रश्नों का Quiz। CGPSC, CG Vyapam, Patwari, Transport Department और अन्य प्रतियोगी परीक्षाओं की तैयारी के लिए।">
+
+<meta name="robots" content="index, follow">
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+    background:#f4f7fb;
+    color:#172033;
+}
+
+.header{
+    background:linear-gradient(135deg,#e64a19,#ff7a45);
+    color:white;
+    text-align:center;
+    padding:30px 15px;
+}
+
+.header h1{
+    margin:0;
+    font-size:30px;
+    font-weight:900;
+}
+
+.header p{
+    margin:8px 0 0;
+    font-size:15px;
+}
+
+.quiz-container{
+    max-width:760px;
+    margin:25px auto;
+    padding:15px;
+}
+
+.quiz-card{
+    background:white;
+    border-radius:22px;
+    padding:25px;
+    box-shadow:0 10px 35px rgba(0,0,0,.08);
+    border:1px solid #e2e8f0;
+}
+
+.number{
+    color:#e64a19;
+    font-weight:800;
+    font-size:15px;
+}
+
+.progress-box{
+    width:100%;
+    height:9px;
+    background:#e8edf3;
+    border-radius:20px;
+    overflow:hidden;
+    margin:12px 0 20px;
+}
+
+.progress{
+    height:100%;
+    width:0%;
+    background:#e64a19;
+    transition:.3s;
+}
+
+.question{
+    font-size:21px;
+    font-weight:800;
+    line-height:1.55;
+    margin-bottom:22px;
+}
+
+.option{
+    width:100%;
+    display:block;
+    text-align:left;
+    border:1px solid #d7dde7;
+    background:white;
+    color:#172033;
+    border-radius:13px;
+    padding:14px 15px;
+    margin:10px 0;
+    font-size:16px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.option:hover{
+    background:#fff1eb;
+    border-color:#e64a19;
+}
+
+.option.correct{
+    background:#dff7e8!important;
+    border-color:#18a957!important;
+    color:#087536;
+    font-weight:700;
+}
+
+.option.wrong{
+    background:#ffe5e5!important;
+    border-color:#dc3545!important;
+    color:#a30000;
+    font-weight:700;
+}
+
+.next{
+    width:100%;
+    border:0;
+    background:#e64a19;
+    color:white;
+    padding:14px;
+    border-radius:13px;
+    font-size:16px;
+    font-weight:800;
+    margin-top:12px;
+    cursor:pointer;
+}
+
+.next:disabled{
+    background:#aab4c3;
+    cursor:not-allowed;
+}
+
+.result{
+    display:none;
+    text-align:center;
+}
+
+.result h2{
+    font-size:28px;
+    font-weight:900;
+}
+
+.score{
+    font-size:50px;
+    font-weight:900;
+    color:#e64a19;
+    margin:15px 0;
+}
+
+.result-text{
+    color:#667085;
+    font-size:16px;
+    line-height:1.7;
+}
+
+.back{
+    display:inline-block;
+    margin-top:15px;
+    background:#071b3a;
+    color:white;
+    padding:12px 20px;
+    border-radius:11px;
+    text-decoration:none;
+    font-weight:700;
+}
+
+.restart{
+    display:inline-block;
+    margin-top:15px;
+    margin-left:8px;
+    background:#e64a19;
+    color:white;
+    padding:12px 20px;
+    border-radius:11px;
+    border:0;
+    font-weight:700;
+    cursor:pointer;
+}
+
+@media(max-width:576px){
+
+    .header h1{
+        font-size:25px;
+    }
+
+    .quiz-card{
+        padding:19px;
+    }
+
+    .question{
+        font-size:18px;
+    }
+
+    .option{
+        font-size:15px;
+        padding:13px;
+    }
+
+    .back,
+    .restart{
+        display:block;
+        margin:10px 0 0;
+        width:100%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+    <h1>📊 MS PowerPoint Quiz</h1>
+    <p>MS PowerPoint के 100 महत्वपूर्ण प्रश्नों का अभ्यास</p>
+</header>
+
+<div class="quiz-container">
+
+<div class="quiz-card" id="quiz">
+
+<div class="number" id="number"></div>
+
+<div class="progress-box">
+<div class="progress" id="progress"></div>
+</div>
+
+<div class="question" id="question"></div>
+
+<div id="options"></div>
+
+<button class="next" id="next"
+onclick="nextQuestion()" disabled>
+अगला प्रश्न →
+</button>
+
+</div>
+
+<div class="quiz-card result" id="result">
+
+<h2>🎉 Quiz पूरा हुआ!</h2>
+
+<div class="score" id="score"></div>
+
+<p class="result-text" id="resultText"></p>
+
+<a href="computer-quiz.html" class="back">
+← Computer Quiz
+</a>
+
+<button class="restart" onclick="restartQuiz()">
+🔄 फिर से शुरू करें
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+const questions = [
+
+{
+q:"MS PowerPoint क्या है?",
+o:["Word Processing Software","Presentation Software","Antivirus Software","Web Browser"],
+a:1
+},
+
+{
+q:"MS PowerPoint किस कंपनी द्वारा विकसित किया गया है?",
+o:["Google","Microsoft","Apple","IBM"],
+a:1
+},
+
+{
+q:"PowerPoint का मुख्य उपयोग किसके लिए किया जाता है?",
+o:["Presentation बनाने के लिए","Database बनाने के लिए","Operating System चलाने के लिए","Antivirus चलाने के लिए"],
+a:0
+},
+
+{
+q:"PowerPoint में Presentation की प्रत्येक स्क्रीन को क्या कहा जाता है?",
+o:["Page","Slide","Sheet","Document"],
+a:1
+},
+
+{
+q:"नई Presentation बनाने की Shortcut Key क्या है?",
+o:["Ctrl + N","Ctrl + O","Ctrl + S","Ctrl + P"],
+a:0
+},
+
+{
+q:"पहले से मौजूद Presentation खोलने की Shortcut Key क्या है?",
+o:["Ctrl + N","Ctrl + O","Ctrl + W","Ctrl + E"],
+a:1
+},
+
+{
+q:"Presentation Save करने की Shortcut Key क्या है?",
+o:["Ctrl + A","Ctrl + S","Ctrl + D","Ctrl + F"],
+a:1
+},
+
+{
+q:"Presentation Print करने की Shortcut Key क्या है?",
+o:["Ctrl + P","Ctrl + T","Ctrl + R","Ctrl + L"],
+a:0
+},
+
+{
+q:"पूरे Text को Select करने की Shortcut Key क्या है?",
+o:["Ctrl + X","Ctrl + A","Ctrl + Z","Ctrl + C"],
+a:1
+},
+
+{
+q:"Selected Text को Copy करने की Shortcut Key क्या है?",
+o:["Ctrl + C","Ctrl + V","Ctrl + X","Ctrl + B"],
+a:0
+},
+
+{
+q:"Copied Text को Paste करने की Shortcut Key क्या है?",
+o:["Ctrl + P","Ctrl + V","Ctrl + Y","Ctrl + G"],
+a:1
+},
+
+{
+q:"Selected Object को Cut करने की Shortcut Key क्या है?",
+o:["Ctrl + X","Ctrl + C","Ctrl + K","Ctrl + H"],
+a:0
+},
+
+{
+q:"Undo की Shortcut Key क्या है?",
+o:["Ctrl + Y","Ctrl + Z","Ctrl + U","Ctrl + I"],
+a:1
+},
+
+{
+q:"Redo की Shortcut Key क्या है?",
+o:["Ctrl + Y","Ctrl + Z","Ctrl + R","Ctrl + E"],
+a:0
+},
+
+{
+q:"PowerPoint में Slide Show शुरू करने के लिए कौन-सी Function Key प्रयोग होती है?",
+o:["F1","F5","F7","F12"],
+a:1
+},
+
+{
+q:"Current Slide से Slide Show शुरू करने की Shortcut Key क्या है?",
+o:["Shift + F5","Ctrl + F5","Alt + F5","Shift + F7"],
+a:0
+},
+
+{
+q:"नई Slide जोड़ने की Shortcut Key क्या है?",
+o:["Ctrl + M","Ctrl + N","Ctrl + Shift + M","Ctrl + L"],
+a:0
+},
+
+{
+q:"Slide Duplicate करने की Shortcut Key क्या है?",
+o:["Ctrl + D","Ctrl + C","Ctrl + Shift + D","Ctrl + M"],
+a:0
+},
+
+{
+q:"Presentation बंद करने के लिए सामान्य Shortcut Key क्या है?",
+o:["Ctrl + W","Ctrl + N","Ctrl + O","Ctrl + S"],
+a:0
+},
+
+{
+q:"PowerPoint में Hyperlink डालने की Shortcut Key क्या है?",
+o:["Ctrl + K","Ctrl + H","Ctrl + I","Ctrl + Shift + K"],
+a:0
+},
+
+{
+q:"Text को Bold करने की Shortcut Key क्या है?",
+o:["Ctrl + B","Ctrl + D","Ctrl + M","Ctrl + J"],
+a:0
+},
+
+{
+q:"Text को Italic करने की Shortcut Key क्या है?",
+o:["Ctrl + I","Ctrl + T","Ctrl + L","Ctrl + K"],
+a:0
+},
+
+{
+q:"Text को Underline करने की Shortcut Key क्या है?",
+o:["Ctrl + U","Ctrl + Y","Ctrl + H","Ctrl + Q"],
+a:0
+},
+
+{
+q:"Text को Center Align करने की Shortcut Key क्या है?",
+o:["Ctrl + L","Ctrl + E","Ctrl + R","Ctrl + J"],
+a:1
+},
+
+{
+q:"PowerPoint में Find की Shortcut Key क्या है?",
+o:["Ctrl + F","Ctrl + G","Ctrl + H","Ctrl + Q"],
+a:0
+},
+
+{
+q:"Find and Replace की Shortcut Key क्या है?",
+o:["Ctrl + H","Ctrl + F","Ctrl + R","Ctrl + D"],
+a:0
+},
+
+{
+q:"PowerPoint में New Slide का विकल्प मुख्यतः किस Tab में मिलता है?",
+o:["Home","Insert","Review","View"],
+a:0
+},
+
+{
+q:"Picture Insert करने का विकल्प किस Tab में मिलता है?",
+o:["Insert","Home","Review","View"],
+a:0
+},
+
+{
+q:"Table Insert करने का विकल्प किस Tab में मिलता है?",
+o:["Insert","Home","Design","Slide Show"],
+a:0
+},
+
+{
+q:"Chart Insert करने का विकल्प किस Tab में मिलता है?",
+o:["Insert","Home","Review","View"],
+a:0
+},
+
+{
+q:"Shapes जोड़ने के लिए किस Tab का उपयोग किया जाता है?",
+o:["Insert","Home","Review","Slide Show"],
+a:0
+},
+
+{
+q:"Text Box जोड़ने के लिए किस Tab का उपयोग किया जाता है?",
+o:["Insert","Home","Design","View"],
+a:0
+},
+
+{
+q:"WordArt किस Tab से Insert किया जाता है?",
+o:["Insert","Home","Review","Slide Show"],
+a:0
+},
+
+{
+q:"Audio Insert करने का विकल्प किस Tab में मिलता है?",
+o:["Insert","Home","Review","View"],
+a:0
+},
+
+{
+q:"Video Insert करने का विकल्प किस Tab में मिलता है?",
+o:["Insert","Home","Design","Review"],
+a:0
+},
+
+{
+q:"PowerPoint में Slide Design बदलने के लिए कौन-सा Tab उपयोगी है?",
+o:["Design","Home","Insert","Review"],
+a:0
+},
+
+{
+q:"PowerPoint में Themes किस Tab में मिलती हैं?",
+o:["Design","Home","Insert","View"],
+a:0
+},
+
+{
+q:"Slide Size बदलने का विकल्प किस Tab में मिलता है?",
+o:["Design","Home","Insert","Review"],
+a:0
+},
+
+{
+q:"Slide Orientation बदलने से संबंधित विकल्प किससे जुड़ा है?",
+o:["Slide Size","Font Size","Paragraph","Clipboard"],
+a:0
+},
+
+{
+q:"PowerPoint में Transitions किसके बीच लागू होते हैं?",
+o:["Slides के बीच","Words के बीच","Characters के बीच","Files के बीच"],
+a:0
+},
+
+{
+q:"Transitions से संबंधित Tab कौन-सा है?",
+o:["Transitions","Animations","Review","References"],
+a:0
+},
+
+{
+q:"Animations का उपयोग किसके लिए किया जाता है?",
+o:["Slide के Objects पर प्रभाव लगाने के लिए","File Save करने के लिए","Printer जोड़ने के लिए","Computer Shutdown करने के लिए"],
+a:0
+},
+
+{
+q:"Animations से संबंधित Tab कौन-सा है?",
+o:["Animations","Transitions","Review","View"],
+a:0
+},
+
+{
+q:"PowerPoint में Animation Pane का उपयोग किसके लिए होता है?",
+o:["Animations को Manage करने के लिए","Slides Print करने के लिए","Font बदलने के लिए","File Save करने के लिए"],
+a:0
+},
+
+{
+q:"Slide Show Tab का मुख्य उपयोग किससे संबंधित है?",
+o:["Presentation चलाने से","Text Formatting से","Table बनाने से","Picture Crop करने से"],
+a:0
+},
+
+{
+q:"Presenter View का उपयोग किसके लिए किया जाता है?",
+o:["Presenter को अतिरिक्त Presentation जानकारी देखने के लिए","File Delete करने के लिए","Font Install करने के लिए","Internet चलाने के लिए"],
+a:0
+},
+
+{
+q:"PowerPoint में Notes किसके लिए उपयोगी हैं?",
+o:["Presenter के लिए अतिरिक्त जानकारी लिखने के लिए","Slide Delete करने के लिए","Picture बनाने के लिए","Computer बंद करने के लिए"],
+a:0
+},
+
+{
+q:"Notes Pane सामान्यतः किसके लिए उपयोग किया जाता है?",
+o:["Speaker Notes लिखने के लिए","Animation बनाने के लिए","File Rename करने के लिए","Font Download करने के लिए"],
+a:0
+},
+
+{
+q:"PowerPoint में Slide Sorter View का उपयोग किसके लिए होता है?",
+o:["Slides को क्रम से देखने और व्यवस्थित करने के लिए","Text Edit करने के लिए","Audio Record करने के लिए","File Delete करने के लिए"],
+a:0
+},
+
+{
+q:"Normal View का उपयोग मुख्यतः किसके लिए किया जाता है?",
+o:["Presentation को Edit करने के लिए","केवल Print करने के लिए","केवल Audio चलाने के लिए","Computer Shutdown करने के लिए"],
+a:0
+},
+
+{
+q:"Reading View का उपयोग किसके लिए किया जाता है?",
+o:["Presentation को पढ़ने/देखने के लिए","Database बनाने के लिए","Text Copy करने के लिए","File Compress करने के लिए"],
+a:0
+},
+
+{
+q:"PowerPoint में Slide Master किसके लिए उपयोगी है?",
+o:["Slides के सामान्य Design और Layout को नियंत्रित करने के लिए","Audio Record करने के लिए","File Delete करने के लिए","Internet चलाने के लिए"],
+a:0
+},
+
+{
+q:"Slide Master किस Tab के अंतर्गत उपलब्ध होता है?",
+o:["View","Home","Insert","Review"],
+a:0
+},
+
+{
+q:"PowerPoint में Layout का उपयोग किसके लिए किया जाता है?",
+o:["Slide पर Content की व्यवस्था निर्धारित करने के लिए","File Save करने के लिए","Printer जोड़ने के लिए","Audio Record करने के लिए"],
+a:0
+},
+
+{
+q:"Slide Layout बदलने का विकल्प किस Tab में मिलता है?",
+o:["Home","Insert","Review","View"],
+a:0
+},
+
+{
+q:"Title Slide Layout में सामान्यतः क्या होता है?",
+o:["Title और Subtitle","केवल Picture","केवल Table","केवल Chart"],
+a:0
+},
+
+{
+q:"PowerPoint में Placeholder क्या है?",
+o:["Content रखने के लिए निर्धारित स्थान","File का नाम","Printer का नाम","Internet Address"],
+a:0
+},
+
+{
+q:"PowerPoint में एक Slide को दूसरी जगह ले जाने के लिए क्या किया जा सकता है?",
+o:["Drag and Drop","केवल Print","केवल Save","केवल Zoom"],
+a:0
+},
+
+{
+q:"Slide Delete करने के लिए सामान्यतः कौन-सी Key उपयोग की जा सकती है?",
+o:["Delete","F1","F5","Tab"],
+a:0
+},
+
+{
+q:"PowerPoint में Object को Group करने का उद्देश्य क्या है?",
+o:["कई Objects को एक साथ Manage करना","File Save करना","Slide Print करना","Font बदलना"],
+a:0
+},
+
+{
+q:"Ungroup का उपयोग किसके लिए किया जाता है?",
+o:["Grouped Objects को अलग करने के लिए","Slide Show शुरू करने के लिए","File Save करने के लिए","Text Bold करने के लिए"],
+a:0
+},
+
+{
+q:"Bring to Front का उपयोग किसके लिए होता है?",
+o:["Object को अन्य Objects के ऊपर लाने के लिए","Object Delete करने के लिए","Slide Print करने के लिए","File Save करने के लिए"],
+a:0
+},
+
+{
+q:"Send to Back का उपयोग किसके लिए होता है?",
+o:["Object को पीछे भेजने के लिए","Object Copy करने के लिए","Slide Delete करने के लिए","Font बदलने के लिए"],
+a:0
+},
+
+{
+q:"Align सुविधा का उपयोग किसके लिए किया जाता है?",
+o:["Objects को सही स्थिति में व्यवस्थित करने के लिए","File Save करने के लिए","Audio Record करने के लिए","Slide Delete करने के लिए"],
+a:0
+},
+
+{
+q:"PowerPoint में Crop सुविधा का उपयोग सामान्यतः किस पर किया जाता है?",
+o:["Picture","Slide Number","Text File","Audio File"],
+a:0
+},
+
+{
+q:"PowerPoint में Reuse Slides का उपयोग किससे संबंधित है?",
+o:["दूसरी Presentation की Slides का उपयोग करने से","File Delete करने से","Font बदलने से","Printer Setup से"],
+a:0
+},
+
+{
+q:"PowerPoint Presentation का आधुनिक सामान्य Extension कौन-सा है?",
+o:[".pptx",".docx",".xlsx",".jpg"],
+a:0
+},
+
+{
+q:"पुराने PowerPoint Presentation का सामान्य Extension कौन-सा था?",
+o:[".ppt",".doc",".xls",".exe"],
+a:0
+},
+
+{
+q:"PowerPoint Show File का Extension कौन-सा हो सकता है?",
+o:[".ppsx",".docx",".xlsx",".txt"],
+a:0
+},
+
+{
+q:"PowerPoint में Template का Extension सामान्यतः कौन-सा है?",
+o:[".potx",".docx",".xlsx",".jpg"],
+a:0
+},
+
+{
+q:"PowerPoint Presentation को PDF में Export करने का क्या लाभ है?",
+o:["Presentation को PDF Document के रूप में साझा करना","RAM बढ़ाना","Internet Speed बढ़ाना","Keyboard बदलना"],
+a:0
+},
+
+{
+q:"PowerPoint में Print के दौरान Handouts का उपयोग किसके लिए होता है?",
+o:["Audience के लिए Slides की Printed Copies देने के लिए","Audio Record करने के लिए","Animation बनाने के लिए","File Delete करने के लिए"],
+a:0
+},
+
+{
+q:"PowerPoint में Handouts किससे संबंधित हैं?",
+o:["Presentation Slides की Printed Copies","Computer Hardware","Database","Internet"],
+a:0
+},
+
+{
+q:"PowerPoint में Speaker Notes किसके लिए उपयोगी हैं?",
+o:["Presenter की सहायता के लिए","Audience के Computer को बंद करने के लिए","File Delete करने के लिए","Font Install करने के लिए"],
+a:0
+},
+
+{
+q:"PowerPoint में Rehearse Timings का उपयोग किसके लिए किया जाता है?",
+o:["Presentation के समय का अभ्यास करने के लिए","Text Bold करने के लिए","Picture Crop करने के लिए","File Rename करने के लिए"],
+a:0
+},
+
+{
+q:"PowerPoint में Record Slide Show का उपयोग किससे संबंधित है?",
+o:["Presentation की Recording से","Database से","Word Processing से","Antivirus से"],
+a:0
+},
+
+{
+q:"PowerPoint में Custom Slide Show का उपयोग किसके लिए किया जा सकता है?",
+o:["चुनी हुई Slides का अलग Slide Show बनाने के लिए","File Delete करने के लिए","Font बदलने के लिए","Table बनाने के लिए"],
+a:0
+},
+
+{
+q:"PowerPoint में Zoom सुविधा का उपयोग किसके लिए किया जाता है?",
+o:["Slide को बड़ा या छोटा देखने के लिए","File Save करने के लिए","Audio Record करने के लिए","Font Install करने के लिए"],
+a:0
+},
+
+{
+q:"PowerPoint में Gridlines का उपयोग किसमें मदद करता है?",
+o:["Objects को व्यवस्थित करने में","File Save करने में","Audio Record करने में","Slide Delete करने में"],
+a:0
+},
+
+{
+q:"PowerPoint में Guides का उपयोग किसके लिए किया जाता है?",
+o:["Objects की Alignment में सहायता के लिए","File Delete करने के लिए","Text Copy करने के लिए","Audio चलाने के लिए"],
+a:0
+},
+
+{
+q:"PowerPoint में Ruler का उपयोग किसमें मदद करता है?",
+o:["Objects और Text की स्थिति निर्धारित करने में","Internet चलाने में","File Delete करने में","Video Record करने में"],
+a:0
+},
+
+{
+q:"PowerPoint में Font बदलने का विकल्प मुख्यतः किस Tab में मिलता है?",
+o:["Home","Insert","Review","Slide Show"],
+a:0
+},
+
+{
+q:"PowerPoint में Paragraph Formatting के विकल्प मुख्यतः किस Tab में मिलते हैं?",
+o:["Home","Insert","Design","Slide Show"],
+a:0
+},
+
+{
+q:"Bullets का उपयोग किसके लिए किया जाता है?",
+o:["सूची बनाने के लिए","Slide Delete करने के लिए","Audio चलाने के लिए","File Save करने के लिए"],
+a:0
+},
+
+{
+q:"PowerPoint में SmartArt किस Tab से Insert किया जाता है?",
+o:["Insert","Home","Review","Slide Show"],
+a:0
+},
+
+{
+q:"SmartArt का उपयोग किसके लिए किया जाता है?",
+o:["जानकारी को Visual Diagram के रूप में दिखाने के लिए","File Save करने के लिए","Audio Record करने के लिए","Printer Setup के लिए"],
+a:0
+},
+
+{
+q:"PowerPoint में Screenshot Insert करने का विकल्प किस Tab में मिलता है?",
+o:["Insert","Home","Review","View"],
+a:0
+},
+
+{
+q:"PowerPoint में Equation Insert करने का विकल्प किस Tab में मिलता है?",
+o:["Insert","Home","Design","Slide Show"],
+a:0
+},
+
+{
+q:"PowerPoint में Symbol Insert करने का विकल्प किस Tab में मिलता है?",
+o:["Insert","Home","Review","View"],
+a:0
+},
+
+{
+q:"PowerPoint में Comments जोड़ने की सुविधा किस Tab से संबंधित है?",
+o:["Review","Home","Insert","Design"],
+a:0
+},
+
+{
+q:"PowerPoint में Spelling Check के लिए कौन-सी Function Key उपयोगी है?",
+o:["F7","F1","F5","F12"],
+a:0
+},
+
+{
+q:"PowerPoint में Help खोलने के लिए कौन-सी Function Key प्रयोग होती है?",
+o:["F1","F5","F7","F12"],
+a:0
+},
+
+{
+q:"PowerPoint में Slide Show से बाहर आने के लिए कौन-सी Key दबाई जाती है?",
+o:["Esc","Enter","Tab","F1"],
+a:0
+},
+
+{
+q:"Slide Show के दौरान अगली Slide पर जाने के लिए कौन-सी Key उपयोग की जा सकती है?",
+o:["Right Arrow","Left Arrow","Esc","F1"],
+a:0
+},
+
+{
+q:"Slide Show के दौरान पिछली Slide पर जाने के लिए कौन-सी Key उपयोग की जा सकती है?",
+o:["Left Arrow","Right Arrow","Enter","F5"],
+a:0
+},
+
+{
+q:"Slide Show के दौरान अगले Animation/Effect पर जाने के लिए कौन-सी Key उपयोग की जा सकती है?",
+o:["Spacebar","Esc","F1","Ctrl"],
+a:0
+},
+
+{
+q:"PowerPoint में Presentation का मुख्य दृश्य क्रम क्या होता है?",
+o:["Slides","Rows","Cells","Records"],
+a:0
+},
+
+{
+q:"PowerPoint में प्रत्येक Slide का छोटा Preview सामान्यतः कहाँ दिखाई देता है?",
+o:["Thumbnail Pane","Status Bar","Title Bar","Footer"],
+a:0
+},
+
+{
+q:"PowerPoint की स्क्रीन के नीचे दिखाई देने वाली पट्टी क्या कहलाती है?",
+o:["Status Bar","Title Bar","Ribbon","Navigation Bar"],
+a:0
+},
+
+{
+q:"PowerPoint में Commands और Tools का मुख्य क्षेत्र क्या कहलाता है?",
+o:["Ribbon","Desktop","Taskbar","Status Bar"],
+a:0
+},
+
+{
+q:"PowerPoint में Presentation का नाम सामान्यतः कहाँ दिखाई देता है?",
+o:["Title Bar","Status Bar","Footer","Ruler"],
+a:0
+},
+
+{
+q:"PowerPoint में Quick Access Toolbar का उद्देश्य क्या है?",
+o:["बार-बार उपयोग होने वाली Commands तक जल्दी पहुँच देना","Slide Delete करना","Audio Record करना","Internet चलाना"],
+a:0
+}
+
+];
+
+let current=0;
+let score=0;
+let answered=false;
+
+
+function loadQuestion(){
+
+    answered = false;
+
+    const q = questions[current];
+
+    document.getElementById("number").innerText =
+        "प्रश्न " + (current + 1) + " / " + questions.length;
+
+    document.getElementById("question").innerText = q.q;
+
+    const box = document.getElementById("options");
+
+    box.innerHTML = "";
+
+    q.o.forEach((text, i) => {
+
+        const btn = document.createElement("button");
+
+        btn.className = "option";
+
+        btn.innerText =
+            String.fromCharCode(65 + i) + ". " + text;
+
+        btn.onclick = function(){
+            answerQuestion(btn, i);
+        };
+
+        box.appendChild(btn);
+
+    });
+
+    document.getElementById("next").disabled = true;
+
+    const percent =
+        ((current + 1) / questions.length) * 100;
+
+    document.getElementById("progress").style.width =
+        percent + "%";
+}
+
+
+function answerQuestion(btn, index){
+
+    if(answered) return;
+
+    answered = true;
+
+    const q = questions[current];
+
+    const buttons =
+        document.querySelectorAll(".option");
+
+    buttons.forEach((button, i) => {
+
+        if(i === q.a){
+            button.classList.add("correct");
+        }
+
+    });
+
+    if(index === q.a){
+
+        score++;
+
+    }else{
+
+        btn.classList.add("wrong");
+
+    }
+
+    document.getElementById("next").disabled = false;
+}
+
+
+function nextQuestion(){
+
+    current++;
+
+    if(current < questions.length){
+
+        loadQuestion();
+
+    }else{
+
+        document.getElementById("quiz").style.display =
+            "none";
+
+        document.getElementById("result").style.display =
+            "block";
+
+        document.getElementById("score").innerText =
+            score + " / " + questions.length;
+
+        document.getElementById("resultText").innerText =
+            "आपने " + questions.length +
+            " में से " + score +
+            " प्रश्नों के सही उत्तर दिए।";
+    }
+}
+
+
+function restartQuiz(){
+
+    current = 0;
+
+    score = 0;
+
+    answered = false;
+
+    document.getElementById("quiz").style.display =
+        "block";
+
+    document.getElementById("result").style.display =
+        "none";
+
+    loadQuestion();
+}
+
+
+loadQuestion();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Computer Hardware Quiz | CG Exam Hub</title>
+
+<meta name="description"
+content="Computer Hardware के 100 महत्वपूर्ण MCQ प्रश्नों का Quiz। CGPSC, CG Vyapam, Patwari और अन्य प्रतियोगी परीक्षाओं के लिए उपयोगी।">
+
+<meta name="robots" content="index, follow">
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+    background:#f4f7fb;
+    color:#172033;
+}
+
+.header{
+    background:linear-gradient(135deg,#159447,#38b86b);
+    color:white;
+    text-align:center;
+    padding:30px 15px;
+}
+
+.header h1{
+    margin:0;
+    font-size:30px;
+    font-weight:900;
+}
+
+.header p{
+    margin:8px 0 0;
+    font-size:15px;
+}
+
+.quiz-container{
+    max-width:760px;
+    margin:25px auto;
+    padding:15px;
+}
+
+.quiz-card{
+    background:white;
+    border-radius:22px;
+    padding:25px;
+    box-shadow:0 10px 35px rgba(0,0,0,.08);
+    border:1px solid #e2e8f0;
+}
+
+.number{
+    color:#159447;
+    font-weight:800;
+    font-size:15px;
+}
+
+.progress-box{
+    width:100%;
+    height:9px;
+    background:#e8edf3;
+    border-radius:20px;
+    overflow:hidden;
+    margin:12px 0 20px;
+}
+
+.progress{
+    height:100%;
+    width:0%;
+    background:#159447;
+    transition:.3s;
+}
+
+.question{
+    font-size:21px;
+    font-weight:800;
+    line-height:1.55;
+    margin-bottom:22px;
+}
+
+.option{
+    width:100%;
+    display:block;
+    text-align:left;
+    border:1px solid #d7dde7;
+    background:white;
+    color:#172033;
+    border-radius:13px;
+    padding:14px 15px;
+    margin:10px 0;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.option:hover{
+    background:#eaf8ef;
+    border-color:#159447;
+}
+
+.option.correct{
+    background:#dff7e8!important;
+    border-color:#18a957!important;
+    color:#087536;
+    font-weight:700;
+}
+
+.option.wrong{
+    background:#ffe5e5!important;
+    border-color:#dc3545!important;
+    color:#a30000;
+    font-weight:700;
+}
+
+.next{
+    width:100%;
+    border:0;
+    background:#159447;
+    color:white;
+    padding:14px;
+    border-radius:13px;
+    font-size:16px;
+    font-weight:800;
+    margin-top:12px;
+    cursor:pointer;
+}
+
+.next:disabled{
+    background:#aab4c3;
+    cursor:not-allowed;
+}
+
+.result{
+    display:none;
+    text-align:center;
+}
+
+.result h2{
+    font-size:28px;
+    font-weight:900;
+}
+
+.score{
+    font-size:50px;
+    font-weight:900;
+    color:#159447;
+    margin:15px 0;
+}
+
+.result-text{
+    color:#667085;
+    font-size:16px;
+    line-height:1.7;
+}
+
+.back,
+.restart{
+    display:inline-block;
+    margin-top:15px;
+    padding:12px 20px;
+    border-radius:11px;
+    color:white;
+    font-weight:700;
+    text-decoration:none;
+    border:0;
+    cursor:pointer;
+}
+
+.back{
+    background:#071b3a;
+}
+
+.restart{
+    background:#159447;
+    margin-left:8px;
+}
+
+@media(max-width:576px){
+
+    .header h1{
+        font-size:25px;
+    }
+
+    .quiz-card{
+        padding:19px;
+    }
+
+    .question{
+        font-size:18px;
+    }
+
+    .option{
+        font-size:15px;
+        padding:13px;
+    }
+
+    .back,
+    .restart{
+        display:block;
+        margin:10px 0 0;
+        width:100%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+    <h1>🖥️ Computer Hardware Quiz</h1>
+    <p>Computer Hardware के 100 महत्वपूर्ण प्रश्नों का अभ्यास</p>
+</header>
+
+<div class="quiz-container">
+
+<div class="quiz-card" id="quiz">
+
+<div class="number" id="number"></div>
+
+<div class="progress-box">
+<div class="progress" id="progress"></div>
+</div>
+
+<div class="question" id="question"></div>
+
+<div id="options"></div>
+
+<button class="next" id="next"
+onclick="nextQuestion()" disabled>
+अगला प्रश्न →
+</button>
+
+</div>
+
+
+<div class="quiz-card result" id="result">
+
+<h2>🎉 Quiz पूरा हुआ!</h2>
+
+<div class="score" id="score"></div>
+
+<p class="result-text" id="resultText"></p>
+
+<a href="computer.html" class="back">
+← Computer Quiz
+</a>
+
+<button class="restart" onclick="restartQuiz()">
+🔄 फिर से शुरू करें
+</button>
+
+</div>
+
+</div>
+
+
+<script>
+
+const questions=[
+
+{
+q:"Computer Hardware क्या है?",
+o:["Computer के भौतिक भाग","Computer का Software","Internet","Operating System"],
+a:0
+},
+
+{
+q:"Computer का मस्तिष्क किसे कहा जाता है?",
+o:["Monitor","CPU","Keyboard","Printer"],
+a:1
+},
+
+{
+q:"CPU का पूरा नाम क्या है?",
+o:["Central Processing Unit","Computer Processing User","Central Program Unit","Control Processing Unit"],
+a:0
+},
+
+{
+q:"CPU का मुख्य कार्य क्या है?",
+o:["निर्देशों को Process करना","केवल Print करना","केवल Sound देना","केवल चित्र दिखाना"],
+a:0
+},
+
+{
+q:"CPU के मुख्य भागों में कौन शामिल है?",
+o:["ALU","Mouse Pad","Printer","Speaker"],
+a:0
+},
+
+{
+q:"ALU का पूरा नाम क्या है?",
+o:["Arithmetic Logic Unit","Automatic Logic Unit","Advanced Language Unit","Arithmetic Language Utility"],
+a:0
+},
+
+{
+q:"ALU का मुख्य कार्य क्या है?",
+o:["Arithmetic और Logical Operations","Printing","Scanning","Sound Recording"],
+a:0
+},
+
+{
+q:"CU का पूरा नाम क्या है?",
+o:["Control Unit","Computer Unit","Central Utility","Control Utility"],
+a:0
+},
+
+{
+q:"Control Unit का मुख्य कार्य क्या है?",
+o:["Computer की गतिविधियों को नियंत्रित करना","केवल गणना करना","केवल Print करना","केवल Data Store करना"],
+a:0
+},
+
+{
+q:"Motherboard क्या है?",
+o:["Computer का मुख्य Circuit Board","Input Device","Output Device","Software"],
+a:0
+},
+
+{
+q:"RAM किस प्रकार की Memory है?",
+o:["Volatile Memory","Permanent Memory","Optical Memory","Paper Memory"],
+a:0
+},
+
+{
+q:"RAM का पूरा नाम क्या है?",
+o:["Random Access Memory","Read Access Memory","Rapid Access Module","Random Application Memory"],
+a:0
+},
+
+{
+q:"ROM का पूरा नाम क्या है?",
+o:["Read Only Memory","Random Only Memory","Read Open Memory","Rapid Output Memory"],
+a:0
+},
+
+{
+q:"ROM किस प्रकार की Memory है?",
+o:["Non-volatile Memory","Volatile Memory","Temporary Memory","Cache only"],
+a:0
+},
+
+{
+q:"Computer बंद होने पर RAM में मौजूद सामान्य Data का क्या होता है?",
+o:["Data सामान्यतः समाप्त हो जाता है","Data हमेशा सुरक्षित रहता है","Data Printer में चला जाता है","Data ROM में चला जाता है"],
+a:0
+},
+
+{
+q:"Hard Disk का मुख्य उपयोग क्या है?",
+o:["Data को स्थायी रूप से Store करना","केवल Input देना","केवल Sound देना","केवल Display करना"],
+a:0
+},
+
+{
+q:"SSD का पूरा नाम क्या है?",
+o:["Solid State Drive","System Storage Device","Simple State Disk","Secure Storage Drive"],
+a:0
+},
+
+{
+q:"SSD में सामान्यतः किस प्रकार की तकनीक का उपयोग होता है?",
+o:["Flash Memory","Magnetic Tape","Paper Tape","Film"],
+a:0
+},
+
+{
+q:"HDD का पूरा नाम क्या है?",
+o:["Hard Disk Drive","High Data Device","Hardware Data Drive","Hard Digital Disk"],
+a:0
+},
+
+{
+q:"HDD में Data किस माध्यम पर Store होता है?",
+o:["Magnetic Disk","Paper","RAM Chip only","Monitor"],
+a:0
+},
+
+{
+q:"Keyboard किस प्रकार का Device है?",
+o:["Input Device","Output Device","Storage Device","Processing Device"],
+a:0
+},
+
+{
+q:"Mouse किस प्रकार का Device है?",
+o:["Input Device","Output Device","Storage Device","Processing Device"],
+a:0
+},
+
+{
+q:"Monitor किस प्रकार का Device है?",
+o:["Output Device","Input Device","Storage Device","Processing Device"],
+a:0
+},
+
+{
+q:"Printer किस प्रकार का Device है?",
+o:["Output Device","Input Device","Storage Device","Processing Device"],
+a:0
+},
+
+{
+q:"Scanner किस प्रकार का Device है?",
+o:["Input Device","Output Device","Processing Device","Storage Device"],
+a:0
+},
+
+{
+q:"Speaker किस प्रकार का Device है?",
+o:["Output Device","Input Device","Storage Device","Processing Device"],
+a:0
+},
+
+{
+q:"Microphone किस प्रकार का Device है?",
+o:["Input Device","Output Device","Storage Device","Processing Device"],
+a:0
+},
+
+{
+q:"Webcam सामान्यतः किस प्रकार का Device है?",
+o:["Input Device","Output Device","Storage Device","Processing Device"],
+a:0
+},
+
+{
+q:"Joystick किस प्रकार का Device है?",
+o:["Input Device","Output Device","Storage Device","Processing Device"],
+a:0
+},
+
+{
+q:"Touchscreen किस प्रकार का Device माना जा सकता है?",
+o:["Input और Output दोनों","केवल Storage","केवल Processing","केवल Memory"],
+a:0
+},
+
+{
+q:"Monitor पर दिखाई देने वाली तस्वीर की स्पष्टता को किससे संबंधित किया जाता है?",
+o:["Resolution","Keyboard","RAM","CPU Fan"],
+a:0
+},
+
+{
+q:"LCD का पूरा नाम क्या है?",
+o:["Liquid Crystal Display","Light Crystal Device","Liquid Computer Display","Linear Crystal Display"],
+a:0
+},
+
+{
+q:"LED का पूरा नाम क्या है?",
+o:["Light Emitting Diode","Light Electronic Display","Linear Emitting Device","Logic Emitting Display"],
+a:0
+},
+
+{
+q:"Computer में Power Supply का मुख्य कार्य क्या है?",
+o:["Components को आवश्यक विद्युत शक्ति देना","Data Type करना","Image Scan करना","Sound Record करना"],
+a:0
+},
+
+{
+q:"SMPS का पूरा नाम क्या है?",
+o:["Switched-Mode Power Supply","Simple Mode Power System","System Main Power Supply","Switch Main Processing System"],
+a:0
+},
+
+{
+q:"UPS का पूरा नाम क्या है?",
+o:["Uninterruptible Power Supply","Universal Power System","United Processing Supply","Utility Power Source"],
+a:0
+},
+
+{
+q:"UPS का मुख्य उपयोग क्या है?",
+o:["बिजली जाने पर सीमित समय तक Power Backup देना","Internet Speed बढ़ाना","RAM बढ़ाना","Printer की Ink भरना"],
+a:0
+},
+
+{
+q:"Computer में Cooling Fan का उपयोग क्यों किया जाता है?",
+o:["Heat कम करने के लिए","Data Store करने के लिए","Typing करने के लिए","Sound बढ़ाने के लिए"],
+a:0
+},
+
+{
+q:"CPU में Heat कम करने के लिए किसका उपयोग किया जाता है?",
+o:["Heat Sink और Fan","Keyboard","Speaker","Scanner"],
+a:0
+},
+
+{
+q:"USB का पूरा नाम क्या है?",
+o:["Universal Serial Bus","United System Bus","Universal Storage Board","User Serial Board"],
+a:0
+},
+
+{
+q:"USB Port का उपयोग किसके लिए किया जा सकता है?",
+o:["Devices Connect करने के लिए","केवल Monitor बंद करने के लिए","केवल CPU खोलने के लिए","केवल Internet बनाने के लिए"],
+a:0
+},
+
+{
+q:"HDMI का उपयोग मुख्यतः किसके लिए किया जाता है?",
+o:["Audio/Video Signal भेजने के लिए","केवल Keyboard जोड़ने के लिए","केवल RAM लगाने के लिए","केवल Power देने के लिए"],
+a:0
+},
+
+{
+q:"VGA Port मुख्यतः किस Signal के लिए जाना जाता है?",
+o:["Video","Audio only","Power only","Network only"],
+a:0
+},
+
+{
+q:"Ethernet Port का उपयोग किसके लिए किया जाता है?",
+o:["Wired Network Connection","Printer Ink","Keyboard Light","CPU Cooling"],
+a:0
+},
+
+{
+q:"RJ-45 Connector सामान्यतः किसके लिए प्रयोग होता है?",
+o:["Ethernet Networking","Audio","Power Supply","Monitor Stand"],
+a:0
+},
+
+{
+q:"Bluetooth किस प्रकार की Technology है?",
+o:["Wireless Communication Technology","Storage Technology","Printing Technology","Cooling Technology"],
+a:0
+},
+
+{
+q:"Wi-Fi का उपयोग मुख्यतः किसके लिए किया जाता है?",
+o:["Wireless Network Connection","CPU Cooling","Printing Ink","Data Deletion"],
+a:0
+},
+
+{
+q:"CD किस प्रकार का Storage Medium है?",
+o:["Optical Storage","Magnetic Storage","Volatile Memory","Cache"],
+a:0
+},
+
+{
+q:"DVD का पूरा नाम क्या है?",
+o:["Digital Versatile Disc","Digital Video Device","Data Visual Disc","Dynamic Versatile Drive"],
+a:0
+},
+
+{
+q:"Blu-ray Disc किस प्रकार का माध्यम है?",
+o:["Optical Storage","RAM","CPU","Keyboard"],
+a:0
+},
+
+{
+q:"Pen Drive किस प्रकार का Device है?",
+o:["Portable Storage Device","Input Device only","Output Device only","Processing Device"],
+a:0
+},
+
+{
+q:"Memory Card का उपयोग किसके लिए किया जाता है?",
+o:["Data Storage","CPU Processing","Printing","Scanning"],
+a:0
+},
+
+{
+q:"Cache Memory का उद्देश्य क्या है?",
+o:["CPU को बार-बार आवश्यक Data तक तेज पहुँच देना","Permanent Printing करना","Sound Record करना","Keyboard Control करना"],
+a:0
+},
+
+{
+q:"Cache Memory सामान्यतः RAM की तुलना में कैसी होती है?",
+o:["अधिक तेज","हमेशा धीमी","समान ही","केवल Optical"],
+a:0
+},
+
+{
+q:"Computer में Register कहाँ पाए जाते हैं?",
+o:["CPU में","Printer में","Keyboard में","Monitor में"],
+a:0
+},
+
+{
+q:"Register का उपयोग किसके लिए होता है?",
+o:["CPU के अंदर बहुत तेज Temporary Storage","Permanent File Storage","Printing","Scanning"],
+a:0
+},
+
+{
+q:"Motherboard पर RAM लगाने के लिए किस प्रकार के Slots होते हैं?",
+o:["Memory Slots","USB Slots","Audio Slots","Power Buttons"],
+a:0
+},
+
+{
+q:"Expansion Card का उपयोग किसके लिए किया जाता है?",
+o:["Computer की क्षमताएँ बढ़ाने के लिए","Monitor साफ करने के लिए","Keyboard धोने के लिए","File Delete करने के लिए"],
+a:0
+},
+
+{
+q:"Graphics Card का मुख्य कार्य क्या है?",
+o:["Graphics Processing","Sound Recording only","Typing","Network Cable बनाना"],
+a:0
+},
+
+{
+q:"GPU का पूरा नाम क्या है?",
+o:["Graphics Processing Unit","General Processing Utility","Graphic Program Unit","Graphics Power Utility"],
+a:0
+},
+
+{
+q:"Sound Card का उपयोग किसके लिए होता है?",
+o:["Audio Processing","Video Storage","CPU Cooling","Data Printing"],
+a:0
+},
+
+{
+q:"Network Interface Card का उपयोग किसके लिए किया जाता है?",
+o:["Network से Computer को Connect करने के लिए","Printing के लिए","Scanning के लिए","CPU Cooling के लिए"],
+a:0
+},
+
+{
+q:"NIC का पूरा नाम क्या है?",
+o:["Network Interface Card","Network Internet Controller","New Interface Computer","Network Input Circuit"],
+a:0
+},
+
+{
+q:"Modem का उपयोग किस प्रकार के कार्य से संबंधित है?",
+o:["Communication/Internet Connection","CPU Cooling","Printing Ink","Keyboard Layout"],
+a:0
+},
+
+{
+q:"Router का मुख्य कार्य क्या है?",
+o:["Networks के बीच Data Packets को Route करना","Document Print करना","CPU Cool करना","Image Scan करना"],
+a:0
+},
+
+{
+q:"Computer Case का मुख्य उद्देश्य क्या है?",
+o:["Internal Components को सुरक्षित रखना","Internet Speed बढ़ाना","Text Type करना","Sound Record करना"],
+a:0
+},
+
+{
+q:"Desktop Computer में सामान्यतः Motherboard कहाँ लगाया जाता है?",
+o:["Computer Case के अंदर","Monitor के ऊपर","Keyboard के अंदर","Mouse के अंदर"],
+a:0
+},
+
+{
+q:"CPU Socket का उपयोग किसके लिए होता है?",
+o:["Processor लगाने के लिए","RAM लगाने के लिए","Monitor जोड़ने के लिए","Printer जोड़ने के लिए"],
+a:0
+},
+
+{
+q:"Processor की Clock Speed सामान्यतः किसमें मापी जाती है?",
+o:["Hz/GHz","Meter","Liter","Volt only"],
+a:0
+},
+
+{
+q:"GHz का पूरा नाम क्या है?",
+o:["Gigahertz","Gigabyte","Graphics Hertz","General Hardware Zone"],
+a:0
+},
+
+{
+q:"Computer की Processing Performance को प्रभावित करने वाला प्रमुख Component कौन-सा है?",
+o:["CPU","Mouse Pad","Speaker Cover","Printer Paper"],
+a:0
+},
+
+{
+q:"Multi-core Processor का क्या अर्थ है?",
+o:["एक Processor में एक से अधिक Processing Cores होना","एक Computer में कई Monitor होना","एक Keyboard में कई Keys होना","एक Hard Disk में कई Files होना"],
+a:0
+},
+
+{
+q:"Dual-Core Processor में सामान्यतः कितने Cores होते हैं?",
+o:["2","4","8","16"],
+a:0
+},
+
+{
+q:"Quad-Core Processor में सामान्यतः कितने Cores होते हैं?",
+o:["4","2","6","8"],
+a:0
+},
+
+{
+q:"RAM की Capacity सामान्यतः किसमें मापी जाती है?",
+o:["GB","Meter","Hertz only","Pixel"],
+a:0
+},
+
+{
+q:"Storage Capacity सामान्यतः किसमें मापी जाती है?",
+o:["GB या TB","Pixel","Volt","Hertz"],
+a:0
+},
+
+{
+q:"1 TB में लगभग कितने GB होते हैं?",
+o:["1024 GB","100 GB","512 MB","10 GB"],
+a:0
+},
+
+{
+q:"1 GB में सामान्यतः कितने MB माने जाते हैं?",
+o:["1024 MB","100 MB","512 KB","10 MB"],
+a:0
+},
+
+{
+q:"Binary Data की मूल इकाई क्या है?",
+o:["Bit","Byte","Kilobyte","Megabyte"],
+a:0
+},
+
+{
+q:"1 Byte में कितने Bits होते हैं?",
+o:["8","4","16","32"],
+a:0
+},
+
+{
+q:"Keyboard में Function Keys सामान्यतः किस Range में होती हैं?",
+o:["F1 से F12","F1 से F5","F2 से F8","F5 से F20"],
+a:0
+},
+
+{
+q:"Mechanical Keyboard में किस प्रकार के Switches होते हैं?",
+o:["Mechanical Switches","Optical Discs","Magnetic Tapes","RAM Cells"],
+a:0
+},
+
+{
+q:"Optical Mouse किसका उपयोग करके Movement Detect करता है?",
+o:["Optical Sensor","Printer Head","Speaker","Hard Disk"],
+a:0
+},
+
+{
+q:"Computer Mouse में Scroll Wheel का उपयोग किसके लिए होता है?",
+o:["Page को ऊपर-नीचे Scroll करने के लिए","Computer बंद करने के लिए","File Format बदलने के लिए","RAM बढ़ाने के लिए"],
+a:0
+},
+
+{
+q:"Printer में कागज पर Output प्राप्त करने को क्या कहा जाता है?",
+o:["Hard Copy","Soft Copy","Cache Copy","Digital Copy"],
+a:0
+},
+
+{
+q:"Monitor पर दिखाई देने वाला Output किस प्रकार की Copy कहलाता है?",
+o:["Soft Copy","Hard Copy","Paper Copy","Printed Copy"],
+a:0
+},
+
+{
+q:"Laser Printer में किसका उपयोग किया जाता है?",
+o:["Toner","Liquid Ink only","Pencil","Carbon Paper"],
+a:0
+},
+
+{
+q:"Inkjet Printer में मुख्यतः किसका उपयोग होता है?",
+o:["Ink","Toner only","Magnetic Tape","RAM"],
+a:0
+},
+
+{
+q:"Scanner का उपयोग किसके लिए किया जाता है?",
+o:["Physical Document/Image को Digital Form में बदलने के लिए","Digital File को Paper में बदलने के लिए","CPU को Cool करने के लिए","Internet Connect करने के लिए"],
+a:0
+},
+
+{
+q:"OCR का उपयोग किससे संबंधित है?",
+o:["Printed Text को Recognize करने से","Audio Recording","CPU Cooling","Network Routing"],
+a:0
+},
+
+{
+q:"Biometric Device किस प्रकार की जानकारी पहचान सकता है?",
+o:["Fingerprint या अन्य जैविक पहचान","केवल Text File","केवल Video","केवल Printer Ink"],
+a:0
+},
+
+{
+q:"Fingerprint Scanner किस प्रकार का Device है?",
+o:["Input Device","Output Device","Storage Device","Processing Device"],
+a:0
+},
+
+{
+q:"Barcode Scanner किस प्रकार का Device है?",
+o:["Input Device","Output Device","Storage Device","Processing Device"],
+a:0
+},
+
+{
+q:"QR Code Scanner किस प्रकार के कार्य से संबंधित है?",
+o:["Code को Scan करके Data पढ़ना","CPU Cooling","RAM Upgrade","Printer Repair"],
+a:0
+},
+
+{
+q:"External Hard Drive का मुख्य लाभ क्या है?",
+o:["अतिरिक्त Portable Storage","CPU Speed बढ़ाना","Monitor Resolution बढ़ाना","Keyboard बदलना"],
+a:0
+},
+
+{
+q:"Internal Storage Device Computer के किस भाग से संबंधित होता है?",
+o:["Data Storage","Input only","Output only","Cooling only"],
+a:0
+},
+
+{
+q:"Hardware और Software में मुख्य अंतर क्या है?",
+o:["Hardware भौतिक होता है, Software निर्देश/प्रोग्राम होते हैं","दोनों केवल Hardware हैं","दोनों केवल Software हैं","Hardware केवल Internet है"],
+a:0
+},
+
+{
+q:"कौन-सा Hardware का उदाहरण है?",
+o:["Keyboard","MS Word","Windows","Browser"],
+a:0
+},
+
+{
+q:"कौन-सा Hardware का उदाहरण है?",
+o:["Monitor","MS Excel","Windows","Antivirus Program"],
+a:0
+},
+
+{
+q:"कौन-सा Hardware का उदाहरण है?",
+o:["Motherboard","MS Word","PowerPoint","Operating System"],
+a:0
+},
+
+{
+q:"कौन-सा Component Computer में Data को स्थायी रूप से Store कर सकता है?",
+o:["SSD","RAM","CPU Register","Cache"],
+a:0
+},
+
+{
+q:"Computer Hardware की देखभाल में सबसे महत्वपूर्ण बात क्या है?",
+o:["धूल और अत्यधिक गर्मी से बचाना","Computer को पानी में रखना","Cooling Fan बंद रखना","Ventilation बंद करना"],
+a:0
+},
+
+{
+q:"Computer में Ventilation का उद्देश्य क्या है?",
+o:["Heat बाहर निकालने में सहायता करना","Data Delete करना","Keyboard Input रोकना","Screen की Brightness बढ़ाना"],
+a:0
+},
+
+{
+q:"Hardware Upgrade का अर्थ क्या है?",
+o:["Computer के किसी Component को बेहतर/अधिक क्षमता वाले Component से बदलना","Computer को बंद करना","File Rename करना","Software Delete करना"],
+a:0
+},
+
+{
+q:"RAM Upgrade करने से किस प्रकार का लाभ हो सकता है?",
+o:["Multitasking क्षमता बेहतर हो सकती है","Monitor अपने आप बड़ा हो जाता है","Printer की Ink बढ़ जाती है","Keyboard की Keys बढ़ जाती हैं"],
+a:0
+},
+
+{
+q:"SSD लगाने से सामान्यतः किस कार्य में सुधार हो सकता है?",
+o:["Storage Access और System Loading Speed","Monitor का आकार","Keyboard की संख्या","Printer Paper Capacity"],
+a:0
+},
+
+{
+q:"Computer में Hardware Failure का एक सामान्य कारण क्या हो सकता है?",
+o:["अत्यधिक गर्मी या विद्युत समस्या","Text Formatting","File Naming","Web Page Design"],
+a:0
+}
+
+];
+
+let current=0;
+let score=0;
+let answered=false;
+
+function loadQuestion(){
+
+    answered=false;
+
+    const q=questions[current];
+
+    document.getElementById("number").innerText=
+    "प्रश्न "+(current+1)+" / "+questions.length;
+
+    document.getElementById("question").innerText=q.q;
+
+    const box=document.getElementById("options");
+
+    box.innerHTML="";
+
+    q.o.forEach((text,i)=>{
+
+        const btn=document.createElement("button");
+
+        btn.className="option";
+
+        btn.innerText=
+        String.fromCharCode(65+i)+". "+text;
+
+        btn.onclick=function(){
+            answer(btn,i);
+        };
+
+        box.appendChild(btn);
+
+    });
+
+    document.getElementById("next").disabled=true;
+
+    document.getElementById("progress").style.width=
+    ((current+1)/questions.length*100)+"%";
+}
+
+function answer(btn,index){
+
+    if(answered)return;
+
+    answered=true;
+
+    const q=questions[current];
+
+    const buttons=document.querySelectorAll(".option");
+
+    buttons.forEach((b,i)=>{
+
+        if(i===q.a){
+            b.classList.add("correct");
+        }
+
+    });
+
+    if(index===q.a){
+        score++;
+    }else{
+        btn.classList.add("wrong");
+    }
+
+    document.getElementById("next").disabled=false;
+}
+
+function nextQuestion(){
+
+    current++;
+
+    if(current<questions.length){
+
+        loadQuestion();
+
+    }else{
+
+        document.getElementById("quiz").style.display="none";
+
+        document.getElementById("result").style.display="block";
+
+        document.getElementById("score").innerText=
+        score+" / "+questions.length;
+
+        document.getElementById("resultText").innerText=
+        "आपने "+questions.length+
+        " में से "+score+
+        " प्रश्नों के सही उत्तर दिए।";
+    }
+}
+
+function restartQuiz(){
+
+    current=0;
+    score=0;
+
+    document.getElementById("quiz").style.display="block";
+
+    document.getElementById("result").style.display="none";
+
+    loadQuestion();
+}
+
+loadQuestion();
+
+</script>
+
+</body>
+</html>

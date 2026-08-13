@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Computer Shortcut Keys Quiz | CG Exam Hub</title>
+
+<meta name="description"
+content="Computer Shortcut Keys के 100 महत्वपूर्ण MCQ प्रश्नों का Quiz। CGPSC, CG Vyapam, Patwari और अन्य प्रतियोगी परीक्षाओं के लिए उपयोगी।">
+
+<meta name="robots" content="index, follow">
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+    background:#f4f7fb;
+    color:#172033;
+}
+
+.header{
+    background:linear-gradient(135deg,#7042df,#9b6cff);
+    color:white;
+    text-align:center;
+    padding:30px 15px;
+}
+
+.header h1{
+    margin:0;
+    font-size:30px;
+    font-weight:900;
+}
+
+.header p{
+    margin:8px 0 0;
+    font-size:15px;
+}
+
+.quiz-container{
+    max-width:760px;
+    margin:25px auto;
+    padding:15px;
+}
+
+.quiz-card{
+    background:white;
+    border-radius:22px;
+    padding:25px;
+    box-shadow:0 10px 35px rgba(0,0,0,.08);
+    border:1px solid #e2e8f0;
+}
+
+.number{
+    color:#7042df;
+    font-weight:800;
+    font-size:15px;
+}
+
+.progress-box{
+    width:100%;
+    height:9px;
+    background:#e8edf3;
+    border-radius:20px;
+    overflow:hidden;
+    margin:12px 0 20px;
+}
+
+.progress{
+    height:100%;
+    width:0%;
+    background:#7042df;
+    transition:.3s;
+}
+
+.question{
+    font-size:21px;
+    font-weight:800;
+    line-height:1.55;
+    margin-bottom:22px;
+}
+
+.option{
+    width:100%;
+    display:block;
+    text-align:left;
+    border:1px solid #d7dde7;
+    background:white;
+    color:#172033;
+    border-radius:13px;
+    padding:14px 15px;
+    margin:10px 0;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.option:hover{
+    background:#f1ecff;
+    border-color:#7042df;
+}
+
+.option.correct{
+    background:#dff7e8 !important;
+    border-color:#18a957 !important;
+    color:#087536;
+    font-weight:700;
+}
+
+.option.wrong{
+    background:#ffe5e5 !important;
+    border-color:#dc3545 !important;
+    color:#a30000;
+    font-weight:700;
+}
+
+.next{
+    width:100%;
+    border:0;
+    background:#7042df;
+    color:white;
+    padding:14px;
+    border-radius:13px;
+    font-size:16px;
+    font-weight:800;
+    margin-top:12px;
+    cursor:pointer;
+}
+
+.next:disabled{
+    background:#aab4c3;
+    cursor:not-allowed;
+}
+
+.result{
+    display:none;
+    text-align:center;
+}
+
+.result h2{
+    font-size:28px;
+    font-weight:900;
+}
+
+.score{
+    font-size:50px;
+    font-weight:900;
+    color:#7042df;
+    margin:15px 0;
+}
+
+.result-text{
+    color:#667085;
+    font-size:16px;
+    line-height:1.7;
+}
+
+.back,
+.restart{
+    display:inline-block;
+    margin-top:15px;
+    padding:12px 20px;
+    border-radius:11px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.back{
+    background:#071b3a;
+    color:white;
+    text-decoration:none;
+}
+
+.restart{
+    margin-left:8px;
+    background:#7042df;
+    color:white;
+    border:0;
+}
+
+@media(max-width:576px){
+
+    .header h1{
+        font-size:25px;
+    }
+
+    .quiz-card{
+        padding:19px;
+    }
+
+    .question{
+        font-size:18px;
+    }
+
+    .option{
+        font-size:15px;
+        padding:13px;
+    }
+
+    .back,
+    .restart{
+        display:block;
+        margin:10px 0 0;
+        width:100%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+    <h1>⌨️ Computer Shortcut Keys Quiz</h1>
+    <p>Computer Shortcut Keys के 100 महत्वपूर्ण प्रश्नों का अभ्यास</p>
+</header>
+
+<div class="quiz-container">
+
+<div class="quiz-card" id="quiz">
+
+<div class="number" id="number"></div>
+
+<div class="progress-box">
+<div class="progress" id="progress"></div>
+</div>
+
+<div class="question" id="question"></div>
+
+<div id="options"></div>
+
+<button class="next" id="next"
+onclick="nextQuestion()" disabled>
+अगला प्रश्न →
+</button>
+
+</div>
+
+
+<div class="quiz-card result" id="result">
+
+<h2>🎉 Quiz पूरा हुआ!</h2>
+
+<div class="score" id="score"></div>
+
+<p class="result-text" id="resultText"></p>
+
+<a href="computer.html" class="back">
+← Computer Quiz
+</a>
+
+<button class="restart" onclick="restartQuiz()">
+🔄 फिर से शुरू करें
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+const questions = [
+
+{
+q:"Windows में Copy करने की Shortcut Key क्या है?",
+o:["Ctrl + C","Ctrl + X","Ctrl + V","Ctrl + Z"],
+a:0
+},
+
+{
+q:"Windows में Paste करने की Shortcut Key क्या है?",
+o:["Ctrl + P","Ctrl + V","Ctrl + C","Ctrl + A"],
+a:1
+},
+
+{
+q:"Selected item को Cut करने की Shortcut Key क्या है?",
+o:["Ctrl + X","Ctrl + C","Ctrl + Z","Ctrl + S"],
+a:0
+},
+
+{
+q:"Undo करने की Shortcut Key क्या है?",
+o:["Ctrl + Y","Ctrl + Z","Ctrl + U","Ctrl + R"],
+a:1
+},
+
+{
+q:"Redo करने की सामान्य Shortcut Key क्या है?",
+o:["Ctrl + Y","Ctrl + Z","Ctrl + X","Ctrl + D"],
+a:0
+},
+
+{
+q:"पूरे Text या सभी Items को Select करने की Shortcut Key क्या है?",
+o:["Ctrl + A","Ctrl + S","Ctrl + F","Ctrl + G"],
+a:0
+},
+
+{
+q:"File Save करने की Shortcut Key क्या है?",
+o:["Ctrl + S","Ctrl + P","Ctrl + O","Ctrl + N"],
+a:0
+},
+
+{
+q:"Print करने की Shortcut Key क्या है?",
+o:["Ctrl + P","Ctrl + R","Ctrl + T","Ctrl + W"],
+a:0
+},
+
+{
+q:"नई File या Document बनाने की सामान्य Shortcut Key क्या है?",
+o:["Ctrl + N","Ctrl + O","Ctrl + S","Ctrl + F"],
+a:0
+},
+
+{
+q:"पहले से मौजूद File खोलने की Shortcut Key क्या है?",
+o:["Ctrl + O","Ctrl + N","Ctrl + P","Ctrl + W"],
+a:0
+},
+
+{
+q:"Find/Search करने की Shortcut Key क्या है?",
+o:["Ctrl + F","Ctrl + H","Ctrl + G","Ctrl + K"],
+a:0
+},
+
+{
+q:"Find and Replace के लिए सामान्य Shortcut Key क्या है?",
+o:["Ctrl + H","Ctrl + F","Ctrl + R","Ctrl + E"],
+a:0
+},
+
+{
+q:"Hyperlink Insert करने की सामान्य Shortcut Key क्या है?",
+o:["Ctrl + K","Ctrl + H","Ctrl + L","Ctrl + I"],
+a:0
+},
+
+{
+q:"Active Window बंद करने की Shortcut Key क्या है?",
+o:["Alt + F4","Alt + F1","Ctrl + F4","Shift + F4"],
+a:0
+},
+
+{
+q:"Current Document/Tab बंद करने के लिए कई Applications में कौन-सी Shortcut उपयोग होती है?",
+o:["Ctrl + W","Ctrl + N","Ctrl + O","Ctrl + S"],
+a:0
+},
+
+{
+q:"Windows में File Explorer खोलने की Shortcut Key क्या है?",
+o:["Windows + E","Windows + F","Windows + R","Windows + D"],
+a:0
+},
+
+{
+q:"Windows में Run Dialog Box खोलने की Shortcut Key क्या है?",
+o:["Windows + R","Windows + E","Windows + D","Windows + L"],
+a:0
+},
+
+{
+q:"Windows Desktop दिखाने की Shortcut Key क्या है?",
+o:["Windows + D","Windows + E","Windows + R","Windows + P"],
+a:0
+},
+
+{
+q:"Computer को Lock करने की Shortcut Key क्या है?",
+o:["Windows + L","Windows + K","Windows + C","Windows + X"],
+a:0
+},
+
+{
+q:"Windows Search खोलने के लिए सामान्य Shortcut क्या है?",
+o:["Windows + S","Windows + R","Windows + E","Windows + D"],
+a:0
+},
+
+{
+q:"Windows Quick Link Menu खोलने की Shortcut Key क्या है?",
+o:["Windows + X","Windows + L","Windows + R","Windows + P"],
+a:0
+},
+
+{
+q:"Display Project विकल्प खोलने की Shortcut Key क्या है?",
+o:["Windows + P","Windows + D","Windows + E","Windows + T"],
+a:0
+},
+
+{
+q:"Windows Settings खोलने की Shortcut Key क्या है?",
+o:["Windows + I","Windows + S","Windows + K","Windows + U"],
+a:0
+},
+
+{
+q:"Windows में Task View खोलने की Shortcut Key क्या है?",
+o:["Windows + Tab","Windows + T","Windows + V","Windows + Q"],
+a:0
+},
+
+{
+q:"Active Window के बीच Switch करने की Shortcut Key क्या है?",
+o:["Alt + Tab","Alt + F4","Ctrl + Tab","Shift + Tab"],
+a:0
+},
+
+{
+q:"Active Window का Menu खोलने के लिए सामान्यतः कौन-सी Key उपयोग होती है?",
+o:["Alt","Ctrl","Shift","Tab"],
+a:0
+},
+
+{
+q:"Windows में Help खोलने के लिए सामान्यतः कौन-सी Function Key उपयोग होती है?",
+o:["F1","F2","F5","F12"],
+a:0
+},
+
+{
+q:"File या Folder Rename करने की Shortcut Key क्या है?",
+o:["F2","F4","F5","F7"],
+a:0
+},
+
+{
+q:"Windows/File Explorer में Refresh करने की सामान्य Shortcut Key क्या है?",
+o:["F5","F2","F4","F7"],
+a:0
+},
+
+{
+q:"Selected File/Folder को Permanently Delete करने के लिए कौन-सी Shortcut उपयोग होती है?",
+o:["Shift + Delete","Ctrl + Delete","Alt + Delete","Windows + Delete"],
+a:0
+},
+
+{
+q:"Delete किए गए Item को सामान्यतः Recycle Bin में भेजने के लिए कौन-सी Key उपयोग होती है?",
+o:["Delete","F2","F5","Esc"],
+a:0
+},
+
+{
+q:"किसी कार्य को Cancel/बंद करने के लिए सामान्यतः कौन-सी Key उपयोग होती है?",
+o:["Esc","Enter","Tab","Spacebar"],
+a:0
+},
+
+{
+q:"किसी Command को Confirm करने के लिए सामान्यतः कौन-सी Key उपयोग होती है?",
+o:["Enter","Esc","Shift","Alt"],
+a:0
+},
+
+{
+q:"Fields/Controls के बीच आगे जाने के लिए कौन-सी Key उपयोग होती है?",
+o:["Tab","Esc","Ctrl","Alt"],
+a:0
+},
+
+{
+q:"Tab के विपरीत दिशा में जाने के लिए कौन-सी Shortcut उपयोग होती है?",
+o:["Shift + Tab","Ctrl + Tab","Alt + Tab","Windows + Tab"],
+a:0
+},
+
+{
+q:"Page को नीचे Scroll करने के लिए कौन-सी Key उपयोगी है?",
+o:["Page Down","Page Up","Home","End"],
+a:0
+},
+
+{
+q:"Page को ऊपर Scroll करने के लिए कौन-सी Key उपयोगी है?",
+o:["Page Up","Page Down","End","Home"],
+a:0
+},
+
+{
+q:"Document की शुरुआत में जाने के लिए सामान्यतः कौन-सी Key उपयोग होती है?",
+o:["Home","End","Page Up","Delete"],
+a:0
+},
+
+{
+q:"Document/Line के अंत में जाने के लिए सामान्यतः कौन-सी Key उपयोग होती है?",
+o:["End","Home","Page Down","Insert"],
+a:0
+},
+
+{
+q:"Text में एक शब्द आगे जाने के लिए कौन-सी Shortcut उपयोग होती है?",
+o:["Ctrl + Right Arrow","Ctrl + Left Arrow","Shift + Right Arrow","Alt + Right Arrow"],
+a:0
+},
+
+{
+q:"Text में एक शब्द पीछे जाने के लिए कौन-सी Shortcut उपयोग होती है?",
+o:["Ctrl + Left Arrow","Ctrl + Right Arrow","Shift + Left Arrow","Alt + Left Arrow"],
+a:0
+},
+
+{
+q:"Text में अगली Line पर जाने के लिए कौन-सी Arrow Key उपयोग होती है?",
+o:["Down Arrow","Up Arrow","Left Arrow","Right Arrow"],
+a:0
+},
+
+{
+q:"Text में पिछली Line पर जाने के लिए कौन-सी Arrow Key उपयोग होती है?",
+o:["Up Arrow","Down Arrow","Left Arrow","Right Arrow"],
+a:0
+},
+
+{
+q:"एक Character आगे जाने के लिए कौन-सी Key उपयोग होती है?",
+o:["Right Arrow","Left Arrow","Up Arrow","Down Arrow"],
+a:0
+},
+
+{
+q:"एक Character पीछे जाने के लिए कौन-सी Key उपयोग होती है?",
+o:["Left Arrow","Right Arrow","Up Arrow","Down Arrow"],
+a:0
+},
+
+{
+q:"Cursor के बाईं ओर का Character Delete करने के लिए कौन-सी Key उपयोग होती है?",
+o:["Backspace","Delete","Insert","Home"],
+a:0
+},
+
+{
+q:"Cursor के दाईं ओर का Character Delete करने के लिए कौन-सी Key उपयोग होती है?",
+o:["Delete","Backspace","Insert","End"],
+a:0
+},
+
+{
+q:"Text को Bold करने की Shortcut Key क्या है?",
+o:["Ctrl + B","Ctrl + I","Ctrl + U","Ctrl + T"],
+a:0
+},
+
+{
+q:"Text को Italic करने की Shortcut Key क्या है?",
+o:["Ctrl + I","Ctrl + B","Ctrl + U","Ctrl + E"],
+a:0
+},
+
+{
+q:"Text को Underline करने की Shortcut Key क्या है?",
+o:["Ctrl + U","Ctrl + I","Ctrl + B","Ctrl + L"],
+a:0
+},
+
+{
+q:"Text को Left Align करने की Shortcut Key क्या है?",
+o:["Ctrl + L","Ctrl + R","Ctrl + E","Ctrl + J"],
+a:0
+},
+
+{
+q:"Text को Center Align करने की Shortcut Key क्या है?",
+o:["Ctrl + E","Ctrl + L","Ctrl + R","Ctrl + J"],
+a:0
+},
+
+{
+q:"Text को Right Align करने की Shortcut Key क्या है?",
+o:["Ctrl + R","Ctrl + L","Ctrl + E","Ctrl + J"],
+a:0
+},
+
+{
+q:"Text को Justify करने की Shortcut Key क्या है?",
+o:["Ctrl + J","Ctrl + R","Ctrl + E","Ctrl + L"],
+a:0
+},
+
+{
+q:"MS Word में Spelling और Grammar Check के लिए कौन-सी Function Key उपयोग होती है?",
+o:["F7","F5","F2","F12"],
+a:0
+},
+
+{
+q:"MS Word में Go To सुविधा के लिए कौन-सी Function Key उपयोग होती है?",
+o:["F5","F1","F7","F12"],
+a:0
+},
+
+{
+q:"MS Word में Save As के लिए सामान्यतः कौन-सी Function Key उपयोग होती है?",
+o:["F12","F5","F7","F2"],
+a:0
+},
+
+{
+q:"MS Word में Font Size बढ़ाने की Shortcut Key क्या है?",
+o:["Ctrl + Shift + >","Ctrl + Shift + <","Ctrl + Alt + >","Alt + >"],
+a:0
+},
+
+{
+q:"MS Word में Font Size घटाने की Shortcut Key क्या है?",
+o:["Ctrl + Shift + <","Ctrl + Shift + >","Ctrl + Alt + <","Alt + <"],
+a:0
+},
+
+{
+q:"MS Word में Page Break डालने की Shortcut Key क्या है?",
+o:["Ctrl + Enter","Ctrl + P","Ctrl + Shift + Enter","Alt + Enter"],
+a:0
+},
+
+{
+q:"MS Word में Change Case के लिए सामान्य Shortcut क्या है?",
+o:["Shift + F3","Shift + F5","Ctrl + F3","Alt + F3"],
+a:0
+},
+
+{
+q:"MS Word में Format Painter के लिए कौन-सी Function Key उपयोग की जाती है?",
+o:["Ctrl + Shift + C और Ctrl + Shift + V","Ctrl + C और Ctrl + V","Alt + C और Alt + V","Shift + C और Shift + V"],
+a:0
+},
+
+{
+q:"MS Excel में नया Workbook बनाने की Shortcut Key क्या है?",
+o:["Ctrl + N","Ctrl + O","Ctrl + S","Ctrl + W"],
+a:0
+},
+
+{
+q:"MS Excel में Workbook Save करने की Shortcut Key क्या है?",
+o:["Ctrl + S","Ctrl + P","Ctrl + N","Ctrl + F"],
+a:0
+},
+
+{
+q:"MS Excel में Cell को Edit करने की Shortcut Key क्या है?",
+o:["F2","F4","F5","F7"],
+a:0
+},
+
+{
+q:"MS Excel में सभी Cells Select करने की Shortcut Key क्या है?",
+o:["Ctrl + A","Ctrl + S","Ctrl + E","Ctrl + G"],
+a:0
+},
+
+{
+q:"MS Excel में Current Data Region Select करने के लिए सामान्यतः कौन-सी Shortcut उपयोग होती है?",
+o:["Ctrl + A","Ctrl + P","Ctrl + R","Ctrl + T"],
+a:0
+},
+
+{
+q:"Excel में किसी Cell में आज की Date डालने की Shortcut Key क्या है?",
+o:["Ctrl + ;","Ctrl + :","Ctrl + D","Ctrl + Shift + ;"],
+a:0
+},
+
+{
+q:"Excel में Current Time डालने की Shortcut Key क्या है?",
+o:["Ctrl + Shift + ;","Ctrl + ;","Ctrl + T","Ctrl + Alt + T"],
+a:0
+},
+
+{
+q:"Excel में ऊपर वाली Cell का Data नीचे Copy करने की Shortcut Key क्या है?",
+o:["Ctrl + D","Ctrl + R","Ctrl + C","Ctrl + V"],
+a:0
+},
+
+{
+q:"Excel में बाईं ओर वाली Cell का Data दाईं ओर Copy करने की Shortcut Key क्या है?",
+o:["Ctrl + R","Ctrl + D","Ctrl + L","Ctrl + C"],
+a:0
+},
+
+{
+q:"Excel में AutoSum के लिए कौन-सी Shortcut Key उपयोगी है?",
+o:["Alt + =","Ctrl + =","Alt + S","Ctrl + Shift + ="],
+a:0
+},
+
+{
+q:"Excel में Format Cells Dialog Box खोलने की Shortcut Key क्या है?",
+o:["Ctrl + 1","Ctrl + 2","Ctrl + F1","Alt + 1"],
+a:0
+},
+
+{
+q:"Excel में नई Worksheet जोड़ने की Shortcut Key क्या है?",
+o:["Shift + F11","Ctrl + F11","Alt + F11","F11"],
+a:0
+},
+
+{
+q:"Excel में वर्तमान Workbook को बंद करने की Shortcut Key क्या है?",
+o:["Ctrl + W","Ctrl + N","Ctrl + O","Ctrl + S"],
+a:0
+},
+
+{
+q:"PowerPoint में नई Slide बनाने की Shortcut Key क्या है?",
+o:["Ctrl + M","Ctrl + N","Ctrl + S","Ctrl + D"],
+a:0
+},
+
+{
+q:"PowerPoint में नई Presentation बनाने की Shortcut Key क्या है?",
+o:["Ctrl + N","Ctrl + M","Ctrl + P","Ctrl + O"],
+a:0
+},
+
+{
+q:"PowerPoint में Slide Show शुरू करने के लिए कौन-सी Function Key उपयोग होती है?",
+o:["F5","F2","F7","F12"],
+a:0
+},
+
+{
+q:"PowerPoint में Current Slide से Slide Show शुरू करने की Shortcut Key क्या है?",
+o:["Shift + F5","Ctrl + F5","Alt + F5","F6"],
+a:0
+},
+
+{
+q:"PowerPoint में Selected Object Duplicate करने की Shortcut Key क्या है?",
+o:["Ctrl + D","Ctrl + C","Ctrl + Shift + D","Alt + D"],
+a:0
+},
+
+{
+q:"PowerPoint में Presentation Save करने की Shortcut Key क्या है?",
+o:["Ctrl + S","Ctrl + P","Ctrl + N","Ctrl + W"],
+a:0
+},
+
+{
+q:"PowerPoint में Print करने की Shortcut Key क्या है?",
+o:["Ctrl + P","Ctrl + S","Ctrl + O","Ctrl + M"],
+a:0
+},
+
+{
+q:"PowerPoint में Slide Show से बाहर आने के लिए कौन-सी Key उपयोग होती है?",
+o:["Esc","Enter","Tab","Spacebar"],
+a:0
+},
+
+{
+q:"Web Browser में नया Tab खोलने की Shortcut Key क्या है?",
+o:["Ctrl + T","Ctrl + N","Ctrl + W","Ctrl + Shift + T"],
+a:0
+},
+
+{
+q:"Browser में वर्तमान Tab बंद करने की Shortcut Key क्या है?",
+o:["Ctrl + W","Ctrl + T","Ctrl + N","Ctrl + Shift + W"],
+a:0
+},
+
+{
+q:"Browser में बंद किया हुआ Tab फिर से खोलने की Shortcut Key क्या है?",
+o:["Ctrl + Shift + T","Ctrl + T","Ctrl + Alt + T","Alt + T"],
+a:0
+},
+
+{
+q:"Browser में नया Window खोलने की Shortcut Key क्या है?",
+o:["Ctrl + N","Ctrl + T","Ctrl + W","Ctrl + Shift + N"],
+a:0
+},
+
+{
+q:"Browser में Incognito/Private Window खोलने की सामान्य Shortcut Key क्या है?",
+o:["Ctrl + Shift + N","Ctrl + Shift + T","Ctrl + Alt + N","Alt + Shift + N"],
+a:0
+},
+
+{
+q:"Browser में Webpage को Refresh करने की Shortcut Key क्या है?",
+o:["Ctrl + R","Ctrl + F","Ctrl + L","Ctrl + D"],
+a:0
+},
+
+{
+q:"Browser में Address Bar पर जाने की Shortcut Key क्या है?",
+o:["Ctrl + L","Ctrl + A","Ctrl + B","Ctrl + D"],
+a:0
+},
+
+{
+q:"Browser में Current Page को Bookmark करने की Shortcut Key क्या है?",
+o:["Ctrl + D","Ctrl + B","Ctrl + M","Ctrl + K"],
+a:0
+},
+
+{
+q:"Browser में Downloads खोलने की सामान्य Shortcut Key क्या है?",
+o:["Ctrl + J","Ctrl + D","Ctrl + H","Ctrl + K"],
+a:0
+},
+
+{
+q:"Browser में Browsing History खोलने की सामान्य Shortcut Key क्या है?",
+o:["Ctrl + H","Ctrl + J","Ctrl + D","Ctrl + Y"],
+a:0
+},
+
+{
+q:"Browser में Page को Zoom In करने की Shortcut Key क्या है?",
+o:["Ctrl + +","Ctrl + -","Ctrl + 0","Ctrl + 1"],
+a:0
+},
+
+{
+q:"Browser में Page को Zoom Out करने की Shortcut Key क्या है?",
+o:["Ctrl + -","Ctrl + +","Ctrl + 0","Ctrl + 9"],
+a:0
+},
+
+{
+q:"Browser में Zoom को 100% पर Reset करने की Shortcut Key क्या है?",
+o:["Ctrl + 0","Ctrl + 1","Ctrl + 9","Ctrl + R"],
+a:0
+}
+
+];
+
+let current = 0;
+let score = 0;
+let answered = false;
+
+function loadQuestion(){
+
+    answered = false;
+
+    const q = questions[current];
+
+    document.getElementById("number").innerText =
+        "प्रश्न " + (current + 1) + " / " + questions.length;
+
+    document.getElementById("question").innerText = q.q;
+
+    const progress =
+        ((current + 1) / questions.length) * 100;
+
+    document.getElementById("progress").style.width =
+        progress + "%";
+
+    const box = document.getElementById("options");
+
+    box.innerHTML = "";
+
+    q.o.forEach((text,index)=>{
+
+        const btn = document.createElement("button");
+
+        btn.className = "option";
+
+        btn.innerText =
+            String.fromCharCode(65 + index) + ". " + text;
+
+        btn.onclick = function(){
+            answer(btn,index);
+        };
+
+        box.appendChild(btn);
+
+    });
+
+    document.getElementById("next").disabled = true;
+}
+
+function answer(btn,index){
+
+    if(answered) return;
+
+    answered = true;
+
+    const q = questions[current];
+
+    const buttons =
+        document.querySelectorAll(".option");
+
+    buttons.forEach((b,i)=>{
+
+        if(i === q.a){
+            b.classList.add("correct");
+        }
+
+    });
+
+    if(index === q.a){
+
+        score++;
+
+    }else{
+
+        btn.classList.add("wrong");
+
+    }
+
+    document.getElementById("next").disabled = false;
+}
+
+function nextQuestion(){
+
+    current++;
+
+    if(current < questions.length){
+
+        loadQuestion();
+
+    }else{
+
+        document.getElementById("quiz").style.display =
+            "none";
+
+        document.getElementById("result").style.display =
+            "block";
+
+        document.getElementById("score").innerText =
+            score + " / " + questions.length;
+
+        document.getElementById("resultText").innerText =
+            "आपने " + questions.length +
+            " में से " + score +
+            " प्रश्नों के सही उत्तर दिए।";
+    }
+}
+
+function restartQuiz(){
+
+    current = 0;
+    score = 0;
+
+    document.getElementById("quiz").style.display =
+        "block";
+
+    document.getElementById("result").style.display =
+        "none";
+
+    loadQuestion();
+}
+
+loadQuestion();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Operating System Quiz | CG Exam Hub</title>
+
+<meta name="description"
+content="Operating System के 100 महत्वपूर्ण MCQ प्रश्नों का Quiz। CGPSC, CG Vyapam, Patwari और अन्य प्रतियोगी परीक्षाओं के लिए उपयोगी।">
+
+<meta name="robots" content="index, follow">
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+    background:#f4f7fb;
+    color:#172033;
+}
+
+.header{
+    background:linear-gradient(135deg,#0088b8,#00a8d6);
+    color:white;
+    text-align:center;
+    padding:30px 15px;
+}
+
+.header h1{
+    margin:0;
+    font-size:30px;
+    font-weight:900;
+}
+
+.header p{
+    margin:8px 0 0;
+}
+
+.quiz-container{
+    max-width:760px;
+    margin:25px auto;
+    padding:15px;
+}
+
+.quiz-card{
+    background:white;
+    border-radius:22px;
+    padding:25px;
+    box-shadow:0 10px 35px rgba(0,0,0,.08);
+    border:1px solid #e2e8f0;
+}
+
+.number{
+    color:#0088b8;
+    font-weight:800;
+}
+
+.progress-box{
+    width:100%;
+    height:9px;
+    background:#e8edf3;
+    border-radius:20px;
+    overflow:hidden;
+    margin:12px 0 20px;
+}
+
+.progress{
+    height:100%;
+    width:0%;
+    background:#0088b8;
+    transition:.3s;
+}
+
+.question{
+    font-size:21px;
+    font-weight:800;
+    line-height:1.55;
+    margin-bottom:22px;
+}
+
+.option{
+    width:100%;
+    display:block;
+    text-align:left;
+    border:1px solid #d7dde7;
+    background:white;
+    color:#172033;
+    border-radius:13px;
+    padding:14px 15px;
+    margin:10px 0;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.option:hover{
+    background:#e9faff;
+    border-color:#0088b8;
+}
+
+.option.correct{
+    background:#dff7e8 !important;
+    border-color:#18a957 !important;
+    color:#087536;
+    font-weight:700;
+}
+
+.option.wrong{
+    background:#ffe5e5 !important;
+    border-color:#dc3545 !important;
+    color:#a30000;
+    font-weight:700;
+}
+
+.next{
+    width:100%;
+    border:0;
+    background:#0088b8;
+    color:white;
+    padding:14px;
+    border-radius:13px;
+    font-size:16px;
+    font-weight:800;
+    margin-top:12px;
+    cursor:pointer;
+}
+
+.next:disabled{
+    background:#aab4c3;
+    cursor:not-allowed;
+}
+
+.result{
+    display:none;
+    text-align:center;
+}
+
+.result h2{
+    font-size:28px;
+    font-weight:900;
+}
+
+.score{
+    font-size:50px;
+    font-weight:900;
+    color:#0088b8;
+    margin:15px 0;
+}
+
+.result-text{
+    color:#667085;
+    line-height:1.7;
+}
+
+.back,
+.restart{
+    display:inline-block;
+    margin-top:15px;
+    padding:12px 20px;
+    border-radius:11px;
+    color:white;
+    font-weight:700;
+    text-decoration:none;
+    border:0;
+    cursor:pointer;
+}
+
+.back{
+    background:#071b3a;
+}
+
+.restart{
+    background:#0088b8;
+    margin-left:8px;
+}
+
+@media(max-width:576px){
+
+    .header h1{
+        font-size:25px;
+    }
+
+    .quiz-card{
+        padding:19px;
+    }
+
+    .question{
+        font-size:18px;
+    }
+
+    .option{
+        font-size:15px;
+        padding:13px;
+    }
+
+    .back,
+    .restart{
+        display:block;
+        margin:10px 0 0;
+        width:100%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+    <h1>💻 Operating System Quiz</h1>
+    <p>Operating System के 100 महत्वपूर्ण प्रश्नों का अभ्यास</p>
+</header>
+
+<div class="quiz-container">
+
+<div class="quiz-card" id="quiz">
+
+<div class="number" id="number"></div>
+
+<div class="progress-box">
+<div class="progress" id="progress"></div>
+</div>
+
+<div class="question" id="question"></div>
+
+<div id="options"></div>
+
+<button class="next" id="next"
+onclick="nextQuestion()" disabled>
+अगला प्रश्न →
+</button>
+
+</div>
+
+<div class="quiz-card result" id="result">
+
+<h2>🎉 Quiz पूरा हुआ!</h2>
+
+<div class="score" id="score"></div>
+
+<p class="result-text" id="resultText"></p>
+
+<a href="computer-quiz.html" class="back">
+← Computer Quiz
+</a>
+
+<button class="restart" onclick="restartQuiz()">
+🔄 फिर से शुरू करें
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+const questions=[
+
+{
+q:"Operating System क्या है?",
+o:["Application Software","System Software","Antivirus","Web Browser"],
+a:1
+},
+
+{
+q:"Operating System का मुख्य कार्य क्या है?",
+o:["Hardware और Software के बीच संसाधनों का प्रबंधन करना","केवल गेम चलाना","केवल इंटरनेट चलाना","केवल प्रिंट करना"],
+a:0
+},
+
+{
+q:"निम्न में से कौन-सा Operating System है?",
+o:["Windows","MS Word","Google Chrome","MS Excel"],
+a:0
+},
+
+{
+q:"Windows किस कंपनी का Operating System है?",
+o:["Microsoft","Apple","Google","IBM"],
+a:0
+},
+
+{
+q:"Linux क्या है?",
+o:["Operating System","Word Processor","Database","Browser"],
+a:0
+},
+
+{
+q:"Android किस प्रकार का Software है?",
+o:["Operating System","Spreadsheet","Antivirus","Text Editor"],
+a:0
+},
+
+{
+q:"iOS किस कंपनी से संबंधित Operating System है?",
+o:["Apple","Microsoft","IBM","Intel"],
+a:0
+},
+
+{
+q:"macOS किस कंपनी द्वारा विकसित किया जाता है?",
+o:["Apple","Google","Microsoft","Dell"],
+a:0
+},
+
+{
+q:"Ubuntu किस Operating System पर आधारित है?",
+o:["Linux","Windows","DOS","iOS"],
+a:0
+},
+
+{
+q:"DOS का पूरा नाम क्या है?",
+o:["Disk Operating System","Digital Operating System","Data Operating System","Desktop Operating System"],
+a:0
+},
+
+{
+q:"GUI का पूरा नाम क्या है?",
+o:["Graphical User Interface","General User Internet","Graphical Utility Input","General Utility Interface"],
+a:0
+},
+
+{
+q:"GUI में मुख्य रूप से किसका उपयोग किया जाता है?",
+o:["Icons और Windows","केवल Commands","केवल Binary Code","केवल Machine Code"],
+a:0
+},
+
+{
+q:"CLI का पूरा नाम क्या है?",
+o:["Command Line Interface","Computer Line Internet","Command Link Interface","Computer Language Interface"],
+a:0
+},
+
+{
+q:"CLI में Commands कैसे दी जाती हैं?",
+o:["Text के माध्यम से","केवल Images से","केवल Videos से","केवल Touch से"],
+a:0
+},
+
+{
+q:"Windows में Desktop क्या है?",
+o:["मुख्य कार्य क्षेत्र","Printer","Keyboard","Hard Disk"],
+a:0
+},
+
+{
+q:"Windows में Taskbar का उपयोग किसके लिए होता है?",
+o:["Applications और System functions तक पहुँचने के लिए","केवल Typing के लिए","केवल Printing के लिए","केवल Formatting के लिए"],
+a:0
+},
+
+{
+q:"Windows में Start Menu खोलने के लिए कौन-सी Key उपयोग की जाती है?",
+o:["Windows Key","Ctrl Key","Alt Key","Shift Key"],
+a:0
+},
+
+{
+q:"Windows में File Explorer का उपयोग किसके लिए किया जाता है?",
+o:["Files और Folders को manage करने के लिए","Video editing के लिए","Programming के लिए","Antivirus scanning के लिए"],
+a:0
+},
+
+{
+q:"Windows में Folder का उपयोग किसके लिए किया जाता है?",
+o:["Files को व्यवस्थित रखने के लिए","RAM बढ़ाने के लिए","CPU तेज करने के लिए","Internet speed बढ़ाने के लिए"],
+a:0
+},
+
+{
+q:"Windows में Recycle Bin का उपयोग किसके लिए होता है?",
+o:["Deleted files को अस्थायी रूप से रखने के लिए","Files को Print करने के लिए","Internet चलाने के लिए","Programs बनाने के लिए"],
+a:0
+},
+
+{
+q:"Recycle Bin से Deleted File को क्या किया जा सकता है?",
+o:["Restore किया जा सकता है","RAM में बदला जा सकता है","CPU में बदला जा सकता है","Monitor में बदला जा सकता है"],
+a:0
+},
+
+{
+q:"Operating System में Kernel क्या है?",
+o:["Operating System का मुख्य भाग","एक Printer","एक Browser","एक File"],
+a:0
+},
+
+{
+q:"Kernel मुख्य रूप से किसका प्रबंधन करता है?",
+o:["System resources","केवल Images","केवल Documents","केवल Music"],
+a:0
+},
+
+{
+q:"Process क्या है?",
+o:["Execution में चल रहा Program","एक Folder","एक Keyboard","एक Monitor"],
+a:0
+},
+
+{
+q:"Multitasking का अर्थ क्या है?",
+o:["एक साथ कई Tasks चलाना","एक ही File खोलना","Computer बंद करना","केवल Typing करना"],
+a:0
+},
+
+{
+q:"Multi-user Operating System क्या अनुमति देता है?",
+o:["कई Users को System का उपयोग करने की","केवल एक File को","केवल एक Program को","केवल एक Keyboard को"],
+a:0
+},
+
+{
+q:"Real-time Operating System का उपयोग कहाँ किया जा सकता है?",
+o:["जहाँ समय पर तुरंत Response आवश्यक हो","केवल Word Processing में","केवल Games में","केवल Movies में"],
+a:0
+},
+
+{
+q:"Batch Operating System में Jobs कैसे Process होती हैं?",
+o:["Batch के रूप में","केवल एक अक्षर के रूप में","केवल Images के रूप में","केवल Audio के रूप में"],
+a:0
+},
+
+{
+q:"Operating System में Booting क्या है?",
+o:["Computer शुरू होने की प्रक्रिया","File Delete करने की प्रक्रिया","Printing की प्रक्रिया","Typing की प्रक्रिया"],
+a:0
+},
+
+{
+q:"Cold Boot क्या होता है?",
+o:["बंद Computer को Power On करके शुरू करना","Running Computer को Restart करना","File Open करना","Program Install करना"],
+a:0
+},
+
+{
+q:"Warm Boot क्या होता है?",
+o:["Computer को Restart करना","Computer को पहली बार चालू करना","File Save करना","Printer जोड़ना"],
+a:0
+},
+
+{
+q:"BIOS का पूरा नाम क्या है?",
+o:["Basic Input/Output System","Binary Input Output Software","Basic Internet Operating System","Boot Input Operating Software"],
+a:0
+},
+
+{
+q:"BIOS का उपयोग मुख्य रूप से किससे संबंधित है?",
+o:["Computer के प्रारंभिक Hardware initialization से","Document Formatting से","Internet browsing से","Video editing से"],
+a:0
+},
+
+{
+q:"UEFI किससे संबंधित है?",
+o:["System firmware और boot process","Word processing","Spreadsheet","Email"],
+a:0
+},
+
+{
+q:"Operating System में Device Driver का उपयोग किसके लिए होता है?",
+o:["Hardware devices को Operating System के साथ काम कराने के लिए","Files Compress करने के लिए","Internet speed बढ़ाने के लिए","Games बनाने के लिए"],
+a:0
+},
+
+{
+q:"Printer Driver किससे संबंधित है?",
+o:["Printer और Operating System के बीच communication","Keyboard और Mouse के बीच","Monitor और Speaker के बीच","CPU और RAM के बीच"],
+a:0
+},
+
+{
+q:"Memory Management किसका कार्य है?",
+o:["Memory का allocation और management","केवल File Printing","केवल Internet","केवल Typing"],
+a:0
+},
+
+{
+q:"Process Management किससे संबंधित है?",
+o:["Processes को manage करने से","Files को Print करने से","Images बनाने से","Internet चलाने से"],
+a:0
+},
+
+{
+q:"File Management का अर्थ क्या है?",
+o:["Files और Directories को manage करना","CPU को साफ करना","Monitor बदलना","Keyboard repair करना"],
+a:0
+},
+
+{
+q:"Operating System में File System का उपयोग किसके लिए होता है?",
+o:["Files को organize और manage करने के लिए","Monitor की brightness के लिए","Speaker volume के लिए","Keyboard layout के लिए"],
+a:0
+},
+
+{
+q:"Windows में सामान्य File System कौन-सा है?",
+o:["NTFS","EXT4","HFS+","APFS"],
+a:0
+},
+
+{
+q:"Linux में सामान्य File System का उदाहरण कौन-सा है?",
+o:["EXT4","NTFS","FAT केवल","APFS"],
+a:0
+},
+
+{
+q:"FAT का पूरा नाम क्या है?",
+o:["File Allocation Table","File Access Technology","Fast Allocation Tool","File Application Table"],
+a:0
+},
+
+{
+q:"NTFS का पूरा नाम क्या है?",
+o:["New Technology File System","New Transfer File System","Network Technology File Software","New Technical Format System"],
+a:0
+},
+
+{
+q:"Virtual Memory क्या है?",
+o:["Storage के एक भाग का Memory के रूप में उपयोग","केवल RAM chip","केवल ROM","केवल Cache"],
+a:0
+},
+
+{
+q:"Paging किससे संबंधित है?",
+o:["Memory Management","Printing","Typing","Networking only"],
+a:0
+},
+
+{
+q:"Page Fault कब होता है?",
+o:["जब आवश्यक Page मुख्य Memory में उपलब्ध न हो","जब Printer बंद हो","जब Keyboard खराब हो","जब Monitor बंद हो"],
+a:0
+},
+
+{
+q:"Deadlock क्या है?",
+o:["Processes का resources के लिए एक-दूसरे का इंतजार करते रहना","Computer का सामान्य Boot होना","File Save होना","Program Install होना"],
+a:0
+},
+
+{
+q:"CPU Scheduling का उद्देश्य क्या है?",
+o:["CPU को Processes के बीच allocate करना","Files को Rename करना","Printer Install करना","Monitor बदलना"],
+a:0
+},
+
+{
+q:"Operating System में Scheduler का कार्य क्या है?",
+o:["Processes को CPU के लिए चुनना","Files Print करना","Images बनाना","Internet खोलना"],
+a:0
+},
+
+{
+q:"FCFS का पूरा नाम क्या है?",
+o:["First Come First Served","First Computer First System","Fast Come Fast Service","File Control First System"],
+a:0
+},
+
+{
+q:"Round Robin किससे संबंधित Scheduling Algorithm है?",
+o:["CPU Scheduling","File Compression","Disk Formatting","Network Security"],
+a:0
+},
+
+{
+q:"Priority Scheduling में Process किस आधार पर चुनी जाती है?",
+o:["Priority","File Size","Monitor Size","Keyboard Type"],
+a:0
+},
+
+{
+q:"Context Switching क्या है?",
+o:["CPU द्वारा एक Process से दूसरी Process पर switch करना","Computer को बंद करना","File Copy करना","Printer बदलना"],
+a:0
+},
+
+{
+q:"Thread क्या है?",
+o:["Process के execution का छोटा unit","एक File","एक Folder","एक Device"],
+a:0
+},
+
+{
+q:"Multithreading का अर्थ क्या है?",
+o:["एक Process में कई Threads का execution","कई Computers जोड़ना","कई Printers जोड़ना","कई Files Delete करना"],
+a:0
+},
+
+{
+q:"Windows में Task Manager खोलने के लिए प्रसिद्ध Shortcut क्या है?",
+o:["Ctrl + Shift + Esc","Ctrl + P","Ctrl + S","Ctrl + O"],
+a:0
+},
+
+{
+q:"Task Manager का उपयोग किसके लिए किया जाता है?",
+o:["Running Processes और Applications देखने के लिए","Document Formatting के लिए","Picture editing के लिए","Web designing के लिए"],
+a:0
+},
+
+{
+q:"Windows में Settings का उपयोग किसके लिए होता है?",
+o:["System settings बदलने के लिए","केवल Documents बनाने के लिए","केवल Games खेलने के लिए","केवल Printing के लिए"],
+a:0
+},
+
+{
+q:"Windows में Control Panel किससे संबंधित है?",
+o:["System settings और configuration","Video editing","Document typing","Music recording"],
+a:0
+},
+
+{
+q:"Windows में Safe Mode का उपयोग किसके लिए किया जा सकता है?",
+o:["Troubleshooting के लिए","Gaming performance बढ़ाने के लिए","Video editing के लिए","Internet speed बढ़ाने के लिए"],
+a:0
+},
+
+{
+q:"Operating System में User Account का उद्देश्य क्या है?",
+o:["User की पहचान और access को manage करना","Monitor की brightness बढ़ाना","Keyboard बदलना","Printer बनाना"],
+a:0
+},
+
+{
+q:"Administrator Account को सामान्यतः क्या अधिकार होते हैं?",
+o:["System पर व्यापक administrative अधिकार","कोई अधिकार नहीं","केवल Music चलाने का अधिकार","केवल Browser खोलने का अधिकार"],
+a:0
+},
+
+{
+q:"Guest Account का उद्देश्य क्या है?",
+o:["सीमित access देना","पूरे System का ownership देना","BIOS बदलना","CPU बदलना"],
+a:0
+},
+
+{
+q:"Password का उपयोग Operating System में क्यों किया जाता है?",
+o:["Access को सुरक्षित रखने के लिए","RAM बढ़ाने के लिए","CPU तेज करने के लिए","File Size घटाने के लिए"],
+a:0
+},
+
+{
+q:"Operating System में Permissions का उपयोग किसके लिए होता है?",
+o:["Resources और Files के access को नियंत्रित करने के लिए","Monitor साफ करने के लिए","Keyboard बदलने के लिए","Printer बनाने के लिए"],
+a:0
+},
+
+{
+q:"Open Source Operating System का उदाहरण कौन-सा है?",
+o:["Linux","MS-DOS only","Windows only","iOS only"],
+a:0
+},
+
+{
+q:"Open Source Software में Source Code सामान्यतः कैसा होता है?",
+o:["देखने और modify करने के लिए उपलब्ध हो सकता है","हमेशा छिपा रहता है","केवल Printer में होता है","केवल BIOS में होता है"],
+a:0
+},
+
+{
+q:"Linux का प्रसिद्ध Kernel किस नाम से जाना जाता है?",
+o:["Linux Kernel","Windows Kernel","Apple Kernel","DOS Kernel"],
+a:0
+},
+
+{
+q:"Linux में Command Line Shell का उदाहरण कौन-सा है?",
+o:["Bash","Word","Excel","Paint"],
+a:0
+},
+
+{
+q:"Linux में Root User क्या होता है?",
+o:["सर्वाधिक अधिकार वाला User","Guest User","Temporary User","Printer User"],
+a:0
+},
+
+{
+q:"Android Operating System मुख्य रूप से किस प्रकार के Devices में प्रयोग होता है?",
+o:["Smartphones और Tablets","केवल Printers","केवल Scanners","केवल Projectors"],
+a:0
+},
+
+{
+q:"Android किस Kernel पर आधारित है?",
+o:["Linux Kernel","DOS Kernel","Windows Kernel","Unix नहीं"],
+a:0
+},
+
+{
+q:"ChromeOS किस कंपनी से संबंधित है?",
+o:["Google","Microsoft","Apple","IBM"],
+a:0
+},
+
+{
+q:"ChromeOS मुख्य रूप से किस प्रकार के Devices में मिलता है?",
+o:["Chromebooks","Servers only","Printers","Cameras"],
+a:0
+},
+
+{
+q:"Unix क्या है?",
+o:["Operating System family","Word Processor","Spreadsheet","Antivirus"],
+a:0
+},
+
+{
+q:"Unix का प्रभाव किन Operating Systems पर देखा जाता है?",
+o:["Linux और macOS जैसे Systems","केवल MS Word","केवल Excel","केवल PowerPoint"],
+a:0
+},
+
+{
+q:"Operating System में Shell क्या करता है?",
+o:["User और Operating System के बीच Interface प्रदान करता है","RAM बनाता है","CPU बनाता है","Monitor चलाता है"],
+a:0
+},
+
+{
+q:"Command Interpreter का कार्य क्या है?",
+o:["User Commands को interpret करना","Images Print करना","RAM Upgrade करना","Keyboard Repair करना"],
+a:0
+},
+
+{
+q:"System Call क्या है?",
+o:["Program द्वारा Operating System की services मांगने का तरीका","Computer Start Button","File Extension","Printer Command"],
+a:0
+},
+
+{
+q:"Operating System में Interrupt क्या कर सकता है?",
+o:["CPU का ध्यान किसी event की ओर आकर्षित कर सकता है","File का नाम बदलता है","Monitor का आकार बदलता है","Keyboard की भाषा बदलता है"],
+a:0
+},
+
+{
+q:"Hardware और Software के बीच Interface का कार्य कौन करता है?",
+o:["Operating System","Keyboard","Monitor","Mouse"],
+a:0
+},
+
+{
+q:"Operating System में Resource Allocation किससे संबंधित है?",
+o:["System resources को Processes/User को देना","केवल File Rename करना","केवल Text Formatting","केवल Printing"],
+a:0
+},
+
+{
+q:"System Resource का उदाहरण कौन-सा है?",
+o:["CPU Time","केवल Document","केवल Image","केवल Folder"],
+a:0
+},
+
+{
+q:"Operating System में Disk Management का उपयोग किसके लिए होता है?",
+o:["Storage और Disk partitions को manage करने के लिए","केवल Typing के लिए","केवल Music के लिए","केवल Printing के लिए"],
+a:0
+},
+
+{
+q:"Partition क्या है?",
+o:["Storage Drive का विभाजित Logical भाग","एक Keyboard Key","एक CPU Core","एक Monitor"],
+a:0
+},
+
+{
+q:"Formatting Disk का सामान्य अर्थ क्या है?",
+o:["Storage को File System के लिए तैयार करना","RAM बढ़ाना","CPU बदलना","Internet Connect करना"],
+a:0
+},
+
+{
+q:"Operating System Update क्यों किया जाता है?",
+o:["Features, compatibility और security सुधारने के लिए","केवल Screen बड़ा करने के लिए","Keyboard हटाने के लिए","Printer रंग बदलने के लिए"],
+a:0
+},
+
+{
+q:"Security Patch का उद्देश्य क्या है?",
+o:["Security vulnerabilities को ठीक करना","File Size बढ़ाना","Monitor बदलना","CPU बदलना"],
+a:0
+},
+
+{
+q:"Antivirus और Operating System में क्या संबंध हो सकता है?",
+o:["Antivirus Operating System पर चलकर Malware से सुरक्षा दे सकता है","Antivirus हमेशा Operating System ही होता है","दोनों हमेशा एक ही चीज हैं","Antivirus केवल Hardware है"],
+a:0
+},
+
+{
+q:"Malware से क्या तात्पर्य है?",
+o:["हानिकारक Software","Operating System का प्रकार","Hardware Device","Input Device"],
+a:0
+},
+
+{
+q:"Firewall का उपयोग किसके लिए किया जाता है?",
+o:["Network Traffic को नियंत्रित और सुरक्षा देने के लिए","Text Formatting के लिए","Image Editing के लिए","RAM बढ़ाने के लिए"],
+a:0
+},
+
+{
+q:"Backup का उद्देश्य क्या है?",
+o:["Data की अतिरिक्त सुरक्षित Copy रखना","CPU तेज करना","Monitor बदलना","Operating System हटाना"],
+a:0
+},
+
+{
+q:"System Restore का उपयोग किसके लिए किया जा सकता है?",
+o:["System को पहले की स्थिति में वापस लाने के लिए","Files को Print करने के लिए","RAM बदलने के लिए","Keyboard बदलने के लिए"],
+a:0
+},
+
+{
+q:"Windows में Restart का अर्थ क्या है?",
+o:["Operating System को पुनः शुरू करना","Computer को हमेशा के लिए बंद करना","File Delete करना","Program Uninstall करना"],
+a:0
+},
+
+{
+q:"Shutdown का अर्थ क्या है?",
+o:["Computer/System को बंद करना","File Copy करना","Internet खोलना","Program Save करना"],
+a:0
+},
+
+{
+q:"Log Off का अर्थ क्या है?",
+o:["Current User Session से बाहर निकलना","Computer को Format करना","Hard Disk बदलना","BIOS हटाना"],
+a:0
+},
+
+{
+q:"Sleep Mode का उद्देश्य क्या है?",
+o:["कम Power में System को अस्थायी रूप से निष्क्रिय रखना","System को Format करना","Files Delete करना","Operating System Uninstall करना"],
+a:0
+},
+
+{
+q:"Hibernate Mode में क्या होता है?",
+o:["System की स्थिति Storage में Save करके Power बंद की जा सकती है","सभी Files Delete हो जाती हैं","RAM हमेशा बढ़ जाती है","Operating System हट जाता है"],
+a:0
+},
+
+{
+q:"Operating System का कौन-सा कार्य User Interface प्रदान करना है?",
+o:["हाँ","नहीं","केवल BIOS करता है","केवल CPU करता है"],
+a:0
+},
+
+{
+q:"Operating System के बिना सामान्य Computer का उपयोग किस प्रकार प्रभावित होगा?",
+o:["Hardware और Applications का उपयोग करना बहुत कठिन/सीमित हो जाएगा","Computer की Speed दोगुनी हो जाएगी","RAM स्वतः बढ़ जाएगी","Monitor स्वतः बदल जाएगा"],
+a:0
+}
+
+];
+
+let current=0;
+let score=0;
+let answered=false;
+
+function loadQuestion(){
+
+    answered=false;
+
+    const q=questions[current];
+
+    document.getElementById("number").innerText=
+    "प्रश्न "+(current+1)+" / "+questions.length;
+
+    document.getElementById("question").innerText=q.q;
+
+    const box=document.getElementById("options");
+
+    box.innerHTML="";
+
+    q.o.forEach((text,i)=>{
+
+        const btn=document.createElement("button");
+
+        btn.className="option";
+
+        btn.innerText=
+        String.fromCharCode(65+i)+". "+text;
+
+        btn.onclick=function(){
+            answer(btn,i);
+        };
+
+        box.appendChild(btn);
+
+    });
+
+    document.getElementById("next").disabled=true;
+
+    document.getElementById("progress").style.width=
+    ((current+1)/questions.length*100)+"%";
+}
+
+function answer(btn,index){
+
+    if(answered)return;
+
+    answered=true;
+
+    const q=questions[current];
+
+    const buttons=document.querySelectorAll(".option");
+
+    buttons.forEach((b,i)=>{
+
+        if(i===q.a){
+            b.classList.add("correct");
+        }
+
+    });
+
+    if(index===q.a){
+        score++;
+    }else{
+        btn.classList.add("wrong");
+    }
+
+    document.getElementById("next").disabled=false;
+}
+
+function nextQuestion(){
+
+    current++;
+
+    if(current<questions.length){
+
+        loadQuestion();
+
+    }else{
+
+        document.getElementById("quiz").style.display="none";
+
+        document.getElementById("result").style.display="block";
+
+        document.getElementById("score").innerText=
+        score+" / "+questions.length;
+
+        document.getElementById("resultText").innerText=
+        "आपने "+questions.length+
+        " में से "+score+
+        " प्रश्नों के सही उत्तर दिए।";
+    }
+}
+
+function restartQuiz(){
+
+    current=0;
+    score=0;
+
+    document.getElementById("quiz").style.display="block";
+
+    document.getElementById("result").style.display="none";
+
+    loadQuestion();
+}
+
+loadQuestion();
+
+</script>
+
+</body>
+</html>

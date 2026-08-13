@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Internet Quiz | CG Exam Hub</title>
+
+<meta name="description"
+content="Internet के 100 महत्वपूर्ण MCQ प्रश्नों का Quiz। CGPSC, CG Vyapam, Patwari, Transport Department और अन्य प्रतियोगी परीक्षाओं की तैयारी के लिए उपयोगी।">
+
+<meta name="robots" content="index, follow">
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+    background:#f4f7fb;
+    color:#172033;
+}
+
+.header{
+    background:linear-gradient(135deg,#0088b8,#06b6d4);
+    color:white;
+    text-align:center;
+    padding:30px 15px;
+}
+
+.header h1{
+    margin:0;
+    font-size:30px;
+    font-weight:900;
+}
+
+.header p{
+    margin:8px 0 0;
+    font-size:15px;
+}
+
+.quiz-container{
+    max-width:760px;
+    margin:25px auto;
+    padding:15px;
+}
+
+.quiz-card{
+    background:white;
+    border-radius:22px;
+    padding:25px;
+    box-shadow:0 10px 35px rgba(0,0,0,.08);
+    border:1px solid #e2e8f0;
+}
+
+.number{
+    color:#0088b8;
+    font-weight:800;
+    font-size:15px;
+}
+
+.progress-box{
+    width:100%;
+    height:9px;
+    background:#e8edf3;
+    border-radius:20px;
+    overflow:hidden;
+    margin:12px 0 20px;
+}
+
+.progress{
+    height:100%;
+    width:0%;
+    background:#0088b8;
+    transition:.3s;
+}
+
+.question{
+    font-size:21px;
+    font-weight:800;
+    line-height:1.55;
+    margin-bottom:22px;
+}
+
+.option{
+    width:100%;
+    display:block;
+    text-align:left;
+    border:1px solid #d7dde7;
+    background:white;
+    color:#172033;
+    border-radius:13px;
+    padding:14px 15px;
+    margin:10px 0;
+    font-size:16px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.option:hover{
+    background:#e8faff;
+    border-color:#0088b8;
+}
+
+.option.correct{
+    background:#dff7e8 !important;
+    border-color:#18a957 !important;
+    color:#087536;
+    font-weight:700;
+}
+
+.option.wrong{
+    background:#ffe5e5 !important;
+    border-color:#dc3545 !important;
+    color:#a30000;
+    font-weight:700;
+}
+
+.next{
+    width:100%;
+    border:0;
+    background:#0088b8;
+    color:white;
+    padding:14px;
+    border-radius:13px;
+    font-size:16px;
+    font-weight:800;
+    margin-top:12px;
+    cursor:pointer;
+}
+
+.next:disabled{
+    background:#aab4c3;
+    cursor:not-allowed;
+}
+
+.result{
+    display:none;
+    text-align:center;
+}
+
+.result h2{
+    font-size:28px;
+    font-weight:900;
+}
+
+.score{
+    font-size:50px;
+    font-weight:900;
+    color:#0088b8;
+    margin:15px 0;
+}
+
+.result-text{
+    color:#667085;
+    font-size:16px;
+    line-height:1.7;
+}
+
+.back{
+    display:inline-block;
+    margin-top:15px;
+    background:#071b3a;
+    color:white;
+    padding:12px 20px;
+    border-radius:11px;
+    text-decoration:none;
+    font-weight:700;
+}
+
+.restart{
+    display:inline-block;
+    margin-top:15px;
+    margin-left:8px;
+    background:#0088b8;
+    color:white;
+    padding:12px 20px;
+    border-radius:11px;
+    border:0;
+    font-weight:700;
+    cursor:pointer;
+}
+
+@media(max-width:576px){
+
+    .header h1{
+        font-size:25px;
+    }
+
+    .quiz-card{
+        padding:19px;
+    }
+
+    .question{
+        font-size:18px;
+    }
+
+    .option{
+        font-size:15px;
+        padding:13px;
+    }
+
+    .back,
+    .restart{
+        display:block;
+        margin:10px 0 0;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="header">
+
+<h1>🌐 Internet Quiz</h1>
+
+<p>Internet के 100 महत्वपूर्ण प्रश्नों का अभ्यास</p>
+
+</header>
+
+
+<div class="quiz-container">
+
+<div class="quiz-card" id="quiz">
+
+<div class="number" id="number"></div>
+
+<div class="progress-box">
+<div class="progress" id="progress"></div>
+</div>
+
+<div class="question" id="question"></div>
+
+<div id="options"></div>
+
+<button class="next"
+id="next"
+onclick="nextQuestion()"
+disabled>
+
+अगला प्रश्न →
+
+</button>
+
+</div>
+
+
+<div class="quiz-card result" id="result">
+
+<h2>🎉 Quiz पूरा हुआ!</h2>
+
+<div class="score" id="score"></div>
+
+<p class="result-text" id="resultText"></p>
+
+<a href="computer.html" class="back">
+← Computer Quiz
+</a>
+
+<button class="restart"
+onclick="restartQuiz()">
+
+🔄 फिर से शुरू करें
+
+</button>
+
+</div>
+
+</div>
+
+
+<script>
+
+const questions = [
+
+{
+q:"Internet क्या है?",
+o:["दुनिया भर में जुड़े कंप्यूटर नेटवर्क का विशाल नेटवर्क","एक Operating System","एक Antivirus","एक Printer"],
+a:0
+},
+
+{
+q:"WWW का पूरा नाम क्या है?",
+o:["World Wide Web","World Web Window","Wide World Web","Web World Wide"],
+a:0
+},
+
+{
+q:"Web का आविष्कार किसने किया था?",
+o:["Tim Berners-Lee","Bill Gates","Steve Jobs","Charles Babbage"],
+a:0
+},
+
+{
+q:"Internet पर वेबसाइट देखने के लिए किस Software का उपयोग किया जाता है?",
+o:["Web Browser","Calculator","Compiler","Media Player"],
+a:0
+},
+
+{
+q:"निम्न में से कौन-सा Web Browser है?",
+o:["Google Chrome","Windows","Linux","Android"],
+a:0
+},
+
+{
+q:"Google Chrome किस प्रकार का Software है?",
+o:["Web Browser","Operating System","Antivirus","Database"],
+a:0
+},
+
+{
+q:"Mozilla Firefox क्या है?",
+o:["Web Browser","Search Engine","Operating System","Programming Language"],
+a:0
+},
+
+{
+q:"Microsoft Edge क्या है?",
+o:["Web Browser","Database","Antivirus","Compiler"],
+a:0
+},
+
+{
+q:"Safari Browser किस कंपनी से संबंधित है?",
+o:["Apple","Microsoft","Google","IBM"],
+a:0
+},
+
+{
+q:"Search Engine का मुख्य कार्य क्या है?",
+o:["Internet पर जानकारी खोजने में सहायता करना","Computer को बंद करना","File Format बदलना","Virus बनाना"],
+a:0
+},
+
+{
+q:"निम्न में से कौन-सा Search Engine है?",
+o:["Google","Windows","Chrome","Excel"],
+a:0
+},
+
+{
+q:"Bing किस कंपनी का Search Engine है?",
+o:["Microsoft","Google","Apple","IBM"],
+a:0
+},
+
+{
+q:"URL का पूरा नाम क्या है?",
+o:["Uniform Resource Locator","Universal Resource Link","Uniform Reference Link","Universal Resource Locator"],
+a:0
+},
+
+{
+q:"URL का उपयोग किसके लिए किया जाता है?",
+o:["Web Resource का पता बताने के लिए","Computer बंद करने के लिए","Virus हटाने के लिए","RAM बढ़ाने के लिए"],
+a:0
+},
+
+{
+q:"HTTP का पूरा नाम क्या है?",
+o:["HyperText Transfer Protocol","HyperText Transmission Program","High Transfer Text Protocol","Hyper Transfer Text Program"],
+a:0
+},
+
+{
+q:"HTTPS में S किसका संकेत देता है?",
+o:["Secure","System","Search","Server"],
+a:0
+},
+
+{
+q:"HTTPS का मुख्य लाभ क्या है?",
+o:["सुरक्षित संचार प्रदान करना","Computer की Speed बढ़ाना","RAM बढ़ाना","Printer चलाना"],
+a:0
+},
+
+{
+q:"HTTP का उपयोग मुख्यतः किसके लिए होता है?",
+o:["Web पर Data Transfer के लिए","Audio Recording के लिए","Image Editing के लिए","Spreadsheet बनाने के लिए"],
+a:0
+},
+
+{
+q:"HTML का पूरा नाम क्या है?",
+o:["HyperText Markup Language","HighText Machine Language","Hyper Transfer Markup Language","Home Tool Markup Language"],
+a:0
+},
+
+{
+q:"HTML का उपयोग मुख्यतः किसके लिए होता है?",
+o:["Web Pages बनाने के लिए","Antivirus बनाने के लिए","Operating System बनाने के लिए","Spreadsheet बनाने के लिए"],
+a:0
+},
+
+{
+q:"Web Page की संरचना बनाने में कौन-सी Language प्रमुख है?",
+o:["HTML","SQL","C","Python"],
+a:0
+},
+
+{
+q:"CSS का पूरा नाम क्या है?",
+o:["Cascading Style Sheets","Computer Style System","Creative Style Sheets","Coded Style System"],
+a:0
+},
+
+{
+q:"CSS का उपयोग मुख्यतः किसके लिए किया जाता है?",
+o:["Web Page की Styling के लिए","Database बनाने के लिए","Virus Scan करने के लिए","File Compress करने के लिए"],
+a:0
+},
+
+{
+q:"JavaScript का उपयोग Web Development में किसके लिए किया जाता है?",
+o:["Web Page में Interactivity जोड़ने के लिए","केवल Printing के लिए","केवल Antivirus के लिए","केवल Database Storage के लिए"],
+a:0
+},
+
+{
+q:"Domain Name क्या होता है?",
+o:["Website का मानव-पठनीय Internet पता","Computer का Password","File Extension","RAM का प्रकार"],
+a:0
+},
+
+{
+q:".com सामान्यतः किस प्रकार के Domain से जुड़ा है?",
+o:["Commercial","Computer Memory","Communication","Community Mail"],
+a:0
+},
+
+{
+q:".org Domain सामान्यतः किससे जुड़ा होता है?",
+o:["Organizations","Operating Systems","Original Files","Online Games"],
+a:0
+},
+
+{
+q:".edu Domain सामान्यतः किस प्रकार की संस्थाओं से संबंधित है?",
+o:["Educational Institutions","Entertainment Companies","Electronic Shops","Email Services"],
+a:0
+},
+
+{
+q:".gov Domain सामान्यतः किससे संबंधित है?",
+o:["Government","Games","Graphics","Google"],
+a:0
+},
+
+{
+q:"भारत का Country Code Top-Level Domain क्या है?",
+o:[".in",".ind",".bharat",".india"],
+a:0
+},
+
+{
+q:"IP का पूरा नाम क्या है?",
+o:["Internet Protocol","Internet Program","Internal Protocol","Information Protocol"],
+a:0
+},
+
+{
+q:"IP Address का उपयोग किसके लिए होता है?",
+o:["Network पर Device की पहचान के लिए","Text Formatting के लिए","Printer Ink भरने के लिए","File Editing के लिए"],
+a:0
+},
+
+{
+q:"IPv4 Address कितने Bits का होता है?",
+o:["32 Bits","64 Bits","128 Bits","16 Bits"],
+a:0
+},
+
+{
+q:"IPv6 Address कितने Bits का होता है?",
+o:["128 Bits","32 Bits","64 Bits","256 Bits"],
+a:0
+},
+
+{
+q:"DNS का पूरा नाम क्या है?",
+o:["Domain Name System","Digital Network Service","Domain Network Server","Data Name System"],
+a:0
+},
+
+{
+q:"DNS का मुख्य कार्य क्या है?",
+o:["Domain Name को IP Address में Resolve करना","Virus हटाना","Email भेजना","File Compress करना"],
+a:0
+},
+
+{
+q:"ISP का पूरा नाम क्या है?",
+o:["Internet Service Provider","Internet System Protocol","Internal Service Program","Internet Security Provider"],
+a:0
+},
+
+{
+q:"ISP का कार्य क्या है?",
+o:["Internet Access उपलब्ध कराना","Computer Assemble करना","Keyboard बनाना","Document Print करना"],
+a:0
+},
+
+{
+q:"Wi-Fi क्या है?",
+o:["Wireless Networking Technology","Antivirus","Operating System","Search Engine"],
+a:0
+},
+
+{
+q:"LAN का पूरा नाम क्या है?",
+o:["Local Area Network","Large Area Network","Local Access Network","Long Area Network"],
+a:0
+},
+
+{
+q:"WAN का पूरा नाम क्या है?",
+o:["Wide Area Network","Web Area Network","Wireless Access Network","World Access Network"],
+a:0
+},
+
+{
+q:"MAN का पूरा नाम क्या है?",
+o:["Metropolitan Area Network","Main Area Network","Mobile Area Network","Machine Area Network"],
+a:0
+},
+
+{
+q:"PAN का पूरा नाम क्या है?",
+o:["Personal Area Network","Public Area Network","Private Access Network","Personal Access Network"],
+a:0
+},
+
+{
+q:"Router का मुख्य कार्य क्या है?",
+o:["Networks के बीच Data Packets को Route करना","Document Edit करना","Photo Print करना","Virus बनाना"],
+a:0
+},
+
+{
+q:"Modem शब्द किन दो शब्दों से बना है?",
+o:["Modulator और Demodulator","Monitor और Decoder","Module और Memory","Modern और Device"],
+a:0
+},
+
+{
+q:"Modem का उपयोग किसके लिए किया जाता है?",
+o:["Digital और Analog Signals के बीच Conversion के लिए","Text Formatting के लिए","Photo Editing के लिए","Spreadsheet बनाने के लिए"],
+a:0
+},
+
+{
+q:"Network में Data की छोटी इकाई जिसे भेजा जाता है, उसे क्या कहा जाता है?",
+o:["Packet","Page","Record","Slide"],
+a:0
+},
+
+{
+q:"Bandwidth किससे संबंधित है?",
+o:["Data Transfer Capacity","Screen Size","Keyboard Size","Hard Disk Color"],
+a:0
+},
+
+{
+q:"Internet Speed को सामान्यतः किस इकाई में मापा जाता है?",
+o:["Bits per second","Bytes per page","Pixels per inch","Words per minute"],
+a:0
+},
+
+{
+q:"Mbps का पूरा नाम क्या है?",
+o:["Megabits per second","Megabytes per system","Mega bytes per signal","Memory bits per second"],
+a:0
+},
+
+{
+q:"Gbps का पूरा नाम क्या है?",
+o:["Gigabits per second","Gigabytes per system","Global bits per second","Google bits per system"],
+a:0
+},
+
+{
+q:"Email का पूरा नाम क्या है?",
+o:["Electronic Mail","Electric Mail","Express Mail","Electronic Message"],
+a:0
+},
+
+{
+q:"Email भेजने के लिए किसका उपयोग किया जाता है?",
+o:["Email Service","Paint","Calculator","Notepad"],
+a:0
+},
+
+{
+q:"Email Address में सामान्यतः कौन-सा चिन्ह होता है?",
+o:["@","#","%","&"],
+a:0
+},
+
+{
+q:"Email में CC का पूरा नाम क्या है?",
+o:["Carbon Copy","Computer Copy","Central Copy","Common Communication"],
+a:0
+},
+
+{
+q:"Email में BCC का पूरा नाम क्या है?",
+o:["Blind Carbon Copy","Basic Carbon Copy","Backup Computer Copy","Blind Computer Communication"],
+a:0
+},
+
+{
+q:"Email में Subject का उपयोग किसके लिए होता है?",
+o:["Email के विषय को बताने के लिए","Password छिपाने के लिए","File Delete करने के लिए","Browser खोलने के लिए"],
+a:0
+},
+
+{
+q:"Email में Attachment क्या होता है?",
+o:["Email के साथ भेजी गई File","Email का Password","Browser का नाम","Network Cable"],
+a:0
+},
+
+{
+q:"Spam Email क्या है?",
+o:["अनचाहा या अवांछित Email","महत्वपूर्ण सरकारी Email","Draft Email","Sent Email"],
+a:0
+},
+
+{
+q:"Phishing का उद्देश्य सामान्यतः क्या होता है?",
+o:["धोखे से संवेदनशील जानकारी प्राप्त करना","Internet Speed बढ़ाना","Computer Format करना","Web Page Design करना"],
+a:0
+},
+
+{
+q:"OTP का पूरा नाम क्या है?",
+o:["One Time Password","Online Transfer Password","One Type Protocol","Official Transfer Password"],
+a:0
+},
+
+{
+q:"OTP का उपयोग सामान्यतः किसके लिए किया जाता है?",
+o:["Authentication/Verification","Photo Editing","Video Playback","File Compression"],
+a:0
+},
+
+{
+q:"Cloud Computing क्या है?",
+o:["Internet के माध्यम से Computing Resources/Services का उपयोग","केवल Hard Disk का उपयोग","केवल Printer का उपयोग","केवल Keyboard का उपयोग"],
+a:0
+},
+
+{
+q:"Cloud Storage का उदाहरण कौन-सा है?",
+o:["Google Drive","Calculator","Notepad","Paint"],
+a:0
+},
+
+{
+q:"Google Drive किस प्रकार की Service है?",
+o:["Cloud Storage Service","Antivirus","Operating System","Web Browser"],
+a:0
+},
+
+{
+q:"Google का Email Service कौन-सा है?",
+o:["Gmail","Google Mailbox Pro","G-Email Server","Google Post"],
+a:0
+},
+
+{
+q:"Social Media का उदाहरण कौन-सा है?",
+o:["Facebook","Windows","BIOS","CPU"],
+a:0
+},
+
+{
+q:"Online Video Platform का उदाहरण कौन-सा है?",
+o:["YouTube","Excel","BIOS","Linux"],
+a:0
+},
+
+{
+q:"Internet पर Website का Home Page क्या होता है?",
+o:["Website का मुख्य/प्रारंभिक Page","केवल Login Page","केवल Contact Page","केवल Error Page"],
+a:0
+},
+
+{
+q:"Web Browser में Back Button का उपयोग किसके लिए होता है?",
+o:["पिछले Web Page पर जाने के लिए","अगला Page खोलने के लिए","Browser बंद करने के लिए","File Delete करने के लिए"],
+a:0
+},
+
+{
+q:"Web Browser में Forward Button का उपयोग किसके लिए होता है?",
+o:["आगे वाले Page पर जाने के लिए","पिछले Page पर जाने के लिए","Browser Install करने के लिए","Computer Shutdown करने के लिए"],
+a:0
+},
+
+{
+q:"Browser में Refresh/Reload का उपयोग किसके लिए किया जाता है?",
+o:["वर्तमान Web Page को फिर से Load करने के लिए","Computer Restart करने के लिए","File Delete करने के लिए","Password बदलने के लिए"],
+a:0
+},
+
+{
+q:"Browser में Bookmark का उपयोग किसके लिए होता है?",
+o:["महत्वपूर्ण Web Page को बाद में आसानी से खोलने के लिए","Virus हटाने के लिए","Email भेजने के लिए","Computer बंद करने के लिए"],
+a:0
+},
+
+{
+q:"Browser की Address Bar में क्या दर्ज किया जा सकता है?",
+o:["URL","केवल Password","केवल Image","केवल Audio"],
+a:0
+},
+
+{
+q:"Incognito/Private Browsing का मुख्य उद्देश्य क्या है?",
+o:["Local Browsing History को सामान्य रूप से Save न करना","Internet Speed दोगुनी करना","Virus हटाना","IP Address हमेशा बदलना"],
+a:0
+},
+
+{
+q:"Cookie क्या है?",
+o:["Website द्वारा Browser में Store किया जाने वाला छोटा Data","Computer Virus","Network Cable","Search Engine"],
+a:0
+},
+
+{
+q:"Cache का उपयोग Browser में किसलिए होता है?",
+o:["कुछ Web Resources की अस्थायी Copy रखने के लिए","Password बनाने के लिए","Computer Format करने के लिए","Printer चलाने के लिए"],
+a:0
+},
+
+{
+q:"Web Server क्या करता है?",
+o:["Web Content/Resources उपलब्ध कराता है","केवल Keyboard चलाता है","केवल Monitor चलाता है","केवल Calculator चलाता है"],
+a:0
+},
+
+{
+q:"Client-Server Model में Client क्या करता है?",
+o:["Server से Service/Resource Request करता है","केवल Data Delete करता है","केवल Server बंद करता है","केवल Hardware बनाता है"],
+a:0
+},
+
+{
+q:"FTP का पूरा नाम क्या है?",
+o:["File Transfer Protocol","Fast Transfer Program","File Transmission Program","Full Transfer Protocol"],
+a:0
+},
+
+{
+q:"FTP का उपयोग मुख्यतः किसके लिए होता है?",
+o:["Files Transfer करने के लिए","Web Page का रंग बदलने के लिए","Audio सुनने के लिए","Computer Boot करने के लिए"],
+a:0
+},
+
+{
+q:"SMTP का उपयोग किससे संबंधित है?",
+o:["Email भेजने से","Web Page Design से","File Compression से","Video Editing से"],
+a:0
+},
+
+{
+q:"POP3 किससे संबंधित Protocol है?",
+o:["Email प्राप्त करने से","Web Page Styling से","Video Streaming से","Image Editing से"],
+a:0
+},
+
+{
+q:"IMAP किससे संबंधित है?",
+o:["Email Access/Management","Computer Graphics","File Compression","Operating System"],
+a:0
+},
+
+{
+q:"VoIP का पूरा नाम क्या है?",
+o:["Voice over Internet Protocol","Video over Internet Program","Voice Online Internet Program","Virtual Office Internet Protocol"],
+a:0
+},
+
+{
+q:"VoIP का उपयोग किसके लिए किया जाता है?",
+o:["Internet के माध्यम से Voice Communication","केवल File Storage","केवल Printing","केवल Gaming"],
+a:0
+},
+
+{
+q:"Video Conferencing के लिए Internet का उपयोग किस कार्य में होता है?",
+o:["Online Audio-Video Communication","केवल File Naming","केवल Text Formatting","केवल Printing"],
+a:0
+},
+
+{
+q:"Internet Banking क्या है?",
+o:["Internet के माध्यम से Banking Services का उपयोग","केवल ATM का उपयोग","केवल Cash Counting","केवल Cheque Printing"],
+a:0
+},
+
+{
+q:"E-Commerce का अर्थ क्या है?",
+o:["Internet के माध्यम से वस्तुओं/सेवाओं की खरीद-बिक्री","Computer Repair","Email Writing","Operating System Installation"],
+a:0
+},
+
+{
+q:"Online Shopping किसका उदाहरण है?",
+o:["E-Commerce","E-Learning","E-Governance","Cloud Computing"],
+a:0
+},
+
+{
+q:"E-Governance का संबंध किससे है?",
+o:["Digital माध्यम से सरकारी सेवाएँ उपलब्ध कराने से","केवल Online Games से","केवल Video Editing से","केवल Music से"],
+a:0
+},
+
+{
+q:"E-Learning का अर्थ क्या है?",
+o:["Electronic/Digital माध्यम से शिक्षा","Electronic Banking","Electronic Shopping","Electronic Printing"],
+a:0
+},
+
+{
+q:"Internet पर किसी Web Page का सुरक्षित Connection सामान्यतः किससे पहचाना जा सकता है?",
+o:["HTTPS","FTP","HTTP केवल","HTML"],
+a:0
+},
+
+{
+q:"Captcha का उपयोग सामान्यतः किसके लिए किया जाता है?",
+o:["Human और Automated Bot में अंतर करने में सहायता के लिए","Internet Speed बढ़ाने के लिए","File Save करने के लिए","Printer चलाने के लिए"],
+a:0
+},
+
+{
+q:"QR Code का उपयोग Internet Services में किसके लिए किया जा सकता है?",
+o:["Information/Link को जल्दी Access करने के लिए","RAM बढ़ाने के लिए","Monitor चालू करने के लिए","CPU बदलने के लिए"],
+a:0
+},
+
+{
+q:"Internet पर Data की सुरक्षा के लिए Encryption का क्या अर्थ है?",
+o:["Data को सुरक्षित/Encoded रूप में बदलना","Data Delete करना","Data Print करना","Data Rename करना"],
+a:0
+},
+
+{
+q:"VPN का पूरा नाम क्या है?",
+o:["Virtual Private Network","Virtual Public Network","Verified Private Network","Visual Private Network"],
+a:0
+},
+
+{
+q:"VPN का उपयोग सामान्यतः किसके लिए किया जाता है?",
+o:["Network Connection को अधिक Private/Secure बनाने में सहायता के लिए","Computer की RAM बढ़ाने के लिए","Printer की Speed बढ़ाने के लिए","Keyboard बदलने के लिए"],
+a:0
+},
+
+{
+q:"Firewall का मुख्य कार्य क्या है?",
+o:["Network Traffic को नियमों के आधार पर नियंत्रित करना","Document Type करना","Video Edit करना","Screen Brightness बढ़ाना"],
+a:0
+},
+
+{
+q:"Internet पर Malware क्या है?",
+o:["हानिकारक Software","Search Engine","Web Browser","Cloud Storage"],
+a:0
+},
+
+{
+q:"Computer Virus क्या है?",
+o:["एक प्रकार का Malicious Program","Search Engine","Web Browser","Internet Cable"],
+a:0
+},
+
+{
+q:"Ransomware सामान्यतः क्या करता है?",
+o:["Data/Systems को प्रभावित करके फिरौती की मांग कर सकता है","Internet Speed बढ़ाता है","Browser को Update करता है","Printer को साफ करता है"],
+a:0
+},
+
+{
+q:"Strong Password में सामान्यतः क्या शामिल करना बेहतर माना जाता है?",
+o:["अलग-अलग प्रकार के अक्षर, अंक और Symbols","केवल अपना नाम","केवल जन्म-वर्ष","केवल 123456"],
+a:0
+},
+
+{
+q:"Two-Factor Authentication का उद्देश्य क्या है?",
+o:["Login Security को अतिरिक्त Verification से मजबूत करना","Internet Speed बढ़ाना","Storage घटाना","Browser हटाना"],
+a:0
+},
+
+{
+q:"Internet पर किसी Website की पहचान के लिए Domain Name क्यों उपयोगी है?",
+o:["यह याद रखने योग्य Web Address प्रदान करता है","यह RAM को बढ़ाता है","यह CPU की Speed बढ़ाता है","यह Printer को नियंत्रित करता है"],
+a:0
+}
+
+];
+
+
+let current=0;
+let score=0;
+let answered=false;
+
+function loadQuestion(){
+
+    answered=false;
+
+    const q=questions[current];
+
+    document.getElementById("number").innerText=
+    "प्रश्न "+(current+1)+" / "+questions.length;
+
+    document.getElementById("question").innerText=q.q;
+
+    const box=document.getElementById("options");
+
+    box.innerHTML="";
+
+    q.o.forEach((text,i)=>{
+
+        const btn=document.createElement("button");
+
+        btn.className="option";
+
+        btn.innerText=
+        String.fromCharCode(65+i)+". "+text;
+
+        btn.onclick=function(){
+            answer(btn,i);
+        };
+
+        box.appendChild(btn);
+
+    });
+
+    document.getElementById("next").disabled=true;
+
+    document.getElementById("progress").style.width=
+    ((current+1)/questions.length*100)+"%";
+}
+
+function answer(btn,index){
+
+    if(answered)return;
+
+    answered=true;
+
+    const q=questions[current];
+
+    const buttons=document.querySelectorAll(".option");
+
+    buttons.forEach((b,i)=>{
+
+        if(i===q.a){
+            b.classList.add("correct");
+        }
+
+    });
+
+    if(index===q.a){
+        score++;
+    }else{
+        btn.classList.add("wrong");
+    }
+
+    document.getElementById("next").disabled=false;
+}
+
+function nextQuestion(){
+
+    current++;
+
+    if(current<questions.length){
+
+        loadQuestion();
+
+    }else{
+
+        document.getElementById("quiz").style.display="none";
+
+        document.getElementById("result").style.display="block";
+
+        document.getElementById("score").innerText=
+        score+" / "+questions.length;
+
+        document.getElementById("resultText").innerText=
+        "आपने "+questions.length+
+        " में से "+score+
+        " प्रश्नों के सही उत्तर दिए।";
+    }
+}
+
+function restartQuiz(){
+
+    current=0;
+    score=0;
+
+    document.getElementById("quiz").style.display="block";
+
+    document.getElementById("result").style.display="none";
+
+    loadQuestion();
+}
+
+loadQuestion();
+
+</script>
+
+</body>
+</html>

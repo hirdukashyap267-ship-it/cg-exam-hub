@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>DBMS Quiz | CG Exam Hub</title>
+
+<meta name="description"
+content="DBMS के 100 महत्वपूर्ण MCQ प्रश्नों का Quiz। CGPSC, CG Vyapam, Patwari और अन्य प्रतियोगी परीक्षाओं की तैयारी के लिए।">
+
+<meta name="robots" content="index, follow">
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+    background:#f4f7fb;
+    color:#172033;
+}
+
+.header{
+    background:linear-gradient(135deg,#b66b00,#e09a2d);
+    color:white;
+    text-align:center;
+    padding:30px 15px;
+}
+
+.header h1{
+    margin:0;
+    font-size:30px;
+    font-weight:900;
+}
+
+.header p{
+    margin:8px 0 0;
+    font-size:15px;
+}
+
+.quiz-container{
+    max-width:760px;
+    margin:25px auto;
+    padding:15px;
+}
+
+.quiz-card{
+    background:white;
+    border-radius:22px;
+    padding:25px;
+    box-shadow:0 10px 35px rgba(0,0,0,.08);
+    border:1px solid #e2e8f0;
+}
+
+.number{
+    color:#b66b00;
+    font-weight:800;
+    font-size:15px;
+}
+
+.progress-box{
+    width:100%;
+    height:9px;
+    background:#e8edf3;
+    border-radius:20px;
+    overflow:hidden;
+    margin:12px 0 20px;
+}
+
+.progress{
+    height:100%;
+    width:0%;
+    background:#b66b00;
+    transition:.3s;
+}
+
+.question{
+    font-size:21px;
+    font-weight:800;
+    line-height:1.55;
+    margin-bottom:22px;
+}
+
+.option{
+    width:100%;
+    display:block;
+    text-align:left;
+    border:1px solid #d7dde7;
+    background:white;
+    color:#172033;
+    border-radius:13px;
+    padding:14px 15px;
+    margin:10px 0;
+    font-size:16px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.option:hover{
+    background:#fff7e8;
+    border-color:#b66b00;
+}
+
+.option.correct{
+    background:#dff7e8 !important;
+    border-color:#18a957 !important;
+    color:#087536;
+    font-weight:700;
+}
+
+.option.wrong{
+    background:#ffe5e5 !important;
+    border-color:#dc3545 !important;
+    color:#a30000;
+    font-weight:700;
+}
+
+.next{
+    width:100%;
+    border:0;
+    background:#b66b00;
+    color:white;
+    padding:14px;
+    border-radius:13px;
+    font-size:16px;
+    font-weight:800;
+    margin-top:12px;
+    cursor:pointer;
+}
+
+.next:disabled{
+    background:#aab4c3;
+    cursor:not-allowed;
+}
+
+.result{
+    display:none;
+    text-align:center;
+}
+
+.result h2{
+    font-size:28px;
+    font-weight:900;
+}
+
+.score{
+    font-size:50px;
+    font-weight:900;
+    color:#b66b00;
+    margin:15px 0;
+}
+
+.result-text{
+    color:#667085;
+    font-size:16px;
+    line-height:1.7;
+}
+
+.back{
+    display:inline-block;
+    margin-top:15px;
+    background:#071b3a;
+    color:white;
+    padding:12px 20px;
+    border-radius:11px;
+    text-decoration:none;
+    font-weight:700;
+}
+
+.restart{
+    display:inline-block;
+    margin-top:15px;
+    margin-left:8px;
+    background:#b66b00;
+    color:white;
+    padding:12px 20px;
+    border-radius:11px;
+    border:0;
+    font-weight:700;
+    cursor:pointer;
+}
+
+@media(max-width:576px){
+
+    .header h1{
+        font-size:25px;
+    }
+
+    .quiz-card{
+        padding:19px;
+    }
+
+    .question{
+        font-size:18px;
+    }
+
+    .option{
+        font-size:15px;
+        padding:13px;
+    }
+
+    .back,
+    .restart{
+        display:block;
+        margin:10px 0 0;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header class="header">
+
+<h1>🗄️ DBMS Quiz</h1>
+
+<p>
+DBMS के 100 महत्वपूर्ण प्रश्नों का अभ्यास
+</p>
+
+</header>
+
+
+<div class="quiz-container">
+
+<div class="quiz-card" id="quiz">
+
+<div class="number" id="number"></div>
+
+<div class="progress-box">
+
+<div class="progress" id="progress"></div>
+
+</div>
+
+
+<div class="question" id="question"></div>
+
+<div id="options"></div>
+
+
+<button class="next"
+id="next"
+onclick="nextQuestion()"
+disabled>
+
+अगला प्रश्न →
+
+</button>
+
+</div>
+
+
+<div class="quiz-card result" id="result">
+
+<h2>🎉 Quiz पूरा हुआ!</h2>
+
+<div class="score" id="score"></div>
+
+<p class="result-text" id="resultText"></p>
+
+
+<a href="computer.html" class="back">
+
+← Computer Quiz
+
+</a>
+
+
+<button class="restart"
+onclick="restartQuiz()">
+
+🔄 फिर से शुरू करें
+
+</button>
+
+</div>
+
+</div>
+
+
+<script>
+
+const questions = [
+
+/* =========================
+   QUESTION 1 - 50
+========================= */
+
+{
+q:"DBMS का पूरा नाम क्या है?",
+o:["Data backup mangement system","Database  Management System","Database Machine System","Data Management Software"],
+a:1
+},
+
+{
+q:"DBMS का मुख्य उद्देश्य क्या है?",
+o:["Database को व्यवस्थित और Manage करना","Computer को बंद करना","Internet चलाना","Video बनाना"],
+a:0
+},
+
+{
+q:"Database क्या है?",
+o:["संगठित Data का संग्रह","एक Operating System","एक Antivirus","एक Printer"],
+a:0
+},
+
+{
+q:"DBMS का उदाहरण कौन-सा है?",
+o:["MySQL","Windows","Google Chrome","MS Paint"],
+a:0
+},
+
+{
+q:"निम्न में से कौन-सा Relational Database Management System है?",
+o:["MySQL","MS Paint","Notepad","Calculator"],
+a:0
+},
+
+{
+q:"RDBMS का पूरा नाम क्या है?",
+o:["Relational Database Management System","Remote Database Management System","Random Data Backup Management System","Relational Data Machine System"],
+a:0
+},
+
+{
+q:"Relational Database में Data किस रूप में संग्रहीत होता है?",
+o:["Tables","Images","Videos","Folders"],
+a:0
+},
+
+{
+q:"Database Table में Data किस रूप में व्यवस्थित होता है?",
+o:["Rows और Columns"," केवल Pages","केवल Files","केवल Folders"],
+a:0
+},
+
+{
+q:"Table की एक Row को क्या कहा जाता है?",
+o:["Record","Field","Column","Database"],
+a:0
+},
+
+{
+q:"Table के एक Column को क्या कहा जाता है?",
+o:["Field","Record","Row","Database"],
+a:0
+},
+
+{
+q:"Database में Field क्या दर्शाता है?",
+o:["एक Attribute या Data Item","पूरे Database को","एक Program","एक Computer"],
+a:0
+},
+
+{
+q:"Database में Record क्या होता है?",
+o:["Related Fields का एक समूह","एक Column","एक Database","एक Query"],
+a:0
+},
+
+{
+q:"Primary Key क्या है?",
+o:["ऐसा Field जो Record की Unique पहचान करता है","एक Password","एक File","एक Report"],
+a:0
+},
+
+{
+q:"Primary Key में Duplicate Values हो सकती हैं?",
+o:["हाँ","नहीं","कभी-कभी","केवल Numeric में"],
+a:1
+},
+
+{
+q:"Primary Key में NULL Value हो सकती है?",
+o:["हाँ","नहीं","हमेशा","केवल Text में"],
+a:1
+},
+
+{
+q:"Foreign Key का उपयोग किसके लिए किया जाता है?",
+o:["Tables के बीच Relationship बनाने के लिए","Database Delete करने के लिए","Password बनाने के लिए","Table Print करने के लिए"],
+a:0
+},
+
+{
+q:"Candidate Key क्या होती है?",
+o:["ऐसी Key जो Record को Uniquely Identify कर सकती है","एक Foreign Key","एक Password","एक Report"],
+a:0
+},
+
+{
+q:"Composite Key क्या होती है?",
+o:["दो या अधिक Fields से बनी Key","केवल एक Field की Key","एक Password","एक Database"],
+a:0
+},
+
+{
+q:"Alternate Key क्या होती है?",
+o:["Candidate Key जो Primary Key नहीं चुनी गई","Foreign Key","Duplicate Key","Null Key"],
+a:0
+},
+
+{
+q:"Super Key का उपयोग किसके लिए होता है?",
+o:["Record को Uniquely Identify करने के लिए","Database Delete करने के लिए","Table Print करने के लिए","Password बनाने के लिए"],
+a:0
+},
+
+{
+q:"SQL का पूरा नाम क्या है?",
+o:["Structured Query Language","Simple Query Language","System Query Language","Structured Question Language"],
+a:0
+},
+
+{
+q:"SQL का उपयोग किसके लिए किया जाता है?",
+o:["Database के साथ काम करने के लिए","Image Editing के लिए","Video Editing के लिए","Antivirus के लिए"],
+a:0
+},
+
+{
+q:"SQL में Data प्राप्त करने के लिए कौन-सी Command उपयोग होती है?",
+o:["SELECT","GET","FETCH","OPEN"],
+a:0
+},
+
+{
+q:"SQL में नया Record जोड़ने के लिए कौन-सी Command उपयोग होती है?",
+o:["INSERT","ADD","CREATE","NEW"],
+a:0
+},
+
+{
+q:"SQL में Record को बदलने के लिए कौन-सी Command उपयोग होती है?",
+o:["UPDATE","CHANGE","MODIFY","ALTER"],
+a:0
+},
+
+{
+q:"SQL में Record Delete करने के लिए कौन-सी Command उपयोग होती है?",
+o:["DELETE","REMOVE","DROP","CLEAR"],
+a:0
+},
+
+{
+q:"SQL में नया Table बनाने के लिए कौन-सी Command उपयोग होती है?",
+o:["CREATE TABLE","NEW TABLE","MAKE TABLE","ADD TABLE"],
+a:0
+},
+
+{
+q:"SQL में Table हटाने के लिए कौन-सी Command उपयोग होती है?",
+o:["DROP TABLE","DELETE TABLE","REMOVE TABLE","CLEAR TABLE"],
+a:0
+},
+
+{
+q:"SQL में Table की Structure बदलने के लिए कौन-सी Command उपयोग होती है?",
+o:["ALTER TABLE","CHANGE TABLE","UPDATE TABLE","MODIFY TABLE"],
+a:0
+},
+
+{
+q:"SQL में Data को Sort करने के लिए कौन-सा Clause उपयोग होता है?",
+o:["ORDER BY","SORT BY","GROUP BY","ARRANGE BY"],
+a:0
+},
+
+{
+q:"SQL में Records को Group करने के लिए कौन-सा Clause उपयोग होता है?",
+o:["GROUP BY","ORDER BY","SORT BY","COLLECT BY"],
+a:0
+},
+
+{
+q:"SQL में Condition लगाने के लिए कौन-सा Clause उपयोग होता है?",
+o:["WHERE","WHEN","IF","CHECK"],
+a:0
+},
+
+{
+q:"SQL में दो Conditions दोनों सही होने पर कौन-सा Operator उपयोग होता है?",
+o:["AND","OR","NOT","WITH"],
+a:0
+},
+
+{
+q:"SQL में दो Conditions में से किसी एक के सही होने पर कौन-सा Operator उपयोग होता है?",
+o:["OR","AND","NOT","WITH"],
+a:0
+},
+
+{
+q:"SQL में Condition को उलटने के लिए कौन-सा Operator उपयोग होता है?",
+o:["NOT","NO","REVERSE","EXCEPT"],
+a:0
+},
+
+{
+q:"SQL में Pattern Matching के लिए कौन-सा Operator उपयोग होता है?",
+o:["LIKE","MATCH","SEARCH","FIND"],
+a:0
+},
+
+{
+q:"SQL LIKE में Multiple Characters के लिए कौन-सा Wildcard उपयोग होता है?",
+o:["%","_","#","*"],
+a:0
+},
+
+{
+q:"SQL LIKE में Single Character के लिए कौन-सा Wildcard उपयोग होता है?",
+o:["_","%","#","*"],
+a:0
+},
+
+{
+q:"SQL में NULL की जाँच के लिए कौन-सा तरीका उपयोग होता है?",
+o:["IS NULL","= NULL","NULL = TRUE","CHECK NULL"],
+a:0
+},
+
+{
+q:"NULL का सामान्य अर्थ क्या है?",
+o:["अज्ञात या अनुपलब्ध Value","Zero","False","Blank Space हमेशा"],
+a:0
+},
+
+{
+q:"DBMS में Data Redundancy का अर्थ क्या है?",
+o:["एक ही Data का अनावश्यक रूप से दोहराया जाना","Data Encryption","Data Sorting","Data Backup"],
+a:0
+},
+
+{
+q:"Normalization का मुख्य उद्देश्य क्या है?",
+o:["Data Redundancy कम करना","Database Delete करना","Computer तेज करना","Password बनाना"],
+a:0
+},
+
+{
+q:"Normalization की पहली अवस्था क्या कहलाती है?",
+o:["First Normal Form","Basic Normal Form","Primary Normal Form","Initial Data Form"],
+a:0
+},
+
+{
+q:"1NF में प्रत्येक Field में कैसी Value होनी चाहिए?",
+o:["Atomic Value","Multiple Value","Duplicate Value","Only NULL"],
+a:0
+},
+
+{
+q:"2NF मुख्यतः किस Dependency को हटाने से संबंधित है?",
+o:["Partial Dependency","Transitive Dependency","Full Dependency","Foreign Dependency"],
+a:0
+},
+
+{
+q:"3NF मुख्यतः किस Dependency को हटाने से संबंधित है?",
+o:["Transitive Dependency","Partial Dependency","Primary Dependency","Foreign Dependency"],
+a:0
+},
+
+{
+q:"Database में Relationship क्या दर्शाता है?",
+o:["Tables के बीच संबंध","Password का संबंध","Computer का संबंध","Printer का संबंध"],
+a:0
+},
+
+{
+q:"One-to-One Relationship में क्या होता है?",
+o:["एक Record का संबंध एक Record से","एक Record का संबंध कई Records से","कई Records का संबंध कई Records से","कोई संबंध नहीं"],
+a:0
+},
+
+{
+q:"One-to-Many Relationship में क्या होता है?",
+o:["एक Record का संबंध कई Records से","एक Record का संबंध केवल एक से","कई Records का संबंध एक से","कोई संबंध नहीं"],
+a:0
+},
+
+{
+q:"Many-to-Many Relationship में क्या होता है?",
+o:["कई Records का संबंध कई Records से","एक Record का संबंध एक से","एक Record का संबंध दो से","कोई संबंध नहीं"],
+a:0
+},
+
+{
+q:"DBMS में Query क्या है?",
+o:["Database से Data प्राप्त या Manipulate करने का अनुरोध","एक Image","एक Program","एक Printer"],
+a:0
+},
+
+{
+q:"DBMS में Form का उपयोग किसके लिए किया जाता है?",
+o:["Data Enter और View करने के लिए","Database Delete करने के लिए","Computer Shutdown करने के लिए","Internet चलाने के लिए"],
+a:0
+},
+
+{
+q:"DBMS में Report का उपयोग किसके लिए किया जाता है?",
+o:["Data को व्यवस्थित रूप में प्रस्तुत करने के लिए","Password बदलने के लिए","Table Delete करने के लिए","Operating System Install करने के लिए"],
+a:0
+},
+
+{
+q:"Database में Index का मुख्य उद्देश्य क्या है?",
+o:["Data Searching को तेज करना","Data Delete करना","Database बंद करना","Font बदलना"],
+a:0
+},
+
+{
+q:"DBMS में Transaction क्या है?",
+o:["Database पर किए गए कार्यों की Logical Unit","एक Printer","एक Operating System","एक Hardware Device"],
+a:0
+},
+
+{
+q:"DBMS में Primary Key का मुख्य उद्देश्य क्या है?",
+o:["प्रत्येक Record की विशिष्ट पहचान करना","Database को Delete करना","Password बदलना","Font बदलना"],
+a:0
+},
+
+{
+q:"Primary Key में किस प्रकार के मान होने चाहिए?",
+o:["Duplicate","Unique","केवल खाली","सभी समान"],
+a:1
+},
+
+{
+q:"Primary Key में NULL Value हो सकती है?",
+o:["हाँ","नहीं","हमेशा","केवल Text में"],
+a:1
+},
+
+{
+q:"Foreign Key का उपयोग किसके लिए किया जाता है?",
+o:["दो Tables के बीच संबंध स्थापित करने के लिए","Database बंद करने के लिए","Table का रंग बदलने के लिए","Computer Restart करने के लिए"],
+a:0
+},
+
+{
+q:"Database में Table क्या रखती है?",
+o:["Data","केवल Images","केवल Programs","केवल Passwords"],
+a:0
+},
+
+{
+q:"Table की Horizontal line को क्या कहा जाता है?",
+o:["Column","Row","Field","Key"],
+a:1
+},
+
+{
+q:"Table की Vertical line को क्या कहा जाता है?",
+o:["Row","Record","Column","Tuple"],
+a:2
+},
+
+{
+q:"Database Table में एक Row को और किस नाम से जाना जाता है?",
+o:["Record","Field","Column","Attribute"],
+a:0
+},
+
+{
+q:"Database Table में Column को और किस नाम से जाना जाता है?",
+o:["Record","Field","Tuple","Row"],
+a:1
+},
+
+{
+q:"SQL का पूरा नाम क्या है?",
+o:["Structured Query Language","Simple Query Language","System Query Logic","Structured Question Language"],
+a:0
+},
+
+{
+q:"SQL का उपयोग मुख्यतः किसके लिए किया जाता है?",
+o:["Database के साथ काम करने के लिए","Video Editing के लिए","Graphics बनाने के लिए","Antivirus चलाने के लिए"],
+a:0
+},
+
+{
+q:"SQL में Data प्राप्त करने के लिए कौन-सी Command प्रयोग होती है?",
+o:["SELECT","GET","FETCHALL","SHOWDATA"],
+a:0
+},
+
+{
+q:"SQL में नया Database बनाने के लिए कौन-सी Command प्रयोग होती है?",
+o:["CREATE DATABASE","NEW DATABASE","MAKE DATABASE","ADD DATABASE"],
+a:0
+},
+
+{
+q:"SQL में Table बनाने के लिए कौन-सी Command प्रयोग होती है?",
+o:["CREATE TABLE","MAKE TABLE","NEW TABLE","ADD TABLE"],
+a:0
+},
+
+{
+q:"SQL में Table हटाने के लिए कौन-सी Command प्रयोग होती है?",
+o:["DROP TABLE","DELETE TABLE","REMOVE TABLE","CLEAR TABLE"],
+a:0
+},
+
+{
+q:"SQL में Table के सभी Records हटाने के लिए कौन-सी Command प्रयोग की जा सकती है?",
+o:["TRUNCATE","REMOVE","CLEAR ALL","DROP RECORD"],
+a:0
+},
+
+{
+q:"SQL में Existing Table की Structure में बदलाव करने के लिए कौन-सी Command उपयोगी है?",
+o:["ALTER TABLE","UPDATE TABLE","CHANGE TABLE","MODIFY TABLE"],
+a:0
+},
+
+{
+q:"SQL में नया Record जोड़ने के लिए कौन-सी Command प्रयोग होती है?",
+o:["INSERT","ADD","CREATE","APPEND"],
+a:0
+},
+
+{
+q:"SQL में Existing Record को बदलने के लिए कौन-सी Command प्रयोग होती है?",
+o:["UPDATE","CHANGE","MODIFY","ALTER"],
+a:0
+},
+
+{
+q:"SQL में Record Delete करने के लिए कौन-सी Command प्रयोग होती है?",
+o:["DELETE","REMOVE","DROP RECORD","CLEAR"],
+a:0
+},
+
+{
+q:"SQL में Data को Sort करने के लिए कौन-सा Clause उपयोग होता है?",
+o:["ORDER BY","SORT BY","GROUP BY","ARRANGE BY"],
+a:0
+},
+
+{
+q:"SQL में Records को Group करने के लिए कौन-सा Clause उपयोग होता है?",
+o:["GROUP BY","ORDER BY","GROUP RECORD","COLLECT BY"],
+a:0
+},
+
+{
+q:"SQL में किसी Condition के आधार पर Records चुनने के लिए कौन-सा Clause उपयोग होता है?",
+o:["WHERE","WHEN","IF","CHECK"],
+a:0
+},
+
+{
+q:"SQL में दोनों Conditions के सही होने पर कौन-सा Operator उपयोग होता है?",
+o:["AND","OR","NOT","WITH"],
+a:0
+},
+
+{
+q:"SQL में दो Conditions में से किसी एक के सही होने पर कौन-सा Operator उपयोग होता है?",
+o:["OR","AND","NOT","EITHER"],
+a:0
+},
+
+{
+q:"SQL में किसी Condition को उलटने के लिए कौन-सा Operator उपयोग होता है?",
+o:["NOT","NO","REVERSE","EXCEPT"],
+a:0
+},
+
+{
+q:"SQL में Pattern Matching के लिए कौन-सा Operator उपयोग होता है?",
+o:["LIKE","MATCHES","PATTERN","FIND"],
+a:0
+},
+
+{
+q:"SQL में Multiple Characters के लिए LIKE के साथ कौन-सा Wildcard उपयोग होता है?",
+o:["%","_","#","*"],
+a:0
+},
+
+{
+q:"SQL में Single Character के लिए LIKE के साथ कौन-सा Wildcard उपयोग होता है?",
+o:["_","%","*","#"],
+a:0
+},
+
+{
+q:"SQL में NULL Value की जाँच के लिए कौन-सा तरीका उपयोग किया जाता है?",
+o:["IS NULL","= NULL","NULL = TRUE","CHECK NULL"],
+a:0
+},
+
+{
+q:"Database में NULL का अर्थ क्या है?",
+o:["अज्ञात या अनुपलब्ध Value","Zero","Blank Space हमेशा","False"],
+a:0
+},
+
+{
+q:"DBMS में Data Redundancy का अर्थ क्या है?",
+o:["एक ही Data का अनावश्यक रूप से बार-बार होना","Data का Encryption","Data का Sorting","Data का Backup"],
+a:0
+},
+
+{
+q:"Normalization का मुख्य उद्देश्य क्या है?",
+o:["Data Redundancy कम करना और Data को व्यवस्थित करना","Database का रंग बदलना","Computer को तेज करना","Password बनाना"],
+a:0
+},
+
+{
+q:"Normalization की पहली अवस्था को क्या कहा जाता है?",
+o:["First Normal Form","Initial Normal Form","Basic Normal Form","Primary Normal Form"],
+a:0
+},
+
+{
+q:"1NF में प्रत्येक Field में सामान्यतः कैसी Value होनी चाहिए?",
+o:["Atomic Value","Multiple Values","Duplicate Values","Only NULL"],
+a:0
+},
+
+{
+q:"2NF मुख्यतः किससे संबंधित है?",
+o:["Partial Dependency को हटाने से","Sorting से","Backup से","Password Security से"],
+a:0
+},
+
+{
+q:"3NF का उद्देश्य मुख्यतः क्या है?",
+o:["Transitive Dependency को हटाना","Primary Key हटाना","Table Delete करना","Data Encrypt करना"],
+a:0
+},
+
+{
+q:"Database में Relationship का अर्थ क्या है?",
+o:["Tables के बीच संबंध","Computer और Printer का संबंध","File और Folder का संबंध","User और Password का संबंध"],
+a:0
+},
+
+{
+q:"One-to-One Relationship में क्या होता है?",
+o:["एक Record का संबंध एक Record से","एक Record का संबंध कई Records से","कई Records का संबंध कई Records से","कोई संबंध नहीं"],
+a:0
+},
+
+{
+q:"One-to-Many Relationship में क्या होता है?",
+o:["एक Record का संबंध कई Records से","एक Record का संबंध केवल एक से","कई Records का संबंध केवल एक से","कोई Record नहीं"],
+a:0
+},
+
+{
+q:"Many-to-Many Relationship में क्या होता है?",
+o:["कई Records का संबंध कई Records से","एक Record का संबंध एक से","एक Record का संबंध केवल दो से","कोई संबंध नहीं"],
+a:0
+},
+
+{
+q:"DBMS में Query क्या है?",
+o:["Database से Data प्राप्त या Manipulate करने का अनुरोध","एक Image","एक Operating System","एक Antivirus"],
+a:0
+},
+
+{
+q:"DBMS में Form का उपयोग मुख्यतः किसके लिए किया जाता है?",
+o:["Data को Enter और View करने के लिए","Database Delete करने के लिए","Computer Shutdown करने के लिए","Internet चलाने के लिए"],
+a:0
+},
+
+{
+q:"DBMS में Report का उपयोग किसके लिए किया जाता है?",
+o:["Data को व्यवस्थित रूप में प्रस्तुत या Print करने के लिए","Password बदलने के लिए","Table Delete करने के लिए","Operating System Install करने के लिए"],
+a:0
+},
+
+{
+q:"Database में Index का मुख्य उद्देश्य क्या है?",
+o:["Data Searching को तेज करना","Data Delete करना","Database बंद करना","Font बदलना"],
+a:0
+},
+
+{
+q:"DBMS में Transaction क्या है?",
+o:["Database पर किए गए कार्यों की एक Logical Unit","एक प्रकार का Printer","एक Operating System","एक Hardware Device"],
+a:0
+},
+
+{
+q:"ACID में A का अर्थ क्या है?",
+o:["Atomicity","Accuracy","Access","Authentication"],
+a:0
+},
+
+{
+q:"ACID में C का अर्थ क्या है?",
+o:["Consistency","Control","Connection","Column"],
+a:0
+},
+
+{
+q:"ACID में I का अर्थ क्या है?",
+o:["Isolation","Integrity","Index","Information"],
+a:0
+},
+
+{
+q:"ACID में D का अर्थ क्या है?",
+o:["Durability","Database","Data","Dependency"],
+a:0
+},
+
+{
+q:"Transaction में COMMIT का उपयोग किसके लिए किया जाता है?",
+o:["Changes को स्थायी रूप से Save करने के लिए","Changes हटाने के लिए","Database Delete करने के लिए","Table बनाने के लिए"],
+a:0
+},
+
+{
+q:"Transaction में ROLLBACK का उपयोग किसके लिए किया जाता है?",
+o:["Changes को वापस करने के लिए","Database को Save करने के लिए","Table बनाने के लिए","Record को Sort करने के लिए"],
+a:0
+}
+
+];
+
+
+/* =========================
+   QUIZ SCRIPT
+========================= */
+
+let current = 0;
+let score = 0;
+let answered = false;
+
+
+function loadQuestion(){
+
+    answered = false;
+
+    const q = questions[current];
+
+    document.getElementById("number").textContent =
+        "प्रश्न " + (current + 1) +
+        " / " + questions.length;
+
+    document.getElementById("question").textContent =
+        q.q;
+
+    const optionsBox =
+        document.getElementById("options");
+
+    optionsBox.innerHTML = "";
+
+    q.o.forEach(function(option,index){
+
+        const button =
+            document.createElement("button");
+
+        button.className = "option";
+
+        button.textContent =
+            String.fromCharCode(65 + index) +
+            ". " + option;
+
+        button.onclick = function(){
+
+            checkAnswer(index,button);
+
+        };
+
+        optionsBox.appendChild(button);
+
+    });
+
+    document.getElementById("next").disabled = true;
+
+    document.getElementById("progress").style.width =
+        ((current + 1) / questions.length * 100) + "%";
+}
+
+
+function checkAnswer(index,button){
+
+    if(answered) return;
+
+    answered = true;
+
+    const q = questions[current];
+
+    const buttons =
+        document.querySelectorAll(".option");
+
+    buttons.forEach(function(btn,i){
+
+        btn.disabled = true;
+
+        if(i === q.a){
+
+            btn.classList.add("correct");
+
+        }
+
+    });
+
+    if(index === q.a){
+
+        score++;
+
+    }else{
+
+        button.classList.add("wrong");
+
+    }
+
+    document.getElementById("next").disabled = false;
+}
+
+
+function nextQuestion(){
+
+    if(!answered) return;
+
+    current++;
+
+    if(current < questions.length){
+
+        loadQuestion();
+
+    }else{
+
+        document.getElementById("quiz").style.display =
+            "none";
+
+        document.getElementById("result").style.display =
+            "block";
+
+        document.getElementById("score").textContent =
+            score + " / " + questions.length;
+
+        document.getElementById("resultText").textContent =
+            "आपने " + questions.length +
+            " में से " + score +
+            " प्रश्नों के सही उत्तर दिए।";
+    }
+}
+
+
+function restartQuiz(){
+
+    current = 0;
+    score = 0;
+    answered = false;
+
+    document.getElementById("quiz").style.display =
+        "block";
+
+    document.getElementById("result").style.display =
+        "none";
+
+    loadQuestion();
+}
+
+
+loadQuestion();
+
+</script>
+
+</body>
+
+</html>

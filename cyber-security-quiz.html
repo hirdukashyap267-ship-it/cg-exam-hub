@@ -1,0 +1,1534 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Cyber Security Quiz | CG Exam Hub</title>
+
+<meta name="description"
+content="Cyber Security के 100 महत्वपूर्ण MCQ प्रश्नों का Quiz। CGPSC, CG Vyapam, Patwari और अन्य प्रतियोगी परीक्षाओं की तैयारी के लिए।">
+
+<meta name="robots" content="index, follow">
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+    background:#f4f7fb;
+    color:#172033;
+}
+
+.header{
+    background:linear-gradient(135deg,#d62967,#7042df);
+    color:white;
+    text-align:center;
+    padding:30px 15px;
+}
+
+.header h1{
+    margin:0;
+    font-size:30px;
+    font-weight:900;
+}
+
+.header p{
+    margin:8px 0 0;
+    font-size:15px;
+}
+
+.quiz-container{
+    max-width:760px;
+    margin:25px auto;
+    padding:15px;
+}
+
+.quiz-card{
+    background:white;
+    border-radius:22px;
+    padding:25px;
+    box-shadow:0 10px 35px rgba(0,0,0,.08);
+    border:1px solid #e2e8f0;
+}
+
+.number{
+    color:#7042df;
+    font-weight:800;
+}
+
+.progress-box{
+    width:100%;
+    height:9px;
+    background:#e8edf3;
+    border-radius:20px;
+    overflow:hidden;
+    margin:12px 0 20px;
+}
+
+.progress{
+    height:100%;
+    width:0%;
+    background:#7042df;
+    transition:.3s;
+}
+
+.question{
+    font-size:21px;
+    font-weight:800;
+    line-height:1.55;
+    margin-bottom:22px;
+}
+
+.option{
+    width:100%;
+    display:block;
+    text-align:left;
+    border:1px solid #d7dde7;
+    background:white;
+    color:#172033;
+    border-radius:13px;
+    padding:14px 15px;
+    margin:10px 0;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.option:hover{
+    background:#f3efff;
+    border-color:#7042df;
+}
+
+.option.correct{
+    background:#dff7e8 !important;
+    border-color:#18a957 !important;
+    color:#087536;
+    font-weight:700;
+}
+
+.option.wrong{
+    background:#ffe5e5 !important;
+    border-color:#dc3545 !important;
+    color:#a30000;
+    font-weight:700;
+}
+
+.next{
+    width:100%;
+    border:0;
+    background:#7042df;
+    color:white;
+    padding:14px;
+    border-radius:13px;
+    font-size:16px;
+    font-weight:800;
+    margin-top:12px;
+    cursor:pointer;
+}
+
+.next:disabled{
+    background:#aab4c3;
+    cursor:not-allowed;
+}
+
+.result{
+    display:none;
+    text-align:center;
+}
+
+.result h2{
+    font-size:28px;
+    font-weight:900;
+}
+
+.score{
+    font-size:50px;
+    font-weight:900;
+    color:#7042df;
+    margin:15px 0;
+}
+
+.result-text{
+    color:#667085;
+    font-size:16px;
+    line-height:1.7;
+}
+
+.back{
+    display:inline-block;
+    margin-top:15px;
+    background:#071b3a;
+    color:white;
+    padding:12px 20px;
+    border-radius:11px;
+    text-decoration:none;
+    font-weight:700;
+}
+
+.restart{
+    display:inline-block;
+    margin-top:15px;
+    margin-left:8px;
+    background:#7042df;
+    color:white;
+    padding:12px 20px;
+    border-radius:11px;
+    border:0;
+    font-weight:700;
+    cursor:pointer;
+}
+
+@media(max-width:576px){
+    .header h1{
+        font-size:25px;
+    }
+
+    .quiz-card{
+        padding:19px;
+    }
+
+    .question{
+        font-size:18px;
+    }
+
+    .option{
+        font-size:15px;
+        padding:13px;
+    }
+
+    .back,
+    .restart{
+        display:block;
+        margin:10px 0 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+    <h1>🛡️ Cyber Security Quiz</h1>
+    <p>Cyber Security के 100 महत्वपूर्ण प्रश्नों का अभ्यास</p>
+</header>
+
+<div class="quiz-container">
+
+<div class="quiz-card" id="quiz">
+
+<div class="number" id="number"></div>
+
+<div class="progress-box">
+<div class="progress" id="progress"></div>
+</div>
+
+<div class="question" id="question">
+Loading...
+</div>
+
+<div id="options"></div>
+
+<button class="next" id="next"
+onclick="nextQuestion()" disabled>
+अगला प्रश्न →
+</button>
+
+</div>
+
+
+<div class="quiz-card result" id="result">
+
+<h2>🎉 Quiz पूरा हुआ!</h2>
+
+<div class="score" id="score"></div>
+
+<p class="result-text" id="resultText"></p>
+
+<a href="computer-quiz.html" class="back">
+← Computer Quiz
+</a>
+
+<button class="restart" onclick="restartQuiz()">
+🔄 फिर से शुरू करें
+</button>
+
+</div>
+
+</div>
+
+
+<script>
+
+const questions = [
+
+{
+q:"Cyber Security क्या है?",
+o:[
+"Computer, Network और Data को Cyber Threats से सुरक्षित रखने की प्रक्रिया",
+"केवल Computer की सफाई",
+"केवल Internet चलाने की प्रक्रिया",
+"केवल Game खेलने की प्रक्रिया"
+],
+a:0
+},
+
+{
+q:"Cyber Attack का मुख्य उद्देश्य क्या हो सकता है?",
+o:[
+"Data या System को नुकसान पहुँचाना या अनधिकृत Access प्राप्त करना",
+"Computer की Screen साफ करना",
+"Printer में Paper डालना",
+"Keyboard बदलना"
+],
+a:0
+},
+
+{
+q:"Malware क्या है?",
+o:[
+"हानिकारक Software",
+"एक प्रकार का Monitor",
+"एक Printer",
+"एक Keyboard"
+],
+a:0
+},
+
+{
+q:"Virus क्या है?",
+o:[
+"एक प्रकार का Malicious Software",
+"एक Hardware Device",
+"एक Browser",
+"एक Printer"
+],
+a:0
+},
+
+{
+q:"Worm की विशेषता क्या है?",
+o:[
+"यह स्वयं फैलने में सक्षम Malicious Software हो सकता है",
+"यह केवल Text लिखता है",
+"यह Printer चलाता है",
+"यह Monitor की Brightness बदलता है"
+],
+a:0
+},
+
+{
+q:"Trojan क्या है?",
+o:[
+"ऐसा Malicious Software जो उपयोगी Software जैसा दिखाई दे सकता है",
+"एक Antivirus",
+"एक Browser",
+"एक Operating System"
+],
+a:0
+},
+
+{
+q:"Ransomware क्या करता है?",
+o:[
+"Data या System को Lock/Encrypt करके फिरौती माँग सकता है",
+"Computer की Speed बढ़ाता है",
+"Printer को तेज करता है",
+"Internet Free करता है"
+],
+a:0
+},
+
+{
+q:"Spyware का उद्देश्य क्या हो सकता है?",
+o:[
+"User की गतिविधियों या जानकारी पर गुप्त रूप से नजर रखना",
+"Computer को साफ करना",
+"File Print करना",
+"Monitor बनाना"
+],
+a:0
+},
+
+{
+q:"Adware क्या प्रदर्शित कर सकता है?",
+o:[
+"अनचाहे Advertisements",
+"केवल System Updates",
+"केवल Documents",
+"केवल Games"
+],
+a:0
+},
+
+{
+q:"Phishing क्या है?",
+o:[
+"धोखे से संवेदनशील जानकारी प्राप्त करने का प्रयास",
+"Computer Repair",
+"File Compression",
+"Software Installation"
+],
+a:0
+},
+
+{
+q:"Phishing में कौन-सी जानकारी Target की जा सकती है?",
+o:[
+"Password या Banking Information",
+"Monitor Size",
+"Keyboard Color",
+"Printer Paper Size"
+],
+a:0
+},
+
+{
+q:"Strong Password की एक विशेषता क्या है?",
+o:[
+"वह पर्याप्त लंबा और अनुमान लगाना कठिन हो",
+"वह केवल 123456 हो",
+"वह केवल नाम हो",
+"वह सभी को पता हो"
+],
+a:0
+},
+
+{
+q:"Password में क्या शामिल करना उपयोगी हो सकता है?",
+o:[
+"अलग-अलग प्रकार के Characters का मिश्रण",
+"केवल अपना नाम",
+"केवल जन्मतिथि",
+"केवल 1234"
+],
+a:0
+},
+
+{
+q:"OTP का पूरा नाम क्या है?",
+o:[
+"One Time Password",
+"Only Text Password",
+"Online Transfer Password",
+"Open Time Password"
+],
+a:0
+},
+
+{
+q:"OTP के बारे में सही सुरक्षा नियम क्या है?",
+o:[
+"OTP किसी अन्य व्यक्ति के साथ साझा नहीं करना चाहिए",
+"OTP Social Media पर डालना चाहिए",
+"OTP सभी Friends को देना चाहिए",
+"OTP हमेशा Public रखना चाहिए"
+],
+a:0
+},
+
+{
+q:"Two-Factor Authentication का उद्देश्य क्या है?",
+o:[
+"Account Security को अतिरिक्त Verification से मजबूत करना",
+"Computer की RAM बढ़ाना",
+"Printer की Speed बढ़ाना",
+"Internet बंद करना"
+],
+a:0
+},
+
+{
+q:"Antivirus Software का उपयोग किसके लिए किया जाता है?",
+o:[
+"Malware को पहचानने और उससे सुरक्षा में मदद करने के लिए",
+"Keyboard बनाने के लिए",
+"Monitor साफ करने के लिए",
+"Internet Speed बढ़ाने के लिए"
+],
+a:0
+},
+
+{
+q:"Firewall का मुख्य उद्देश्य क्या है?",
+o:[
+"Network Traffic को नियंत्रित करके अनधिकृत Access से सुरक्षा में मदद करना",
+"Document Print करना",
+"Photo Edit करना",
+"Keyboard Repair करना"
+],
+a:0
+},
+
+{
+q:"Encryption क्या है?",
+o:[
+"Data को ऐसे रूप में बदलना जिसे बिना उचित Key के समझना कठिन हो",
+"Data Delete करना",
+"Computer बंद करना",
+"File Print करना"
+],
+a:0
+},
+
+{
+q:"Decryption क्या है?",
+o:[
+"Encrypted Data को वापस समझने योग्य रूप में बदलना",
+"Data Delete करना",
+"Computer Format करना",
+"File Copy करना"
+],
+a:0
+},
+
+{
+q:"Confidentiality का अर्थ क्या है?",
+o:[
+"Information को अनधिकृत लोगों से सुरक्षित रखना",
+"Data को सभी को देना",
+"Computer को Restart करना",
+"File को Print करना"
+],
+a:0
+},
+
+{
+q:"Integrity का अर्थ Cyber Security में क्या है?",
+o:[
+"Data को अनधिकृत बदलाव से सुरक्षित रखना",
+"Data को सभी को भेजना",
+"Computer बंद करना",
+"Internet Speed बढ़ाना"
+],
+a:0
+},
+
+{
+q:"Availability का अर्थ क्या है?",
+o:[
+"अधिकृत User को आवश्यकता के समय Data या Service उपलब्ध होना",
+"Data Delete होना",
+"Password सार्वजनिक होना",
+"Computer बंद होना"
+],
+a:0
+},
+
+{
+q:"CIA Triad में C का अर्थ क्या है?",
+o:[
+"Confidentiality",
+"Computer",
+"Control",
+"Connection"
+],
+a:0
+},
+
+{
+q:"CIA Triad में I का अर्थ क्या है?",
+o:[
+"Integrity",
+"Internet",
+"Information",
+"Identification"
+],
+a:0
+},
+
+{
+q:"CIA Triad में A का अर्थ क्या है?",
+o:[
+"Availability",
+"Authentication",
+"Access",
+"Application"
+],
+a:0
+},
+
+{
+q:"Access Control का उद्देश्य क्या है?",
+o:[
+"यह निर्धारित करना कि कौन किस Resource को Access कर सकता है",
+"Internet Speed बढ़ाना",
+"File Print करना",
+"Computer Restart करना"
+],
+a:0
+},
+
+{
+q:"Least Privilege Principle का अर्थ क्या है?",
+o:[
+"User को केवल आवश्यक न्यूनतम अधिकार देना",
+"सभी Users को Administrator बनाना",
+"सभी Password साझा करना",
+"हर File को Public करना"
+],
+a:0
+},
+
+{
+q:"Administrator Account में क्या विशेषता हो सकती है?",
+o:[
+"सामान्य User से अधिक System अधिकार",
+"कोई अधिकार नहीं",
+"केवल Printer का अधिकार",
+"केवल Browser का अधिकार"
+],
+a:0
+},
+
+{
+q:"Multi-Factor Authentication में क्या उपयोग हो सकता है?",
+o:[
+"Password के साथ दूसरा Verification Factor",
+"केवल Username",
+"केवल File Name",
+"केवल Folder Name"
+],
+a:0
+},
+
+{
+q:"Biometric Authentication में किसका उपयोग हो सकता है?",
+o:[
+"Fingerprint या Face Recognition",
+"File Extension",
+"Folder Name",
+"IP Address"
+],
+a:0
+},
+
+{
+q:"Digital Signature का उपयोग किसके लिए किया जाता है?",
+o:[
+"Digital Document या Message की Authenticity और Integrity सत्यापित करने में",
+"Computer की Speed बढ़ाने में",
+"Screen साफ करने में",
+"Printer चलाने में"
+],
+a:0
+},
+
+{
+q:"Digital Certificate किससे संबंधित है?",
+o:[
+"Digital Identity की पुष्टि से",
+"Computer की RAM से",
+"Keyboard की Speed से",
+"Monitor की Size से"
+],
+a:0
+},
+
+{
+q:"Public Key Cryptography में मुख्यतः कितनी Keys होती हैं?",
+o:[
+"दो",
+"एक",
+"तीन",
+"चार"
+],
+a:0
+},
+
+{
+q:"Public Key Cryptography में कौन-सी Keys होती हैं?",
+o:[
+"Public Key और Private Key",
+"Login Key और File Key",
+"Open Key और Close Key",
+"Input Key और Output Key"
+],
+a:0
+},
+
+{
+q:"Private Key को कैसे रखना चाहिए?",
+o:[
+"गोपनीय और सुरक्षित रखना चाहिए",
+"सार्वजनिक करना चाहिए",
+"Social Media पर डालना चाहिए",
+"हर व्यक्ति को देना चाहिए"
+],
+a:0
+},
+
+{
+q:"Hashing का उपयोग सामान्यतः किसके लिए किया जाता है?",
+o:[
+"Data का Hash बनाने के लिए",
+"Computer को Shutdown करने के लिए",
+"Printer चलाने के लिए",
+"Internet Speed बढ़ाने के लिए"
+],
+a:0
+},
+
+{
+q:"Password Storage में Hashing का उपयोग क्यों किया जाता है?",
+o:[
+"Password को सीधे Plain Text में रखने से बचने में मदद करने के लिए",
+"Password को Public करने के लिए",
+"Computer Format करने के लिए",
+"Internet बंद करने के लिए"
+],
+a:0
+},
+
+{
+q:"Plain Text क्या होता है?",
+o:[
+"ऐसा Data जो सामान्य रूप से पढ़ा जा सकता है",
+"Encrypted Data",
+"Deleted Data",
+"Compressed Hardware"
+],
+a:0
+},
+
+{
+q:"Vulnerability क्या है?",
+o:[
+"System की ऐसी कमजोरी जिसका गलत उपयोग किया जा सकता है",
+"एक Monitor",
+"एक Printer",
+"एक Keyboard"
+],
+a:0
+},
+
+{
+q:"Security Threat क्या है?",
+o:[
+"ऐसा संभावित खतरा जो System या Data को नुकसान पहुँचा सकता है",
+"एक सामान्य Document",
+"एक Printer",
+"एक Mouse"
+],
+a:0
+},
+
+{
+q:"Risk का अर्थ Cyber Security में क्या है?",
+o:[
+"Threat के कारण नुकसान होने की संभावना और प्रभाव",
+"Computer का वजन",
+"Internet की Speed",
+"File का Size"
+],
+a:0
+},
+
+{
+q:"Penetration Testing का उद्देश्य क्या है?",
+o:[
+"सुरक्षा कमजोरियों की पहचान करने के लिए अधिकृत परीक्षण करना",
+"Computer बेचने के लिए",
+"Photo Edit करने के लिए",
+"Game खेलने के लिए"
+],
+a:0
+},
+
+{
+q:"Ethical Hacker कौन होता है?",
+o:[
+"अनुमति लेकर Security की जाँच करने वाला व्यक्ति",
+"बिना अनुमति System में घुसने वाला व्यक्ति",
+"Printer Operator",
+"Data Entry Operator"
+],
+a:0
+},
+
+{
+q:"Security Audit क्या है?",
+o:[
+"Security Controls और Practices की व्यवस्थित जाँच",
+"Computer Cleaning",
+"File Printing",
+"Keyboard Repair"
+],
+a:0
+},
+
+{
+q:"Incident Response का उद्देश्य क्या है?",
+o:[
+"Cyber Security घटना की पहचान, प्रतिक्रिया और Recovery में मदद करना",
+"Computer खरीदना",
+"Printer Install करना",
+"Game खेलना"
+],
+a:0
+},
+
+{
+q:"Security Awareness का उद्देश्य क्या है?",
+o:[
+"Users को Cyber Security के खतरों और सुरक्षित व्यवहार के बारे में जागरूक करना",
+"Internet बंद करना",
+"Computer की Screen बदलना",
+"Printer की Ink बदलना"
+],
+a:0
+},
+
+{
+q:"Unknown Email Attachment मिलने पर क्या करना उचित है?",
+o:[
+"स्रोत की पुष्टि किए बिना उसे Open नहीं करना",
+"तुरंत Open करना",
+"सभी को Forward करना",
+"Social Media पर Upload करना"
+],
+a:0
+},
+
+{
+q:"Unknown Website पर Password डालने से पहले क्या करना चाहिए?",
+o:[
+"Website की Authenticity और URL की जाँच करनी चाहिए",
+"बिना जाँच Password डालना चाहिए",
+"OTP भी साझा करना चाहिए",
+"Bank PIN डालना चाहिए"
+],
+a:0
+},
+
+{
+q:"Social Media Account को सुरक्षित रखने के लिए क्या उपयोगी है?",
+o:[
+"Strong Password और Two-Factor Authentication",
+"Password Public करना",
+"OTP साझा करना",
+"एक ही Password सभी को देना"
+],
+a:0
+},
+
+{
+q:"Password Reuse से क्या जोखिम हो सकता है?",
+o:[
+"एक Account का Password चोरी होने पर अन्य Accounts भी खतरे में पड़ सकते हैं",
+"Internet Speed बढ़ सकती है",
+"Computer तेज हो सकता है",
+"Printer ठीक हो सकता है"
+],
+a:0
+},
+
+
+
+{
+q:"Cyber Crime क्या है?",
+o:[
+"Computer या Internet का उपयोग करके किया गया अपराध",
+"Computer की सामान्य मरम्मत",
+"Document लिखना",
+"Photo खींचना"
+],
+a:0
+},
+
+{
+q:"Identity Theft क्या है?",
+o:[
+"किसी व्यक्ति की पहचान संबंधी जानकारी का गलत उपयोग",
+"Computer चोरी करना",
+"Printer चोरी करना",
+"File Rename करना"
+],
+a:0
+},
+
+{
+q:"Cyber Bullying क्या है?",
+o:[
+"Digital माध्यम से किसी व्यक्ति को परेशान या धमकाना",
+"Computer को साफ करना",
+"File Copy करना",
+"Software Update करना"
+],
+a:0
+},
+
+{
+q:"Spam क्या होता है?",
+o:[
+"अनचाहे या अवांछित संदेश",
+"एक Antivirus",
+"एक Operating System",
+"एक Keyboard"
+],
+a:0
+},
+
+{
+q:"Spam Email में क्या हो सकता है?",
+o:[
+"अनचाहा Advertisement या संदिग्ध Link",
+"केवल सरकारी Document",
+"केवल सुरक्षित File",
+"केवल System Update"
+],
+a:0
+},
+
+{
+q:"Spear Phishing क्या है?",
+o:[
+"किसी विशेष व्यक्ति या Organization को Target करके किया गया Phishing Attack",
+"सामान्य Computer Repair",
+"एक प्रकार का Printer",
+"एक प्रकार का Antivirus"
+],
+a:0
+},
+
+{
+q:"Whaling Attack किसे Target कर सकता है?",
+o:[
+"Organization के उच्च पदस्थ अधिकारियों को",
+"केवल Computer Mouse को",
+"केवल Printer को",
+"केवल Keyboard को"
+],
+a:0
+},
+
+{
+q:"Smishing किस माध्यम से किया जाने वाला Phishing है?",
+o:[
+"SMS या Text Message",
+"Printer",
+"Keyboard",
+"Monitor"
+],
+a:0
+},
+
+{
+q:"Vishing किससे संबंधित है?",
+o:[
+"Voice Call के माध्यम से धोखाधड़ी",
+"Video Editing",
+"File Compression",
+"Photo Printing"
+],
+a:0
+},
+
+{
+q:"Malicious Link पर Click करने से क्या खतरा हो सकता है?",
+o:[
+"Malware या Fake Website तक पहुँच हो सकती है",
+"RAM अपने आप बढ़ सकती है",
+"Printer नया हो सकता है",
+"Keyboard की Speed बढ़ सकती है"
+],
+a:0
+},
+
+{
+q:"URL का पूरा नाम क्या है?",
+o:[
+"Uniform Resource Locator",
+"Universal Record Link",
+"United Resource Login",
+"User Reference Location"
+],
+a:0
+},
+
+{
+q:"HTTPS में S सामान्यतः किसे दर्शाता है?",
+o:[
+"Secure",
+"System",
+"Server",
+"Software"
+],
+a:0
+},
+
+{
+q:"HTTPS का उपयोग किसमें मदद करता है?",
+o:[
+"Browser और Website के बीच Data को सुरक्षित तरीके से भेजने में",
+"Computer की RAM बढ़ाने में",
+"Printer को तेज करने में",
+"Keyboard बदलने में"
+],
+a:0
+},
+
+{
+q:"Public Wi-Fi का उपयोग करते समय क्या सावधानी रखनी चाहिए?",
+o:[
+"संवेदनशील जानकारी साझा करने से पहले Network की सुरक्षा पर ध्यान देना चाहिए",
+"हर Password डाल देना चाहिए",
+"Bank PIN सार्वजनिक करना चाहिए",
+"OTP सभी को बताना चाहिए"
+],
+a:0
+},
+
+{
+q:"VPN का पूरा नाम क्या है?",
+o:[
+"Virtual Private Network",
+"Very Personal Network",
+"Verified Public Network",
+"Virtual Public Node"
+],
+a:0
+},
+
+{
+q:"VPN का एक उद्देश्य क्या हो सकता है?",
+o:[
+"Network Connection को अधिक सुरक्षित और Private बनाने में मदद करना",
+"RAM बढ़ाना",
+"Printer चलाना",
+"Keyboard बदलना"
+],
+a:0
+},
+
+{
+q:"Software Update क्यों महत्वपूर्ण हो सकता है?",
+o:[
+"Security Vulnerabilities को ठीक करने में मदद कर सकता है",
+"Computer का आकार बढ़ाने के लिए",
+"Monitor का रंग बदलने के लिए",
+"Keyboard की Keys बढ़ाने के लिए"
+],
+a:0
+},
+
+{
+q:"Security Patch क्या होता है?",
+o:[
+"Software की Security समस्या को ठीक करने वाला Update",
+"एक Printer",
+"एक Keyboard",
+"एक Monitor"
+],
+a:0
+},
+
+{
+q:"Backup का उद्देश्य क्या है?",
+o:[
+"Data की अतिरिक्त Copy सुरक्षित रखना",
+"Data को Public करना",
+"Password साझा करना",
+"Computer बंद करना"
+],
+a:0
+},
+
+{
+q:"महत्वपूर्ण Data का Backup कहाँ रखा जा सकता है?",
+o:[
+"विश्वसनीय External Storage या सुरक्षित Cloud Storage में",
+"किसी भी Unknown Website पर",
+"Public Social Media पर",
+"Unknown USB में ही"
+],
+a:0
+},
+
+{
+q:"3-2-1 Backup Rule किससे संबंधित है?",
+o:[
+"Data Backup Strategy से",
+"Password Length से",
+"Internet Speed से",
+"Antivirus Installation से"
+],
+a:0
+},
+
+{
+q:"Data Breach क्या है?",
+o:[
+"अनधिकृत रूप से Data तक पहुँच या Data का खुलासा होना",
+"Computer Update",
+"File Printing",
+"Software Installation"
+],
+a:0
+},
+
+{
+q:"Personal Data में क्या शामिल हो सकता है?",
+o:[
+"किसी व्यक्ति से संबंधित पहचान योग्य जानकारी",
+"केवल Computer का रंग",
+"केवल Monitor Size",
+"केवल Keyboard Layout"
+],
+a:0
+},
+
+{
+q:"Sensitive Information को कैसे संभालना चाहिए?",
+o:[
+"उसे सुरक्षित और केवल अधिकृत लोगों के साथ साझा करना चाहिए",
+"Social Media पर डालना चाहिए",
+"Public Website पर Upload करना चाहिए",
+"हर व्यक्ति को भेजना चाहिए"
+],
+a:0
+},
+
+{
+q:"Digital Privacy का संबंध किससे है?",
+o:[
+"Online Personal Information की सुरक्षा और नियंत्रण से",
+"Computer की Screen Size से",
+"Printer की Speed से",
+"Keyboard की Height से"
+],
+a:0
+},
+
+{
+q:"Cookie क्या हो सकती है?",
+o:[
+"Website द्वारा Browser में Store की जाने वाली छोटी जानकारी",
+"एक Antivirus",
+"एक Keyboard",
+"एक Monitor"
+],
+a:0
+},
+
+{
+q:"Browser Cache का उपयोग किसके लिए होता है?",
+o:[
+"कुछ Web Data को अस्थायी रूप से Store करके Loading में मदद करने के लिए",
+"Password Public करने के लिए",
+"Computer बंद करने के लिए",
+"Printer चलाने के लिए"
+],
+a:0
+},
+
+{
+q:"Private/Incognito Browsing का क्या अर्थ है?",
+o:[
+"Browser की Local Browsing History जैसी कुछ जानकारी को सामान्य Session में Store न करने का तरीका",
+"पूरी तरह Anonymous होने की गारंटी",
+"Internet बंद करना",
+"Virus हटाना"
+],
+a:0
+},
+
+{
+q:"क्या Incognito Mode आपको हर प्रकार के Online Tracking से बचाता है?",
+o:[
+"नहीं",
+"हाँ, हमेशा",
+"केवल Mobile पर",
+"केवल Computer पर"
+],
+a:0
+},
+
+{
+q:"CAPTCHA का उद्देश्य क्या है?",
+o:[
+"मानव और Automated Bot के बीच अंतर करने में मदद करना",
+"Password Store करना",
+"File Compress करना",
+"Virus बनाना"
+],
+a:0
+},
+
+{
+q:"DDoS का पूरा नाम क्या है?",
+o:[
+"Distributed Denial of Service",
+"Digital Data Operating System",
+"Direct Database Online Service",
+"Distributed Data Operating Software"
+],
+a:0
+},
+
+{
+q:"DDoS Attack का उद्देश्य क्या हो सकता है?",
+o:[
+"किसी Service को अत्यधिक Traffic भेजकर उपलब्धता प्रभावित करना",
+"Password मजबूत करना",
+"Data Backup करना",
+"Antivirus Update करना"
+],
+a:0
+},
+
+{
+q:"Botnet क्या है?",
+o:[
+"Malware से नियंत्रित कई Devices का Network",
+"एक Antivirus",
+"एक Browser",
+"एक Firewall"
+],
+a:0
+},
+
+{
+q:"Bot क्या हो सकता है?",
+o:[
+"ऐसा Program जो कुछ कार्य स्वतः कर सकता है",
+"केवल एक Keyboard",
+"एक Monitor",
+"एक Printer"
+],
+a:0
+},
+
+{
+q:"Brute Force Attack क्या है?",
+o:[
+"बहुत सारे संभावित Passwords या Keys को आजमाने का प्रयास",
+"Computer को Physically तोड़ना",
+"File Print करना",
+"Network Cable बदलना"
+],
+a:0
+},
+
+{
+q:"Brute Force Attack से बचने में क्या मदद कर सकता है?",
+o:[
+"Strong Password और Account Lockout जैसी Security Controls",
+"छोटा Password",
+"Password साझा करना",
+"एक ही Password हर जगह रखना"
+],
+a:0
+},
+
+{
+q:"Dictionary Attack क्या है?",
+o:[
+"Common Words और संभावित Passwords की सूची का उपयोग करके Password Guess करना",
+"Dictionary Print करना",
+"File Delete करना",
+"Internet बंद करना"
+],
+a:0
+},
+
+{
+q:"Shoulder Surfing क्या है?",
+o:[
+"किसी व्यक्ति को Password या Sensitive Information दर्ज करते समय देखना",
+"Internet Surfing",
+"Computer Repair",
+"Video Streaming"
+],
+a:0
+},
+
+{
+q:"Social Engineering क्या है?",
+o:[
+"लोगों को प्रभावित या धोखा देकर जानकारी प्राप्त करने की तकनीक",
+"Computer Engineering",
+"Network Cable बनाना",
+"Software Coding"
+],
+a:0
+},
+
+{
+q:"Tailgating Security में क्या है?",
+o:[
+"अनधिकृत व्यक्ति का अधिकृत व्यक्ति के पीछे सुरक्षित स्थान में प्रवेश करना",
+"Internet Browsing",
+"File Download",
+"Password Change"
+],
+a:0
+},
+
+{
+q:"Dumpster Diving Cyber Security में किससे संबंधित है?",
+o:[
+"फेंकी गई सामग्री से संवेदनशील जानकारी प्राप्त करने का प्रयास",
+"Computer Cleaning",
+"Internet Search",
+"File Compression"
+],
+a:0
+},
+
+{
+q:"Zero-Day Vulnerability क्या है?",
+o:[
+"ऐसी Security Vulnerability जिसके लिए अभी Security Fix उपलब्ध न हो सकता है",
+"एक Antivirus",
+"एक Backup",
+"एक Password Manager"
+],
+a:0
+},
+
+{
+q:"Patch Management क्या है?",
+o:[
+"Software Updates और Security Patches को व्यवस्थित रूप से Manage करना",
+"Password लिखना",
+"Printer Repair",
+"Computer Painting"
+],
+a:0
+},
+
+{
+q:"Password Manager का उपयोग किसके लिए किया जा सकता है?",
+o:[
+"Passwords को सुरक्षित रूप से Manage और Store करने के लिए",
+"Virus बनाने के लिए",
+"Internet Speed बढ़ाने के लिए",
+"Monitor चलाने के लिए"
+],
+a:0
+},
+
+{
+q:"Password Manager इस्तेमाल करते समय क्या महत्वपूर्ण है?",
+o:[
+"उसके Master Password को मजबूत और सुरक्षित रखना",
+"Master Password Public करना",
+"Password Social Media पर डालना",
+"OTP साझा करना"
+],
+a:0
+},
+
+{
+q:"Secure Website की पहचान में कौन-सी चीज उपयोगी हो सकती है?",
+o:[
+"सही Domain Name और HTTPS की जाँच",
+"केवल Website का रंग",
+"केवल Logo",
+"केवल Font"
+],
+a:0
+},
+
+{
+q:"Email Spoofing क्या है?",
+o:[
+"Email Sender की पहचान को गलत दिखाने का प्रयास",
+"Email Print करना",
+"Email Delete करना",
+"Email Save करना"
+],
+a:0
+},
+
+{
+q:"Email Header का उपयोग किस जानकारी के लिए उपयोगी हो सकता है?",
+o:[
+"Email के स्रोत और Routing से संबंधित जानकारी देखने के लिए",
+"Computer की RAM देखने के लिए",
+"Monitor Size देखने के लिए",
+"Keyboard Color देखने के लिए"
+],
+a:0
+},
+
+{
+q:"Cyber Hygiene क्या है?",
+o:[
+"नियमित सुरक्षित Cyber Security आदतों का पालन",
+"Computer को पानी से धोना",
+"Keyboard साफ करना मात्र",
+"Monitor साफ करना मात्र"
+],
+a:0
+},
+
+{
+q:"Cyber Hygiene में क्या शामिल हो सकता है?",
+o:[
+"Software Updates, Strong Passwords और नियमित Backup",
+"Password साझा करना",
+"Unknown Links खोलना",
+"Security Updates बंद करना"
+],
+a:0
+},
+
+{
+q:"यदि किसी Account में संदिग्ध Login दिखाई दे तो क्या करना चाहिए?",
+o:[
+"Password बदलकर Account Security Settings की जाँच करनी चाहिए",
+"उसे Ignore करना चाहिए",
+"Password सभी को बताना चाहिए",
+"OTP Public करना चाहिए"
+],
+a:0
+},
+
+{
+q:"Cyber Security Incident होने पर क्या करना उचित है?",
+o:[
+"घटना की सूचना उचित व्यक्ति/संस्था को देकर आवश्यक सुरक्षा कदम उठाना",
+"घटना छिपाना",
+"Password Public करना",
+"संदिग्ध Link सभी को भेजना"
+],
+a:0
+}
+
+];
+
+// ===============================
+// QUIZ SYSTEM
+// ===============================
+
+let current = 0;
+let scoreValue = 0;
+let answered = false;
+
+function loadQuestion(){
+
+    answered = false;
+
+    const q = questions[current];
+
+    document.getElementById("number").textContent =
+        "प्रश्न " + (current + 1) + " / " + questions.length;
+
+    document.getElementById("question").textContent = q.q;
+
+    document.getElementById("progress").style.width =
+        ((current + 1) / questions.length * 100) + "%";
+
+    const optionsBox = document.getElementById("options");
+
+    optionsBox.innerHTML = "";
+
+    q.o.forEach((option, index) => {
+
+        const button = document.createElement("button");
+
+        button.className = "option";
+
+        button.textContent =
+            String.fromCharCode(65 + index) + ". " + option;
+
+        button.onclick = function(){
+            checkAnswer(index, button);
+        };
+
+        optionsBox.appendChild(button);
+
+    });
+
+    document.getElementById("next").disabled = true;
+}
+
+function checkAnswer(selected, button){
+
+    if(answered) return;
+
+    answered = true;
+
+    const correct = questions[current].a;
+
+    const allOptions =
+        document.querySelectorAll(".option");
+
+    if(selected === correct){
+
+        button.classList.add("correct");
+
+        scoreValue++;
+
+    }else{
+
+        button.classList.add("wrong");
+
+        allOptions[correct].classList.add("correct");
+
+    }
+
+    allOptions.forEach(btn => {
+        btn.disabled = true;
+    });
+
+    document.getElementById("next").disabled = false;
+}
+
+function nextQuestion(){
+
+    if(!answered) return;
+
+    current++;
+
+    if(current < questions.length){
+
+        loadQuestion();
+
+    }else{
+
+        document.getElementById("quiz").style.display =
+            "none";
+
+        document.getElementById("result").style.display =
+            "block";
+
+        document.getElementById("score").textContent =
+            scoreValue + " / " + questions.length;
+
+        const percentage =
+            Math.round(
+                scoreValue / questions.length * 100
+            );
+
+        document.getElementById("resultText").textContent =
+            "आपका Score " + percentage +
+            "% है। बहुत अच्छा! अपनी तैयारी जारी रखें।";
+    }
+}
+
+function restartQuiz(){
+
+    current = 0;
+    scoreValue = 0;
+    answered = false;
+
+    document.getElementById("quiz").style.display =
+        "block";
+
+    document.getElementById("result").style.display =
+        "none";
+
+    loadQuestion();
+}
+
+loadQuestion();
+
+</script>
+
+</body>
+</html>

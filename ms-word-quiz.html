@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MS Word Quiz | CG Exam Hub</title>
+
+<meta name="description"
+content="MS Word के 100 महत्वपूर्ण MCQ प्रश्नों का Quiz। CGPSC, CG Vyapam, Patwari, Transport Department और अन्य प्रतियोगी परीक्षाओं की तैयारी के लिए।">
+
+<meta name="robots" content="index, follow">
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+    background:#f4f7fb;
+    color:#172033;
+}
+
+.header{
+    background:linear-gradient(135deg,#1769e0,#4b8df8);
+    color:white;
+    text-align:center;
+    padding:30px 15px;
+}
+
+.header h1{
+    margin:0;
+    font-size:30px;
+    font-weight:900;
+}
+
+.header p{
+    margin:8px 0 0;
+    font-size:15px;
+}
+
+.quiz-container{
+    max-width:760px;
+    margin:25px auto;
+    padding:15px;
+}
+
+.quiz-card{
+    background:white;
+    border-radius:22px;
+    padding:25px;
+    box-shadow:0 10px 35px rgba(0,0,0,.08);
+    border:1px solid #e2e8f0;
+}
+
+.number{
+    color:#1769e0;
+    font-weight:800;
+    font-size:15px;
+}
+
+.progress-box{
+    width:100%;
+    height:9px;
+    background:#e8edf3;
+    border-radius:20px;
+    overflow:hidden;
+    margin:12px 0 20px;
+}
+
+.progress{
+    height:100%;
+    width:0%;
+    background:#1769e0;
+    transition:.3s;
+}
+
+.question{
+    font-size:21px;
+    font-weight:800;
+    line-height:1.55;
+    margin-bottom:22px;
+}
+
+.option{
+    width:100%;
+    display:block;
+    text-align:left;
+    border:1px solid #d7dde7;
+    background:white;
+    color:#172033;
+    border-radius:13px;
+    padding:14px 15px;
+    margin:10px 0;
+    font-size:16px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.option:hover{
+    background:#eef5ff;
+    border-color:#1769e0;
+}
+
+.option.correct{
+    background:#dff7e8 !important;
+    border-color:#18a957 !important;
+    color:#087536;
+    font-weight:700;
+}
+
+.option.wrong{
+    background:#ffe5e5 !important;
+    border-color:#dc3545 !important;
+    color:#a30000;
+    font-weight:700;
+}
+
+.next{
+    width:100%;
+    border:0;
+    background:#1769e0;
+    color:white;
+    padding:14px;
+    border-radius:13px;
+    font-size:16px;
+    font-weight:800;
+    margin-top:12px;
+    cursor:pointer;
+}
+
+.next:disabled{
+    background:#aab4c3;
+    cursor:not-allowed;
+}
+
+.result{
+    display:none;
+    text-align:center;
+}
+
+.result h2{
+    font-size:28px;
+    font-weight:900;
+}
+
+.score{
+    font-size:50px;
+    font-weight:900;
+    color:#1769e0;
+    margin:15px 0;
+}
+
+.result-text{
+    color:#667085;
+    font-size:16px;
+    line-height:1.7;
+}
+
+.back{
+    display:inline-block;
+    margin-top:15px;
+    background:#071b3a;
+    color:white;
+    padding:12px 20px;
+    border-radius:11px;
+    text-decoration:none;
+    font-weight:700;
+}
+
+.restart{
+    display:inline-block;
+    margin-top:15px;
+    margin-left:8px;
+    background:#1769e0;
+    color:white;
+    padding:12px 20px;
+    border-radius:11px;
+    border:0;
+    font-weight:700;
+    cursor:pointer;
+}
+
+@media(max-width:576px){
+
+    .header h1{
+        font-size:25px;
+    }
+
+    .quiz-card{
+        padding:19px;
+    }
+
+    .question{
+        font-size:18px;
+    }
+
+    .option{
+        font-size:15px;
+        padding:13px;
+    }
+
+    .back,
+    .restart{
+        display:block;
+        margin:10px 0 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+    <h1>📝 MS Word Quiz</h1>
+    <p>MS Word के 100 महत्वपूर्ण प्रश्नों का अभ्यास</p>
+</header>
+
+<div class="quiz-container">
+
+    <div class="quiz-card" id="quiz">
+
+        <div class="number" id="number"></div>
+
+        <div class="progress-box">
+            <div class="progress" id="progress"></div>
+        </div>
+
+        <div class="question" id="question"></div>
+
+        <div id="options"></div>
+
+        <button class="next" id="next"
+        onclick="nextQuestion()" disabled>
+            अगला प्रश्न →
+        </button>
+
+    </div>
+
+
+    <div class="quiz-card result" id="result">
+
+        <h2>🎉 Quiz पूरा हुआ!</h2>
+
+        <div class="score" id="score"></div>
+
+        <p class="result-text" id="resultText"></p>
+
+        <a href="computer-quiz.html" class="back">
+            ← Computer Quiz
+        </a>
+
+        <button class="restart" onclick="restartQuiz()">
+            🔄 फिर से शुरू करें
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+const questions = [
+
+{
+q:"MS Word क्या है?",
+o:["ऑपरेटिंग सिस्टम","वर्ड प्रोसेसिंग सॉफ्टवेयर","एंटीवायरस","वेब ब्राउज़र"],
+a:1
+},
+
+{
+q:"MS Word किस कंपनी द्वारा विकसित किया गया है?",
+o:["Google","Microsoft","Apple","IBM"],
+a:1
+},
+
+{
+q:"MS Word का मुख्य उपयोग किसके लिए किया जाता है?",
+o:["दस्तावेज बनाने और संपादित करने के लिए","वीडियो बनाने के लिए","गेम खेलने के लिए","इंटरनेट चलाने के लिए"],
+a:0
+},
+
+{
+q:"MS Word में नया दस्तावेज बनाने की Shortcut Key क्या है?",
+o:["Ctrl + N","Ctrl + O","Ctrl + S","Ctrl + P"],
+a:0
+},
+
+{
+q:"MS Word में पहले से मौजूद दस्तावेज खोलने की Shortcut Key क्या है?",
+o:["Ctrl + N","Ctrl + O","Ctrl + W","Ctrl + E"],
+a:1
+},
+
+{
+q:"दस्तावेज Save करने की Shortcut Key क्या है?",
+o:["Ctrl + A","Ctrl + S","Ctrl + D","Ctrl + F"],
+a:1
+},
+
+{
+q:"Print करने की Shortcut Key क्या है?",
+o:["Ctrl + P","Ctrl + T","Ctrl + R","Ctrl + L"],
+a:0
+},
+
+{
+q:"पूरे दस्तावेज को Select करने की Shortcut Key क्या है?",
+o:["Ctrl + X","Ctrl + A","Ctrl + Z","Ctrl + C"],
+a:1
+},
+
+{
+q:"Selected text को Copy करने की Shortcut Key क्या है?",
+o:["Ctrl + C","Ctrl + V","Ctrl + X","Ctrl + B"],
+a:0
+},
+
+{
+q:"Copied text को Paste करने की Shortcut Key क्या है?",
+o:["Ctrl + P","Ctrl + V","Ctrl + Y","Ctrl + G"],
+a:1
+},
+
+{
+q:"Selected text को Cut करने की Shortcut Key क्या है?",
+o:["Ctrl + X","Ctrl + C","Ctrl + K","Ctrl + H"],
+a:0
+},
+
+{
+q:"पिछली कार्रवाई को Undo करने की Shortcut Key क्या है?",
+o:["Ctrl + Y","Ctrl + Z","Ctrl + U","Ctrl + I"],
+a:1
+},
+
+{
+q:"Undo की गई कार्रवाई को फिर से करने के लिए कौन-सी Shortcut Key प्रयोग होती है?",
+o:["Ctrl + Y","Ctrl + Z","Ctrl + R","Ctrl + E"],
+a:0
+},
+
+{
+q:"Text को Bold करने की Shortcut Key क्या है?",
+o:["Ctrl + B","Ctrl + D","Ctrl + M","Ctrl + J"],
+a:0
+},
+
+{
+q:"Text को Italic करने की Shortcut Key क्या है?",
+o:["Ctrl + I","Ctrl + T","Ctrl + L","Ctrl + K"],
+a:0
+},
+
+{
+q:"Text को Underline करने की Shortcut Key क्या है?",
+o:["Ctrl + U","Ctrl + Y","Ctrl + H","Ctrl + Q"],
+a:0
+},
+
+{
+q:"Text को Left Align करने की Shortcut Key क्या है?",
+o:["Ctrl + L","Ctrl + R","Ctrl + E","Ctrl + J"],
+a:0
+},
+
+{
+q:"Text को Center Align करने की Shortcut Key क्या है?",
+o:["Ctrl + L","Ctrl + E","Ctrl + R","Ctrl + J"],
+a:1
+},
+
+{
+q:"Text को Right Align करने की Shortcut Key क्या है?",
+o:["Ctrl + R","Ctrl + L","Ctrl + E","Ctrl + T"],
+a:0
+},
+
+{
+q:"Text को Justify करने की Shortcut Key क्या है?",
+o:["Ctrl + J","Ctrl + G","Ctrl + F","Ctrl + M"],
+a:0
+},
+
+{
+q:"MS Word में Find सुविधा की Shortcut Key क्या है?",
+o:["Ctrl + F","Ctrl + G","Ctrl + H","Ctrl + Q"],
+a:0
+},
+
+{
+q:"Find and Replace के लिए कौन-सी Shortcut Key प्रयोग होती है?",
+o:["Ctrl + H","Ctrl + F","Ctrl + R","Ctrl + D"],
+a:0
+},
+
+{
+q:"Go To सुविधा की Shortcut Key क्या है?",
+o:["Ctrl + G","Ctrl + T","Ctrl + W","Ctrl + B"],
+a:0
+},
+
+{
+q:"Document बंद करने के लिए सामान्य Shortcut Key क्या है?",
+o:["Ctrl + W","Ctrl + N","Ctrl + O","Ctrl + S"],
+a:0
+},
+
+{
+q:"MS Word में Hyperlink डालने की Shortcut Key क्या है?",
+o:["Ctrl + K","Ctrl + H","Ctrl + I","Ctrl + Shift + K"],
+a:0
+},
+
+{
+q:"MS Word में Spelling और Grammar जाँचने के लिए सामान्यतः कौन-सी Function Key प्रयोग होती है?",
+o:["F1","F5","F7","F12"],
+a:2
+},
+
+{
+q:"MS Word में Help खोलने के लिए कौन-सी Function Key प्रयोग होती है?",
+o:["F1","F2","F7","F9"],
+a:0
+},
+
+{
+q:"MS Word में Go To सुविधा के लिए कौन-सी Function Key प्रयोग की जा सकती है?",
+o:["F5","F6","F8","F10"],
+a:0
+},
+
+{
+q:"MS Word में Save As के लिए सामान्य Shortcut क्या है?",
+o:["F12","F7","F5","F2"],
+a:0
+},
+
+{
+q:"MS Word में Font Size बढ़ाने की सामान्य Shortcut Key क्या है?",
+o:["Ctrl + Shift + >","Ctrl + Shift + <","Ctrl + Alt + >","Alt + >"],
+a:0
+},
+
+{
+q:"Font Size घटाने की सामान्य Shortcut Key क्या है?",
+o:["Ctrl + Shift + <","Ctrl + Shift + >","Ctrl + Alt + <","Alt + <"],
+a:0
+},
+
+{
+q:"MS Word में नया Paragraph शुरू करने के लिए कौन-सी Key दबाई जाती है?",
+o:["Tab","Enter","Shift","Esc"],
+a:1
+},
+
+{
+q:"Paragraph की शुरुआत में Indent बढ़ाने के लिए कौन-सी Key उपयोगी है?",
+o:["Tab","Esc","Delete","F1"],
+a:0
+},
+
+{
+q:"MS Word में एक शब्द को Select करने के लिए सामान्यतः क्या किया जाता है?",
+o:["Double-click","Single-click","Triple-click","Right-click"],
+a:0
+},
+
+{
+q:"MS Word में एक Paragraph Select करने के लिए सामान्यतः कौन-सी क्रिया उपयोगी है?",
+o:["Triple-click","Single-click","Double-click","Scroll"],
+a:0
+},
+
+{
+q:"MS Word में Font बदलने का विकल्प मुख्यतः किस Tab में मिलता है?",
+o:["Home","Review","View","Mailings"],
+a:0
+},
+
+{
+q:"Font Size का विकल्प सामान्यतः किस Tab में होता है?",
+o:["Home","Insert","References","View"],
+a:0
+},
+
+{
+q:"Bold, Italic और Underline किस प्रकार के Formatting विकल्प हैं?",
+o:["Font Formatting","Page Formatting","File Formatting","Table Formatting"],
+a:0
+},
+
+{
+q:"Paragraph Alignment के विकल्प मुख्यतः किस Tab में मिलते हैं?",
+o:["Home","Insert","Mailings","References"],
+a:0
+},
+
+{
+q:"Bullets और Numbering का उपयोग किसके लिए किया जाता है?",
+o:["सूची बनाने के लिए","चित्र बनाने के लिए","फाइल बंद करने के लिए","Print करने के लिए"],
+a:0
+},
+
+{
+q:"MS Word में Table डालने के लिए किस Tab का उपयोग किया जाता है?",
+o:["Insert","Home","Review","View"],
+a:0
+},
+
+{
+q:"Picture Insert करने का विकल्प किस Tab में होता है?",
+o:["Insert","Home","Layout","Review"],
+a:0
+},
+
+{
+q:"Header और Footer जोड़ने का विकल्प किस Tab में मिलता है?",
+o:["Insert","Home","Review","Mailings"],
+a:0
+},
+
+{
+q:"Page Number डालने के लिए किस Tab का उपयोग किया जाता है?",
+o:["Insert","Home","View","Review"],
+a:0
+},
+
+{
+q:"WordArt किस Tab से Insert किया जाता है?",
+o:["Insert","Home","Layout","References"],
+a:0
+},
+
+{
+q:"Text Box किस Tab से Insert किया जाता है?",
+o:["Insert","Review","View","Mailings"],
+a:0
+},
+
+{
+q:"Shapes जोड़ने के लिए किस Tab का उपयोग किया जाता है?",
+o:["Insert","Home","References","Review"],
+a:0
+},
+
+{
+q:"Chart Insert करने का विकल्प किस Tab में मिलता है?",
+o:["Insert","Home","View","Mailings"],
+a:0
+},
+
+{
+q:"Hyperlink किस Tab से Insert किया जा सकता है?",
+o:["Insert","Review","Home","Layout"],
+a:0
+},
+
+{
+q:"Page Orientation के मुख्य विकल्प कौन-से हैं?",
+o:["Portrait और Landscape","Left और Right","Top और Bottom","Small और Large"],
+a:0
+},
+
+{
+q:"Page Orientation बदलने का विकल्प किस Tab में मिलता है?",
+o:["Layout","Home","Insert","Review"],
+a:0
+},
+
+{
+q:"Margins बदलने के लिए किस विकल्प का उपयोग किया जाता है?",
+o:["Layout → Margins","Home → Font","Insert → Picture","Review → Comments"],
+a:0
+},
+
+{
+q:"Page Size बदलने का विकल्प सामान्यतः किस Tab में मिलता है?",
+o:["Layout","Home","Insert","View"],
+a:0
+},
+
+{
+q:"Columns बनाने का विकल्प सामान्यतः किस Tab में मिलता है?",
+o:["Layout","Review","Home","Mailings"],
+a:0
+},
+
+{
+q:"Paragraph Spacing किससे संबंधित है?",
+o:["Paragraph Formatting","Font Color","Page Number","Picture"],
+a:0
+},
+
+{
+q:"Line Spacing किसके बीच की दूरी को नियंत्रित करता है?",
+o:["Lines के बीच","Pages के बीच","Files के बीच","Tables के बीच"],
+a:0
+},
+
+{
+q:"MS Word में Page Break डालने के लिए किस Tab का उपयोग किया जा सकता है?",
+o:["Insert","Home","Review","Mailings"],
+a:0
+},
+
+{
+q:"Page Break की Shortcut Key क्या है?",
+o:["Ctrl + Enter","Ctrl + P","Ctrl + Shift + Enter","Alt + Enter"],
+a:0
+},
+
+{
+q:"MS Word में Section Break का उपयोग किसके लिए किया जाता है?",
+o:["दस्तावेज के अलग-अलग Sections में अलग Layout लागू करने के लिए","Text Copy करने के लिए","File Save करने के लिए","Font बदलने के लिए"],
+a:0
+},
+
+{
+q:"Spelling और Grammar से संबंधित विकल्प किस Tab में मिलते हैं?",
+o:["Review","Home","Insert","Layout"],
+a:0
+},
+
+{
+q:"Comments जोड़ने की सुविधा किस Tab में मिलती है?",
+o:["Review","Home","Insert","View"],
+a:0
+},
+
+{
+q:"Track Changes सुविधा किस Tab से संबंधित है?",
+o:["Review","Insert","Home","Layout"],
+a:0
+},
+
+{
+q:"Word Count सुविधा का उपयोग किसके लिए होता है?",
+o:["शब्दों की संख्या जानने के लिए","Font बदलने के लिए","Picture जोड़ने के लिए","Page रंग बदलने के लिए"],
+a:0
+},
+
+{
+q:"Word Count का विकल्प सामान्यतः किस Tab में उपलब्ध होता है?",
+o:["Review","Insert","Home","Mailings"],
+a:0
+},
+
+{
+q:"Thesaurus का उपयोग किसके लिए किया जाता है?",
+o:["समानार्थी शब्द खोजने के लिए","Page Print करने के लिए","Image Insert करने के लिए","Table बनाने के लिए"],
+a:0
+},
+
+{
+q:"Mail Merge का उपयोग मुख्यतः किस कार्य के लिए किया जाता है?",
+o:["एक ही प्रकार के व्यक्तिगत दस्तावेज अनेक प्राप्तकर्ताओं के लिए बनाने के लिए","चित्र संपादित करने के लिए","वीडियो बनाने के लिए","ऑडियो रिकॉर्ड करने के लिए"],
+a:0
+},
+
+{
+q:"Mail Merge से संबंधित विकल्प किस Tab में मिलता है?",
+o:["Mailings","Review","View","Layout"],
+a:0
+},
+
+{
+q:"Mail Merge में प्राप्तकर्ताओं की सूची को क्या कहा जा सकता है?",
+o:["Data Source","Font Source","Page Source","Style Source"],
+a:0
+},
+
+{
+q:"Envelope बनाने की सुविधा किससे संबंधित है?",
+o:["Mailings","Insert","Review","View"],
+a:0
+},
+
+{
+q:"MS Word में Styles का उपयोग किसके लिए किया जाता है?",
+o:["एक समान Formatting लागू करने के लिए","Computer बंद करने के लिए","Internet चलाने के लिए","File Delete करने के लिए"],
+a:0
+},
+
+{
+q:"Heading Styles का उपयोग किसके लिए उपयोगी है?",
+o:["शीर्षकों को व्यवस्थित और Format करने के लिए","Picture Crop करने के लिए","Page Print करने के लिए","Keyboard बदलने के लिए"],
+a:0
+},
+
+{
+q:"Table of Contents बनाने में किसका विशेष उपयोग होता है?",
+o:["Heading Styles","Font Color","Page Color","Clipboard"],
+a:0
+},
+
+{
+q:"Table of Contents किस Tab से संबंधित सुविधा है?",
+o:["References","Home","Insert","View"],
+a:0
+},
+
+{
+q:"Footnote जोड़ने का विकल्प किस Tab में मिलता है?",
+o:["References","Home","Insert","Mailings"],
+a:0
+},
+
+{
+q:"Bibliography किस प्रकार के कार्य में उपयोगी होती है?",
+o:["स्रोतों की सूची देने में","Font बदलने में","Page Color बदलने में","Picture बनाने में"],
+a:0
+},
+
+{
+q:"Citation का उपयोग सामान्यतः किसके लिए किया जाता है?",
+o:["स्रोत का संदर्भ देने के लिए","Text Delete करने के लिए","Page बंद करने के लिए","Font Size बदलने के लिए"],
+a:0
+},
+
+{
+q:"Document का Zoom बदलने के लिए कौन-सा Tab विशेष रूप से उपयोगी है?",
+o:["View","Home","Insert","Mailings"],
+a:0
+},
+
+{
+q:"Read Mode किससे संबंधित है?",
+o:["Document को पढ़ने के तरीके से","Print करने से","Table बनाने से","Mail Merge से"],
+a:0
+},
+
+{
+q:"Navigation Pane का उपयोग किसके लिए किया जा सकता है?",
+o:["Document में खोज और Navigation के लिए","Font Color बदलने के लिए","Page Print करने के लिए","Image बनाने के लिए"],
+a:0
+},
+
+{
+q:"MS Word में Clipboard का उपयोग किससे संबंधित है?",
+o:["Cut, Copy और Paste","Page Number","Spell Check","Mail Merge"],
+a:0
+},
+
+{
+q:"Format Painter का उपयोग किसके लिए किया जाता है?",
+o:["एक स्थान की Formatting दूसरे स्थान पर लागू करने के लिए","चित्र बनाने के लिए","File Save करने के लिए","Page Delete करने के लिए"],
+a:0
+},
+
+{
+q:"Format Painter का आइकन सामान्यतः किस Tab में मिलता है?",
+o:["Home","Insert","Review","View"],
+a:0
+},
+
+{
+q:"Text Highlight Color का उपयोग किसके लिए किया जाता है?",
+o:["Text को Highlight करने के लिए","Text Delete करने के लिए","Page Print करने के लिए","Table Sort करने के लिए"],
+a:0
+},
+
+{
+q:"Font Color का उपयोग किसके लिए होता है?",
+o:["Text का रंग बदलने के लिए","Page Size बदलने के लिए","Margin बदलने के लिए","File Name बदलने के लिए"],
+a:0
+},
+
+{
+q:"Change Case सुविधा का उपयोग किसके लिए होता है?",
+o:["Text के अक्षरों का Case बदलने के लिए","Page Orientation बदलने के लिए","Table बनाने के लिए","Picture Insert करने के लिए"],
+a:0
+},
+
+{
+q:"Superscript का उपयोग किसके लिए किया जाता है?",
+o:["Text को सामान्य Text से ऊपर छोटे रूप में दिखाने के लिए","Text को नीचे दिखाने के लिए","Text Delete करने के लिए","Page को Landscape करने के लिए"],
+a:0
+},
+
+{
+q:"Subscript का उपयोग किसके लिए किया जाता है?",
+o:["Text को सामान्य Text से नीचे छोटे रूप में दिखाने के लिए","Text को ऊपर दिखाने के लिए","Font Color बदलने के लिए","Page Break डालने के लिए"],
+a:0
+},
+
+{
+q:"Superscript का उदाहरण कौन-सा है?",
+o:["x²","H₂O","ABC","123"],
+a:0
+},
+
+{
+q:"Subscript का उदाहरण कौन-सा है?",
+o:["H₂O","x²","ABC","XYZ"],
+a:0
+},
+
+{
+q:"Strikethrough का उपयोग क्या करता है?",
+o:["Text के बीच से एक रेखा दिखाता है","Text को Bold करता है","Text को Center करता है","Text को Copy करता है"],
+a:0
+},
+
+{
+q:"Document में समान शब्द को दूसरे शब्द से बदलने के लिए किस सुविधा का उपयोग किया जाता है?",
+o:["Replace","Zoom","Word Count","Translate"],
+a:0
+},
+
+{
+q:"MS Word में Ruler का उपयोग किसके लिए किया जा सकता है?",
+o:["Indent और Tab आदि सेट करने के लिए","Video चलाने के लिए","Internet खोलने के लिए","Antivirus चलाने के लिए"],
+a:0
+},
+
+{
+q:"Tab Stop का संबंध किससे है?",
+o:["Text की स्थिति निर्धारित करने से","Font Color से","Picture Insert से","Page Print से"],
+a:0
+},
+
+{
+q:"MS Word में Document का सामान्य editable format आधुनिक संस्करणों में कौन-सा है?",
+o:[".docx",".xlsx",".pptx",".jpg"],
+a:0
+},
+
+{
+q:"पुराने Microsoft Word दस्तावेजों के लिए कौन-सा Extension सामान्य था?",
+o:[".doc",".xls",".ppt",".exe"],
+a:0
+},
+
+{
+q:"MS Word में Template का उपयोग किसके लिए किया जाता है?",
+o:["पूर्व-निर्धारित Document Layout के लिए","Antivirus के लिए","Internet Connection के लिए","Audio Recording के लिए"],
+a:0
+},
+
+{
+q:"AutoCorrect सुविधा का मुख्य उद्देश्य क्या है?",
+o:["कुछ सामान्य Typing/Spelling त्रुटियों को स्वतः सुधारना","Page Print करना","Table Delete करना","Computer Shutdown करना"],
+a:0
+},
+
+{
+q:"AutoSave सुविधा का उद्देश्य क्या है?",
+o:["Document में किए गए कार्य को समय-समय पर स्वतः Save करना","Text को Bold करना","Image Insert करना","Font बदलना"],
+a:0
+},
+
+{
+q:"MS Word में Print Preview का उपयोग किसके लिए होता है?",
+o:["Print से पहले Document का स्वरूप देखने के लिए","Text Copy करने के लिए","File Rename करने के लिए","Page Delete करने के लिए"],
+a:0
+},
+
+{
+q:"Document को PDF के रूप में Save/Export करने का क्या लाभ है?",
+o:["Formatting को साझा करने योग्य स्थिर दस्तावेज के रूप में रखना","Computer की RAM बढ़ाना","Internet Speed बढ़ाना","Keyboard बदलना"],
+a:0
+},
+
+{
+q:"MS Word में Page Color किससे संबंधित है?",
+o:["Page की Background Color","Text की Font Size","Table की Row","File का नाम"],
+a:0
+},
+
+{
+q:"Watermark सामान्यतः किसके लिए उपयोग किया जाता है?",
+o:["Page के Background में हल्का Text/Image दिखाने के लिए","Text Copy करने के लिए","File Delete करने के लिए","Font Install करने के लिए"],
+a:0
+},
+
+{
+q:"Page Border का उपयोग किसके लिए किया जाता है?",
+o:["Page के चारों ओर Border लगाने के लिए","Text को Copy करने के लिए","Table बनाने के लिए","Font बदलने के लिए"],
+a:0
+},
+
+{
+q:"MS Word में Crop सुविधा का उपयोग सामान्यतः किस पर किया जाता है?",
+o:["Pictures पर","Paragraph पर","Page Number पर","File Name पर"],
+a:0
+},
+
+{
+q:"Text Wrapping का उपयोग मुख्यतः किसके लिए होता है?",
+o:["Text और Picture/Object की स्थिति नियंत्रित करने के लिए","Document Save करने के लिए","Font Install करने के लिए","Spelling Check करने के लिए"],
+a:0
+},
+
+{
+q:"MS Word में Table की क्षैतिज इकाई को क्या कहा जाता है?",
+o:["Row","Column","Cell","Page"],
+a:0
+},
+
+{
+q:"MS Word में Table की ऊर्ध्वाधर इकाई को क्या कहा जाता है?",
+o:["Column","Row","Paragraph","Page"],
+a:0
+},
+
+{
+q:"Table में Row और Column के मिलने से क्या बनता है?",
+o:["Cell","Page","Section","Header"],
+a:0
+},
+
+{
+q:"Table में नई Row जोड़ने के लिए किस प्रकार की Table command का उपयोग किया जाता है?",
+o:["Insert Rows","Insert Font","Insert Page","Insert Header"],
+a:0
+},
+
+{
+q:"MS Word में दस्तावेज के नीचे का क्षेत्र क्या कहलाता है?",
+o:["Footer","Header","Margin","Ribbon"],
+a:0
+},
+
+{
+q:"MS Word में दस्तावेज के ऊपर का क्षेत्र क्या कहलाता है?",
+o:["Header","Footer","Status Bar","Ribbon"],
+a:0
+},
+
+{
+q:"MS Word की स्क्रीन पर Commands और Tools का मुख्य क्षेत्र क्या कहलाता है?",
+o:["Ribbon","Desktop","Taskbar","Address Bar"],
+a:0
+},
+
+{
+q:"MS Word में नीचे दिखाई देने वाली जानकारी वाली पट्टी को क्या कहा जाता है?",
+o:["Status Bar","Title Bar","Ribbon","Menu Bar"],
+a:0
+},
+
+{
+q:"MS Word में ऊपर Document का नाम और Program का नाम सामान्यतः कहाँ दिखाई देता है?",
+o:["Title Bar","Status Bar","Ruler","Footer"],
+a:0
+},
+
+{
+q:"MS Word में Quick Access Toolbar का उद्देश्य क्या है?",
+o:["बार-बार उपयोग होने वाली Commands तक जल्दी पहुँच देना","Page Print करना","Internet खोलना","File Delete करना"],
+a:0
+}
+
+];
+
+let current = 0;
+let score = 0;
+let answered = false;
+
+function loadQuestion(){
+
+    answered = false;
+
+    const q = questions[current];
+
+    document.getElementById("number").innerText =
+        "प्रश्न " + (current + 1) + " / " + questions.length;
+
+    document.getElementById("question").innerText = q.q;
+
+    const box = document.getElementById("options");
+
+    box.innerHTML = "";
+
+    q.o.forEach((text, i) => {
+
+        const btn = document.createElement("button");
+
+        btn.className = "option";
+
+        btn.innerText =
+            String.fromCharCode(65 + i) + ". " + text;
+
+        btn.onclick = function(){
+            answerQuestion(btn, i);
+        };
+
+        box.appendChild(btn);
+
+    });
+
+    document.getElementById("next").disabled = true;
+
+    const percent =
+        ((current + 1) / questions.length) * 100;
+
+    document.getElementById("progress").style.width =
+        percent + "%";
+}
+
+
+function answerQuestion(btn, index){
+
+    if(answered) return;
+
+    answered = true;
+
+    const q = questions[current];
+
+    const buttons =
+        document.querySelectorAll(".option");
+
+    buttons.forEach((button, i) => {
+
+        if(i === q.a){
+            button.classList.add("correct");
+        }
+
+    });
+
+    if(index === q.a){
+
+        score++;
+
+    }else{
+
+        btn.classList.add("wrong");
+
+    }
+
+    document.getElementById("next").disabled = false;
+}
+
+
+function nextQuestion(){
+
+    current++;
+
+    if(current < questions.length){
+
+        loadQuestion();
+
+    }else{
+
+        document.getElementById("quiz").style.display =
+            "none";
+
+        document.getElementById("result").style.display =
+            "block";
+
+        document.getElementById("score").innerText =
+            score + " / " + questions.length;
+
+        document.getElementById("resultText").innerText =
+            "आपने " + questions.length +
+            " में से " + score +
+            " प्रश्नों के सही उत्तर दिए।";
+    }
+}
+
+
+function restartQuiz(){
+
+    current = 0;
+
+    score = 0;
+
+    answered = false;
+
+    document.getElementById("quiz").style.display =
+        "block";
+
+    document.getElementById("result").style.display =
+        "none";
+
+    loadQuestion();
+}
+
+
+loadQuestion();
+
+</script>
+
+</body>
+</html>

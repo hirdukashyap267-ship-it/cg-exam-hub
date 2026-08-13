@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Tally Quiz | CG Exam Hub</title>
+
+<meta name="description"
+content="Tally के 100 महत्वपूर्ण MCQ प्रश्नों का Quiz। CGPSC, CG Vyapam, Patwari, Transport Department और अन्य प्रतियोगी परीक्षाओं की तैयारी के लिए।">
+
+<meta name="robots" content="index, follow">
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+    background:#f4f7fb;
+    color:#172033;
+}
+
+.header{
+    background:linear-gradient(135deg,#008f91,#16b8b0);
+    color:white;
+    text-align:center;
+    padding:30px 15px;
+}
+
+.header h1{
+    margin:0;
+    font-size:30px;
+    font-weight:900;
+}
+
+.header p{
+    margin:8px 0 0;
+}
+
+.quiz-container{
+    max-width:760px;
+    margin:25px auto;
+    padding:15px;
+}
+
+.quiz-card{
+    background:white;
+    border-radius:22px;
+    padding:25px;
+    box-shadow:0 10px 35px rgba(0,0,0,.08);
+    border:1px solid #e2e8f0;
+}
+
+.number{
+    color:#008f91;
+    font-weight:800;
+}
+
+.progress-box{
+    width:100%;
+    height:9px;
+    background:#e8edf3;
+    border-radius:20px;
+    overflow:hidden;
+    margin:12px 0 20px;
+}
+
+.progress{
+    height:100%;
+    width:0%;
+    background:#008f91;
+    transition:.3s;
+}
+
+.question{
+    font-size:21px;
+    font-weight:800;
+    line-height:1.55;
+    margin-bottom:22px;
+}
+
+.option{
+    width:100%;
+    display:block;
+    text-align:left;
+    border:1px solid #d7dde7;
+    background:white;
+    color:#172033;
+    border-radius:13px;
+    padding:14px 15px;
+    margin:10px 0;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.option:hover{
+    background:#e8fbfa;
+    border-color:#008f91;
+}
+
+.option.correct{
+    background:#dff7e8!important;
+    border-color:#18a957!important;
+    color:#087536;
+    font-weight:700;
+}
+
+.option.wrong{
+    background:#ffe5e5!important;
+    border-color:#dc3545!important;
+    color:#a30000;
+    font-weight:700;
+}
+
+.next{
+    width:100%;
+    border:0;
+    background:#008f91;
+    color:white;
+    padding:14px;
+    border-radius:13px;
+    font-size:16px;
+    font-weight:800;
+    margin-top:12px;
+    cursor:pointer;
+}
+
+.next:disabled{
+    background:#aab4c3;
+    cursor:not-allowed;
+}
+
+.result{
+    display:none;
+    text-align:center;
+}
+
+.score{
+    font-size:50px;
+    font-weight:900;
+    color:#008f91;
+    margin:15px 0;
+}
+
+.back,
+.restart{
+    display:inline-block;
+    margin-top:15px;
+    padding:12px 20px;
+    border-radius:11px;
+    font-weight:700;
+    text-decoration:none;
+}
+
+.back{
+    background:#071b3a;
+    color:white;
+}
+
+.restart{
+    background:#008f91;
+    color:white;
+    border:0;
+    cursor:pointer;
+    margin-left:8px;
+}
+
+@media(max-width:576px){
+
+    .header h1{
+        font-size:25px;
+    }
+
+    .quiz-card{
+        padding:19px;
+    }
+
+    .question{
+        font-size:18px;
+    }
+
+    .option{
+        font-size:15px;
+    }
+
+    .back,
+    .restart{
+        display:block;
+        margin:10px 0 0;
+        width:100%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+    <h1>📊 Tally Quiz</h1>
+    <p>Tally के 100 महत्वपूर्ण प्रश्नों का अभ्यास</p>
+</header>
+
+<div class="quiz-container">
+
+<div class="quiz-card" id="quiz">
+
+<div class="number" id="number"></div>
+
+<div class="progress-box">
+<div class="progress" id="progress"></div>
+</div>
+
+<div class="question" id="question"></div>
+
+<div id="options"></div>
+
+<button class="next" id="next"
+onclick="nextQuestion()" disabled>
+अगला प्रश्न →
+</button>
+
+</div>
+
+<div class="quiz-card result" id="result">
+
+<h2>🎉 Quiz पूरा हुआ!</h2>
+
+<div class="score" id="score"></div>
+
+<p id="resultText"></p>
+
+<a href="computer.html" class="back">
+← Computer Quiz
+</a>
+
+<button class="restart" onclick="restartQuiz()">
+🔄 फिर से शुरू करें
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+const questions=[
+
+{
+q:"Tally क्या है?",
+o:["Accounting Software","Web Browser","Operating System","Antivirus"],
+a:0
+},
+
+{
+q:"Tally का मुख्य उपयोग किसके लिए किया जाता है?",
+o:["Accounting एवं Business Management","Video Editing","Photo Editing","Gaming"],
+a:0
+},
+
+{
+q:"Tally का वर्तमान लोकप्रिय संस्करण कौन-सा है?",
+o:["TallyPrime","Tally Basic","Tally Office","Tally Pro"],
+a:0
+},
+
+{
+q:"TallyPrime किस कंपनी का Software है?",
+o:["Tally Solutions","Microsoft","Google","Adobe"],
+a:0
+},
+
+{
+q:"Tally में Company बनाने के लिए किस विकल्प का उपयोग किया जाता है?",
+o:["Create Company","Create File","New Folder","New Account"],
+a:0
+},
+
+{
+q:"Tally में Company का अर्थ क्या है?",
+o:["व्यवसाय का Accounting Data","केवल Employee List","केवल Invoice","केवल Stock"],
+a:0
+},
+
+{
+q:"Tally में Ledger क्या होता है?",
+o:["खाते का विवरण","कंप्यूटर का भाग","फाइल का नाम","Printer"],
+a:0
+},
+
+{
+q:"Tally में Group का उपयोग किसके लिए होता है?",
+o:["Ledgers को वर्गीकृत करने के लिए","Computer बंद करने के लिए","Invoice Print करने के लिए","Internet चलाने के लिए"],
+a:0
+},
+
+{
+q:"Tally में Voucher क्या है?",
+o:["लेन-देन दर्ज करने का माध्यम","Antivirus","Operating System","Database Server"],
+a:0
+},
+
+{
+q:"Tally में Accounting Voucher का उपयोग किसके लिए होता है?",
+o:["लेन-देन रिकॉर्ड करने के लिए","Computer Format करने के लिए","Internet चलाने के लिए","Photo बनाने के लिए"],
+a:0
+},
+
+{
+q:"Tally में Payment Voucher किसके लिए प्रयोग होता है?",
+o:["भुगतान दर्ज करने के लिए","प्राप्ति दर्ज करने के लिए","Sales दर्ज करने के लिए","Purchase Order बनाने के लिए"],
+a:0
+},
+
+{
+q:"Tally में Receipt Voucher किसके लिए प्रयोग होता है?",
+o:["प्राप्ति दर्ज करने के लिए","भुगतान दर्ज करने के लिए","Purchase दर्ज करने के लिए","Stock Transfer के लिए"],
+a:0
+},
+
+{
+q:"Tally में Contra Voucher का उपयोग मुख्यतः किसके लिए होता है?",
+o:["Cash और Bank के बीच लेन-देन","केवल Sales","केवल Purchase","केवल Salary"],
+a:0
+},
+
+{
+q:"Tally में Journal Voucher का उपयोग किसके लिए होता है?",
+o:["Adjustment Entries","केवल Cash Receipt","केवल Sales","केवल Purchase"],
+a:0
+},
+
+{
+q:"Tally में Sales Voucher किसके लिए होता है?",
+o:["बिक्री दर्ज करने के लिए","खरीद दर्ज करने के लिए","भुगतान दर्ज करने के लिए","Salary दर्ज करने के लिए"],
+a:0
+},
+
+{
+q:"Tally में Purchase Voucher किसके लिए होता है?",
+o:["खरीद दर्ज करने के लिए","बिक्री दर्ज करने के लिए","Receipt दर्ज करने के लिए","Contra Entry के लिए"],
+a:0
+},
+
+{
+q:"Tally में Debit Note का उपयोग सामान्यतः किससे संबंधित है?",
+o:["Purchase Return","Sales Return","Cash Deposit","Salary"],
+a:0
+},
+
+{
+q:"Tally में Credit Note का उपयोग सामान्यतः किससे संबंधित है?",
+o:["Sales Return","Purchase Return","Cash Withdrawal","Bank Deposit"],
+a:0
+},
+
+{
+q:"Tally में Stock Item क्या है?",
+o:["वस्तु/Inventory Item","Ledger","Group","Voucher"],
+a:0
+},
+
+{
+q:"Tally में Stock Group का उपयोग किसके लिए किया जाता है?",
+o:["Stock Items को वर्गीकृत करने के लिए","Ledger बनाने के लिए","Company Delete करने के लिए","Voucher Print करने के लिए"],
+a:0
+},
+
+{
+q:"Tally में Unit of Measure का उपयोग किसके लिए होता है?",
+o:["मात्रा मापने के लिए","Tax Calculate करने के लिए","Ledger बनाने के लिए","Company बनाने के लिए"],
+a:0
+},
+
+{
+q:"Tally में Godown किससे संबंधित है?",
+o:["Stock Storage","Banking","Salary","Tax Return"],
+a:0
+},
+
+{
+q:"Tally में Inventory का अर्थ क्या है?",
+o:["Stock/भंडार","Cash","Capital","Tax"],
+a:0
+},
+
+{
+q:"Tally में Purchase Order किससे संबंधित है?",
+o:["खरीद का आदेश","बिक्री का भुगतान","Cash Receipt","Salary"],
+a:0
+},
+
+{
+q:"Tally में Sales Order किससे संबंधित है?",
+o:["बिक्री का आदेश","Purchase Return","Bank Entry","Salary"],
+a:0
+},
+
+{
+q:"Tally में Rejection In किससे संबंधित है?",
+o:["Goods Received/Rejected Stock","Sales Invoice","Payment","Receipt"],
+a:0
+},
+
+{
+q:"Tally में Rejection Out किससे संबंधित है?",
+o:["Goods Sent/Rejected Stock","Purchase Invoice","Receipt","Payment"],
+a:0
+},
+
+{
+q:"Tally में Payroll का उपयोग किसके लिए होता है?",
+o:["कर्मचारियों के वेतन प्रबंधन के लिए","Stock Management","Sales Management","Bank Reconciliation"],
+a:0
+},
+
+{
+q:"Tally में Salary Payable किससे संबंधित है?",
+o:["कर्मचारियों के वेतन से","Stock से","Sales से","Purchase से"],
+a:0
+},
+
+{
+q:"Tally में Cost Centre का उपयोग किसके लिए किया जाता है?",
+o:["आय-व्यय को विभाग/कर्मचारी आदि के अनुसार ट्रैक करने के लिए","Company Delete करने के लिए","Printer Setup के लिए","Internet के लिए"],
+a:0
+},
+
+{
+q:"Tally में Cost Category का उपयोग किसके लिए किया जाता है?",
+o:["Cost Centres को वर्गीकृत करने के लिए","Stock बनाने के लिए","Voucher Delete करने के लिए","Bank Account खोलने के लिए"],
+a:0
+},
+
+{
+q:"Tally में Balance Sheet क्या दिखाती है?",
+o:["Assets और Liabilities","केवल Sales","केवल Purchase","केवल Stock"],
+a:0
+},
+
+{
+q:"Tally में Profit & Loss Account क्या दिखाता है?",
+o:["Profit या Loss","केवल Assets","केवल Liabilities","केवल Stock"],
+a:0
+},
+
+{
+q:"Tally में Trial Balance का उपयोग किसके लिए किया जाता है?",
+o:["Ledger Balances की जाँच के लिए","Invoice Design के लिए","Stock Purchase के लिए","Employee Attendance के लिए"],
+a:0
+},
+
+{
+q:"Tally में Day Book क्या दिखाता है?",
+o:["दर्ज किए गए Transactions","केवल Stock","केवल Employees","केवल Assets"],
+a:0
+},
+
+{
+q:"Tally में Cash Book किससे संबंधित है?",
+o:["Cash Transactions","Sales Order","Stock Item","Employee Salary"],
+a:0
+},
+
+{
+q:"Tally में Bank Book किससे संबंधित है?",
+o:["Bank Transactions","Stock Transactions","Salary","Purchase Order"],
+a:0
+},
+
+{
+q:"Tally में Outstanding Receivables क्या दिखाता है?",
+o:["प्राप्त की जाने वाली राशि","देय राशि","Stock","Profit"],
+a:0
+},
+
+{
+q:"Tally में Outstanding Payables क्या दिखाता है?",
+o:["देय राशि","प्राप्त राशि","Cash Balance","Stock"],
+a:0
+},
+
+{
+q:"Tally में GST का पूरा नाम क्या है?",
+o:["Goods and Services Tax","General Sales Tax","Goods Service Transfer","Government Sales Tax"],
+a:0
+},
+
+{
+q:"Tally में GST सुविधा का उपयोग किसके लिए होता है?",
+o:["GST संबंधित Accounting के लिए","Photo Editing","Video Editing","Internet Browsing"],
+a:0
+},
+
+{
+q:"CGST का पूरा नाम क्या है?",
+o:["Central Goods and Services Tax","Central Government Sales Tax","Common Goods Service Tax","Central General Service Tax"],
+a:0
+},
+
+{
+q:"SGST का पूरा नाम क्या है?",
+o:["State Goods and Services Tax","State General Sales Tax","Service Goods State Tax","State Government Service Tax"],
+a:0
+},
+
+{
+q:"IGST का पूरा नाम क्या है?",
+o:["Integrated Goods and Services Tax","Indian Goods Sales Tax","Integrated General Service Tax","Indian Government Service Tax"],
+a:0
+},
+
+{
+q:"भारत में GST कब लागू हुआ?",
+o:["1 जुलाई 2017","1 अप्रैल 2016","15 अगस्त 2017","26 जनवरी 2018"],
+a:0
+},
+
+{
+q:"Tally में Tax Ledger किससे संबंधित होता है?",
+o:["Tax Accounting","Employee Attendance","Stock Storage","Bank Reconciliation"],
+a:0
+},
+
+{
+q:"Tally में Voucher Number का उपयोग किसके लिए होता है?",
+o:["Transaction की पहचान के लिए","Company का नाम बदलने के लिए","Stock Delete करने के लिए","Printer जोड़ने के लिए"],
+a:0
+},
+
+{
+q:"Tally में Narration का उपयोग किसके लिए होता है?",
+o:["Transaction का विवरण लिखने के लिए","Tax Rate बदलने के लिए","Stock बनाने के लिए","Company Delete करने के लिए"],
+a:0
+},
+
+{
+q:"Tally में Voucher Entry के दौरान Date किसका प्रतिनिधित्व करती है?",
+o:["Transaction की तारीख","Company Creation Date हमेशा","Computer की Purchase Date","Printer Date"],
+a:0
+},
+
+{
+q:"Tally में Ledger बनाने के लिए किस Master का उपयोग होता है?",
+o:["Ledger Master","Voucher Master","Stock Master","Report Master"],
+a:0
+},
+
+{
+q:"Tally में Inventory Master में क्या बनाया जा सकता है?",
+o:["Stock Item","Voucher","Company","Report"],
+a:0
+},
+
+{
+q:"Tally में Account Groups का मुख्य उद्देश्य क्या है?",
+o:["Accounts को व्यवस्थित करना","Computer को Shutdown करना","Reports Delete करना","Internet चलाना"],
+a:0
+},
+
+{
+q:"Tally में Capital Account सामान्यतः किस Group के अंतर्गत आता है?",
+o:["Capital Account","Current Assets","Sales Accounts","Purchase Accounts"],
+a:0
+},
+
+{
+q:"Tally में Cash Ledger सामान्यतः किस Group में होता है?",
+o:["Cash-in-Hand","Current Liabilities","Sales Accounts","Purchase Accounts"],
+a:0
+},
+
+{
+q:"Bank Ledger सामान्यतः किस प्रकार के Group से संबंधित होता है?",
+o:["Bank Accounts","Capital Account","Sales Accounts","Purchase Accounts"],
+a:0
+},
+
+{
+q:"Sales Account किस प्रकार का Ledger है?",
+o:["Income/Sales Ledger","Asset Ledger","Liability Ledger","Expense Ledger"],
+a:0
+},
+
+{
+q:"Purchase Account किससे संबंधित है?",
+o:["खरीद","बिक्री","Cash Receipt","Capital"],
+a:0
+},
+
+{
+q:"Tally में Expenses क्या दर्शाते हैं?",
+o:["व्यवसाय के खर्च","व्यवसाय की पूँजी","व्यवसाय की बिक्री","व्यवसाय का Stock"],
+a:0
+},
+
+{
+q:"Tally में Income क्या दर्शाती है?",
+o:["आय","खर्च","Liability","Stock"],
+a:0
+},
+
+{
+q:"Tally में Assets क्या होते हैं?",
+o:["व्यवसाय की संपत्तियाँ","केवल खर्च","केवल बिक्री","केवल Tax"],
+a:0
+},
+
+{
+q:"Tally में Liabilities क्या होती हैं?",
+o:["व्यवसाय की देनदारियाँ","व्यवसाय की संपत्तियाँ","Stock","Sales"],
+a:0
+},
+
+{
+q:"Accounting में Debit और Credit किससे संबंधित हैं?",
+o:["Double Entry System","Operating System","Internet","Hardware"],
+a:0
+},
+
+{
+q:"Double Entry System में प्रत्येक Transaction में क्या होता है?",
+o:["कम से कम एक Debit और एक Credit","केवल Debit","केवल Credit","कोई Entry नहीं"],
+a:0
+},
+
+{
+q:"Tally में Company Data कहाँ Store हो सकता है?",
+o:["Computer/Storage पर","केवल Printer में","केवल Keyboard में","केवल Monitor में"],
+a:0
+},
+
+{
+q:"Tally में Backup का उद्देश्य क्या है?",
+o:["Data की सुरक्षित Copy रखना","Data Delete करना","Computer Format करना","Internet Speed बढ़ाना"],
+a:0
+},
+
+{
+q:"Tally में Restore का उपयोग किसके लिए किया जाता है?",
+o:["Backup Data वापस लाने के लिए","New Company बनाने के लिए","Invoice Delete करने के लिए","Printer जोड़ने के लिए"],
+a:0
+},
+
+{
+q:"Tally में Security Control का उद्देश्य क्या है?",
+o:["Data Access को नियंत्रित करना","Stock खरीदना","Invoice Print करना","Internet चलाना"],
+a:0
+},
+
+{
+q:"Tally में User Management किससे संबंधित है?",
+o:["Users और उनके Access Rights","Stock Quantity","Sales Price","GST Rate"],
+a:0
+},
+
+{
+q:"Tally में Password का उपयोग किसके लिए किया जा सकता है?",
+o:["Data Security","Stock Purchase","Invoice Calculation","Report Printing"],
+a:0
+},
+
+{
+q:"Tally में Report का उपयोग किसके लिए होता है?",
+o:["Accounting Information देखने के लिए","Computer Repair के लिए","Internet चलाने के लिए","Photo Editing के लिए"],
+a:0
+},
+
+{
+q:"Tally में Accounting Reports का उदाहरण कौन-सा है?",
+o:["Profit & Loss","Paint","Notepad","Calculator"],
+a:0
+},
+
+{
+q:"Tally में Inventory Report किससे संबंधित है?",
+o:["Stock","Salary","Capital","Bank Loan"],
+a:0
+},
+
+{
+q:"Tally में Stock Summary क्या दिखाती है?",
+o:["Stock की स्थिति","केवल Profit","केवल Salary","केवल Bank Balance"],
+a:0
+},
+
+{
+q:"Tally में Ratio Analysis का उपयोग किसके लिए होता है?",
+o:["Financial Ratios का विश्लेषण","Stock Purchase","Invoice Printing","Employee Attendance"],
+a:0
+},
+
+{
+q:"Tally में Cash Flow Statement किससे संबंधित है?",
+o:["Cash के प्रवाह से","Stock Item से","Employee Attendance से","Font Formatting से"],
+a:0
+},
+
+{
+q:"Tally में Funds Flow किससे संबंधित है?",
+o:["Funds के स्रोत और उपयोग से","केवल Sales से","केवल Purchase से","केवल GST से"],
+a:0
+},
+
+{
+q:"Tally में Bank Reconciliation का उपयोग किसके लिए होता है?",
+o:["Bank Records और Books का मिलान","Stock Counting","Salary Calculation","Sales Order"],
+a:0
+},
+
+{
+q:"Tally में BRS का पूरा नाम क्या है?",
+o:["Bank Reconciliation Statement","Bank Report System","Business Reconciliation Software","Bank Receipt Statement"],
+a:0
+},
+
+{
+q:"Tally में Invoice क्या है?",
+o:["बिक्री/खरीद का दस्तावेज","Operating System","Database","Antivirus"],
+a:0
+},
+
+{
+q:"Tally में Sales Invoice किसके लिए बनाया जाता है?",
+o:["बिक्री के लिए","केवल Purchase के लिए","केवल Salary के लिए","केवल Bank के लिए"],
+a:0
+},
+
+{
+q:"Tally में Purchase Invoice किसके लिए बनाया जाता है?",
+o:["खरीद के लिए","बिक्री के लिए","Salary के लिए","Bank Reconciliation के लिए"],
+a:0
+},
+
+{
+q:"Tally में Inventory Invoice किससे संबंधित है?",
+o:["Stock सहित बिक्री/खरीद","केवल Capital","केवल Salary","केवल Bank"],
+a:0
+},
+
+{
+q:"Tally में Voucher Printing का उपयोग किसके लिए होता है?",
+o:["Voucher की Print Copy निकालने के लिए","Company Delete करने के लिए","Data Backup के लिए","Internet चलाने के लिए"],
+a:0
+},
+
+{
+q:"Tally में Export सुविधा का उपयोग किसके लिए किया जाता है?",
+o:["Data/Reports को दूसरे Format में निकालने के लिए","Data Delete करने के लिए","Computer Shutdown करने के लिए","Password हटाने के लिए"],
+a:0
+},
+
+{
+q:"Tally में Import सुविधा का उपयोग किसके लिए किया जाता है?",
+o:["बाहरी Data को Tally में लाने के लिए","Report Delete करने के लिए","Company बंद करने के लिए","Printer हटाने के लिए"],
+a:0
+},
+
+{
+q:"Tally में Search सुविधा का उपयोग किसके लिए होता है?",
+o:["Data/Reports में जानकारी खोजने के लिए","Computer Format करने के लिए","Stock बेचने के लिए","Password बनाने के लिए"],
+a:0
+},
+
+{
+q:"Tally में Drill Down का अर्थ क्या है?",
+o:["Report से अधिक विस्तृत जानकारी तक जाना","Company Delete करना","Data Backup करना","Invoice Print करना"],
+a:0
+},
+
+{
+q:"Tally में Alter का अर्थ क्या है?",
+o:["Existing Master/Data में बदलाव करना","Data Delete करना","Company Backup करना","Report Print करना"],
+a:0
+},
+
+{
+q:"Tally में Display का उपयोग मुख्यतः किसके लिए किया जाता है?",
+o:["Reports/Information देखने के लिए","Data Delete करने के लिए","Company बनाने के लिए","Internet चलाने के लिए"],
+a:0
+},
+
+{
+q:"Tally में Create विकल्प का उपयोग किसके लिए किया जाता है?",
+o:["नया Master बनाने के लिए","Report Delete करने के लिए","Computer बंद करने के लिए","Backup Restore करने के लिए"],
+a:0
+},
+
+{
+q:"Tally में Delete का उपयोग किसके लिए होता है?",
+o:["चयनित Data/Master हटाने के लिए","Data Copy करने के लिए","Report बनाने के लिए","Invoice Print करने के लिए"],
+a:0
+},
+
+{
+q:"Tally में F11 का उपयोग सामान्यतः किसके लिए होता है?",
+o:["Company Features खोलने के लिए","Company बंद करने के लिए","Print करने के लिए","Save करने के लिए"],
+a:0
+},
+
+{
+q:"Tally में F12 का उपयोग सामान्यतः किसके लिए होता है?",
+o:["Configuration खोलने के लिए","Company Delete करने के लिए","Backup लेने के लिए","Voucher Print करने के लिए"],
+a:0
+},
+
+{
+q:"Tally में Ctrl+A का उपयोग सामान्यतः किसके लिए किया जाता है?",
+o:["Selection/Accept के लिए","Company Delete करने के लिए","Report Print करने के लिए","Computer Shutdown करने के लिए"],
+a:0
+},
+
+{
+q:"Tally में Ctrl+N का उपयोग किससे संबंधित हो सकता है?",
+o:["Calculator Panel","Company Delete","Backup","Print"],
+a:0
+},
+
+{
+q:"Tally में Calculator का उपयोग किसके लिए किया जाता है?",
+o:["गणना करने के लिए","Ledger Delete करने के लिए","Company बनाने के लिए","Stock Transfer करने के लिए"],
+a:0
+},
+
+{
+q:"Tally में Accounting और Inventory दोनों को एक साथ manage किया जा सकता है?",
+o:["हाँ","नहीं","केवल Internet पर","केवल Printer से"],
+a:0
+},
+
+{
+q:"Tally में GST के साथ Accounting करने का क्या लाभ है?",
+o:["Tax और Accounting Records को व्यवस्थित करना","केवल Photo बनाना","Internet Speed बढ़ाना","Computer Repair करना"],
+a:0
+},
+
+{
+q:"Tally का उपयोग मुख्यतः किस क्षेत्र में अधिक होता है?",
+o:["Accounting और Business","Video Gaming","Graphic Designing","Music Recording"],
+a:0
+},
+
+{
+q:"Tally में Master Data में कौन-सी चीज शामिल हो सकती है?",
+o:["Ledger और Stock Item","केवल Reports","केवल Printer","केवल Keyboard"],
+a:0
+},
+
+{
+q:"Tally में Voucher Entry किस प्रकार के Data से संबंधित है?",
+o:["Business Transactions","Computer Hardware","Internet Data","Audio Data"],
+a:0
+},
+
+{
+q:"Tally में Accounting Data की सुरक्षा के लिए क्या उपयोगी है?",
+o:["Backup और Security Controls","केवल Monitor","केवल Mouse","केवल Printer"],
+a:0
+},
+
+{
+q:"Tally में Final Accounts में कौन-सी Report महत्वपूर्ण है?",
+o:["Profit & Loss और Balance Sheet","Paint","Notepad","Calculator"],
+a:0
+},
+
+{
+q:"Tally सीखने का मुख्य लाभ क्या है?",
+o:["Accounting और Business Transactions को व्यवस्थित करना","केवल Typing सीखना","केवल Internet चलाना","केवल Photo Editing करना"],
+a:0
+}
+
+];
+
+let current = 0;
+let score = 0;
+let answered = false;
+
+function loadQuestion(){
+
+    answered = false;
+
+    const q = questions[current];
+
+    document.getElementById("number").innerText =
+    "प्रश्न " + (current + 1) + " / " + questions.length;
+
+    document.getElementById("question").innerText = q.q;
+
+    const box = document.getElementById("options");
+
+    box.innerHTML = "";
+
+    q.o.forEach((text, i) => {
+
+        const btn = document.createElement("button");
+
+        btn.className = "option";
+
+        btn.innerText =
+        String.fromCharCode(65 + i) + ". " + text;
+
+        btn.onclick = function(){
+            answer(btn, i);
+        };
+
+        box.appendChild(btn);
+
+    });
+
+    document.getElementById("next").disabled = true;
+
+    const progress =
+    ((current + 1) / questions.length) * 100;
+
+    document.getElementById("progress").style.width =
+    progress + "%";
+}
+
+
+function answer(btn, index){
+
+    if(answered) return;
+
+    answered = true;
+
+    const q = questions[current];
+
+    const buttons =
+    document.querySelectorAll(".option");
+
+    buttons.forEach((b, i) => {
+
+        if(i === q.a){
+            b.classList.add("correct");
+        }
+
+        b.disabled = true;
+
+    });
+
+    if(index === q.a){
+
+        score++;
+
+    }else{
+
+        btn.classList.add("wrong");
+
+    }
+
+    document.getElementById("next").disabled = false;
+}
+
+
+function nextQuestion(){
+
+    current++;
+
+    if(current < questions.length){
+
+        loadQuestion();
+
+    }else{
+
+        document.getElementById("quiz").style.display =
+        "none";
+
+        document.getElementById("result").style.display =
+        "block";
+
+        document.getElementById("score").innerText =
+        score + " / " + questions.length;
+
+        document.getElementById("resultText").innerText =
+        "आपने " + questions.length +
+        " में से " + score +
+        " प्रश्नों के सही उत्तर दिए।";
+
+    }
+}
+
+
+function restartQuiz(){
+
+    current = 0;
+
+    score = 0;
+
+    answered = false;
+
+    document.getElementById("quiz").style.display =
+    "block";
+
+    document.getElementById("result").style.display =
+    "none";
+
+    loadQuestion();
+}
+
+
+loadQuestion();
+
+</script>
+
+</body>
+</html>
