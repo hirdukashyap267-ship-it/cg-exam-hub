@@ -4,22 +4,176 @@
 
     <url>
         <loc>https://hirdukashyap267-ship-it.github.io/cg-exam-hub/</loc>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
     </url>
 
     <url>
-        <loc>https://hirdukashyap267-ship-it.github.io/cg-exam-hub/gk.html</loc>
+        <loc>https://hirdukashyap267-ship-it.github.io/cg-exam-hub/cg-geography-notes.html</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
     </url>
 
     <url>
-        <loc>https://hirdukashyap267-ship-it.github.io/cg-exam-hub/history.html</loc>
+        <loc>https://hirdukashyap267-ship-it.github.io/cg-exam-hub/cg-gk-start.html</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
     </url>
 
     <url>
-        <loc>https://hirdukashyap267-ship-it.github.io/cg-exam-hub/geography.html</loc>
+        <loc>https://hirdukashyap267-ship-it.github.io/cg-exam-hub/cg-gk.html</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <url>
+        <loc>https://hirdukashyap267-ship-it.github.io/cg-exam-hub/cg-history-notes.html</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://hirdukashyap267-ship-it.github.io/cg-exam-hub/computer-fundamentals-quiz.html</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://hirdukashyap267-ship-it.github.io/cg-exam-hub/computer-hardware-quiz.html</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://hirdukashyap267-ship-it.github.io/cg-exam-hub/computer-quiz.html</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://hirdukashyap267-ship-it.github.io/cg-exam-hub/computer-shortcut-quiz.html</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
     </url>
 
     <url>
         <loc>https://hirdukashyap267-ship-it.github.io/cg-exam-hub/computer.html</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://hirdukashyap267-ship-it.github.io/cg-exam-hub/cyber-security-quiz.html</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://hirdukashyap267-ship-it.github.io/cg-exam-hub/dbms-quiz.html</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://hirdukashyap267-ship-it.github.io/cg-exam-hub/exam-trick.html</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://hirdukashyap267-ship-it.github.io/cg-exam-hub/geography.html</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <url>
+        <loc>https://hirdukashyap267-ship-it.github.io/cg-exam-hub/gk.html</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <url>
+        <loc>https://hirdukashyap267-ship-it.github.io/cg-exam-hub/gk2.html</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://hirdukashyap267-ship-it.github.io/cg-exam-hub/history.html</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <url>
+        <loc>https://hirdukashyap267-ship-it.github.io/cg-exam-hub/india-gk-notes.html</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://hirdukashyap267-ship-it.github.io/cg-exam-hub/internet-quiz.html</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://hirdukashyap267-ship-it.github.io/cg-exam-hub/ms-access-quiz.html</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://hirdukashyap267-ship-it.github.io/cg-exam-hub/ms-excel-quiz.html</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://hirdukashyap267-ship-it.github.io/cg-exam-hub/ms-powerpoint-quiz.html</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://hirdukashyap267-ship-it.github.io/cg-exam-hub/ms-word-quiz.html</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://hirdukashyap267-ship-it.github.io/cg-exam-hub/notes.html</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://hirdukashyap267-ship-it.github.io/cg-exam-hub/operating-system-quiz.html</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://hirdukashyap267-ship-it.github.io/cg-exam-hub/political-gk.html</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://hirdukashyap267-ship-it.github.io/cg-exam-hub/resume.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <url>
+        <loc>https://hirdukashyap267-ship-it.github.io/cg-exam-hub/sports-gk.html</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://hirdukashyap267-ship-it.github.io/cg-exam-hub/tally-quiz.html</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
     </url>
 
 </urlset>
