@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Reasoning Quiz | CG Exam Hub</title>
+
+<meta name="description"
+content="CG Exam Hub Reasoning Quiz में Analogy, Coding-Decoding, Series, Blood Relation, Direction, Dice, Venn Diagram और अन्य Reasoning Topics की तैयारी करें।">
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,"Noto Sans Devanagari",sans-serif;
+    background:linear-gradient(135deg,#eef2ff,#fdf2f8,#ecfeff);
+    min-height:100vh;
+    color:#111827;
+}
+
+.header{
+    background:linear-gradient(135deg,#4f46e5,#7c3aed,#db2777);
+    color:white;
+    text-align:center;
+    padding:28px 15px 32px;
+    border-radius:0 0 30px 30px;
+    box-shadow:0 8px 25px rgba(0,0,0,.18);
+}
+
+.header h1{
+    font-size:30px;
+    margin-bottom:8px;
+}
+
+.header p{
+    font-size:15px;
+    opacity:.95;
+}
+
+.home-btn{
+    display:inline-block;
+    margin-top:18px;
+    padding:11px 22px;
+    background:white;
+    color:#4f46e5;
+    text-decoration:none;
+    border-radius:25px;
+    font-weight:bold;
+    box-shadow:0 5px 15px rgba(0,0,0,.18);
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:25px 14px 40px;
+}
+
+.title-box{
+    text-align:center;
+    margin-bottom:22px;
+}
+
+.title-box h2{
+    font-size:23px;
+    color:#312e81;
+    margin-bottom:6px;
+}
+
+.title-box p{
+    color:#4b5563;
+    font-size:14px;
+}
+
+.topics{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+}
+
+.topic{
+    text-decoration:none;
+    color:white;
+    padding:17px 14px;
+    border-radius:18px;
+    min-height:105px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    box-shadow:0 7px 18px rgba(0,0,0,.13);
+    transition:.2s;
+}
+
+.topic:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 24px rgba(0,0,0,.2);
+}
+
+.number{
+    width:38px;
+    height:38px;
+    min-width:38px;
+    background:rgba(255,255,255,.25);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+    font-size:15px;
+}
+
+.topic-content{
+    flex:1;
+}
+
+.topic h3{
+    font-size:16px;
+    margin-bottom:5px;
+}
+
+.topic p{
+    font-size:12px;
+    line-height:1.4;
+    opacity:.95;
+}
+
+.arrow{
+    font-size:20px;
+}
+
+/* Different colours */
+
+.t1{background:linear-gradient(135deg,#2563eb,#4f46e5);}
+.t2{background:linear-gradient(135deg,#dc2626,#f97316);}
+.t3{background:linear-gradient(135deg,#059669,#10b981);}
+.t4{background:linear-gradient(135deg,#7c3aed,#a855f7);}
+.t5{background:linear-gradient(135deg,#db2777,#ec4899);}
+.t6{background:linear-gradient(135deg,#0891b2,#06b6d4);}
+.t7{background:linear-gradient(135deg,#ca8a04,#eab308);}
+.t8{background:linear-gradient(135deg,#9333ea,#c026d3);}
+.t9{background:linear-gradient(135deg,#ea580c,#f97316);}
+.t10{background:linear-gradient(135deg,#0f766e,#14b8a6);}
+.t11{background:linear-gradient(135deg,#4f46e5,#6366f1);}
+.t12{background:linear-gradient(135deg,#be123c,#e11d48);}
+.t13{background:linear-gradient(135deg,#15803d,#22c55e);}
+.t14{background:linear-gradient(135deg,#0369a1,#0ea5e9);}
+.t15{background:linear-gradient(135deg,#b45309,#f59e0b);}
+.t16{background:linear-gradient(135deg,#4338ca,#8b5cf6);}
+.t17{background:linear-gradient(135deg,#be185d,#f43f5e);}
+.t18{background:linear-gradient(135deg,#047857,#059669);}
+.t19{background:linear-gradient(135deg,#7e22ce,#9333ea);}
+.t20{background:linear-gradient(135deg,#c2410c,#ea580c);}
+.t21{background:linear-gradient(135deg,#1d4ed8,#2563eb);}
+.t22{background:linear-gradient(135deg,#0f766e,#0d9488);}
+.t23{background:linear-gradient(135deg,#a21caf,#d946ef);}
+.t24{background:linear-gradient(135deg,#b91c1c,#ef4444);}
+.t25{background:linear-gradient(135deg,#0369a1,#0284c7);}
+.t26{background:linear-gradient(135deg,#6d28d9,#8b5cf6);}
+.t27{background:linear-gradient(135deg,#15803d,#16a34a);}
+.t28{background:linear-gradient(135deg,#c2410c,#f97316);}
+.t29{background:linear-gradient(135deg,#4338ca,#7c3aed);}
+
+.footer{
+    text-align:center;
+    padding:22px 10px;
+    color:#6b7280;
+    font-size:13px;
+}
+
+@media(max-width:600px){
+
+    .header h1{
+        font-size:26px;
+    }
+
+    .topics{
+        grid-template-columns:1fr;
+    }
+
+    .topic{
+        min-height:92px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header class="header">
+
+    <h1>🧠 Reasoning Quiz</h1>
+
+    <p>CG Exam Hub • Competitive Exam Reasoning Preparation</p>
+
+    <a href="index.html" class="home-btn">
+        🏠 Home
+    </a>
+
+</header>
+
+
+<!-- MAIN -->
+
+<main class="container">
+
+    <div class="title-box">
+
+        <h2>📚 Reasoning के 29 Topics</h2>
+
+        <p>
+            किसी भी Topic पर क्लिक करें और सीधे उसका Quiz शुरू करें।
+        </p>
+
+    </div>
+
+
+    <div class="topics">
+
+
+        <!-- 1 -->
+
+        <a href="analogy.html" class="topic t1">
+
+            <div class="number">1</div>
+
+            <div class="topic-content">
+
+                <h3>🔗 Analogy</h3>
+
+                <p>सादृश्य एवं संबंध आधारित प्रश्न</p>
+
+            </div>
+
+            <div class="arrow">›</div>
+
+        </a>
+
+
+        <!-- 2 -->
+
+        <a href="odd-one-out.html" class="topic t2">
+
+            <div class="number">2</div>
+
+            <div class="topic-content">
+
+                <h3>🔍 Odd One Out</h3>
+
+                <p>विषम शब्द, संख्या एवं आकृति</p>
+
+            </div>
+
+            <div class="arrow">›</div>
+
+        </a>
+
+
+        <!-- 3 -->
+
+        <a href="coding-decoding.html" class="topic t3">
+
+            <div class="number">3</div>
+
+            <div class="topic-content">
+
+                <h3>🔐 Coding & Decoding</h3>
+
+                <p>कोड भाषा एवं अक्षर आधारित प्रश्न</p>
+
+            </div>
+
+            <div class="arrow">›</div>
+
+        </a>
+
+
+        <!-- 4 -->
+
+        <a href="series.html" class="topic t4">
+
+            <div class="number">4</div>
+
+            <div class="topic-content">
+
+                <h3>🔢 Series</h3>
+
+                <p>Number, Alphabet एवं Mixed Series</p>
+
+            </div>
+
+            <div class="arrow">›</div>
+
+        </a>
+
+
+        <!-- 5 -->
+
+        <a href="blood-relation.html" class="topic t5">
+
+            <div class="number">5</div>
+
+            <div class="topic-content">
+
+                <h3>👨‍👩‍👧 Blood Relation</h3>
+
+                <p>पारिवारिक संबंध आधारित प्रश्न</p>
+
+            </div>
+
+            <div class="arrow">›</div>
+
+        </a>
+
+
+        <!-- 6 -->
+
+        <a href="direction.html" class="topic t6">
+
+            <div class="number">6</div>
+
+            <div class="topic-content">
+
+                <h3>🧭 Direction</h3>
+
+                <p>दिशा एवं दूरी आधारित प्रश्न</p>
+
+            </div>
+
+            <div class="arrow">›</div>
+
+        </a>
+
+
+        <!-- 7 -->
+
+        <a href="missing-number.html" class="topic t7">
+
+            <div class="number">7</div>
+
+            <div class="topic-content">
+
+                <h3>❓ Missing Number</h3>
+
+                <p>Missing Number एवं Number Puzzle</p>
+
+            </div>
+
+            <div class="arrow">›</div>
+
+        </a>
+
+
+        <!-- 8 -->
+
+        <a href="mathematical-operations.html" class="topic t8">
+
+            <div class="number">8</div>
+
+            <div class="topic-content">
+
+                <h3>➗ Mathematical Operations</h3>
+
+                <p>चिह्न बदलकर गणितीय प्रश्न</p>
+
+            </div>
+
+            <div class="arrow">›</div>
+
+        </a>
+
+
+        <!-- 9 -->
+
+        <a href="arithmetical-reasoning.html" class="topic t9">
+
+            <div class="number">9</div>
+
+            <div class="topic-content">
+
+                <h3>🧮 Arithmetical Reasoning</h3>
+
+                <p>गणितीय तर्क एवं समस्या समाधान</p>
+
+            </div>
+
+            <div class="arrow">›</div>
+
+        </a>
+
+
+        <!-- 10 -->
+
+        <a href="venn-diagram.html" class="topic t10">
+
+            <div class="number">10</div>
+
+            <div class="topic-content">
+
+                <h3>⭕ Venn Diagram</h3>
+
+                <p>समूह एवं वर्गीकरण आधारित प्रश्न</p>
+
+            </div>
+
+            <div class="arrow">›</div>
+
+        </a>
+
+
+        <!-- 11 -->
+
+        <a href="syllogism.html" class="topic t11">
+
+            <div class="number">11</div>
+
+            <div class="topic-content">
+
+                <h3>🧠 Syllogism</h3>
+
+                <p>कथन एवं निष्कर्ष आधारित प्रश्न</p>
+
+            </div>
+
+            <div class="arrow">›</div>
+
+        </a>
+
+
+        <!-- 12 -->
+
+        <a href="ranking-test.html" class="topic t12">
+
+            <div class="number">12</div>
+
+            <div class="topic-content">
+
+                <h3>🏆 Ranking Test</h3>
+
+                <p>क्रम एवं स्थान आधारित प्रश्न</p>
+
+            </div>
+
+            <div class="arrow">›</div>
+
+        </a>
+
+
+        <!-- 13 -->
+
+        <a href="seating-arrangement.html" class="topic t13">
+
+            <div class="number">13</div>
+
+            <div class="topic-content">
+
+                <h3>🪑 Seating Arrangement</h3>
+
+                <p>बैठक व्यवस्था एवं Puzzle</p>
+
+            </div>
+
+            <div class="arrow">›</div>
+
+        </a>
+
+
+        <!-- 14 -->
+
+        <a href="logical-sequence.html" class="topic t14">
+
+            <div class="number">14</div>
+
+            <div class="topic-content">
+
+                <h3>📋 Logical Sequence</h3>
+
+                <p>शब्दों का तार्किक क्रम</p>
+
+            </div>
+
+            <div class="arrow">›</div>
+
+        </a>
+
+
+        <!-- 15 -->
+
+        <a href="clock.html" class="topic t15">
+
+            <div class="number">15</div>
+
+            <div class="topic-content">
+
+                <h3>🕐 Clock</h3>
+
+                <p>घड़ी एवं कोण आधारित प्रश्न</p>
+
+            </div>
+
+            <div class="arrow">›</div>
+
+        </a>
+
+
+        <!-- 16 -->
+
+        <a href="calendar.html" class="topic t16">
+
+            <div class="number">16</div>
+
+            <div class="topic-content">
+
+                <h3>📅 Calendar</h3>
+
+                <p>दिन, तारीख एवं वर्ष आधारित प्रश्न</p>
+
+            </div>
+
+            <div class="arrow">›</div>
+
+        </a>
+
+
+        <!-- 17 -->
+
+        <a href="age.html" class="topic t17">
+
+            <div class="number">17</div>
+
+            <div class="topic-content">
+
+                <h3>👤 Age</h3>
+
+                <p>आयु आधारित तर्क प्रश्न</p>
+
+            </div>
+
+            <div class="arrow">›</div>
+
+        </a>
+
+
+        <!-- 18 -->
+
+        <a href="dice-cube.html" class="topic t18">
+
+            <div class="number">18</div>
+
+            <div class="topic-content">
+
+                <h3>🎲 Dice & Cube</h3>
+
+                <p>Dice, Cube एवं Figure आधारित प्रश्न</p>
+
+            </div>
+
+            <div class="arrow">›</div>
+
+        </a>
+
+
+        <!-- 19 -->
+
+        <a href="conditional-number-letter-sign.html" class="topic t19">
+
+            <div class="number">19</div>
+
+            <div class="topic-content">
+
+                <h3>🔤 Conditional Number / Letter / Sign</h3>
+
+                <p>संख्या, अक्षर एवं चिन्ह आधारित प्रश्न</p>
+
+            </div>
+
+            <div class="arrow">›</div>
+
+        </a>
+
+
+        <!-- 20 -->
+
+        <a href="miscellaneous.html" class="topic t20">
+
+            <div class="number">20</div>
+
+            <div class="topic-content">
+
+                <h3>🧩 Miscellaneous</h3>
+
+                <p>विभिन्न प्रकार के मिश्रित प्रश्न</p>
+
+            </div>
+
+            <div class="arrow">›</div>
+
+        </a>
+
+
+        <!-- 21 -->
+
+        <a href="water-mirror-image.html" class="topic t21">
+
+            <div class="number">21</div>
+
+            <div class="topic-content">
+
+                <h3>🪞 Water & Mirror Image</h3>
+
+                <p>जल प्रतिबिंब एवं दर्पण प्रतिबिंब</p>
+
+            </div>
+
+            <div class="arrow">›</div>
+
+        </a>
+
+
+        <!-- 22 -->
+
+        <a href="figure-analogy.html" class="topic t22">
+
+            <div class="number">22</div>
+
+            <div class="topic-content">
+
+                <h3>🔺 Figure Analogy</h3>
+
+                <p>आकृति आधारित सादृश्य प्रश्न</p>
+
+            </div>
+
+            <div class="arrow">›</div>
+
+        </a>
+
+
+        <!-- 23 -->
+
+        <a href="figure-classification.html" class="topic t23">
+
+            <div class="number">23</div>
+
+            <div class="topic-content">
+
+                <h3>🔷 Figure Classification</h3>
+
+                <p>आकृतियों का वर्गीकरण</p>
+
+            </div>
+
+            <div class="arrow">›</div>
+
+        </a>
+
+
+        <!-- 24 -->
+
+        <a href="figure-series.html" class="topic t24">
+
+            <div class="number">24</div>
+
+            <div class="topic-content">
+
+                <h3>🔶 Figure Series</h3>
+
+                <p>आकृति श्रृंखला आधारित प्रश्न</p>
+
+            </div>
+
+            <div class="arrow">›</div>
+
+        </a>
+
+
+        <!-- 25 -->
+
+        <a href="figure-completion.html" class="topic t25">
+
+            <div class="number">25</div>
+
+            <div class="topic-content">
+
+                <h3>🧩 Figure Completion</h3>
+
+                <p>अधूरी आकृति को पूरा करना</p>
+
+            </div>
+
+            <div class="arrow">›</div>
+
+        </a>
+
+
+        <!-- 26 -->
+
+        <a href="hidden-figure.html" class="topic t26">
+
+            <div class="number">26</div>
+
+            <div class="topic-content">
+
+                <h3>🔎 Hidden Figure</h3>
+
+                <p>छिपी हुई आकृति पहचानना</p>
+
+            </div>
+
+            <div class="arrow">›</div>
+
+        </a>
+
+
+        <!-- 27 -->
+
+        <a href="paper-folding-cutting.html" class="topic t27">
+
+            <div class="number">27</div>
+
+            <div class="topic-content">
+
+                <h3>📄 Paper Folding & Cutting</h3>
+
+                <p>कागज मोड़ना एवं काटना</p>
+
+            </div>
+
+            <div class="arrow">›</div>
+
+        </a>
+
+
+        <!-- 28 -->
+
+        <a href="counting-figures.html" class="topic t28">
+
+            <div class="number">28</div>
+
+            <div class="topic-content">
+
+                <h3>🔺 Counting of Figures</h3>
+
+                <p>आकृतियों की संख्या गिनना</p>
+
+            </div>
+
+            <div class="arrow">›</div>
+
+        </a>
+
+
+        <!-- 29 -->
+
+        <a href="non-verbal-miscellaneous.html" class="topic t29">
+
+            <div class="number">29</div>
+
+            <div class="topic-content">
+
+                <h3>🎯 Non-Verbal Miscellaneous</h3>
+
+                <p>अन्य मिश्रित Non-Verbal प्रश्न</p>
+
+            </div>
+
+            <div class="arrow">›</div>
+
+        </a>
+
+
+    </div>
+
+</main>
+
+
+<footer class="footer">
+
+    <b>CG Exam Hub</b><br>
+    CGPSC • CG Vyapam • Patwari • Police • Teacher
+
+</footer>
+
+</body>
+</html>
