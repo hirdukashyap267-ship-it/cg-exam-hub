@@ -1,0 +1,628 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MS Excel Notes in Hindi | CG Exam Hub</title>
+<meta name="description" content="MS Excel के महत्वपूर्ण नोट्स हिंदी में। Excel Formula, Functions, Shortcut Keys, Workbook, Worksheet और Computer Exam तैयारी।">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://hirdukashyap267-ship-it.github.io/cg-exam-hub/ms-excel-notes.html">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ font-family:Arial,"Noto Sans Devanagari",sans-serif;
+ background:#f2f5ff;
+ color:#263247;
+ line-height:1.8;
+}
+.navbar{
+ background:#101b35;
+}
+.navbar-brand{
+ color:#fff!important;
+ font-weight:bold;
+}
+.nav-link{color:#e8edff!important}
+.hero{
+ background:linear-gradient(135deg,#087f5b,#0b7285,#364fc7);
+ color:white;
+ padding:55px 18px;
+ text-align:center;
+ border-radius:0 0 30px 30px;
+}
+.hero h1{font-size:clamp(27px,5vw,42px);font-weight:800}
+.hero p{max-width:700px;margin:12px auto 0}
+.hero-badge{
+ display:inline-block;
+ background:#ffffff25;
+ border:1px solid #ffffff55;
+ border-radius:30px;
+ padding:5px 15px;
+ margin-bottom:12px;
+}
+.container-main{max-width:1050px;margin:auto;padding:20px 13px}
+.toc{
+ background:white;
+ border-radius:18px;
+ padding:20px;
+ box-shadow:0 5px 22px #17255412;
+ margin:22px 0;
+}
+.toc h2{font-size:22px;color:#087f5b;font-weight:800}
+.topic-links{
+ display:flex;flex-wrap:wrap;gap:9px;
+}
+.topic-links a{
+ text-decoration:none;
+ color:#075985;
+ background:#e0f2fe;
+ border:1px solid #bae6fd;
+ border-radius:20px;
+ padding:6px 12px;
+ font-size:14px;
+}
+.story-card{
+ background:white;
+ border-radius:18px;
+ padding:22px;
+ margin:20px 0;
+ box-shadow:0 5px 22px #17255410;
+ border-left:5px solid #0d9488;
+ scroll-margin-top:75px;
+}
+.story-card h2{
+ font-size:22px;
+ color:#075985;
+ font-weight:800;
+ margin:8px 0 14px;
+}
+.tag{
+ display:inline-block;
+ background:#ccfbf1;
+ color:#0f766e;
+ padding:3px 12px;
+ border-radius:20px;
+ font-size:12px;
+ font-weight:bold;
+}
+.trick,.facts,.exam{
+ padding:12px 15px;
+ border-radius:12px;
+ margin-top:14px;
+}
+.trick{background:#fff7d6;border-left:4px solid #eab308}
+.facts{background:#e8f7ff;border-left:4px solid #0ea5e9}
+.exam{background:#f0eaff;border-left:4px solid #8b5cf6}
+.story-card ul{padding-left:22px;margin-bottom:0}
+.story-card li{margin:5px 0}
+table{width:100%;border-collapse:collapse;margin-top:10px}
+th,td{border:1px solid #dbe3ef;padding:9px;text-align:left}
+th{background:#e0f2fe;color:#075985}
+.table-wrap{overflow-x:auto}
+.footer{
+ background:#101b35;color:white;text-align:center;
+ padding:25px 12px;margin-top:35px;
+}
+.top-btn{
+ position:fixed;right:16px;bottom:18px;
+ background:#087f5b;color:white;border:0;
+ width:45px;height:45px;border-radius:50%;
+ font-size:22px;box-shadow:0 4px 15px #0003;
+}
+@media(max-width:600px){
+ .hero{padding:40px 15px}
+ .story-card{padding:17px}
+ .story-card h2{font-size:19px}
+ .toc{padding:16px}
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg">
+<div class="container">
+<a class="navbar-brand" href="index.html">📚 CG Exam Hub</a>
+<button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navMenu">
+<div class="navbar-nav ms-auto">
+<a class="nav-link" href="index.html">Home</a>
+<a class="nav-link" href="computer-notes.html">Computer Notes</a>
+<a class="nav-link" href="notes.html">All Notes</a>
+</div>
+</div>
+</div>
+</nav>
+
+<header class="hero">
+<div class="hero-badge">💻 Computer Special Notes</div>
+<h1>MS Excel Complete Notes</h1>
+<p>Microsoft Excel के सभी महत्वपूर्ण टॉपिक्स, Formula, Functions, Shortcut Keys और Exam Tricks आसान हिंदी भाषा में।</p>
+</header>
+
+<main class="container-main">
+
+<section class="toc">
+<h2>📖 विषय सूची (Contents)</h2>
+<div class="topic-links">
+<a href="#intro">परिचय</a>
+<a href="#history">इतिहास</a>
+<a href="#workbook">Workbook</a>
+<a href="#worksheet">Worksheet</a>
+<a href="#cell">Rows & Columns</a>
+<a href="#interface">Interface</a>
+<a href="#data">Data Entry</a>
+<a href="#format">Formatting</a>
+<a href="#formula">Formula</a>
+<a href="#functions">Functions</a>
+<a href="#references">Cell References</a>
+<a href="#autofill">AutoFill</a>
+<a href="#sort">Sort & Filter</a>
+<a href="#conditional">Conditional Formatting</a>
+<a href="#chart">Charts</a>
+<a href="#pivot">PivotTable</a>
+<a href="#validation">Data Validation</a>
+<a href="#print">Print & Page Layout</a>
+<a href="#errors">Errors</a>
+<a href="#shortcuts">Shortcut Keys</a>
+<a href="#extensions">File Extensions</a>
+<a href="#revision">One Line Revision</a>
+</div>
+</section>
+
+<section class="story-card" id="intro">
+<span class="tag">Topic 01</span>
+<h2>💻 MS Excel का परिचय</h2>
+<p>Microsoft Excel एक Spreadsheet Program है। इसका उपयोग डेटा को व्यवस्थित करने, गणना करने, चार्ट बनाने और रिपोर्ट तैयार करने के लिए किया जाता है।</p>
+<p>Excel में डेटा Rows और Columns के रूप में रखा जाता है। इनके मिलने से Cell बनता है। Excel का उपयोग स्कूल, ऑफिस, बैंक, दुकान और व्यवसाय में किया जाता है।</p>
+<div class="trick">🧠 याद रखने की Trick: Excel = Spreadsheet + Calculation + Data Management.</div>
+<div class="facts">⭐ Important Facts:
+<ul>
+<li>MS Excel, Microsoft Office का हिस्सा है।</li>
+<li>Excel एक Spreadsheet Software है।</li>
+<li>Excel में गणना के लिए Formula और Functions का उपयोग होता है।</li>
+</ul>
+</div>
+<div class="exam">🎯 Exam Point: MS Excel का मुख्य उपयोग गणना और डेटा विश्लेषण करना है।</div>
+</section>
+
+<section class="story-card" id="history">
+<span class="tag">Topic 02</span>
+<h2>📜 MS Excel का इतिहास</h2>
+<p>Microsoft Excel को Microsoft कंपनी ने विकसित किया। इसका पहला संस्करण 1985 में Macintosh कंप्यूटर के लिए जारी किया गया था। Windows के लिए Excel का पहला संस्करण 1987 में आया।</p>
+<p>समय के साथ Excel में कई नए फीचर्स जोड़े गए, जैसे Charts, Formulas, PivotTable और Data Analysis Tools.</p>
+<div class="trick">🧠 याद रखने की Trick: Macintosh – 1985, Windows – 1987.</div>
+<div class="facts">⭐ Important Facts:
+<ul>
+<li>विकासकर्ता: Microsoft.</li>
+<li>पहला Excel संस्करण: 1985 (Macintosh).</li>
+<li>Windows संस्करण: 1987.</li>
+</ul>
+</div>
+<div class="exam">🎯 Exam Point: Excel का पहला संस्करण 1985 में जारी हुआ था।</div>
+</section>
+
+<section class="story-card" id="workbook">
+<span class="tag">Topic 03</span>
+<h2>📘 Workbook क्या है?</h2>
+<p>Excel में बनाई गई पूरी फाइल को Workbook कहते हैं। एक Workbook के अंदर एक या एक से अधिक Worksheets हो सकती हैं।</p>
+<p>उदाहरण के लिए, किसी स्कूल की Excel फाइल में अलग-अलग कक्षाओं के लिए अलग Worksheets रखी जा सकती हैं। पूरी फाइल Workbook कहलाएगी।</p>
+<div class="trick">🧠 Trick: पूरी Excel File = Workbook.</div>
+<div class="facts">⭐ Important Facts:
+<ul>
+<li>Workbook एक Excel File होती है।</li>
+<li>एक Workbook में कई Worksheets हो सकती हैं।</li>
+<li>नई Workbook बनाने की Shortcut Key Ctrl + N है।</li>
+</ul>
+</div>
+<div class="exam">🎯 Exam Point: Workbook के अंदर Worksheets होती हैं।</div>
+</section>
+
+<section class="story-card" id="worksheet">
+<span class="tag">Topic 04</span>
+<h2>📄 Worksheet क्या है?</h2>
+<p>Worksheet Excel की एक Spreadsheet होती है। इसमें Rows और Columns के माध्यम से डेटा लिखा जाता है। Workbook में एक या अधिक Worksheets हो सकती हैं।</p>
+<p>नीचे दिखाई देने वाले Sheet Tabs से Worksheet को बदला, जोड़ा, हटाया और Rename किया जा सकता है।</p>
+<div class="trick">🧠 Trick: Workbook = पूरी फाइल, Worksheet = फाइल के अंदर Sheet.</div>
+<div class="facts">⭐ Important Facts:
+<ul>
+<li>Worksheet में Rows और Columns होते हैं।</li>
+<li>एक नई Sheet जोड़ने के लिए Sheet के पास मौजूद + बटन इस्तेमाल कर सकते हैं।</li>
+<li>Sheet का नाम बदला जा सकता है।</li>
+</ul>
+</div>
+<div class="exam">🎯 Exam Point: Worksheet, Workbook का एक भाग है।</div>
+</section>
+
+<section class="story-card" id="cell">
+<span class="tag">Topic 05</span>
+<h2>🔢 Rows, Columns और Cells</h2>
+<p>Excel में क्षैतिज (Horizontal) लाइन को Row और ऊर्ध्वाधर (Vertical) लाइन को Column कहते हैं। Row और Column के मिलने से Cell बनता है।</p>
+<p>हर Row को संख्या से और हर Column को अक्षर से पहचाना जाता है। उदाहरण के लिए A1 एक Cell Address है।</p>
+<div class="trick">🧠 Trick: Row = Number, Column = Alphabet, दोनों का मिलन = Cell.</div>
+<div class="facts">⭐ Important Facts:
+<ul>
+<li>Row की पहचान संख्या से होती है।</li>
+<li>Column की पहचान A, B, C जैसे अक्षरों से होती है।</li>
+<li>Cell में Text, Number, Date या Formula लिखा जा सकता है।</li>
+<li>आधुनिक Excel में 1,048,576 Rows और 16,384 Columns होते हैं।</li>
+<li>अंतिम Column का नाम XFD है।</li>
+</ul>
+</div>
+<div class="exam">🎯 Exam Point: A1 का अर्थ Column A और Row 1 है।</div>
+</section>
+
+<section class="story-card" id="interface">
+<span class="tag">Topic 06</span>
+<h2>🖥️ Excel का Interface</h2>
+<p>Excel खोलने पर कई महत्वपूर्ण भाग दिखाई देते हैं। इनकी मदद से डेटा लिखा और संपादित किया जाता है।</p>
+<div class="facts">⭐ मुख्य भाग:
+<ul>
+<li>Title Bar – फाइल का नाम दिखाता है।</li>
+<li>Quick Access Toolbar – अक्सर उपयोग होने वाले Commands.</li>
+<li>Ribbon – अलग-अलग Tabs और Commands का क्षेत्र।</li>
+<li>Name Box – Active Cell का Address दिखाता है।</li>
+<li>Formula Bar – Cell का डेटा या Formula दिखाता है।</li>
+<li>Sheet Tab – Worksheets बदलने के लिए।</li>
+<li>Status Bar – जानकारी और कुछ गणनाएँ दिखाता है।</li>
+<li>Scroll Bar – Sheet में ऊपर-नीचे या दाएँ-बाएँ जाने के लिए।</li>
+</ul>
+</div>
+<div class="trick">🧠 Trick: Name Box Address बताता है, Formula Bar Cell का Content.</div>
+<div class="exam">🎯 Exam Point: Formula Bar में Active Cell का डेटा या Formula देखा जा सकता है।</div>
+</section>
+
+<section class="story-card" id="data">
+<span class="tag">Topic 07</span>
+<h2>⌨️ Excel में Data Entry</h2>
+<p>Excel के किसी Cell पर क्लिक करके उसमें डेटा लिखा जा सकता है। Enter दबाने पर डेटा Cell में दर्ज हो जाता है।</p>
+<p>Excel में मुख्य रूप से Text, Number, Date, Time और Formula दर्ज किए जाते हैं।</p>
+<div class="facts">⭐ Important Facts:
+<ul>
+<li>Enter – डेटा दर्ज करके सामान्यतः नीचे वाले Cell पर जाता है।</li>
+<li>Tab – सामान्यतः अगले Column में जाता है।</li>
+<li>F2 – Active Cell को Edit करने के लिए।</li>
+<li>Delete – Selected Cell का Content हटाने के लिए।</li>
+<li>Esc – Editing को Cancel करने के लिए।</li>
+</ul>
+</div>
+<div class="trick">🧠 Trick: F2 = Edit, Delete = Content हटाना.</div>
+<div class="exam">🎯 Exam Point: Excel में डेटा Cell के अंदर दर्ज किया जाता है।</div>
+</section>
+
+<section class="story-card" id="format">
+<span class="tag">Topic 08</span>
+<h2>🎨 Cell Formatting</h2>
+<p>Formatting का उपयोग Excel Sheet को सुंदर और पढ़ने में आसान बनाने के लिए किया जाता है। इसमें Font, Size, Color, Border और Alignment बदले जा सकते हैं।</p>
+<div class="facts">⭐ Important Formatting:
+<ul>
+<li>Bold – अक्षरों को मोटा करना।</li>
+<li>Italic – अक्षरों को तिरछा करना।</li>
+<li>Underline – अक्षरों के नीचे लाइन लगाना।</li>
+<li>Font Color – अक्षरों का रंग बदलना।</li>
+<li>Fill Color – Cell का Background रंग बदलना।</li>
+<li>Merge & Center – कई Cells को मिलाकर Text बीच में रखना।</li>
+<li>Wrap Text – लंबे Text को Cell में कई लाइनों में दिखाना।</li>
+<li>Alignment – Text की स्थिति बदलना।</li>
+</ul>
+</div>
+<div class="trick">🧠 Trick: Formatting = Font + Color + Border + Alignment.</div>
+<div class="exam">🎯 Exam Point: Wrap Text लंबे Text को Cell के अंदर कई लाइनों में दिखाता है।</div>
+</section>
+
+<section class="story-card" id="formula">
+<span class="tag">Topic 09</span>
+<h2>➗ Formula क्या है?</h2>
+<p>Excel में गणना करने के लिए Formula का उपयोग किया जाता है। Excel में Formula हमेशा बराबर (=) के चिन्ह से शुरू होता है।</p>
+<p>उदाहरण: यदि A1 में 10 और B1 में 20 है, तो =A1+B1 लिखने पर परिणाम 30 मिलेगा।</p>
+<div class="facts">⭐ मुख्य Operators:
+<ul>
+<li>+ जोड़ने के लिए।</li>
+<li>- घटाने के लिए।</li>
+<li>* गुणा करने के लिए।</li>
+<li>/ भाग देने के लिए।</li>
+<li>^ घात के लिए।</li>
+<li>% प्रतिशत के लिए।</li>
+</ul>
+</div>
+<div class="trick">🧠 Trick: Excel Formula की शुरुआत हमेशा = से होती है।</div>
+<div class="exam">🎯 Exam Point: =10+20 का परिणाम 30 होगा।</div>
+</section>
+
+<section class="story-card" id="functions">
+<span class="tag">Topic 10</span>
+<h2>🧮 Important Excel Functions</h2>
+<p>Function Excel का पहले से बना हुआ Formula होता है। इसका उपयोग तेजी से गणना करने के लिए किया जाता है।</p>
+<div class="table-wrap">
+<table>
+<tr><th>Function</th><th>कार्य</th><th>उदाहरण</th></tr>
+<tr><td>SUM</td><td>जोड़ना</td><td>=SUM(A1:A5)</td></tr>
+<tr><td>AVERAGE</td><td>औसत निकालना</td><td>=AVERAGE(A1:A5)</td></tr>
+<tr><td>MAX</td><td>सबसे बड़ी संख्या</td><td>=MAX(A1:A5)</td></tr>
+<tr><td>MIN</td><td>सबसे छोटी संख्या</td><td>=MIN(A1:A5)</td></tr>
+<tr><td>COUNT</td><td>संख्या वाले Cells गिनना</td><td>=COUNT(A1:A5)</td></tr>
+<tr><td>COUNTA</td><td>खाली न होने वाले Cells गिनना</td><td>=COUNTA(A1:A5)</td></tr>
+<tr><td>IF</td><td>शर्त के अनुसार परिणाम</td><td>=IF(A1>=33,"Pass","Fail")</td></tr>
+<tr><td>PRODUCT</td><td>गुणा करना</td><td>=PRODUCT(A1:A3)</td></tr>
+<tr><td>ROUND</td><td>संख्या को Round करना</td><td>=ROUND(A1,2)</td></tr>
+<tr><td>LEN</td><td>Text के Characters गिनना</td><td>=LEN(A1)</td></tr>
+</table>
+</div>
+<div class="trick">🧠 याद रखने की Trick:
+<ul>
+<li>SUM = जोड़</li>
+<li>AVERAGE = औसत</li>
+<li>MAX = सबसे बड़ा</li>
+<li>MIN = सबसे छोटा</li>
+<li>COUNT = Numeric Cells की गिनती</li>
+</ul>
+</div>
+<div class="exam">🎯 Exam Point: SUM Function का उपयोग संख्याओं को जोड़ने के लिए किया जाता है।</div>
+</section>
+
+<section class="story-card" id="references">
+<span class="tag">Topic 11</span>
+<h2>📌 Cell References</h2>
+<p>Formula में किसी Cell के Address का उपयोग करना Cell Reference कहलाता है। Excel में मुख्य रूप से तीन प्रकार के References होते हैं।</p>
+<div class="facts">⭐ तीन प्रकार:
+<ul>
+<li>Relative Reference – जैसे A1. Formula Copy करने पर Reference बदल सकता है।</li>
+<li>Absolute Reference – जैसे $A$1. Copy करने पर Row और Column स्थिर रहते हैं।</li>
+<li>Mixed Reference – जैसे $A1 या A$1. इसमें Row या Column में से एक स्थिर रहता है।</li>
+</ul>
+</div>
+<div class="trick">🧠 Trick: $A$1 = दोनों Fix, $A1 = Column Fix, A$1 = Row Fix.</div>
+<div class="exam">🎯 Exam Point: F4 से Formula में Cell Reference के प्रकार बदले जा सकते हैं।</div>
+</section>
+
+<section class="story-card" id="autofill">
+<span class="tag">Topic 12</span>
+<h2>🔄 AutoFill और Fill Handle</h2>
+<p>AutoFill की मदद से डेटा, संख्या, तारीख और Formula को पास के Cells में तेजी से भरा जा सकता है।</p>
+<p>Cell के नीचे-दाएँ कोने में छोटा Square दिखाई देता है, जिसे Fill Handle कहते हैं। इसे Drag करके डेटा आगे बढ़ाया जा सकता है।</p>
+<div class="facts">⭐ Important Facts:
+<ul>
+<li>Fill Handle Cell के नीचे-दाएँ कोने में होता है।</li>
+<li>AutoFill से Series बनाई जा सकती है।</li>
+<li>Formula को दूसरे Cells में Copy किया जा सकता है।</li>
+</ul>
+</div>
+<div class="trick">🧠 Trick: Fill Handle = Drag करके Data भरना.</div>
+<div class="exam">🎯 Exam Point: AutoFill का उपयोग Series और Formula भरने में होता है।</div>
+</section>
+
+<section class="story-card" id="sort">
+<span class="tag">Topic 13</span>
+<h2>↕️ Sort और Filter</h2>
+<p>Sort का उपयोग डेटा को किसी क्रम में व्यवस्थित करने के लिए किया जाता है। Filter का उपयोग जरूरत के अनुसार कुछ विशेष रिकॉर्ड दिखाने के लिए होता है।</p>
+<div class="facts">⭐ Important Facts:
+<ul>
+<li>Sort A to Z – बढ़ते क्रम में Text व्यवस्थित करना।</li>
+<li>Sort Z to A – घटते क्रम में Text व्यवस्थित करना।</li>
+<li>Smallest to Largest – संख्याओं को छोटे से बड़े क्रम में रखना।</li>
+<li>Filter – चुनी हुई शर्त के अनुसार रिकॉर्ड दिखाना।</li>
+</ul>
+</div>
+<div class="trick">🧠 Trick: Sort = क्रम बदलना, Filter = चुना हुआ डेटा दिखाना.</div>
+<div class="exam">🎯 Exam Point: Filter का उपयोग विशेष रिकॉर्ड देखने के लिए किया जाता है।</div>
+</section>
+
+<section class="story-card" id="conditional">
+<span class="tag">Topic 14</span>
+<h2>🎯 Conditional Formatting</h2>
+<p>Conditional Formatting में किसी शर्त के आधार पर Cells का रंग, Font या अन्य Formatting अपने आप बदल सकती है।</p>
+<p>उदाहरण: यदि किसी विद्यार्थी के अंक 33 से कम हैं, तो उन Cells को लाल रंग में दिखाने की शर्त लगाई जा सकती है।</p>
+<div class="facts">⭐ Important Facts:
+<ul>
+<li>Highlight Cell Rules.</li>
+<li>Top/Bottom Rules.</li>
+<li>Data Bars.</li>
+<li>Color Scales.</li>
+<li>Icon Sets.</li>
+</ul>
+</div>
+<div class="trick">🧠 Trick: Condition के आधार पर Formatting बदलना = Conditional Formatting.</div>
+<div class="exam">🎯 Exam Point: Conditional Formatting डेटा को रंगों के माध्यम से समझने में मदद करती है।</div>
+</section>
+
+<section class="story-card" id="chart">
+<span class="tag">Topic 15</span>
+<h2>📊 Excel Charts</h2>
+<p>Chart का उपयोग डेटा को चित्र या Graph के रूप में दिखाने के लिए किया जाता है। इससे डेटा को समझना और तुलना करना आसान हो जाता है।</p>
+<div class="facts">⭐ प्रमुख Charts:
+<ul>
+<li>Column Chart – खड़े Columns के रूप में डेटा।</li>
+<li>Bar Chart – Horizontal Bars के रूप में डेटा।</li>
+<li>Line Chart – समय के साथ बदलाव दिखाने के लिए।</li>
+<li>Pie Chart – कुल में अलग-अलग भागों का अनुपात।</li>
+<li>Area Chart – समय के साथ बदलाव और मात्रा दिखाने के लिए।</li>
+<li>Scatter Chart – दो संख्यात्मक Variables के संबंध को दिखाने के लिए।</li>
+</ul>
+</div>
+<div class="trick">🧠 Trick: Pie = हिस्सा, Line = बदलाव, Bar = तुलना.</div>
+<div class="exam">🎯 Exam Point: Pie Chart का उपयोग कुल के अलग-अलग हिस्सों को दिखाने के लिए होता है।</div>
+</section>
+
+<section class="story-card" id="pivot">
+<span class="tag">Topic 16</span>
+<h2>📈 PivotTable</h2>
+<p>PivotTable का उपयोग बड़े डेटा को संक्षिप्त रूप में व्यवस्थित और विश्लेषित करने के लिए किया जाता है। इसकी मदद से Sum, Count और Average जैसी गणनाएँ की जा सकती हैं।</p>
+<p>उदाहरण: किसी दुकान की बिक्री के बड़े डेटा से अलग-अलग शहरों की कुल बिक्री निकालना।</p>
+<div class="facts">⭐ Important Facts:
+<ul>
+<li>PivotTable डेटा का सारांश तैयार करता है।</li>
+<li>डेटा को अलग-अलग Categories में बाँटा जा सकता है।</li>
+<li>Rows, Columns, Values और Filters इसके प्रमुख क्षेत्र हैं।</li>
+</ul>
+</div>
+<div class="trick">🧠 Trick: PivotTable = बड़े Data का छोटा Summary.</div>
+<div class="exam">🎯 Exam Point: PivotTable का उपयोग Data Analysis के लिए होता है।</div>
+</section>
+
+<section class="story-card" id="validation">
+<span class="tag">Topic 17</span>
+<h2>✅ Data Validation</h2>
+<p>Data Validation का उपयोग Cell में दर्ज किए जाने वाले डेटा पर नियम लगाने के लिए किया जाता है। इससे गलत प्रकार का डेटा दर्ज होने से रोका जा सकता है।</p>
+<p>उदाहरण: किसी Cell में केवल 1 से 100 के बीच की संख्या दर्ज करने की अनुमति देना या Dropdown List बनाना।</p>
+<div class="facts">⭐ Important Facts:
+<ul>
+<li>Whole Number की सीमा तय कर सकते हैं।</li>
+<li>Date और Time के नियम लगा सकते हैं।</li>
+<li>Dropdown List बनाई जा सकती है।</li>
+<li>Input Message और Error Alert दिखा सकते हैं।</li>
+</ul>
+</div>
+<div class="trick">🧠 Trick: Data Validation = Data Entry पर नियम.</div>
+<div class="exam">🎯 Exam Point: Dropdown List बनाने के लिए Data Validation का उपयोग किया जा सकता है।</div>
+</section>
+
+<section class="story-card" id="print">
+<span class="tag">Topic 18</span>
+<h2>🖨️ Page Layout और Printing</h2>
+<p>Excel में डेटा को प्रिंट करने से पहले Page Layout सेट किया जा सकता है। इसमें Page Orientation, Margins, Size और Print Area जैसे विकल्प होते हैं।</p>
+<div class="facts">⭐ Important Facts:
+<ul>
+<li>Portrait – पेज खड़ा होता है।</li>
+<li>Landscape – पेज आड़ा होता है।</li>
+<li>Margins – पेज के किनारों की खाली जगह।</li>
+<li>Print Area – प्रिंट करने के लिए चुना गया क्षेत्र।</li>
+<li>Page Break – प्रिंट पेज को अलग करने की सीमा।</li>
+<li>Print Preview – प्रिंट से पहले पेज देखना।</li>
+</ul>
+</div>
+<div class="trick">🧠 Trick: Portrait = खड़ा, Landscape = आड़ा.</div>
+<div class="exam">🎯 Exam Point: Ctrl + P से Print विकल्प खोला जाता है।</div>
+</section>
+
+<section class="story-card" id="errors">
+<span class="tag">Topic 19</span>
+<h2>⚠️ Excel में सामान्य Errors</h2>
+<p>Excel में Formula या डेटा में गलती होने पर Error दिखाई दे सकता है। प्रत्येक Error का एक अलग कारण होता है।</p>
+<div class="table-wrap">
+<table>
+<tr><th>Error</th><th>अर्थ / कारण</th></tr>
+<tr><td>#DIV/0!</td><td>किसी संख्या को शून्य से भाग देना।</td></tr>
+<tr><td>#VALUE!</td><td>गलत प्रकार के डेटा का उपयोग।</td></tr>
+<tr><td>#NAME?</td><td>Formula में नाम या Function की पहचान न होना।</td></tr>
+<tr><td>#REF!</td><td>अमान्य Cell Reference.</td></tr>
+<tr><td>#N/A</td><td>आवश्यक मान उपलब्ध नहीं होना।</td></tr>
+<tr><td>#####</td><td>अक्सर Column की चौड़ाई कम होने पर दिखाई देता है।</td></tr>
+</table>
+</div>
+<div class="trick">🧠 Trick: #DIV/0! = Zero से Divide करने की गलती.</div>
+<div class="exam">🎯 Exam Point: #REF! का संबंध अमान्य Reference से है।</div>
+</section>
+
+<section class="story-card" id="shortcuts">
+<span class="tag">Topic 20</span>
+<h2>⌨️ MS Excel Important Shortcut Keys</h2>
+<div class="table-wrap">
+<table>
+<tr><th>Shortcut Key</th><th>कार्य</th></tr>
+<tr><td>Ctrl + N</td><td>नई Workbook</td></tr>
+<tr><td>Ctrl + O</td><td>फाइल खोलना</td></tr>
+<tr><td>Ctrl + S</td><td>Save करना</td></tr>
+<tr><td>Ctrl + P</td><td>Print करना</td></tr>
+<tr><td>Ctrl + C</td><td>Copy</td></tr>
+<tr><td>Ctrl + V</td><td>Paste</td></tr>
+<tr><td>Ctrl + X</td><td>Cut</td></tr>
+<tr><td>Ctrl + Z</td><td>Undo</td></tr>
+<tr><td>Ctrl + Y</td><td>Redo</td></tr>
+<tr><td>Ctrl + A</td><td>Select All</td></tr>
+<tr><td>Ctrl + B</td><td>Bold</td></tr>
+<tr><td>Ctrl + I</td><td>Italic</td></tr>
+<tr><td>Ctrl + U</td><td>Underline</td></tr>
+<tr><td>Ctrl + F</td><td>Find</td></tr>
+<tr><td>Ctrl + H</td><td>Replace</td></tr>
+<tr><td>Ctrl + 1</td><td>Format Cells Dialog</td></tr>
+<tr><td>F2</td><td>Active Cell Edit</td></tr>
+<tr><td>F4</td><td>Formula Reference बदलना</td></tr>
+<tr><td>F7</td><td>Spelling Check</td></tr>
+<tr><td>Alt + =</td><td>AutoSum</td></tr>
+<tr><td>Ctrl + ;</td><td>Current Date</td></tr>
+<tr><td>Ctrl + Shift + ;</td><td>Current Time</td></tr>
+<tr><td>Ctrl + Space</td><td>पूरी Column Select</td></tr>
+<tr><td>Shift + Space</td><td>पूरी Row Select</td></tr>
+<tr><td>Ctrl + Home</td><td>Worksheet के शुरुआत वाले Cell पर जाना</td></tr>
+<tr><td>Ctrl + End</td><td>Worksheet के अंतिम उपयोग किए गए Cell पर जाना</td></tr>
+<tr><td>Alt + Enter</td><td>एक Cell में नई Line</td></tr>
+<tr><td>Ctrl + Page Down</td><td>अगली Worksheet</td></tr>
+<tr><td>Ctrl + Page Up</td><td>पिछली Worksheet</td></tr>
+</table>
+</div>
+<div class="trick">🧠 Trick: Ctrl + S = Save, Ctrl + P = Print, F2 = Edit.</div>
+<div class="exam">🎯 Exam Point: Alt + = का उपयोग AutoSum के लिए किया जाता है।</div>
+</section>
+
+<section class="story-card" id="extensions">
+<span class="tag">Topic 21</span>
+<h2>📁 Excel File Extensions</h2>
+<div class="table-wrap">
+<table>
+<tr><th>Extension</th><th>उपयोग</th></tr>
+<tr><td>.xlsx</td><td>आधुनिक Excel Workbook का सामान्य Format</td></tr>
+<tr><td>.xls</td><td>पुराने Excel Workbook का Format</td></tr>
+<tr><td>.xlsm</td><td>Macro-enabled Workbook</td></tr>
+<tr><td>.xlsb</td><td>Binary Workbook</td></tr>
+<tr><td>.csv</td><td>Comma-Separated Values डेटा फाइल</td></tr>
+<tr><td>.xltx</td><td>Excel Template</td></tr>
+<tr><td>.xltm</td><td>Macro-enabled Template</td></tr>
+</table>
+</div>
+<div class="trick">🧠 Trick: XLSX = सामान्य Workbook, XLSM = Macro वाली Workbook.</div>
+<div class="exam">🎯 Exam Point: आधुनिक Excel Workbook का सामान्य Extension .xlsx है।</div>
+</section>
+
+<section class="story-card" id="revision">
+<span class="tag">Final Revision</span>
+<h2>⚡ MS Excel One Line Revision</h2>
+<ul>
+<li>Excel एक Spreadsheet Software है।</li>
+<li>Excel को Microsoft ने विकसित किया।</li>
+<li>पहला Excel संस्करण 1985 में Macintosh के लिए आया।</li>
+<li>Workbook पूरी Excel File होती है।</li>
+<li>Worksheet Workbook का एक भाग है।</li>
+<li>Row की पहचान संख्या से होती है।</li>
+<li>Column की पहचान अक्षरों से होती है।</li>
+<li>Row और Column के मिलने से Cell बनता है।</li>
+<li>A1 एक Cell Address है।</li>
+<li>Formula की शुरुआत = से होती है।</li>
+<li>SUM का उपयोग जोड़ने के लिए होता है।</li>
+<li>AVERAGE का उपयोग औसत निकालने के लिए होता है।</li>
+<li>MAX सबसे बड़ी संख्या बताता है।</li>
+<li>MIN सबसे छोटी संख्या बताता है।</li>
+<li>COUNT संख्यात्मक Cells गिनता है।</li>
+<li>COUNTA खाली न होने वाले Cells गिनता है।</li>
+<li>PivotTable डेटा का Summary बनाता है।</li>
+<li>Filter विशेष डेटा दिखाता है।</li>
+<li>Sort डेटा को क्रम में लगाता है।</li>
+<li>F2 Active Cell को Edit करता है।</li>
+<li>Ctrl + S से Workbook Save होती है।</li>
+<li>Ctrl + P से Print विकल्प खुलता है।</li>
+<li>.xlsx आधुनिक Excel Workbook का Extension है।</li>
+<li>Alt + = AutoSum का Shortcut है।</li>
+</ul>
+<div class="exam">🎯 CGPSC / CG Vyapam Exam Tip: Excel में Formula, Functions, Cell Reference, Shortcut Keys और File Extensions से प्रश्नों का अभ्यास जरूर करें।</div>
+</section>
+
+</main>
+
+<footer class="footer">
+<h5>📚 CG Exam Hub</h5>
+<p>छत्तीसगढ़ एवं प्रतियोगी परीक्षाओं की तैयारी का साथी।</p>
+<small>© 2026 CG Exam Hub | All Rights Reserved</small>
+</footer>
+
+<button class="top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
