@@ -1,0 +1,506 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DBMS Notes in Hindi | CG Exam Hub</title>
+<meta name="description" content="DBMS के महत्वपूर्ण नोट्स हिंदी में। Database, SQL, Keys, Normalization, ER Model और RDBMS के महत्वपूर्ण प्रश्न CGPSC एवं CG Vyapam परीक्षा के लिए।">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://hirdukashyap267-ship-it.github.io/cg-exam-hub/dbms-notes.html">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f2f5ff;color:#20243a;font-family:Arial,"Noto Sans Devanagari",sans-serif;line-height:1.7}
+.navbar{background:#17143b;padding:12px 5%}
+.navbar-brand{font-weight:800;color:#fff!important}
+.nav-link{color:#eee!important;font-size:14px}
+.hero{background:linear-gradient(135deg,#17143b,#4936a8,#087eaa);color:#fff;padding:55px 18px;text-align:center;border-radius:0 0 30px 30px}
+.hero h1{font-size:clamp(27px,5vw,43px);font-weight:900}
+.hero p{max-width:750px;margin:12px auto;color:#e8eaff}
+.hero-tag{display:inline-block;background:#ffffff20;border:1px solid #ffffff55;padding:6px 15px;border-radius:30px;font-size:13px;margin:4px}
+.container-main{max-width:1050px;margin:28px auto;padding:0 14px}
+.story-card{background:white;border-radius:17px;padding:22px;margin-bottom:18px;box-shadow:0 5px 22px #25366b12;border:1px solid #e9eafa}
+.story-card h2{font-size:21px;color:#322b80;font-weight:800;margin-bottom:14px}
+.story-card h3{font-size:17px;color:#087eaa;margin-top:15px}
+.topic{display:inline-block;background:#eeefff;color:#4236a2;padding:4px 11px;border-radius:20px;font-size:12px;font-weight:bold;margin-bottom:10px}
+.trick{background:#fff6df;border-left:4px solid #efa900;padding:12px 14px;border-radius:9px;margin-top:13px}
+.fact{background:#e9f8f1;border-left:4px solid #20a36b;padding:12px 14px;border-radius:9px;margin-top:12px}
+.exam{background:#eef5ff;border-left:4px solid #3983e8;padding:12px 14px;border-radius:9px;margin-top:12px}
+.table-wrap{overflow-x:auto}
+table{min-width:480px}
+table th{background:#29256f!important;color:white!important}
+table td,table th{padding:10px!important}
+ul,ol{padding-left:23px}
+li{margin-bottom:5px}
+footer{background:#17143b;color:#fff;text-align:center;padding:25px 12px;margin-top:35px}
+#topBtn{position:fixed;bottom:20px;right:18px;border:0;border-radius:50%;width:46px;height:46px;background:#4936a8;color:#fff;font-size:22px;box-shadow:0 4px 15px #0003;display:none}
+@media(max-width:600px){
+.hero{padding:38px 15px}
+.story-card{padding:17px}
+.story-card h2{font-size:19px}
+.container-main{padding:0 10px}
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg">
+<div class="container-fluid">
+<a class="navbar-brand" href="index.html">📚 CG Exam Hub</a>
+<button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navMenu">
+<div class="navbar-nav ms-auto">
+<a class="nav-link" href="index.html">Home</a>
+<a class="nav-link" href="computer-notes.html">Computer Notes</a>
+<a class="nav-link" href="ms-excel-notes.html">MS Excel</a>
+<a class="nav-link" href="tally-notes.html">Tally</a>
+<a class="nav-link" href="notes.html">All Notes</a>
+</div>
+</div>
+</div>
+</nav>
+
+<header class="hero">
+<span class="hero-tag">CGPSC • CG Vyapam • Computer Exam</span>
+<h1>DBMS Complete Notes in Hindi</h1>
+<p>Database Management System के सभी महत्वपूर्ण टॉपिक आसान हिंदी भाषा में। परीक्षा के लिए उपयोगी परिभाषाएँ, उदाहरण, Tricks और Important Facts।</p>
+<span class="hero-tag">25 Important Topics</span>
+<span class="hero-tag">Exam Special Notes</span>
+</header>
+
+<main class="container-main">
+
+<section class="story-card">
+<span class="topic">Topic 01</span>
+<h2>📘 DBMS क्या है?</h2>
+<p><b>DBMS का पूरा नाम:</b> Database Management System.</p>
+<p>DBMS एक Software है जिसकी सहायता से Database को बनाया, व्यवस्थित, सुरक्षित और नियंत्रित किया जाता है।</p>
+<h3>DBMS के मुख्य कार्य</h3>
+<ul>
+<li>Data को Store करना।</li>
+<li>Data को Insert, Update और Delete करना।</li>
+<li>Data को Search और Retrieve करना।</li>
+<li>Data की Security बनाए रखना।</li>
+<li>Data का Backup और Recovery करना।</li>
+</ul>
+<div class="trick">🧠 <b>याद रखने की Trick:</b> DBMS = Data को Manage करने वाला Software.</div>
+<div class="exam">🎯 <b>Exam Point:</b> DBMS का पूरा नाम Database Management System है।</div>
+</section>
+
+<section class="story-card">
+<span class="topic">Topic 02</span>
+<h2>🗄️ Database क्या है?</h2>
+<p>Database संबंधित Data का व्यवस्थित संग्रह होता है, जिसे आसानी से Access, Manage और Update किया जा सकता है।</p>
+<h3>उदाहरण</h3>
+<ul>
+<li>School का Student Record.</li>
+<li>Bank का Customer Account.</li>
+<li>Hospital का Patient Record.</li>
+<li>Online Shopping का Product Record.</li>
+</ul>
+<div class="trick">🧠 <b>Trick:</b> Database = संबंधित Data का संग्रह।</div>
+</section>
+
+<section class="story-card">
+<span class="topic">Topic 03</span>
+<h2>📂 DBMS के प्रकार</h2>
+<ol>
+<li><b>Hierarchical DBMS:</b> Data Tree Structure में व्यवस्थित होता है।</li>
+<li><b>Network DBMS:</b> Data आपस में Network की तरह जुड़ा होता है।</li>
+<li><b>Relational DBMS:</b> Data Tables के रूप में रखा जाता है।</li>
+<li><b>Object-Oriented DBMS:</b> Data Objects के रूप में व्यवस्थित होता है।</li>
+</ol>
+<div class="fact">⭐ <b>Important Fact:</b> RDBMS में Data Rows और Columns वाली Tables में Store होता है।</div>
+</section>
+
+<section class="story-card">
+<span class="topic">Topic 04</span>
+<h2>🔗 RDBMS क्या है?</h2>
+<p>RDBMS का पूरा नाम Relational Database Management System है। इसमें Data को Tables में Store किया जाता है और Tables के बीच Relationship बनाया जा सकता है।</p>
+<h3>उदाहरण</h3>
+<ul>
+<li>MySQL</li>
+<li>Oracle Database</li>
+<li>Microsoft SQL Server</li>
+<li>PostgreSQL</li>
+<li>SQLite</li>
+</ul>
+<div class="trick">🧠 <b>Trick:</b> RDBMS = Relation + Tables.</div>
+</section>
+
+<section class="story-card">
+<span class="topic">Topic 05</span>
+<h2>📊 Table, Row और Column</h2>
+<p><b>Table:</b> Data को Rows और Columns में रखने की संरचना।</p>
+<p><b>Row:</b> एक पूरा Record या Tuple.</p>
+<p><b>Column:</b> किसी एक प्रकार की जानकारी या Attribute.</p>
+<div class="table-wrap">
+<table class="table table-bordered text-center">
+<tr><th>Roll No.</th><th>Name</th><th>Class</th></tr>
+<tr><td>101</td><td>Rahul</td><td>12th</td></tr>
+<tr><td>102</td><td>Amit</td><td>11th</td></tr>
+<tr><td>103</td><td>Ravi</td><td>12th</td></tr>
+</table>
+</div>
+<div class="fact">⭐ <b>Important:</b> Row = Record, Column = Field या Attribute.</div>
+</section>
+
+<section class="story-card">
+<span class="topic">Topic 06</span>
+<h2>🔑 Database Keys</h2>
+<p>Keys का उपयोग Table में Records की पहचान करने और Tables के बीच संबंध बनाने के लिए किया जाता है।</p>
+<ul>
+<li><b>Primary Key:</b> प्रत्येक Record की Unique पहचान करती है। इसमें Duplicate और NULL Value नहीं होती।</li>
+<li><b>Foreign Key:</b> दूसरी Table की Primary Key को Reference करती है।</li>
+<li><b>Candidate Key:</b> वह Column या Columns जो Primary Key बनने योग्य हों।</li>
+<li><b>Alternate Key:</b> Candidate Keys में से Primary Key के रूप में चुनी नहीं गई Key.</li>
+<li><b>Composite Key:</b> दो या अधिक Columns से मिलकर बनी Key.</li>
+<li><b>Super Key:</b> वह Attribute या Attributes का समूह जो Record को Uniquely पहचान सके।</li>
+<li><b>Unique Key:</b> Column में Unique Values सुनिश्चित करती है; NULL की अनुमति DBMS के अनुसार अलग हो सकती है।</li>
+</ul>
+<div class="trick">🧠 <b>Trick:</b> Primary = मुख्य पहचान, Foreign = दूसरी Table से संबंध।</div>
+<div class="exam">🎯 <b>Exam Point:</b> Primary Key में Duplicate और NULL Value स्वीकार नहीं होती।</div>
+</section>
+
+<section class="story-card">
+<span class="topic">Topic 07</span>
+<h2>🧩 Entity और Attribute</h2>
+<p><b>Entity:</b> वास्तविक दुनिया की कोई वस्तु या व्यक्ति जिसके बारे में Data Store किया जाता है।</p>
+<p>उदाहरण: Student, Teacher, Book, Employee.</p>
+<p><b>Attribute:</b> Entity की विशेषता को Attribute कहते हैं।</p>
+<p>उदाहरण: Student की Roll Number, Name, Age.</p>
+<div class="trick">🧠 <b>Trick:</b> Entity = वस्तु, Attribute = उसकी विशेषता।</div>
+</section>
+
+<section class="story-card">
+<span class="topic">Topic 08</span>
+<h2>🔄 Relationship के प्रकार</h2>
+<ul>
+<li><b>One-to-One (1:1):</b> एक Record का संबंध दूसरे Table के एक Record से।</li>
+<li><b>One-to-Many (1:M):</b> एक Record का संबंध कई Records से।</li>
+<li><b>Many-to-Many (M:N):</b> कई Records का संबंध कई Records से।</li>
+</ul>
+<div class="fact">⭐ <b>उदाहरण:</b> एक Department में कई Employees हो सकते हैं — One-to-Many.</div>
+</section>
+
+<section class="story-card">
+<span class="topic">Topic 09</span>
+<h2>🖼️ ER Model</h2>
+<p>ER का पूरा नाम Entity Relationship है। ER Model Database की संरचना को चित्र के माध्यम से दर्शाता है।</p>
+<ul>
+<li>Entity को Rectangle से दिखाते हैं।</li>
+<li>Attribute को Oval से दिखाते हैं।</li>
+<li>Relationship को Diamond से दिखाते हैं।</li>
+<li>Primary Key Attribute को अक्सर Underline किया जाता है।</li>
+</ul>
+<div class="trick">🧠 <b>Trick:</b> Rectangle = Entity, Oval = Attribute, Diamond = Relationship.</div>
+</section>
+
+<section class="story-card">
+<span class="topic">Topic 10</span>
+<h2>📝 SQL क्या है?</h2>
+<p>SQL का पूरा नाम Structured Query Language है। इसका उपयोग Relational Database में Data को Create, Retrieve, Update और Delete करने के लिए किया जाता है।</p>
+<h3>SQL के प्रमुख उपयोग</h3>
+<ul>
+<li>Database बनाना।</li>
+<li>Table बनाना।</li>
+<li>Data Insert करना।</li>
+<li>Data Search करना।</li>
+<li>Data Update और Delete करना।</li>
+</ul>
+<div class="fact">⭐ <b>Exam Point:</b> SQL का पूरा नाम Structured Query Language है।</div>
+</section>
+
+<section class="story-card">
+<span class="topic">Topic 11</span>
+<h2>📚 SQL Commands के प्रकार</h2>
+<div class="table-wrap">
+<table class="table table-bordered">
+<tr><th>प्रकार</th><th>पूरा नाम</th><th>उदाहरण</th></tr>
+<tr><td>DDL</td><td>Data Definition Language</td><td>CREATE, ALTER, DROP, TRUNCATE</td></tr>
+<tr><td>DML</td><td>Data Manipulation Language</td><td>INSERT, UPDATE, DELETE</td></tr>
+<tr><td>DQL</td><td>Data Query Language</td><td>SELECT</td></tr>
+<tr><td>DCL</td><td>Data Control Language</td><td>GRANT, REVOKE</td></tr>
+<tr><td>TCL</td><td>Transaction Control Language</td><td>COMMIT, ROLLBACK, SAVEPOINT</td></tr>
+</table>
+</div>
+<div class="trick">🧠 <b>Trick:</b> DDL = Structure, DML = Data, DQL = Query, DCL = Permission, TCL = Transaction.</div>
+</section>
+
+<section class="story-card">
+<span class="topic">Topic 12</span>
+<h2>🏗️ DDL Commands</h2>
+<ul>
+<li><b>CREATE:</b> Database या Table बनाने के लिए।</li>
+<li><b>ALTER:</b> Table की Structure बदलने के लिए।</li>
+<li><b>DROP:</b> Database Object को हटाने के लिए।</li>
+<li><b>TRUNCATE:</b> Table के सभी Records हटाने के लिए, Structure बना रहता है।</li>
+</ul>
+<div class="exam">🎯 <b>Exam Point:</b> CREATE, ALTER, DROP और TRUNCATE DDL Commands हैं।</div>
+</section>
+
+<section class="story-card">
+<span class="topic">Topic 13</span>
+<h2>✍️ DML Commands</h2>
+<ul>
+<li><b>INSERT:</b> नया Record जोड़ना।</li>
+<li><b>UPDATE:</b> मौजूदा Record में बदलाव करना।</li>
+<li><b>DELETE:</b> Record हटाना।</li>
+</ul>
+<h3>उदाहरण</h3>
+<pre class="bg-dark text-white p-3 rounded"><code>INSERT INTO Student
+VALUES (101, 'Rahul');
+
+UPDATE Student
+SET Name = 'Amit'
+WHERE RollNo = 101;
+
+DELETE FROM Student
+WHERE RollNo = 101;</code></pre>
+<div class="trick">🧠 <b>Trick:</b> INSERT = जोड़ना, UPDATE = बदलना, DELETE = हटाना।</div>
+</section>
+
+<section class="story-card">
+<span class="topic">Topic 14</span>
+<h2>🔍 SELECT Command</h2>
+<p>SELECT Command का उपयोग Table से Data प्राप्त करने के लिए किया जाता है।</p>
+<pre class="bg-dark text-white p-3 rounded"><code>SELECT * FROM Student;
+
+SELECT Name FROM Student;
+
+SELECT * FROM Student
+WHERE Class = '12th';</code></pre>
+<ul>
+<li><b>SELECT:</b> Data प्राप्त करना।</li>
+<li><b>FROM:</b> Table का नाम बताना।</li>
+<li><b>WHERE:</b> Condition लगाना।</li>
+<li><b>ORDER BY:</b> Data को क्रम में दिखाना।</li>
+<li><b>GROUP BY:</b> समान Values के आधार पर Group बनाना।</li>
+<li><b>HAVING:</b> Groups पर Condition लगाना।</li>
+</ul>
+<div class="fact">⭐ <b>Important:</b> SELECT * का अर्थ Table के सभी Columns को प्राप्त करना है।</div>
+</section>
+
+<section class="story-card">
+<span class="topic">Topic 15</span>
+<h2>⚖️ SQL Operators</h2>
+<ul>
+<li><b>Arithmetic:</b> +, -, *, /, %</li>
+<li><b>Comparison:</b> =, !=, , =, =</li>
+<li><b>Logical:</b> AND, OR, NOT</li>
+<li><b>Special:</b> BETWEEN, IN, LIKE, IS NULL</li>
+</ul>
+<h3>उदाहरण</h3>
+<pre class="bg-dark text-white p-3 rounded"><code>SELECT * FROM Student
+WHERE Marks > 60 AND Class = '12th';</code></pre>
+<div class="trick">🧠 <b>Trick:</b> AND में सभी Conditions सही, OR में कम-से-कम एक Condition सही।</div>
+</section>
+
+<section class="story-card">
+<span class="topic">Topic 16</span>
+<h2>🔗 SQL Joins</h2>
+<p>Join का उपयोग दो या अधिक Tables के संबंधित Records को जोड़कर Data प्राप्त करने के लिए किया जाता है।</p>
+<ul>
+<li><b>INNER JOIN:</b> दोनों Tables में Match होने वाले Records।</li>
+<li><b>LEFT JOIN:</b> Left Table के सभी Records और Right Table के Matching Records।</li>
+<li><b>RIGHT JOIN:</b> Right Table के सभी Records और Left Table के Matching Records।</li>
+<li><b>FULL OUTER JOIN:</b> दोनों Tables के सभी Records; Match न होने पर दूसरी तरफ NULL।</li>
+<li><b>CROSS JOIN:</b> दोनों Tables के Records का Cartesian Product.</li>
+<li><b>SELF JOIN:</b> किसी Table को उसी Table के साथ Join करना।</li>
+</ul>
+<div class="trick">🧠 <b>Trick:</b> INNER = Matching, LEFT = Left के सभी, RIGHT = Right के सभी।</div>
+</section>
+
+<section class="story-card">
+<span class="topic">Topic 17</span>
+<h2>📐 Normalization</h2>
+<p>Normalization Database में Data को व्यवस्थित करने की प्रक्रिया है। इसका उद्देश्य Data Redundancy कम करना और Data Anomalies से बचना है।</p>
+<ul>
+<li><b>1NF:</b> प्रत्येक Cell में Atomic यानी एक ही Value होनी चाहिए।</li>
+<li><b>2NF:</b> 1NF में हो और प्रत्येक Non-key Attribute पूरी Candidate Key पर निर्भर हो।</li>
+<li><b>3NF:</b> 2NF में हो और Non-key Attributes में Transitive Dependency न हो।</li>
+<li><b>BCNF:</b> हर Non-trivial Functional Dependency में Determinant Super Key होना चाहिए।</li>
+</ul>
+<div class="trick">🧠 <b>Trick:</b> 1NF = Atomic, 2NF = Full Dependency, 3NF = No Transitive Dependency.</div>
+</section>
+
+<section class="story-card">
+<span class="topic">Topic 18</span>
+<h2>🔐 ACID Properties</h2>
+<p>ACID Properties Database Transaction को विश्वसनीय बनाने के लिए उपयोग होती हैं।</p>
+<ul>
+<li><b>Atomicity:</b> Transaction पूरा होगा या बिल्कुल नहीं होगा।</li>
+<li><b>Consistency:</b> Transaction के बाद Database Valid State में रहेगा।</li>
+<li><b>Isolation:</b> Concurrent Transactions एक-दूसरे के बीच अनुचित हस्तक्षेप नहीं करेंगी।</li>
+<li><b>Durability:</b> Commit होने के बाद बदलाव सुरक्षित रहते हैं।</li>
+</ul>
+<div class="trick">🧠 <b>Trick:</b> A = All or Nothing, C = Correct State, I = Independent, D = Data Permanent.</div>
+<div class="exam">🎯 <b>Exam Point:</b> ACID का संबंध Database Transactions से है।</div>
+</section>
+
+<section class="story-card">
+<span class="topic">Topic 19</span>
+<h2>🔄 Transaction क्या है?</h2>
+<p>Transaction Database पर किए जाने वाले एक या अधिक Operations का ऐसा समूह है जिसे एक Logical Unit की तरह माना जाता है।</p>
+<h3>Transaction Commands</h3>
+<ul>
+<li><b>COMMIT:</b> बदलाव स्थायी रूप से Save करना।</li>
+<li><b>ROLLBACK:</b> Commit से पहले किए गए बदलाव वापस लेना।</li>
+<li><b>SAVEPOINT:</b> Transaction में एक Point बनाना जहाँ तक Rollback किया जा सकता है।</li>
+</ul>
+<div class="trick">🧠 <b>Trick:</b> COMMIT = Save, ROLLBACK = वापस।</div>
+</section>
+
+<section class="story-card">
+<span class="topic">Topic 20</span>
+<h2>🛡️ Database Security</h2>
+<p>Database Security का उद्देश्य Data को Unauthorized Access, चोरी, बदलाव और नुकसान से सुरक्षित रखना है।</p>
+<ul>
+<li>Authentication: User की पहचान की जाँच।</li>
+<li>Authorization: User को अनुमति देना।</li>
+<li>Encryption: Data को सुरक्षित रूप में बदलना।</li>
+<li>Backup: Data की अतिरिक्त Copy रखना।</li>
+<li>Audit: Database Activities का Record रखना।</li>
+</ul>
+<div class="fact">⭐ <b>Important:</b> Authentication = आप कौन हैं? Authorization = आपको क्या करने की अनुमति है?</div>
+</section>
+
+<section class="story-card">
+<span class="topic">Topic 21</span>
+<h2>💾 Database Backup और Recovery</h2>
+<p><b>Backup:</b> Database की अतिरिक्त Copy बनाना।</p>
+<p><b>Recovery:</b> खराबी या Data Loss के बाद Database को फिर से उपयोग योग्य स्थिति में लाना।</p>
+<ul>
+<li>Full Backup: पूरे Database की Copy.</li>
+<li>Incremental Backup: पिछले Backup के बाद हुए बदलावों की Copy.</li>
+<li>Differential Backup: अंतिम Full Backup के बाद हुए बदलावों की Copy.</li>
+</ul>
+<div class="trick">🧠 <b>Trick:</b> Backup = सुरक्षित Copy, Recovery = वापस प्राप्त करना।</div>
+</section>
+
+<section class="story-card">
+<span class="topic">Topic 22</span>
+<h2>🧠 Data Redundancy और Integrity</h2>
+<p><b>Data Redundancy:</b> एक ही Data का अनावश्यक रूप से कई स्थानों पर दोहराया जाना।</p>
+<p><b>Data Integrity:</b> Data की Accuracy, Consistency और Reliability बनाए रखना।</p>
+<h3>Integrity Constraints</h3>
+<ul>
+<li>Entity Integrity: Primary Key NULL नहीं हो सकती।</li>
+<li>Referential Integrity: Foreign Key का Reference सही होना चाहिए, या NULL हो सकती है जहाँ अनुमति हो।</li>
+<li>Domain Integrity: Column में निर्धारित प्रकार और सीमा के अनुसार Value हो।</li>
+<li>Key Constraint: Key की Uniqueness बनाए रखना।</li>
+</ul>
+<div class="fact">⭐ <b>Exam Point:</b> Normalization का एक प्रमुख उद्देश्य Data Redundancy को कम करना है।</div>
+</section>
+
+<section class="story-card">
+<span class="topic">Topic 23</span>
+<h2>⚙️ Indexing क्या है?</h2>
+<p>Indexing Database में Data को तेजी से Search करने में सहायता करती है। Index एक अतिरिक्त Data Structure होता है जो Records को जल्दी खोजने में मदद करता है।</p>
+<ul>
+<li>Primary Index</li>
+<li>Secondary Index</li>
+<li>Clustered Index</li>
+<li>Non-Clustered Index</li>
+</ul>
+<div class="trick">🧠 <b>Trick:</b> Index = किताब की विषय सूची की तरह, जिससे जानकारी जल्दी मिलती है।</div>
+<div class="exam">🎯 <b>Exam Point:</b> Index Search को तेज कर सकता है, लेकिन अतिरिक्त Storage लेता है और Data Modification पर Maintenance की जरूरत होती है।</div>
+</section>
+
+<section class="story-card">
+<span class="topic">Topic 24</span>
+<h2>👨‍💻 SQL Constraints</h2>
+<p>Constraints का उपयोग Table में Data पर नियम लागू करने के लिए किया जाता है।</p>
+<ul>
+<li><b>NOT NULL:</b> NULL Value को रोकता है।</li>
+<li><b>UNIQUE:</b> Duplicate Values को रोकता है।</li>
+<li><b>PRIMARY KEY:</b> Record की Unique पहचान।</li>
+<li><b>FOREIGN KEY:</b> दूसरे Table से संबंध।</li>
+<li><b>CHECK:</b> Condition के अनुसार Value स्वीकार करना।</li>
+<li><b>DEFAULT:</b> Value न देने पर Default Value लगाना।</li>
+</ul>
+<div class="trick">🧠 <b>Trick:</b> Constraints = Data पर नियम।</div>
+</section>
+
+<section class="story-card">
+<span class="topic">Topic 25</span>
+<h2>🌐 लोकप्रिय Database Software</h2>
+<div class="table-wrap">
+<table class="table table-bordered">
+<tr><th>Software</th><th>कंपनी / संगठन</th><th>विशेषता</th></tr>
+<tr><td>MySQL</td><td>Oracle</td><td>लोकप्रिय Open-source RDBMS</td></tr>
+<tr><td>Oracle Database</td><td>Oracle</td><td>Enterprise Database</td></tr>
+<tr><td>SQL Server</td><td>Microsoft</td><td>Relational Database</td></tr>
+<tr><td>PostgreSQL</td><td>PostgreSQL Global Development Group</td><td>Open-source RDBMS</td></tr>
+<tr><td>SQLite</td><td>SQLite Project</td><td>हल्का Embedded Database</td></tr>
+<tr><td>MongoDB</td><td>MongoDB Inc.</td><td>Document-oriented NoSQL</td></tr>
+</table>
+</div>
+<div class="fact">⭐ <b>Important:</b> MongoDB एक लोकप्रिय NoSQL Document Database है।</div>
+</section>
+
+<section class="story-card">
+<h2>⚡ DBMS One Line Revision</h2>
+<ul>
+<li>DBMS = Database Management System.</li>
+<li>RDBMS = Relational Database Management System.</li>
+<li>SQL = Structured Query Language.</li>
+<li>Row = Record या Tuple.</li>
+<li>Column = Attribute या Field.</li>
+<li>Primary Key = Unique पहचान।</li>
+<li>Foreign Key = Tables के बीच संबंध।</li>
+<li>ER = Entity Relationship.</li>
+<li>DDL = Data Definition Language.</li>
+<li>DML = Data Manipulation Language.</li>
+<li>DQL = Data Query Language.</li>
+<li>DCL = Data Control Language.</li>
+<li>TCL = Transaction Control Language.</li>
+<li>SELECT = Data प्राप्त करना।</li>
+<li>INSERT = Data जोड़ना।</li>
+<li>UPDATE = Data बदलना।</li>
+<li>DELETE = Data हटाना।</li>
+<li>Normalization = Data को व्यवस्थित करना।</li>
+<li>ACID = Atomicity, Consistency, Isolation, Durability.</li>
+<li>COMMIT = Transaction Save करना।</li>
+<li>ROLLBACK = Transaction वापस लेना।</li>
+<li>Indexing = Search में तेजी लाना।</li>
+<li>MySQL = RDBMS.</li>
+<li>MongoDB = NoSQL Database.</li>
+</ul>
+</section>
+
+<section class="story-card">
+<h2>🎯 परीक्षा के लिए महत्वपूर्ण बातें</h2>
+<ul>
+<li>DBMS और RDBMS में अंतर जरूर याद करें।</li>
+<li>Primary Key और Foreign Key के उदाहरण समझें।</li>
+<li>DDL, DML, DQL, DCL और TCL Commands याद करें।</li>
+<li>SQL Joins के प्रकार समझें।</li>
+<li>Normalization के 1NF, 2NF और 3NF पर ध्यान दें।</li>
+<li>ACID Properties से प्रश्न पूछे जा सकते हैं।</li>
+<li>Database Software के नाम और प्रकार याद रखें।</li>
+</ul>
+</section>
+
+</main>
+
+<footer>
+<h5>📚 CG Exam Hub</h5>
+<p class="mb-1">CGPSC • CG Vyapam • Computer Notes</p>
+<small>ज्ञान बढ़ाएँ, सफलता पाएँ।</small>
+</footer>
+
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const topBtn=document.getElementById("topBtn");
+window.addEventListener("scroll",()=>{
+topBtn.style.display=window.scrollY>300?"block":"none";
+});
+</script>
+</body>
+</html>
