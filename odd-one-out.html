@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Odd One Out Quiz 200 | CG Exam Hub</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ font-family:Arial,"Noto Sans Devanagari",sans-serif;
+ background:linear-gradient(135deg,#eef2ff,#fdf2f8,#ecfeff);
+ color:#111827;
+}
+.header{
+ background:linear-gradient(135deg,#4f46e5,#7c3aed,#db2777);
+ color:white;
+ padding:20px 12px;
+ text-align:center;
+}
+.header h1{margin:0;font-size:25px}
+.header p{margin:7px 0 0;font-size:14px}
+.container{max-width:650px;margin:auto;padding:14px}
+.top{
+ display:flex;
+ justify-content:space-between;
+ gap:8px;
+ margin-bottom:12px;
+}
+.badge{
+ background:white;
+ padding:9px 12px;
+ border-radius:12px;
+ box-shadow:0 3px 12px #0001;
+ font-weight:bold;
+ font-size:14px;
+}
+.progress{
+ height:10px;
+ background:#ddd;
+ border-radius:20px;
+ overflow:hidden;
+ margin:12px 0 18px;
+}
+.progress div{
+ height:100%;
+ width:0;
+ background:linear-gradient(90deg,#06b6d4,#8b5cf6,#ec4899);
+ transition:.3s;
+}
+.card{
+ background:white;
+ border-radius:20px;
+ padding:20px 15px;
+ box-shadow:0 8px 30px #0002;
+}
+.qno{
+ color:#7c3aed;
+ font-weight:bold;
+ margin-bottom:12px;
+}
+.question{
+ font-size:20px;
+ line-height:1.7;
+ font-weight:700;
+ margin-bottom:20px;
+}
+.option{
+ width:100%;
+ border:0;
+ margin:7px 0;
+ padding:14px;
+ border-radius:14px;
+ font-size:17px;
+ font-weight:bold;
+ text-align:left;
+ cursor:pointer;
+ background:linear-gradient(90deg,#eff6ff,#f5f3ff);
+ color:#111827;
+ border:2px solid #e0e7ff;
+}
+.option:hover{transform:scale(1.01)}
+.option.correct{
+ background:#22c55e!important;
+ color:white!important;
+ border-color:#16a34a;
+}
+.option.wrong{
+ background:#ef4444!important;
+ color:white!important;
+ border-color:#dc2626;
+}
+.option:disabled{cursor:not-allowed}
+.feedback{
+ text-align:center;
+ font-size:18px;
+ font-weight:bold;
+ margin:12px 0;
+ min-height:25px;
+}
+.next{
+ width:100%;
+ border:0;
+ padding:14px;
+ border-radius:14px;
+ background:linear-gradient(90deg,#2563eb,#7c3aed);
+ color:white;
+ font-size:17px;
+ font-weight:bold;
+ cursor:pointer;
+ margin-top:8px;
+}
+.next:disabled{opacity:.45}
+.home{
+ display:block;
+ text-align:center;
+ text-decoration:none;
+ background:white;
+ color:#4f46e5;
+ padding:11px;
+ border-radius:12px;
+ margin-bottom:12px;
+ font-weight:bold;
+ box-shadow:0 3px 12px #0001;
+}
+.result{
+ display:none;
+ background:white;
+ border-radius:20px;
+ padding:22px;
+ text-align:center;
+ box-shadow:0 8px 30px #0002;
+}
+.result h2{color:#7c3aed}
+.restart{
+ border:0;
+ background:#16a34a;
+ color:white;
+ padding:13px 25px;
+ border-radius:12px;
+ font-size:16px;
+ font-weight:bold;
+ margin:10px;
+}
+.key{
+ margin-top:18px;
+ background:#f8fafc;
+ border-radius:15px;
+ padding:15px;
+ text-align:left;
+ line-height:2;
+ max-height:300px;
+ overflow:auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+<h1>🧠 Odd One Out Quiz</h1>
+<p>CG Exam Hub • Reasoning • 200 महत्वपूर्ण प्रश्न</p>
+</div>
+
+<div class="container">
+
+<a class="home" href="reasoning.html">🏠 Reasoning पर वापस जाएँ</a>
+
+<div class="top">
+<div class="badge">प्रश्न: <span id="count">1</span>/200</div>
+<div class="badge">स्कोर: <span id="score">0</span></div>
+</div>
+
+<div class="progress"><div id="bar"></div></div>
+
+<div id="quiz" class="card"></div>
+
+<div id="result" class="result"></div>
+
+</div>
+
+<script>
+
+/* =========================================================
+   200 VALID ODD-ONE-OUT QUESTIONS
+   items = चार विकल्प
+   answer = सही अलग item
+========================================================= */
+
+const data = [
+
+/* ---------- NUMBER 1-50 ---------- */
+
+{items:["16","50","25","36"],answer:"50"},
+{items:["81","64","45","49"],answer:"45"},
+{items:["27","64","125","100"],answer:"100"},
+{items:["121","144","169","150"],answer:"150"},
+{items:["18","35","27","45"],answer:"35"},
+{items:["22","34","46","57"],answer:"57"},
+{items:["15","25","35","42"],answer:"42"},
+{items:["14","28","42","55"],answer:"55"},
+{items:["17","34","51","70"],answer:"70"},
+{items:["24","36","48","55"],answer:"55"},
+{items:["32","48","64","75"],answer:"75"},
+{items:["21","42","63","80"],answer:"80"},
+{items:["19","38","57","76"],answer:"76"},
+{items:["26","39","52","65"],answer:"65"},
+{items:["12","24","36","49"],answer:"49"},
+{items:["31","62","93","125"],answer:"125"},
+{items:["23","46","69","90"],answer:"90"},
+{items:["13","26","39","52"],answer:"52"},
+{items:["11","22","33","48"],answer:"48"},
+{items:["29","58","87","100"],answer:"100"},
+
+{items:["9","27","81","64"],answer:"64"},
+{items:["8","27","64","125"],answer:"8"},
+{items:["4","16","36","81"],answer:"81"},
+{items:["25","49","64","90"],answer:"90"},
+{items:["36","49","81","100"],answer:"49"},
+{items:["1","8","27","64"],answer:"1"},
+{items:["8","27","64","100"],answer:"100"},
+{items:["16","32","48","64"],answer:"16"},
+{items:["20","40","60","75"],answer:"75"},
+{items:["30","45","60","77"],answer:"77"},
+
+{items:["14","28","42","56"],answer:"14"},
+{items:["18","36","54","71"],answer:"71"},
+{items:["25","50","75","91"],answer:"91"},
+{items:["32","64","96","101"],answer:"101"},
+{items:["33","44","55","68"],answer:"68"},
+{items:["35","49","63","80"],answer:"80"},
+{items:["42","56","70","85"],answer:"85"},
+{items:["45","60","75","92"],answer:"92"},
+{items:["48","72","96","110"],answer:"110"},
+{items:["52","65","78","91"],answer:"91"},
+
+{items:["21","28","35","43"],answer:"43"},
+{items:["24","32","40","51"],answer:"51"},
+{items:["27","36","45","54"],answer:"54"},
+{items:["30","42","54","67"],answer:"67"},
+{items:["34","51","68","82"],answer:"82"},
+{items:["39","52","65","79"],answer:"79"},
+{items:["40","55","70","86"],answer:"86"},
+{items:["44","55","66","78"],answer:"78"},
+{items:["46","69","92","100"],answer:"100"},
+{items:["49","63","77","90"],answer:"90"},
+
+/* ---------- ALPHABET 51-90 ---------- */
+
+{items:["A","E","I","B"],answer:"B"},
+{items:["A","E","O","T"],answer:"T"},
+{items:["B","C","D","G"],answer:"G"},
+{items:["F","H","J","M"],answer:"M"},
+{items:["K","M","O","Q"],answer:"Q"},
+{items:["C","F","I","L"],answer:"L"},
+{items:["D","G","J","N"],answer:"N"},
+{items:["E","H","K","N"],answer:"N"},
+{items:["G","J","M","P"],answer:"P"},
+{items:["H","K","N","Q"],answer:"Q"},
+
+{items:["B","E","H","K"],answer:"K"},
+{items:["C","G","K","O"],answer:"O"},
+{items:["D","I","N","S"],answer:"S"},
+{items:["E","J","O","T"],answer:"T"},
+{items:["F","L","R","X"],answer:"X"},
+{items:["G","M","S","Y"],answer:"Y"},
+{items:["H","N","T","Z"],answer:"Z"},
+{items:["A","D","G","J"],answer:"J"},
+{items:["B","F","J","N"],answer:"N"},
+{items:["C","H","M","R"],answer:"R"},
+
+{items:["Z","X","V","T"],answer:"T"},
+{items:["Y","W","U","R"],answer:"R"},
+{items:["X","V","T","P"],answer:"P"},
+{items:["W","T","Q","N"],answer:"N"},
+{items:["V","S","P","M"],answer:"M"},
+{items:["U","R","O","K"],answer:"K"},
+{items:["T","Q","N","J"],answer:"J"},
+{items:["S","P","M","I"],answer:"I"},
+{items:["R","O","L","H"],answer:"H"},
+{items:["Q","N","K","F"],answer:"F"},
+
+{items:["B","D","F","I"],answer:"I"},
+{items:["C","E","G","J"],answer:"J"},
+{items:["D","F","H","K"],answer:"K"},
+{items:["E","G","I","L"],answer:"L"},
+{items:["F","H","J","M"],answer:"M"},
+{items:["G","I","K","N"],answer:"N"},
+{items:["H","J","L","O"],answer:"O"},
+{items:["I","K","M","P"],answer:"P"},
+{items:["J","L","N","Q"],answer:"Q"},
+{items:["K","M","O","R"],answer:"R"},
+
+/* ---------- WORD CLASSIFICATION 91-140 ---------- */
+
+{items:["सेब","आम","केला","आलू"],answer:"आलू"},
+{items:["गाजर","मटर","पालक","सेब"],answer:"सेब"},
+{items:["आम","केला","संतरा","गाजर"],answer:"गाजर"},
+{items:["कमल","गुलाब","चमेली","गेहूँ"],answer:"गेहूँ"},
+{items:["कुत्ता","बिल्ली","घोड़ा","गाय"],answer:"गाय"},
+{items:["शेर","बाघ","चीता","हिरण"],answer:"हिरण"},
+{items:["कबूतर","तोता","मैना","चमगादड़"],answer:"चमगादड़"},
+{items:["मोर","हंस","बतख","बकरी"],answer:"बकरी"},
+{items:["आम","नींबू","अमरूद","टमाटर"],answer:"टमाटर"},
+{items:["आलू","प्याज","लहसुन","अंगूर"],answer:"अंगूर"},
+
+{items:["सोना","चांदी","तांबा","लकड़ी"],answer:"लकड़ी"},
+{items:["लोहा","तांबा","एल्युमिनियम","कागज"],answer:"कागज"},
+{items:["कुर्सी","मेज","अलमारी","किताब"],answer:"किताब"},
+{items:["कमीज","पैंट","कुर्ता","जूता"],answer:"जूता"},
+{items:["बस","ट्रक","कार","रेलवे स्टेशन"],answer:"रेलवे स्टेशन"},
+{items:["साइकिल","मोटरसाइकिल","स्कूटर","पेट्रोल पंप"],answer:"पेट्रोल पंप"},
+{items:["डॉक्टर","इंजीनियर","शिक्षक","अस्पताल"],answer:"अस्पताल"},
+{items:["किसान","मजदूर","दर्जी","विद्यालय"],answer:"विद्यालय"},
+{items:["नदी","झील","तालाब","पहाड़"],answer:"पहाड़"},
+{items:["गंगा","यमुना","नर्मदा","हिमालय"],answer:"हिमालय"},
+
+{items:["क्रिकेट","हॉकी","फुटबॉल","शतरंज"],answer:"शतरंज"},
+{items:["बैडमिंटन","टेनिस","वॉलीबॉल","कैरम"],answer:"कैरम"},
+{items:["कबड्डी","खो-खो","हॉकी","कुश्ती"],answer:"खो-खो"},
+{items:["रामायण","महाभारत","गीता","पंचतंत्र"],answer:"पंचतंत्र"},
+{items:["हिंदी","अंग्रेजी","संस्कृत","नेपाल"],answer:"नेपाल"},
+{items:["भारत","नेपाल","भूटान","एशिया"],answer:"एशिया"},
+{items:["दिल्ली","मुंबई","रायपुर","भारत"],answer:"भारत"},
+{items:["रायपुर","बिलासपुर","दुर्ग","छत्तीसगढ़"],answer:"छत्तीसगढ़"},
+{items:["गंगा","गोदावरी","कावेरी","अरावली"],answer:"अरावली"},
+{items:["नर्मदा","ताप्ती","महानदी","सतपुड़ा"],answer:"सतपुड़ा"},
+
+{items:["आंख","कान","नाक","हाथ"],answer:"हाथ"},
+{items:["हृदय","फेफड़ा","गुर्दा","मस्तिष्क"],answer:"मस्तिष्क"},
+{items:["पेन","पेंसिल","रबर","किताब"],answer:"किताब"},
+{items:["कंप्यूटर","कीबोर्ड","माउस","प्रिंटर"],answer:"कंप्यूटर"},
+{items:["मॉनिटर","कीबोर्ड","माउस","स्कैनर"],answer:"मॉनिटर"},
+{items:["RAM","ROM","CPU","Windows"],answer:"Windows"},
+{items:["Chrome","Firefox","Edge","Android"],answer:"Android"},
+{items:["Word","Excel","PowerPoint","Linux"],answer:"Linux"},
+{items:["HTTP","FTP","SMTP","HTML"],answer:"HTML"},
+{items:["CPU","RAM","ROM","USB"],answer:"USB"},
+
+{items:["सूर्य","चंद्रमा","मंगल","पृथ्वी"],answer:"सूर्य"},
+{items:["बुध","शुक्र","पृथ्वी","चंद्रमा"],answer:"चंद्रमा"},
+{items:["मंगल","बृहस्पति","शनि","चंद्रमा"],answer:"चंद्रमा"},
+{items:["पृथ्वी","मंगल","शुक्र","सूर्य"],answer:"सूर्य"},
+{items:["जनवरी","मार्च","जुलाई","सोमवार"],answer:"सोमवार"},
+{items:["रविवार","सोमवार","बुधवार","अप्रैल"],answer:"अप्रैल"},
+{items:["सोना","हीरा","चांदी","प्लास्टिक"],answer:"प्लास्टिक"},
+{items:["जल","वायु","मिट्टी","लोहे"],answer:"लोहे"},
+{items:["हिंदी","मराठी","गुजराती","भारत"],answer:"भारत"},
+{items:["रायपुर","जगदलपुर","अंबिकापुर","मध्य प्रदेश"],answer:"मध्य प्रदेश"},
+
+/* ---------- MIXED 141-170 ---------- */
+
+{items:["2,4,6","3,6,9","5,10,15","4,8,15"],answer:"4,8,15"},
+{items:["10,20,30","12,24,36","15,30,45","14,28,43"],answer:"14,28,43"},
+{items:["3,9,27","2,8,32","4,16,64","5,25,100"],answer:"5,25,100"},
+{items:["1,4,9","2,8,18","3,9,27","4,16,64"],answer:"2,8,18"},
+{items:["5,10,20","6,12,24","7,14,28","8,16,31"],answer:"8,16,31"},
+
+{items:["A1","B2","C3","D5"],answer:"D5"},
+{items:["B2","D4","F6","H9"],answer:"H9"},
+{items:["C3","F6","I9","L12"],answer:"L12"},
+{items:["D4","H8","L12","P17"],answer:"P17"},
+{items:["E5","J10","O15","T21"],answer:"T21"},
+
+{items:["12:00","3:00","6:00","7:00"],answer:"7:00"},
+{items:["1 दिन","7 दिन","14 दिन","10 दिन"],answer:"10 दिन"},
+{items:["60 सेकंड","60 मिनट","24 घंटे","30 घंटे"],answer:"30 घंटे"},
+{items:["100 सेमी","1000 मीटर","1000 ग्राम","100 मिनट"],answer:"100 मिनट"},
+{items:["1 दर्जन","12 वस्तुएँ","1 सैकड़ा","10 वस्तुएँ"],answer:"10 वस्तुएँ"},
+
+{items:["त्रिभुज","वर्ग","आयत","वृत्त"],answer:"वृत्त"},
+{items:["वर्ग","आयत","समचतुर्भुज","त्रिभुज"],answer:"त्रिभुज"},
+{items:["वृत्त","अंडाकार","त्रिभुज","गोलाकार"],answer:"त्रिभुज"},
+{items:["⬆️","⬇️","⬅️","⭕"],answer:"⭕"},
+{items:["★","☆","✦","○"],answer:"○"},
+
+{items:["सूर्य","तारा","चंद्रमा","नक्षत्र"],answer:"चंद्रमा"},
+{items:["गंगा","यमुना","गोदावरी","हिमालय"],answer:"हिमालय"},
+{items:["दिल्ली","रायपुर","भोपाल","भारत"],answer:"भारत"},
+{items:["डॉक्टर","नर्स","शिक्षक","विद्यालय"],answer:"विद्यालय"},
+{items:["किसान","मछुआरा","चरवाहा","अस्पताल"],answer:"अस्पताल"},
+
+{items:["सोमवार","बुधवार","शुक्रवार","अगस्त"],answer:"अगस्त"},
+{items:["जनवरी","फरवरी","मार्च","रविवार"],answer:"रविवार"},
+{items:["बस","ट्रेन","विमान","हवाई अड्डा"],answer:"हवाई अड्डा"},
+{items:["कंपास","मानचित्र","ग्लोब","कैलकुलेटर"],answer:"कैलकुलेटर"},
+{items:["थर्मामीटर","बैरोमीटर","हाइग्रोमीटर","टेलीस्कोप"],answer:"टेलीस्कोप"},
+
+/* ---------- SYMBOL / FIGURE 171-190 ---------- */
+
+{items:["▲","△","▴","●"],answer:"●"},
+{items:["■","□","▣","▲"],answer:"▲"},
+{items:["◆","◇","◈","○"],answer:"○"},
+{items:["★","☆","✦","■"],answer:"■"},
+{items:["⬆","⬇","↗","●"],answer:"●"},
+{items:["→","←","↔","□"],answer:"□"},
+{items:["○","◯","◎","△"],answer:"△"},
+{items:["□","▢","▣","○"],answer:"○"},
+{items:["▲","▼","◀","◆"],answer:"◆"},
+{items:["●","○","◉","■"],answer:"■"},
+
+{items:["△△","□□","○○","◇"],answer:"◇"},
+{items:["★★","☆☆","✦✦","□□"],answer:"□□"},
+{items:["▲▲▲","■■■","●●●","◆◆"],answer:"◆◆"},
+{items:["○△○","○□○","○◇○","△○△"],answer:"△○△"},
+{items:["▲■▲","▲●▲","▲◆▲","■▲■"],answer:"■▲■"},
+{items:["○○□","○○△","○○◇","□□○"],answer:"□□○"},
+{items:["△□△","△○△","△◇△","□△□"],answer:"□△□"},
+{items:["●▲●","●■●","●◆●","■●■"],answer:"■●■"},
+{items:["★○★","★□★","★△★","□★□"],answer:"□★□"},
+{items:["◇●◇","◇■◇","◇▲◇","■◇■"],answer:"■◇■"},
+
+/* ---------- HARDER MIXED 191-200 ---------- */
+
+{items:["2,6,12","3,9,27","4,12,48","5,15,70"],answer:"5,15,70"},
+{items:["1,3,5","2,6,10","3,9,15","4,12,19"],answer:"4,12,19"},
+{items:["4,7,10","6,10,14","8,13,18","10,16,22"],answer:"8,13,18"},
+{items:["11,22,44","12,24,48","13,26,52","14,28,57"],answer:"14,28,57"},
+{items:["15,30,45","16,32,48","17,34,51","18,36,55"],answer:"18,36,55"},
+
+{items:["AB","CD","EF","HJ"],answer:"HJ"},
+{items:["BC","EF","HI","KM"],answer:"KM"},
+{items:["AD","BE","CF","DH"],answer:"DH"},
+{items:["AZ","BY","CX","DW"],answer:"DW"},
+{items:["AC","DF","GI","JL"],answer:"JL"},
+
+{items:["पारा","सोना","चांदी","तांबा"],answer:"पारा"},
+{items:["जल","बर्फ","भाप","रेत"],answer:"रेत"},
+{items:["गुलाब","कमल","नीम","चमेली"],answer:"नीम"},
+{items:["शेर","बाघ","भालू","गाय"],answer:"गाय"},
+{items:["हाथी","घोड़ा","ऊंट","मगरमच्छ"],answer:"मगरमच्छ"}
+];
+
+
+/* =========================================================
+   SHUFFLE SYSTEM
+   प्रश्न के अंदर भी चारों items MIX होंगे।
+   Options भी अलग क्रम में MIX होंगे।
+========================================================= */
+
+function mulberry32(a){
+ return function(){
+   let t=a+=0x6D2B79F5;
+   t=Math.imul(t^t>>>15,t|1);
+   t^=t+Math.imul(t^t>>>7,t|61);
+   return ((t^t>>>14)>>>0)/4294967296;
+ }
+}
+
+const rng=mulberry32(20260915);
+
+function shuffle(arr){
+ let a=[...arr];
+ for(let i=a.length-1;i>0;i--){
+   const j=Math.floor(rng()*(i+1));
+   [a[i],a[j]]=[a[j],a[i]];
+ }
+ return a;
+}
+
+
+/* प्रत्येक प्रश्न को तैयार करना */
+const questions=data.map((q,index)=>{
+
+ const indexes=[0,1,2,3];
+
+ /* प्रश्न के अंदर चारों items का अलग क्रम */
+ const promptOrder=shuffle(indexes);
+
+ /* Options का स्वतंत्र क्रम */
+ const optionOrder=shuffle(indexes);
+
+ const promptItems=promptOrder.map(i=>q.items[i]);
+
+ const options=optionOrder.map(i=>q.items[i]);
+
+ const correct=options.indexOf(q.answer);
+
+ return {
+   prompt:
+   `निम्नलिखित में से ${promptItems[0]}, ${promptItems[1]}, ${promptItems[2]} और ${promptItems[3]} में से क्या अलग है?`,
+   options:options,
+   correct:correct
+ };
+});
+
+
+let current=0;
+let score=0;
+let answered=false;
+let answerKey=[];
+
+const quiz=document.getElementById("quiz");
+const result=document.getElementById("result");
+const count=document.getElementById("count");
+const scoreBox=document.getElementById("score");
+const bar=document.getElementById("bar");
+
+function loadQuestion(){
+
+ answered=false;
+
+ const q=questions[current];
+
+ count.textContent=current+1;
+ scoreBox.textContent=score;
+
+ bar.style.width=((current)/questions.length*100)+"%";
+
+ quiz.innerHTML="";
+
+ const qno=document.createElement("div");
+ qno.className="qno";
+ qno.textContent="प्रश्न "+(current+1);
+
+ const question=document.createElement("div");
+ question.className="question";
+ question.textContent=q.prompt;
+
+ quiz.appendChild(qno);
+ quiz.appendChild(question);
+
+ q.options.forEach((opt,i)=>{
+
+   const btn=document.createElement("button");
+   btn.className="option";
+   btn.textContent=String.fromCharCode(65+i)+") "+opt;
+
+   btn.onclick=()=>checkAnswer(btn,i,q);
+
+   quiz.appendChild(btn);
+ });
+
+ const feedback=document.createElement("div");
+ feedback.id="feedback";
+ feedback.className="feedback";
+ quiz.appendChild(feedback);
+
+ const next=document.createElement("button");
+ next.className="next";
+ next.textContent=current===questions.length-1
+   ?"🏁 परिणाम देखें"
+   :"➡️ अगला प्रश्न";
+
+ next.disabled=true;
+
+ next.onclick=()=>{
+   current++;
+
+   if(current<questions.length){
+      loadQuestion();
+   }else{
+      showResult();
+   }
+ };
+
+ quiz.appendChild(next);
+}
+
+function checkAnswer(btn,index,q){
+
+ if(answered)return;
+
+ answered=true;
+
+ const buttons=quiz.querySelectorAll(".option");
+ const feedback=document.getElementById("feedback");
+ const next=quiz.querySelector(".next");
+
+ buttons.forEach(b=>b.disabled=true);
+
+ if(index===q.correct){
+
+   btn.classList.add("correct");
+   feedback.textContent="✅ सही उत्तर!";
+   score++;
+
+ }else{
+
+   btn.classList.add("wrong");
+   feedback.textContent="❌ गलत उत्तर!";
+ }
+
+ answerKey.push(String.fromCharCode(65+q.correct));
+
+ scoreBox.textContent=score;
+ next.disabled=false;
+}
+
+function showResult(){
+
+ quiz.style.display="none";
+ result.style.display="block";
+
+ const percent=Math.round(score/questions.length*100);
+
+ let keyHTML="";
+
+ answerKey.forEach((ans,i)=>{
+   keyHTML+=`<b>${i+1}.</b> ${ans} &nbsp;&nbsp;`;
+ });
+
+ result.innerHTML=`
+   <h2>🎉 Quiz पूरा हुआ!</h2>
+   <h3>CG Exam Hub</h3>
+
+   <p style="font-size:22px;font-weight:bold">
+   ${score} / ${questions.length}
+   </p>
+
+   <p style="font-size:18px">
+   प्रतिशत: <b>${percent}%</b>
+   </p>
+
+   <button class="restart" onclick="location.reload()">
+   🔄 फिर से शुरू करें
+   </button>
+
+   <div class="key">
+   <h3>📋 Answer Key</h3>
+   ${keyHTML}
+   </div>
+ `;
+}
+
+loadQuestion();
+
+</script>
+
+</body>
+</html>
