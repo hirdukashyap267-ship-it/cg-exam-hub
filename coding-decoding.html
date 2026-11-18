@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Coding Decoding 200 Quiz | CG Exam Hub</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+margin:0;
+font-family:Arial,"Noto Sans Devanagari",sans-serif;
+background:linear-gradient(135deg,#eef2ff,#fce7f3,#cffafe);
+color:#111827;
+}
+
+.container{
+max-width:850px;
+margin:auto;
+padding:14px;
+}
+
+.header{
+background:linear-gradient(135deg,#4f46e5,#7c3aed,#db2777);
+color:white;
+padding:20px 15px;
+border-radius:20px;
+text-align:center;
+box-shadow:0 8px 25px #0002;
+}
+
+.header h1{
+margin:0;
+font-size:25px;
+}
+
+.header p{
+margin:7px 0 0;
+}
+
+.info{
+display:flex;
+justify-content:space-between;
+gap:10px;
+margin:12px 0;
+}
+
+.badge{
+background:white;
+padding:9px 13px;
+border-radius:12px;
+font-weight:bold;
+box-shadow:0 3px 12px #0001;
+}
+
+.progress{
+height:10px;
+background:#ddd;
+border-radius:20px;
+overflow:hidden;
+margin-bottom:15px;
+}
+
+.progressBar{
+height:100%;
+width:0%;
+background:linear-gradient(90deg,#06b6d4,#6366f1,#ec4899);
+transition:.3s;
+}
+
+.card{
+background:white;
+padding:18px;
+border-radius:20px;
+box-shadow:0 7px 25px #0002;
+}
+
+.rule{
+background:#fff7ed;
+border-left:5px solid #f97316;
+padding:13px;
+border-radius:12px;
+margin-bottom:16px;
+font-size:16px;
+line-height:1.6;
+}
+
+.question{
+font-size:19px;
+font-weight:bold;
+line-height:1.7;
+margin-bottom:18px;
+color:#111827;
+}
+
+.options{
+display:grid;
+gap:11px;
+}
+
+.option{
+width:100%;
+border:2px solid transparent;
+border-radius:14px;
+padding:14px;
+background:linear-gradient(135deg,#eff6ff,#e0e7ff);
+color:#111827 !important;
+font-size:17px;
+font-weight:bold;
+text-align:left;
+cursor:pointer;
+}
+
+.option.correct{
+background:#22c55e !important;
+color:white !important;
+border-color:#15803d !important;
+}
+
+.option.wrong{
+background:#ef4444 !important;
+color:white !important;
+border-color:#b91c1c !important;
+}
+
+.feedback{
+min-height:28px;
+text-align:center;
+font-size:17px;
+font-weight:bold;
+margin:14px 0;
+}
+
+.next{
+width:100%;
+border:0;
+border-radius:14px;
+padding:14px;
+background:linear-gradient(135deg,#4f46e5,#9333ea);
+color:white;
+font-size:17px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.next:disabled{
+opacity:.45;
+}
+
+.result{
+display:none;
+background:white;
+padding:25px;
+border-radius:20px;
+text-align:center;
+box-shadow:0 7px 25px #0002;
+}
+
+.restart{
+border:0;
+border-radius:12px;
+padding:13px 22px;
+background:#16a34a;
+color:white;
+font-size:16px;
+font-weight:bold;
+}
+
+.answerKey{
+margin-top:20px;
+padding:15px;
+background:#f8fafc;
+border-radius:15px;
+text-align:left;
+line-height:2;
+max-height:350px;
+overflow:auto;
+}
+
+@media(max-width:600px){
+.question{font-size:17px}
+.option{font-size:16px}
+.header h1{font-size:21px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+<h1>🧠 Coding-Decoding Quiz</h1>
+<p>CG Exam Hub • 200 महत्वपूर्ण प्रश्न</p>
+</div>
+
+<div class="info">
+<div class="badge" id="questionNo">प्रश्न 1 / 200</div>
+<div class="badge">स्कोर: <span id="score">0</span></div>
+</div>
+
+<div class="progress">
+<div class="progressBar" id="progressBar"></div>
+</div>
+
+<div class="card" id="quizCard">
+
+<div class="rule" id="rule"></div>
+
+<div class="question" id="question"></div>
+
+<div class="options" id="options"></div>
+
+<div class="feedback" id="feedback"></div>
+
+<button class="next" id="nextBtn" disabled>
+अगला प्रश्न →
+</button>
+
+</div>
+
+<div class="result" id="result">
+
+<h2>🎉 Quiz पूरा हुआ!</h2>
+
+<h3 id="finalScore"></h3>
+
+<p id="percentage"></p>
+
+<button class="restart" onclick="location.reload()">
+🔄 फिर से शुरू करें
+</button>
+
+<div class="answerKey">
+<h3>📋 Answer Key</h3>
+<div id="answerList"></div>
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+/* =====================================================
+   WORD LIST
+===================================================== */
+
+const words=[
+"CROW","EAGLE","PARROT","TIGER","HORSE",
+"RABBIT","MONKEY","DONKEY","CAMEL","ZEBRA",
+"APPLE","MANGO","ORANGE","BANANA","PAPAYA",
+"GUAVA","PEACH","LEMON","GRAPE","COCONUT",
+"BOOK","PEN","TABLE","CHAIR","CLOCK",
+"PHONE","RADIO","TRAIN","PLANE","BOAT",
+"RIVER","FOREST","GARDEN","SCHOOL","MARKET",
+"TEMPLE","BRIDGE","WINDOW","BOTTLE","PENCIL",
+"CRICKET","HOCKEY","TENNIS","FOOTBALL","BOXING",
+"PLAYER","COACH","MEDAL","STADIUM","CAPTAIN"
+];
+
+/* =====================================================
+   BASIC FUNCTIONS
+===================================================== */
+
+function letterSum(word){
+let total=0;
+
+for(let i=0;i<word.length;i++){
+total+=word.charCodeAt(i)-64;
+}
+
+return total;
+}
+
+function cube(word){
+return word.length*word.length*word.length;
+}
+
+function square(word){
+return word.length*word.length;
+}
+
+function firstValue(word){
+return word.charCodeAt(0)-64;
+}
+
+function lastValue(word){
+return word.charCodeAt(word.length-1)-64;
+}
+
+function firstLastAdd(word){
+return firstValue(word)+lastValue(word);
+}
+
+function firstLastMultiply(word){
+return firstValue(word)*lastValue(word);
+}
+
+function vowelCount(word){
+let n=0;
+
+for(let i=0;i<word.length;i++){
+
+if("AEIOU".includes(word[i])){
+n++;
+}
+
+}
+
+return n;
+}
+
+function consonantCount(word){
+return word.length-vowelCount(word);
+}
+
+function vowelValue(word){
+
+let total=0;
+
+for(let i=0;i<word.length;i++){
+
+if("AEIOU".includes(word[i])){
+total+=word.charCodeAt(i)-64;
+}
+
+}
+
+return total;
+}
+
+function consonantValue(word){
+
+let total=0;
+
+for(let i=0;i<word.length;i++){
+
+if(!"AEIOU".includes(word[i])){
+total+=word.charCodeAt(i)-64;
+}
+
+}
+
+return total;
+}
+
+/* =====================================================
+   OPTIONS
+===================================================== */
+
+function makeOptions(answer,seed){
+
+let a=[
+answer,
+answer+seed+4,
+Math.max(1,answer-seed-3),
+answer+seed+11
+];
+
+return a;
+}
+
+/* =====================================================
+   QUESTIONS
+===================================================== */
+
+let questions=[];
+
+/*
+RULE 1
+Word Length Cube
+1-40
+*/
+
+for(let i=0;i<40;i++){
+
+let a=words[i%50];
+
+let b=words[(i+7)%50];
+
+let c=words[(i+14)%50];
+
+questions.push({
+
+a:a,
+av:cube(a),
+
+b:b,
+bv:cube(b),
+
+c:c,
+answer:cube(c),
+
+rule:"शब्द में जितने अक्षर हैं, उनकी संख्या का घन (Cube) लिया गया है।"
+
+});
+
+}
+
+/*
+RULE 2
+Word Length Square
+41-80
+*/
+
+for(let i=0;i<40;i++){
+
+let a=words[(i+3)%50];
+
+let b=words[(i+11)%50];
+
+let c=words[(i+19)%50];
+
+questions.push({
+
+a:a,
+av:square(a),
+
+b:b,
+bv:square(b),
+
+c:c,
+answer:square(c),
+
+rule:"शब्द में जितने अक्षर हैं, उनकी संख्या का वर्ग (Square) लिया गया है।"
+
+});
+
+}
+
+/*
+RULE 3
+Alphabet Value Sum
+81-120
+*/
+
+for(let i=0;i<40;i++){
+
+let a=words[(i+5)%50];
+
+let b=words[(i+13)%50];
+
+let c=words[(i+21)%50];
+
+questions.push({
+
+a:a,
+av:letterSum(a),
+
+b:b,
+bv:letterSum(b),
+
+c:c,
+answer:letterSum(c),
+
+rule:"A=1, B=2, C=3 ... Z=26 के अनुसार सभी अक्षरों का योग लिया गया है।"
+
+});
+
+}
+
+/*
+RULE 4
+First + Last
+121-140
+*/
+
+for(let i=0;i<20;i++){
+
+let a=words[(i+2)%50];
+
+let b=words[(i+16)%50];
+
+let c=words[(i+31)%50];
+
+questions.push({
+
+a:a,
+av:firstLastAdd(a),
+
+b:b,
+bv:firstLastAdd(b),
+
+c:c,
+answer:firstLastAdd(c),
+
+rule:"पहले और अंतिम अक्षर के Alphabet Values को जोड़ा गया है।"
+
+});
+
+}
+
+/*
+RULE 5
+First × Last
+141-160
+*/
+
+for(let i=0;i<20;i++){
+
+let a=words[(i+4)%50];
+
+let b=words[(i+18)%50];
+
+let c=words[(i+33)%50];
+
+questions.push({
+
+a:a,
+av:firstLastMultiply(a),
+
+b:b,
+bv:firstLastMultiply(b),
+
+c:c,
+answer:firstLastMultiply(c),
+
+rule:"पहले और अंतिम अक्षर के Alphabet Values का गुणन किया गया है।"
+
+});
+
+}
+
+/*
+RULE 6
+Vowel Count × 10 + Consonant Count
+161-180
+*/
+
+for(let i=0;i<20;i++){
+
+let a=words[(i+6)%50];
+
+let b=words[(i+22)%50];
+
+let c=words[(i+37)%50];
+
+function calc(x){
+
+return vowelCount(x)*10+consonantCount(x);
+
+}
+
+questions.push({
+
+a:a,
+av:calc(a),
+
+b:b,
+bv:calc(b),
+
+c:c,
+answer:calc(c),
+
+rule:"Vowels की संख्या × 10 + Consonants की संख्या।"
+
+});
+
+}
+
+/*
+RULE 7
+Vowel Value
+181-190
+*/
+
+for(let i=0;i<10;i++){
+
+let a=words[(i+8)%50];
+
+let b=words[(i+24)%50];
+
+let c=words[(i+40)%50];
+
+questions.push({
+
+a:a,
+av:vowelValue(a),
+
+b:b,
+bv:vowelValue(b),
+
+c:c,
+answer:vowelValue(c),
+
+rule:"केवल Vowels के Alphabet Values का योग लिया गया है।"
+
+});
+
+}
+
+/*
+RULE 8
+Consonant Value
+191-200
+*/
+
+for(let i=0;i<10;i++){
+
+let a=words[(i+9)%50];
+
+let b=words[(i+26)%50];
+
+let c=words[(i+42)%50];
+
+questions.push({
+
+a:a,
+av:consonantValue(a),
+
+b:b,
+bv:consonantValue(b),
+
+c:c,
+answer:consonantValue(c),
+
+rule:"केवल Consonants के Alphabet Values का योग लिया गया है।"
+
+});
+
+}
+
+/* =====================================================
+   MIX ANSWER POSITION
+===================================================== */
+
+questions=questions.map(function(q,index){
+
+let options=makeOptions(q.answer,index+2);
+
+let correctPosition=
+index%4;
+
+/*
+A B C D
+*/
+
+let correct=options[0];
+
+options.splice(0,1);
+
+options.splice(correctPosition,0,correct);
+
+return{
+
+a:q.a,
+av:q.av,
+
+b:q.b,
+bv:q.bv,
+
+c:q.c,
+
+answer:q.answer,
+
+rule:q.rule,
+
+options:options,
+
+correct:correctPosition
+
+};
+
+});
+
+/* =====================================================
+   QUIZ VARIABLES
+===================================================== */
+
+let current=0;
+
+let score=0;
+
+let locked=false;
+
+let answerKey=[];
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const questionNo=
+document.getElementById("questionNo");
+
+const scoreBox=
+document.getElementById("score");
+
+const progressBar=
+document.getElementById("progressBar");
+
+const ruleBox=
+document.getElementById("rule");
+
+const questionBox=
+document.getElementById("question");
+
+const optionsBox=
+document.getElementById("options");
+
+const feedback=
+document.getElementById("feedback");
+
+const nextBtn=
+document.getElementById("nextBtn");
+
+/* =====================================================
+   SHOW QUESTION
+===================================================== */
+
+function showQuestion(){
+
+locked=false;
+
+nextBtn.disabled=true;
+
+feedback.innerHTML="";
+
+let q=questions[current];
+
+questionNo.innerText=
+"प्रश्न "+(current+1)+" / 200";
+
+scoreBox.innerText=score;
+
+progressBar.style.width=
+((current+1)/200*100)+"%";
+
+ruleBox.innerHTML=
+"📌 <b>नियम:</b> "+q.rule;
+
+questionBox.innerHTML=
+"प्रश्न "+(current+1)+
+". एक निश्चित कूट भाषा में, "+
+"<b>'"+q.a+"'</b> को <b>'"+q.av+
+"'</b> और <b>'"+q.b+
+"'</b> को <b>'"+q.bv+
+"'</b> के रूप में कोडित किया जाता है। "+
+"उसी भाषा में <b>'"+q.c+
+"'</b> को किस प्रकार कोडित किया जाएगा?";
+
+optionsBox.innerHTML="";
+
+q.options.forEach(function(option,index){
+
+let button=document.createElement("button");
+
+button.className="option";
+
+button.innerText=
+"("+String.fromCharCode(65+index)+") "+option;
+
+button.onclick=function(){
+
+checkAnswer(index,button);
+
+};
+
+optionsBox.appendChild(button);
+
+});
+
+}
+
+/* =====================================================
+   CHECK ANSWER
+===================================================== */
+
+function checkAnswer(selected,button){
+
+if(locked)return;
+
+locked=true;
+
+let q=questions[current];
+
+let buttons=
+document.querySelectorAll(".option");
+
+buttons.forEach(function(b){
+
+b.disabled=true;
+
+});
+
+if(selected===q.correct){
+
+button.classList.add("correct");
+
+score++;
+
+feedback.innerHTML="✅ सही उत्तर!";
+
+}else{
+
+button.classList.add("wrong");
+
+buttons[q.correct].classList.add("correct");
+
+feedback.innerHTML="❌ गलत उत्तर!";
+
+}
+
+scoreBox.innerText=score;
+
+answerKey[current]=
+String.fromCharCode(65+q.correct)+
+" ("+q.answer+")";
+
+nextBtn.disabled=false;
+
+}
+
+/* =====================================================
+   NEXT
+===================================================== */
+
+nextBtn.onclick=function(){
+
+if(!locked)return;
+
+current++;
+
+if(current<questions.length){
+
+showQuestion();
+
+}else{
+
+finishQuiz();
+
+}
+
+window.scrollTo(0,0);
+
+};
+
+/* =====================================================
+   FINISH
+===================================================== */
+
+function finishQuiz(){
+
+document.getElementById("quizCard").style.display="none";
+
+document.getElementById("result").style.display="block";
+
+let percent=
+Math.round((score/200)*100);
+
+document.getElementById("finalScore").innerText=
+"आपका स्कोर: "+score+" / 200";
+
+document.getElementById("percentage").innerText=
+"प्रतिशत: "+percent+"%";
+
+let html="";
+
+for(let i=0;i<200;i++){
+
+html+=
+"<b>"+(i+1)+".</b> "+
+answerKey[i]+" &nbsp;&nbsp;";
+
+}
+
+document.getElementById("answerList").innerHTML=html;
+
+}
+
+/* =====================================================
+   START
+===================================================== */
+
+showQuestion();
+
+</script>
+
+</body>
+</html>
