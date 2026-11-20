@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Venn Diagram Quiz 200 | CG Exam Hub</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ background:#eef2ff;
+ color:#111827;
+ font-family:Arial,"Noto Sans Devanagari",sans-serif
+}
+header{
+ background:linear-gradient(135deg,#2563eb,#7c3aed);
+ color:#fff;
+ text-align:center;
+ padding:20px 10px
+}
+header h1{margin:0;font-size:24px}
+header p{margin:7px 0}
+.home{
+ display:inline-block;
+ background:#fff;
+ color:#2563eb;
+ padding:9px 18px;
+ border-radius:25px;
+ text-decoration:none;
+ font-weight:bold
+}
+.container{max-width:900px;margin:auto;padding:14px}
+.top,.quiz,.result{
+ background:#fff;
+ border-radius:18px;
+ padding:15px;
+ margin-bottom:14px;
+ box-shadow:0 3px 16px #0002
+}
+.progress{
+ height:10px;
+ background:#dbeafe;
+ border-radius:20px;
+ overflow:hidden;
+ margin-top:10px
+}
+.progress div{
+ height:100%;
+ width:0;
+ background:#22c55e;
+ transition:.3s
+}
+.qno{color:#7c3aed;font-weight:bold;margin-bottom:8px}
+.question{
+ font-size:18px;
+ font-weight:bold;
+ line-height:1.7;
+ margin-bottom:15px
+}
+.options{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:14px
+}
+.option{
+ background:#fff;
+ border:2px solid #d1d5db;
+ border-radius:15px;
+ padding:7px;
+ cursor:pointer
+}
+.option.correct{
+ background:#22c55e!important;
+ border-color:#15803d!important
+}
+.option.wrong{
+ background:#ef4444!important;
+ border-color:#b91c1c!important
+}
+.opt{
+ text-align:center;
+ font-weight:bold;
+ color:#111827;
+ padding:4px
+}
+.option.correct .opt,
+.option.wrong .opt{color:#fff}
+svg{width:100%;height:190px;display:block}
+.feedback{
+ display:none;
+ margin-top:14px;
+ padding:12px;
+ border-radius:12px;
+ text-align:center;
+ font-weight:bold
+}
+.good{display:block;background:#dcfce7;color:#166534}
+.bad{display:block;background:#fee2e2;color:#991b1b}
+.next{
+ display:none;
+ width:100%;
+ margin-top:14px;
+ padding:14px;
+ border:0;
+ border-radius:14px;
+ background:linear-gradient(135deg,#2563eb,#7c3aed);
+ color:white;
+ font-size:17px;
+ font-weight:bold
+}
+.result{text-align:center;display:none}
+.restart{
+ padding:13px 25px;
+ border:0;
+ border-radius:12px;
+ background:#2563eb;
+ color:#fff;
+ font-weight:bold
+}
+@media(max-width:650px){
+ .options{grid-template-columns:1fr}
+ .question{font-size:17px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🧠 Venn Diagram Quiz</h1>
+<p>CG Exam Hub • 200 Mixed Questions</p>
+<a class="home" href="reasoning.html">← Reasoning Home</a>
+</header>
+
+<div class="container">
+
+<div class="top">
+<b>प्रश्न <span id="qn">1</span> / 200</b>
+<span style="float:right">स्कोर: <b id="score">0</b></span>
+<div class="progress"><div id="bar"></div></div>
+</div>
+
+<div class="quiz" id="quiz">
+<div class="qno" id="qtitle"></div>
+<div class="question" id="question"></div>
+<div class="options" id="options"></div>
+
+<div id="feedback" class="feedback"></div>
+
+<button id="next" class="next" onclick="nextQuestion()">
+अगला प्रश्न →
+</button>
+</div>
+
+<div class="result" id="result">
+<h2>🎉 Quiz पूरा हुआ!</h2>
+<h3 id="final"></h3>
+<p id="percent"></p>
+<button class="restart" onclick="restart()">फिर से शुरू करें</button>
+</div>
+
+</div>
+
+<script>
+
+/* =====================================================
+   40 अलग-अलग समूह
+   प्रत्येक समूह के 5 अलग सदस्य = 200 प्रश्न
+===================================================== */
+
+const groups=[
+
+/* 1 */
+["खाद्य पदार्थ","फल","सब्जियाँ",
+["आम","सेब","केला","संतरा","अमरूद"]],
+
+/* 2 */
+["जीव","स्तनधारी","पक्षी",
+["गाय","घोड़ा","हाथी","बकरी","कुत्ता"]],
+
+/* 3 */
+["ग्रह","स्थलीय ग्रह","गैसीय ग्रह",
+["पृथ्वी","मंगल","बुध","शुक्र","मंगल ग्रह"]],
+
+/* 4 */
+["व्यक्ति","पुरुष","महिला",
+["भाई","पिता","पुत्र","चाचा","दादा"]],
+
+/* 5 */
+["शिक्षा","विद्यालय शिक्षा","उच्च शिक्षा",
+["प्राथमिक शिक्षा","माध्यमिक शिक्षा","उच्च विद्यालय शिक्षा","स्कूली शिक्षा","प्राथमिक विद्यालय शिक्षा"]],
+
+/* 6 */
+["विज्ञान","भौतिक विज्ञान","जीव विज्ञान",
+["बल","गति","ऊर्जा","प्रकाश","ध्वनि"]],
+
+/* 7 */
+["वाहन","स्थल वाहन","जल वाहन",
+["कार","बस","ट्रक","साइकिल","मोटरसाइकिल"]],
+
+/* 8 */
+["कंप्यूटर","हार्डवेयर","सॉफ्टवेयर",
+["CPU","RAM","मदरबोर्ड","कीबोर्ड","मॉनिटर"]],
+
+/* 9 */
+["खेल","टीम खेल","व्यक्तिगत खेल",
+["क्रिकेट","फुटबॉल","हॉकी","कबड्डी","वॉलीबॉल"]],
+
+/* 10 */
+["वनस्पति","फलदार वृक्ष","औषधीय पौधे",
+["आम का पेड़","नींबू का पेड़","अनार का पेड़","अमरूद का पेड़","पपीते का पौधा"]],
+
+/* 11 */
+["संख्या","सम संख्या","विषम संख्या",
+["2","4","6","8","10"]],
+
+/* 12 */
+["दस्तावेज","पहचान दस्तावेज","यात्रा दस्तावेज",
+["आधार कार्ड","पैन कार्ड","मतदाता पहचान पत्र","ड्राइविंग लाइसेंस","पहचान पत्र"]],
+
+/* 13 */
+["जानवर","पालतू जानवर","जंगली जानवर",
+["कुत्ता","बिल्ली","गाय","बकरी","भेड़"]],
+
+/* 14 */
+["खाद्य पदार्थ","अनाज","दालें",
+["गेहूँ","चावल","मक्का","जौ","बाजरा"]],
+
+/* 15 */
+["सौरमंडल","ग्रह","उपग्रह",
+["पृथ्वी","मंगल","बुध","शुक्र","नेपच्यून"]],
+
+/* 16 */
+["विद्यालय","छात्र","शिक्षक",
+["कक्षा 5 का छात्र","कक्षा 8 का छात्र","कक्षा 10 का छात्र","कक्षा 12 का छात्र","नियमित छात्र"]],
+
+/* 17 */
+["विज्ञान","रसायन विज्ञान","भौतिक विज्ञान",
+["अम्ल","क्षार","लवण","धातु","अधातु"]],
+
+/* 18 */
+["वाहन","वायु वाहन","स्थल वाहन",
+["विमान","हेलीकॉप्टर","ग्लाइडर","जेट","एयरशिप"]],
+
+/* 19 */
+["कंप्यूटर उपकरण","इनपुट उपकरण","आउटपुट उपकरण",
+["कीबोर्ड","माउस","स्कैनर","माइक्रोफोन","वेबकैम"]],
+
+/* 20 */
+["खेल","व्यक्तिगत खेल","टीम खेल",
+["शतरंज","तैराकी","मुक्केबाजी","जिम्नास्टिक","कुश्ती"]],
+
+/* 21 */
+["पौधा","औषधीय पौधे","सजावटी पौधे",
+["तुलसी","नीम","एलोवेरा","गिलोय","अश्वगंधा"]],
+
+/* 22 */
+["भाषा","भारतीय भाषा","विदेशी भाषा",
+["हिंदी","मराठी","बंगाली","गुजराती","तमिल"]],
+
+/* 23 */
+["जीव","पक्षी","स्तनधारी",
+["तोता","मोर","कबूतर","गौरैया","हंस"]],
+
+/* 24 */
+["जानवर","जंगली जानवर","पालतू जानवर",
+["शेर","बाघ","हाथी","भालू","चीतल"]],
+
+/* 25 */
+["वाहन","जल वाहन","वायु वाहन",
+["नाव","जहाज","पनडुब्बी","नौका","स्टीमर"]],
+
+/* 26 */
+["कंप्यूटर","सॉफ्टवेयर","हार्डवेयर",
+["Windows","Linux","Android","MS Word","Excel"]],
+
+/* 27 */
+["पुस्तक","पाठ्यपुस्तक","साहित्यिक पुस्तक",
+["गणित की पुस्तक","विज्ञान की पुस्तक","इतिहास की पुस्तक","भूगोल की पुस्तक","कंप्यूटर की पुस्तक"]],
+
+/* 28 */
+["संचार","डिजिटल संचार","पारंपरिक संचार",
+["ईमेल","वीडियो कॉल","ऑनलाइन चैट","इंटरनेट संदेश","ऑनलाइन बैठक"]],
+
+/* 29 */
+["पौधा","फूलदार पौधे","फलदार पौधे",
+["गुलाब","गेंदा","चमेली","सूरजमुखी","गुड़हल"]],
+
+/* 30 */
+["जीव","जलचर","स्थलचर",
+["मछली","व्हेल","डॉल्फिन","शार्क","ऑक्टोपस"]],
+
+/* 31 */
+["खाद्य पदार्थ","डेयरी उत्पाद","अनाज",
+["दूध","दही","पनीर","मक्खन","छाछ"]],
+
+/* 32 */
+["विज्ञान","खगोल विज्ञान","जीव विज्ञान",
+["ग्रह","तारे","आकाशगंगा","उपग्रह","नीहारिका"]],
+
+/* 33 */
+["वाहन","सार्वजनिक वाहन","निजी वाहन",
+["बस","मेट्रो","ट्राम","सार्वजनिक टैक्सी","सिटी बस"]],
+
+/* 34 */
+["कंप्यूटर","स्टोरेज उपकरण","इनपुट उपकरण",
+["हार्ड डिस्क","SSD","पेन ड्राइव","मेमोरी कार्ड","CD"]],
+
+/* 35 */
+["देश","एशियाई देश","यूरोपीय देश",
+["भारत","चीन","नेपाल","जापान","भूटान"]],
+
+/* 36 */
+["कार्यालय","कर्मचारी","अधिकारी",
+["लिपिक","सहायक कर्मचारी","कार्यालय कर्मचारी","लेखा कर्मचारी","तकनीकी कर्मचारी"]],
+
+/* 37 */
+["संख्या","प्राकृतिक संख्या","ऋणात्मक संख्या",
+["1","2","3","4","5"]],
+
+/* 38 */
+["कला","संगीत","चित्रकला",
+["गायन","वाद्य संगीत","शास्त्रीय संगीत","लोक संगीत","संगीत रचना"]],
+
+/* 39 */
+["पर्यावरण","प्राकृतिक संसाधन","मानव निर्मित संसाधन",
+["जल","वन","मिट्टी","खनिज","वायु"]],
+
+/* 40 */
+["संचार माध्यम","समाचार माध्यम","मनोरंजन माध्यम",
+["समाचार पत्र","समाचार चैनल","समाचार वेबसाइट","समाचार पत्रिका","रेडियो समाचार"]]
+
+];
+
+
+/* =====================================================
+   200 QUESTIONS बनाना
+   सभी category को MIX करके
+===================================================== */
+
+let questions=[];
+
+for(let round=0;round<5;round++){
+
+    for(let g=0;g<groups.length;g++){
+
+        let x=groups[g];
+
+        questions.push({
+            outer:x[0],
+            left:x[1],
+            right:x[2],
+            inner:x[3][round]
+        });
+
+    }
+
+}
+
+
+/* =====================================================
+   QUESTION के अंदर शब्द MIX
+===================================================== */
+
+function shuffle(arr,seed){
+
+    let a=arr.slice();
+    let x=seed;
+
+    for(let i=a.length-1;i>0;i--){
+
+        x=(x*9301+49297)%233280;
+
+        let j=Math.floor((x/233280)*(i+1));
+
+        [a[i],a[j]]=[a[j],a[i]];
+    }
+
+    return a;
+}
+
+
+/* =====================================================
+   SVG TEXT
+===================================================== */
+
+function label(x,y,text,size){
+
+    return '<text x="'+x+'" y="'+y+
+    '" text-anchor="middle" font-size="'+size+
+    '" font-weight="bold" fill="#111827">'+
+    text+'</text>';
+}
+
+
+/* =====================================================
+   VENN DIAGRAM
+===================================================== */
+
+function venn(q,type){
+
+    let s='<svg viewBox="0 0 360 190" xmlns="http://www.w3.org/2000/svg">';
+
+
+    /* सही:
+       OUTER
+       ├── LEFT
+       │    └── INNER
+       └── RIGHT
+    */
+
+    if(type===0){
+
+        s+=
+        '<circle cx="180" cy="95" r="82" fill="#e0e7ff" stroke="#4f46e5" stroke-width="3"/>'+
+        '<circle cx="120" cy="105" r="43" fill="#dcfce7" stroke="#16a34a" stroke-width="3"/>'+
+        '<circle cx="240" cy="105" r="43" fill="#fef3c7" stroke="#d97706" stroke-width="3"/>'+
+        '<circle cx="120" cy="115" r="20" fill="#fce7f3" stroke="#db2777" stroke-width="3"/>';
+
+        s+=label(180,28,q.outer,11);
+        s+=label(120,82,q.left,9);
+        s+=label(240,82,q.right,9);
+        s+=label(120,119,q.inner,8);
+    }
+
+
+    /* गलत:
+       INNER गलत RIGHT में
+    */
+
+    if(type===1){
+
+        s+=
+        '<circle cx="180" cy="95" r="82" fill="#e0e7ff" stroke="#4f46e5" stroke-width="3"/>'+
+        '<circle cx="120" cy="105" r="43" fill="#dcfce7" stroke="#16a34a" stroke-width="3"/>'+
+        '<circle cx="240" cy="105" r="43" fill="#fef3c7" stroke="#d97706" stroke-width="3"/>'+
+        '<circle cx="240" cy="115" r="20" fill="#fce7f3" stroke="#db2777" stroke-width="3"/>';
+
+        s+=label(180,28,q.outer,11);
+        s+=label(120,82,q.left,9);
+        s+=label(240,82,q.right,9);
+        s+=label(240,119,q.inner,8);
+    }
+
+
+    /* गलत:
+       सभी अलग
+    */
+
+    if(type===2){
+
+        s+=
+        '<circle cx="180" cy="95" r="82" fill="#e0e7ff" stroke="#4f46e5" stroke-width="3"/>'+
+        '<circle cx="100" cy="105" r="27" fill="#dcfce7" stroke="#16a34a" stroke-width="3"/>'+
+        '<circle cx="180" cy="105" r="27" fill="#fef3c7" stroke="#d97706" stroke-width="3"/>'+
+        '<circle cx="260" cy="105" r="27" fill="#fce7f3" stroke="#db2777" stroke-width="3"/>';
+
+        s+=label(180,28,q.outer,11);
+        s+=label(100,109,q.left,7);
+        s+=label(180,109,q.right,7);
+        s+=label(260,109,q.inner,7);
+    }
+
+
+    /* गलत:
+       LEFT और RIGHT overlap
+    */
+
+    if(type===3){
+
+        s+=
+        '<circle cx="180" cy="95" r="82" fill="#e0e7ff" stroke="#4f46e5" stroke-width="3"/>'+
+        '<circle cx="145" cy="105" r="48" fill="#dcfce7" fill-opacity=".7" stroke="#16a34a" stroke-width="3"/>'+
+        '<circle cx="215" cy="105" r="48" fill="#fef3c7" fill-opacity=".7" stroke="#d97706" stroke-width="3"/>'+
+        '<circle cx="180" cy="112" r="20" fill="#fce7f3" stroke="#db2777" stroke-width="3"/>';
+
+        s+=label(180,28,q.outer,11);
+        s+=label(125,78,q.left,8);
+        s+=label(235,78,q.right,8);
+        s+=label(180,118,q.inner,8);
+    }
+
+    s+='</svg>';
+
+    return s;
+}
+
+
+/* =====================================================
+   सही उत्तर की position
+   A/B/C/D पूरी तरह mixed
+===================================================== */
+
+const answerPos=[
+1,2,3,0,2,0,3,1,3,1,
+0,2,1,3,2,0,3,1,0,2,
+3,1,2,0,1,3,0,2,3,1
+];
+
+
+/* =====================================================
+   QUIZ
+===================================================== */
+
+let current=0;
+let score=0;
+let locked=false;
+
+
+function loadQuestion(){
+
+    locked=false;
+
+    let q=questions[current];
+
+    document.getElementById("qn").textContent=current+1;
+
+    document.getElementById("qtitle").textContent=
+    "प्रश्न "+(current+1);
+
+    document.getElementById("bar").style.width=
+    ((current+1)/200*100)+"%";
+
+
+    /* Question में भी चारों शब्द MIX */
+
+    let words=shuffle(
+        [q.outer,q.left,q.right,q.inner],
+        current+101
+    );
+
+    document.getElementById("question").textContent=
+    "निम्नलिखित में से "+
+    words.join(", ") +
+    " में से सही संबंध दर्शाने वाला Venn Diagram चुनिए।";
+
+
+    let correct=answerPos[current%answerPos.length];
+
+    let wrongTypes=[1,2,3];
+    let optionTypes=[];
+
+
+    for(let i=0;i<4;i++){
+
+        if(i===correct){
+
+            optionTypes.push(0);
+
+        }else{
+
+            optionTypes.push(wrongTypes.shift());
+
+        }
+    }
+
+
+    let box=document.getElementById("options");
+
+    box.innerHTML="";
+
+
+    for(let i=0;i<4;i++){
+
+        let div=document.createElement("div");
+
+        div.className="option";
+
+        div.innerHTML=
+        '<div class="opt">विकल्प '+
+        String.fromCharCode(65+i)+
+        '</div>'+
+        venn(q,optionTypes[i]);
+
+
+        div.onclick=function(){
+
+            check(div,i,correct);
+
+        };
+
+        box.appendChild(div);
+    }
+
+
+    let fb=document.getElementById("feedback");
+
+    fb.className="feedback";
+    fb.style.display="none";
+    fb.innerHTML="";
+
+    document.getElementById("next").style.display="none";
+}
+
+
+/* =====================================================
+   ANSWER
+===================================================== */
+
+function check(clicked,selected,correct){
+
+    if(locked)return;
+
+    locked=true;
+
+    let all=document.querySelectorAll(".option");
+
+    let answer=
+    String.fromCharCode(65+correct);
+
+
+    if(selected===correct){
+
+        score++;
+
+        clicked.classList.add("correct");
+
+        document.getElementById("feedback").className=
+        "feedback good";
+
+        document.getElementById("feedback").innerHTML=
+        "✅ सही! सही उत्तर: विकल्प "+answer;
+
+    }else{
+
+        clicked.classList.add("wrong");
+
+        all[correct].classList.add("correct");
+
+        document.getElementById("feedback").className=
+        "feedback bad";
+
+        document.getElementById("feedback").innerHTML=
+        "❌ गलत! सही उत्तर: विकल्प "+answer;
+    }
+
+
+    document.getElementById("feedback").style.display="block";
+
+    document.getElementById("score").textContent=score;
+
+    document.getElementById("next").style.display="block";
+}
+
+
+/* =====================================================
+   NEXT
+===================================================== */
+
+function nextQuestion(){
+
+    current++;
+
+    if(current>=200){
+
+        finish();
+
+    }else{
+
+        loadQuestion();
+
+        window.scrollTo(0,0);
+    }
+}
+
+
+/* =====================================================
+   FINISH
+===================================================== */
+
+function finish(){
+
+    document.getElementById("quiz").style.display="none";
+
+    document.getElementById("result").style.display="block";
+
+    let p=Math.round(score/200*100);
+
+    document.getElementById("final").textContent=
+    "आपका स्कोर: "+score+" / 200";
+
+    document.getElementById("percent").textContent=
+    "प्रतिशत: "+p+"%";
+}
+
+
+/* =====================================================
+   RESTART
+===================================================== */
+
+function restart(){
+
+    current=0;
+    score=0;
+    locked=false;
+
+    document.getElementById("score").textContent="0";
+
+    document.getElementById("result").style.display="none";
+
+    document.getElementById("quiz").style.display="block";
+
+    loadQuestion();
+
+    window.scrollTo(0,0);
+}
+
+
+/* START */
+
+loadQuestion();
+
+</script>
+
+</body>
+</html>
