@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Missing Number Quiz 200 | CG Exam Hub</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+ margin:0;
+ background:#eef2ff;
+ color:#111827;
+ font-family:Arial,"Noto Sans Devanagari",sans-serif;
+}
+
+header{
+ background:linear-gradient(135deg,#2563eb,#7c3aed);
+ color:#fff;
+ text-align:center;
+ padding:20px 10px;
+}
+
+header h1{
+ margin:0;
+ font-size:24px;
+}
+
+header p{
+ margin:7px 0 12px;
+}
+
+.home{
+ display:inline-block;
+ background:#fff;
+ color:#2563eb;
+ padding:9px 18px;
+ border-radius:25px;
+ text-decoration:none;
+ font-weight:bold;
+}
+
+.container{
+ max-width:900px;
+ margin:auto;
+ padding:14px;
+}
+
+.top,.quiz,.result{
+ background:#fff;
+ border-radius:18px;
+ padding:15px;
+ margin-bottom:14px;
+ box-shadow:0 3px 16px #0002;
+}
+
+.progress{
+ height:10px;
+ background:#dbeafe;
+ border-radius:20px;
+ overflow:hidden;
+ margin-top:10px;
+}
+
+.progress div{
+ height:100%;
+ width:0;
+ background:#22c55e;
+ transition:.3s;
+}
+
+.qno{
+ color:#7c3aed;
+ font-weight:bold;
+ margin-bottom:8px;
+}
+
+.question{
+ font-size:20px;
+ font-weight:bold;
+ line-height:1.8;
+ margin-bottom:18px;
+ text-align:center;
+}
+
+.series{
+ background:#f8fafc;
+ border:2px solid #e5e7eb;
+ border-radius:15px;
+ padding:20px 8px;
+ font-size:25px;
+ font-weight:bold;
+ text-align:center;
+ margin-bottom:18px;
+ overflow-x:auto;
+}
+
+.box{
+ display:inline-block;
+ min-width:55px;
+ padding:8px 5px;
+ margin:3px;
+ border:2px solid #6366f1;
+ border-radius:10px;
+ background:#fff;
+}
+
+.missing{
+ background:#fef3c7;
+ border-color:#f59e0b;
+ color:#b45309;
+}
+
+.options{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:12px;
+}
+
+.option{
+ background:#fff;
+ border:2px solid #d1d5db;
+ border-radius:14px;
+ padding:14px;
+ cursor:pointer;
+ text-align:center;
+ font-size:18px;
+ font-weight:bold;
+ transition:.15s;
+}
+
+.option.correct{
+ background:#22c55e!important;
+ border-color:#15803d!important;
+ color:#fff;
+}
+
+.option.wrong{
+ background:#ef4444!important;
+ border-color:#b91c1c!important;
+ color:#fff;
+}
+
+.feedback{
+ display:none;
+ margin-top:14px;
+ padding:12px;
+ border-radius:12px;
+ text-align:center;
+ font-weight:bold;
+}
+
+.good{
+ background:#dcfce7;
+ color:#166534;
+}
+
+.bad{
+ background:#fee2e2;
+ color:#991b1b;
+}
+
+.next{
+ display:none;
+ width:100%;
+ margin-top:14px;
+ padding:14px;
+ border:0;
+ border-radius:14px;
+ background:linear-gradient(135deg,#2563eb,#7c3aed);
+ color:white;
+ font-size:17px;
+ font-weight:bold;
+}
+
+.result{
+ display:none;
+ text-align:center;
+}
+
+.restart{
+ padding:13px 25px;
+ border:0;
+ border-radius:12px;
+ background:#2563eb;
+ color:#fff;
+ font-weight:bold;
+}
+
+@media(max-width:650px){
+ .options{
+  grid-template-columns:1fr;
+ }
+
+ .question{
+  font-size:18px;
+ }
+
+ .series{
+  font-size:21px;
+ }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🔢 Missing Number Quiz</h1>
+<p>CG Exam Hub • 200 Mixed Questions</p>
+<a class="home" href="reasoning.html">← Reasoning Home</a>
+</header>
+
+<div class="container">
+
+<div class="top">
+<b>प्रश्न <span id="qn">1</span> / 200</b>
+<span style="float:right">स्कोर: <b id="score">0</b></span>
+
+<div class="progress">
+<div id="bar"></div>
+</div>
+</div>
+
+<div class="quiz" id="quiz">
+
+<div class="qno" id="qtitle"></div>
+
+<div class="question" id="question"></div>
+
+<div class="series" id="series"></div>
+
+<div class="options" id="options"></div>
+
+<div id="feedback" class="feedback"></div>
+
+<button id="next" class="next" onclick="nextQuestion()">
+अगला प्रश्न →
+</button>
+
+</div>
+
+<div class="result" id="result">
+
+<h2>🎉 Quiz पूरा हुआ!</h2>
+
+<h3 id="final"></h3>
+
+<p id="percent"></p>
+
+<button class="restart" onclick="restart()">
+फिर से शुरू करें
+</button>
+
+</div>
+
+</div>
+
+
+<script>
+
+/*
+=========================================================
+200 MIXED MISSING NUMBER QUESTIONS
+
+प्रकार:
+1. समान अंतर
+2. बढ़ता अंतर
+3. गुणा
+4. भाग
+5. वर्ग
+6. घन
+7. मिश्रित pattern
+8. दोहरी series
+9. Fibonacci type
+10. alternating operation
+=========================================================
+*/
+
+
+const questions=[
+
+/* 1-20 : BASIC + DIFFERENCE */
+
+{seq:["2","5","8","11","?","17"],ans:"14"},
+{seq:["4","9","14","19","?","29"],ans:"24"},
+{seq:["7","14","21","?","35","42"],ans:"28"},
+{seq:["3","8","13","18","?","28"],ans:"23"},
+{seq:["10","18","26","34","?","50"],ans:"42"},
+{seq:["21","25","29","?","37","41"],ans:"33"},
+{seq:["6","13","20","27","?","41"],ans:"34"},
+{seq:["100","90","80","?","60","50"],ans:"70"},
+{seq:["72","64","56","?","40","32"],ans:"48"},
+{seq:["5","15","25","?","45","55"],ans:"35"},
+{seq:["12","19","26","?","40","47"],ans:"33"},
+{seq:["31","36","41","?","51","56"],ans:"46"},
+{seq:["8","16","24","?","40","48"],ans:"32"},
+{seq:["11","22","33","?","55","66"],ans:"44"},
+{seq:["9","18","27","?","45","54"],ans:"36"},
+{seq:["14","21","28","?","42","49"],ans:"35"},
+{seq:["50","45","40","?","30","25"],ans:"35"},
+{seq:["96","88","80","?","64","56"],ans:"72"},
+{seq:["13","23","33","?","53","63"],ans:"43"},
+{seq:["17","24","31","?","45","52"],ans:"38"},
+
+/* 21-40 : MULTIPLICATION */
+
+{seq:["2","4","8","16","?","64"],ans:"32"},
+{seq:["3","6","12","24","?","96"],ans:"48"},
+{seq:["5","10","20","40","?","160"],ans:"80"},
+{seq:["7","14","28","?","112","224"],ans:"56"},
+{seq:["4","12","36","?","324","972"],ans:"108"},
+{seq:["2","6","18","?","162","486"],ans:"54"},
+{seq:["3","9","27","?","243","729"],ans:"81"},
+{seq:["6","12","24","?","96","192"],ans:"48"},
+{seq:["8","16","32","?","128","256"],ans:"64"},
+{seq:["10","20","40","?","160","320"],ans:"80"},
+{seq:["1","3","9","?","81","243"],ans:"27"},
+{seq:["2","8","32","?","512","2048"],ans:"128"},
+{seq:["5","25","125","?","3125","15625"],ans:"625"},
+{seq:["4","20","100","?","2500","12500"],ans:"500"},
+{seq:["3","12","48","?","768","3072"],ans:"192"},
+{seq:["7","21","63","?","567","1701"],ans:"189"},
+{seq:["9","27","81","?","729","2187"],ans:"243"},
+{seq:["11","22","44","?","176","352"],ans:"88"},
+{seq:["12","36","108","?","972","2916"],ans:"324"},
+{seq:["15","30","60","?","240","480"],ans:"120"},
+
+/* 41-60 : INCREASING DIFFERENCE */
+
+{seq:["2","4","7","11","16","?"],ans:"22"},
+{seq:["3","6","10","15","21","?"],ans:"28"},
+{seq:["5","9","14","20","27","?"],ans:"35"},
+{seq:["1","4","8","13","19","?"],ans:"26"},
+{seq:["10","13","17","22","28","?"],ans:"35"},
+{seq:["4","8","13","19","26","?"],ans:"34"},
+{seq:["7","11","16","22","29","?"],ans:"37"},
+{seq:["20","23","27","32","38","?"],ans:"45"},
+{seq:["2","7","13","20","28","?"],ans:"37"},
+{seq:["6","10","15","21","28","?"],ans:"36"},
+{seq:["11","15","20","26","33","?"],ans:"41"},
+{seq:["8","12","17","23","30","?"],ans:"38"},
+{seq:["3","8","14","21","29","?"],ans:"38"},
+{seq:["5","10","16","23","31","?"],ans:"40"},
+{seq:["12","16","21","27","34","?"],ans:"42"},
+{seq:["9","14","20","27","35","?"],ans:"44"},
+{seq:["1","3","6","10","15","?"],ans:"21"},
+{seq:["4","7","11","16","22","?"],ans:"29"},
+{seq:["13","17","22","28","35","?"],ans:"43"},
+{seq:["15","19","24","30","37","?"],ans:"45"},
+
+/* 61-80 : SQUARE / CUBE */
+
+{seq:["1","4","9","16","?","36"],ans:"25"},
+{seq:["4","9","16","25","?","49"],ans:"36"},
+{seq:["9","16","25","36","?","64"],ans:"49"},
+{seq:["16","25","36","?","64","81"],ans:"49"},
+{seq:["25","36","49","?","81","100"],ans:"64"},
+{seq:["1","8","27","64","?","216"],ans:"125"},
+{seq:["8","27","64","?","216","343"],ans:"125"},
+{seq:["27","64","125","?","343","512"],ans:"216"},
+{seq:["64","125","216","?","512","729"],ans:"343"},
+{seq:["100","121","144","?","196","225"],ans:"169"},
+{seq:["121","144","169","?","225","256"],ans:"196"},
+{seq:["144","169","196","?","256","289"],ans:"225"},
+{seq:["4","16","36","?","100","144"],ans:"64"},
+{seq:["9","25","49","?","121","169"],ans:"81"},
+{seq:["16","36","64","?","144","196"],ans:"100"},
+{seq:["25","49","81","?","169","225"],ans:"121"},
+{seq:["1","27","125","?","729","1331"],ans:"343"},
+{seq:["8","64","216","?","512","1000"],ans:"343"},
+{seq:["64","216","512","?","1000","1728"],ans:"729"},
+{seq:["125","343","729","?","1331","2197"],ans:"1000"},
+
+/* 81-100 : ALTERNATING */
+
+{seq:["2","5","10","13","18","?"],ans:"21"},
+{seq:["4","8","13","17","22","?"],ans:"26"},
+{seq:["10","15","21","26","32","?"],ans:"37"},
+{seq:["3","7","12","16","21","?"],ans:"25"},
+{seq:["5","9","16","20","27","?"],ans:"31"},
+{seq:["6","12","19","25","32","?"],ans:"38"},
+{seq:["8","14","21","27","34","?"],ans:"40"},
+{seq:["11","16","24","29","37","?"],ans:"42"},
+{seq:["2","6","13","17","24","?"],ans:"28"},
+{seq:["7","12","20","25","33","?"],ans:"38"},
+{seq:["10","14","23","27","36","?"],ans:"40"},
+{seq:["4","10","17","23","30","?"],ans:"36"},
+{seq:["9","15","22","28","35","?"],ans:"41"},
+{seq:["12","18","27","33","42","?"],ans:"48"},
+{seq:["5","11","18","24","31","?"],ans:"37"},
+{seq:["3","9","16","22","29","?"],ans:"35"},
+{seq:["6","13","21","28","36","?"],ans:"44"},
+{seq:["8","15","24","31","40","?"],ans:"47"},
+{seq:["14","20","29","35","44","?"],ans:"50"},
+{seq:["16","22","31","37","46","?"],ans:"52"},
+
+/* 101-120 : DIVISION */
+
+{seq:["128","64","32","16","?","4"],ans:"8"},
+{seq:["243","81","27","?","3","1"],ans:"9"},
+{seq:["256","128","64","?","16","8"],ans:"32"},
+{seq:["625","125","25","?","1"],ans:"5"},
+{seq:["729","243","81","?","9","3"],ans:"27"},
+{seq:["1024","512","256","?","64","32"],ans:"128"},
+{seq:["486","162","54","?","6","2"],ans:"18"},
+{seq:["384","192","96","?","24","12"],ans:"48"},
+{seq:["640","320","160","?","40","20"],ans:"80"},
+{seq:["768","384","192","?","48","24"],ans:"96"},
+{seq:["324","108","36","?","4"],ans:"12"},
+{seq:["256","64","16","?","1"],ans:"4"},
+{seq:["625","25","5","?","1"],ans:"1"},
+{seq:["729","81","9","?","1"],ans:"3"},
+{seq:["512","256","128","?","32","16"],ans:"64"},
+{seq:["1000","500","250","?","62.5","31.25"],ans:"125"},
+{seq:["160","80","40","?","10","5"],ans:"20"},
+{seq:["144","72","36","?","9","4.5"],ans:"18"},
+{seq:["200","100","50","?","12.5","6.25"],ans:"25"},
+{seq:["96","48","24","?","6","3"],ans:"12"},
+
+/* 121-140 : DOUBLE SERIES */
+
+{seq:["2","10","4","20","6","?"],ans:"30"},
+{seq:["3","15","6","30","9","?"],ans:"45"},
+{seq:["4","12","8","24","12","?"],ans:"36"},
+{seq:["5","20","10","40","15","?"],ans:"60"},
+{seq:["6","18","12","36","18","?"],ans:"54"},
+{seq:["7","21","14","42","21","?"],ans:"63"},
+{seq:["8","32","16","64","24","?"],ans:"96"},
+{seq:["9","27","18","54","27","?"],ans:"81"},
+{seq:["10","40","20","80","30","?"],ans:"120"},
+{seq:["11","33","22","66","33","?"],ans:"99"},
+{seq:["12","48","24","96","36","?"],ans:"144"},
+{seq:["13","39","26","78","39","?"],ans:"117"},
+{seq:["14","56","28","112","42","?"],ans:"168"},
+{seq:["15","45","30","90","45","?"],ans:"135"},
+{seq:["16","64","32","128","48","?"],ans:"192"},
+{seq:["17","51","34","102","51","?"],ans:"153"},
+{seq:["18","72","36","144","54","?"],ans:"216"},
+{seq:["19","57","38","114","57","?"],ans:"171"},
+{seq:["20","80","40","160","60","?"],ans:"240"},
+{seq:["21","63","42","126","63","?"],ans:"189"},
+
+/* 141-160 : FIBONACCI / ADDITION */
+
+{seq:["1","1","2","3","5","?"],ans:"8"},
+{seq:["2","3","5","8","13","?"],ans:"21"},
+{seq:["3","5","8","13","21","?"],ans:"34"},
+{seq:["5","8","13","21","34","?"],ans:"55"},
+{seq:["8","13","21","34","55","?"],ans:"89"},
+{seq:["1","2","3","5","8","?"],ans:"13"},
+{seq:["2","4","6","10","16","?"],ans:"26"},
+{seq:["3","6","9","15","24","?"],ans:"39"},
+{seq:["4","8","12","20","32","?"],ans:"52"},
+{seq:["5","10","15","25","40","?"],ans:"65"},
+{seq:["6","12","18","30","48","?"],ans:"78"},
+{seq:["7","14","21","35","56","?"],ans:"91"},
+{seq:["8","16","24","40","64","?"],ans:"104"},
+{seq:["9","18","27","45","72","?"],ans:"117"},
+{seq:["10","20","30","50","80","?"],ans:"130"},
+{seq:["11","22","33","55","88","?"],ans:"143"},
+{seq:["12","24","36","60","96","?"],ans:"156"},
+{seq:["13","26","39","65","104","?"],ans:"169"},
+{seq:["14","28","42","70","112","?"],ans:"182"},
+{seq:["15","30","45","75","120","?"],ans:"195"},
+
+/* 161-180 : MIXED HARD */
+
+{seq:["2","6","12","20","30","?"],ans:"42"},
+{seq:["3","8","15","24","35","?"],ans:"48"},
+{seq:["4","10","18","28","40","?"],ans:"54"},
+{seq:["5","12","21","32","45","?"],ans:"60"},
+{seq:["6","14","24","36","50","?"],ans:"66"},
+{seq:["7","16","27","40","55","?"],ans:"72"},
+{seq:["8","18","30","44","60","?"],ans:"78"},
+{seq:["9","20","33","48","65","?"],ans:"84"},
+{seq:["10","22","36","52","70","?"],ans:"88"},
+{seq:["11","24","39","56","75","?"],ans:"96"},
+{seq:["12","26","42","60","80","?"],ans:"102"},
+{seq:["13","28","45","64","85","?"],ans:"108"},
+{seq:["14","30","48","68","90","?"],ans:"114"},
+{seq:["15","32","51","72","95","?"],ans:"120"},
+{seq:["16","34","54","76","100","?"],ans:"126"},
+{seq:["17","36","57","80","105","?"],ans:"132"},
+{seq:["18","38","60","84","110","?"],ans:"138"},
+{seq:["19","40","63","88","115","?"],ans:"144"},
+{seq:["20","42","66","92","120","?"],ans:"150"},
+{seq:["21","44","69","96","125","?"],ans:"156"},
+
+/* 181-200 : FINAL MIX */
+
+{seq:["3","9","19","33","51","?"],ans:"73"},
+{seq:["4","12","24","40","60","?"],ans:"84"},
+{seq:["5","15","29","47","69","?"],ans:"95"},
+{seq:["6","18","34","54","78","?"],ans:"106"},
+{seq:["7","21","39","61","87","?"],ans:"117"},
+{seq:["8","24","44","68","96","?"],ans:"128"},
+{seq:["9","27","49","75","105","?"],ans:"139"},
+{seq:["10","30","54","82","114","?"],ans:"150"},
+{seq:["11","33","59","89","123","?"],ans:"163"},
+{seq:["12","36","64","96","132","?"],ans:"172"},
+{seq:["13","39","69","103","141","?"],ans:"183"},
+{seq:["14","42","74","110","150","?"],ans:"194"},
+{seq:["15","45","79","117","159","?"],ans:"205"},
+{seq:["16","48","84","124","168","?"],ans:"216"},
+{seq:["17","51","89","131","177","?"],ans:"227"},
+{seq:["18","54","94","138","186","?"],ans:"238"},
+{seq:["19","57","99","145","195","?"],ans:"249"},
+{seq:["20","60","104","152","204","?"],ans:"260"},
+{seq:["21","63","109","159","213","?"],ans:"271"},
+{seq:["22","66","114","166","222","?"],ans:"282"}
+
+];
+
+
+/* =====================================================
+   OPTIONS
+===================================================== */
+
+function makeOptions(correct){
+
+ let n=Number(correct);
+
+ let candidates=[
+   n-4,
+   n+3,
+   n+7,
+   n+11
+ ];
+
+ let pos=(current*7)%4;
+
+ let arr=new Array(4);
+
+ arr[pos]=String(correct);
+
+ let others=candidates.filter(x=>x!==n);
+
+ let k=0;
+
+ for(let i=0;i<4;i++){
+
+   if(arr[i]===undefined){
+
+     arr[i]=String(others[k]);
+
+     k++;
+   }
+ }
+
+ return arr;
+}
+
+
+/* =====================================================
+   LOAD QUESTION
+===================================================== */
+
+let current=0;
+let score=0;
+let locked=false;
+
+function loadQuestion(){
+
+ locked=false;
+
+ let q=questions[current];
+
+ document.getElementById("qn").textContent=current+1;
+
+ document.getElementById("qtitle").textContent=
+ "प्रश्न "+(current+1);
+
+ document.getElementById("bar").style.width=
+ ((current+1)/200*100)+"%";
+
+
+ document.getElementById("question").textContent=
+ "निम्नलिखित संख्या श्रेणी में (?) के स्थान पर क्या आएगा?";
+
+
+ let series="";
+
+ q.seq.forEach(function(x){
+
+   if(x==="?"){
+
+     series+='<span class="box missing">?</span>';
+
+   }else{
+
+     series+='<span class="box">'+x+'</span>';
+
+   }
+
+ });
+
+
+ document.getElementById("series").innerHTML=series;
+
+
+ let options=makeOptions(q.ans);
+
+ let correctIndex=options.indexOf(String(q.ans));
+
+ let box=document.getElementById("options");
+
+ box.innerHTML="";
+
+
+ options.forEach(function(opt,i){
+
+   let div=document.createElement("div");
+
+   div.className="option";
+
+   div.textContent=
+   "विकल्प "+String.fromCharCode(65+i)+": "+opt;
+
+   div.onclick=function(){
+
+     check(div,i,correctIndex);
+
+   };
+
+   box.appendChild(div);
+
+ });
+
+
+ let fb=document.getElementById("feedback");
+
+ fb.className="feedback";
+ fb.style.display="none";
+ fb.innerHTML="";
+
+ document.getElementById("next").style.display="none";
+}
+
+
+/* =====================================================
+   CHECK ANSWER
+===================================================== */
+
+function check(clicked,selected,correct){
+
+ if(locked)return;
+
+ locked=true;
+
+ let all=document.querySelectorAll(".option");
+
+ let letter=
+ String.fromCharCode(65+correct);
+
+ if(selected===correct){
+
+   score++;
+
+   clicked.classList.add("correct");
+
+   document.getElementById("feedback").className=
+   "feedback good";
+
+   document.getElementById("feedback").innerHTML=
+   "✅ सही! सही उत्तर: विकल्प "+letter+
+   " ("+questions[current].ans+")";
+
+ }else{
+
+   clicked.classList.add("wrong");
+
+   all[correct].classList.add("correct");
+
+   document.getElementById("feedback").className=
+   "feedback bad";
+
+   document.getElementById("feedback").innerHTML=
+   "❌ गलत! सही उत्तर: विकल्प "+letter+
+   " ("+questions[current].ans+")";
+ }
+
+ document.getElementById("feedback").style.display="block";
+
+ document.getElementById("score").textContent=score;
+
+ document.getElementById("next").style.display="block";
+}
+
+
+/* =====================================================
+   NEXT
+===================================================== */
+
+function nextQuestion(){
+
+ current++;
+
+ if(current>=questions.length){
+
+   finish();
+
+ }else{
+
+   loadQuestion();
+
+   window.scrollTo(0,0);
+ }
+}
+
+
+/* =====================================================
+   RESULT
+===================================================== */
+
+function finish(){
+
+ document.getElementById("quiz").style.display="none";
+
+ document.getElementById("result").style.display="block";
+
+ let percent=
+ Math.round(score/questions.length*100);
+
+ document.getElementById("final").textContent=
+ "आपका स्कोर: "+score+" / 200";
+
+ document.getElementById("percent").textContent=
+ "प्रतिशत: "+percent+"%";
+}
+
+
+/* =====================================================
+   RESTART
+===================================================== */
+
+function restart(){
+
+ current=0;
+ score=0;
+ locked=false;
+
+ document.getElementById("score").textContent="0";
+
+ document.getElementById("result").style.display="none";
+
+ document.getElementById("quiz").style.display="block";
+
+ loadQuestion();
+
+ window.scrollTo(0,0);
+}
+
+
+/* START */
+
+loadQuestion();
+
+</script>
+
+</body>
+</html>
