@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Mathematical Operations Quiz 200 | CG Exam Hub</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+ margin:0;
+ background:#eef2ff;
+ color:#111827;
+ font-family:Arial,"Noto Sans Devanagari",sans-serif;
+}
+
+header{
+ background:linear-gradient(135deg,#2563eb,#7c3aed);
+ color:white;
+ text-align:center;
+ padding:20px 10px;
+}
+
+header h1{margin:0;font-size:24px}
+header p{margin:7px 0 12px}
+
+.home{
+ display:inline-block;
+ background:white;
+ color:#2563eb;
+ padding:9px 18px;
+ border-radius:25px;
+ text-decoration:none;
+ font-weight:bold;
+}
+
+.container{
+ max-width:900px;
+ margin:auto;
+ padding:14px;
+}
+
+.top,.quiz,.result{
+ background:white;
+ border-radius:18px;
+ padding:15px;
+ margin-bottom:14px;
+ box-shadow:0 3px 16px #0002;
+}
+
+.progress{
+ height:10px;
+ background:#dbeafe;
+ border-radius:20px;
+ overflow:hidden;
+ margin-top:10px;
+}
+
+.progress div{
+ height:100%;
+ width:0;
+ background:#22c55e;
+ transition:.3s;
+}
+
+.qno{
+ color:#7c3aed;
+ font-weight:bold;
+ margin-bottom:10px;
+}
+
+.question{
+ font-size:19px;
+ line-height:1.7;
+ font-weight:bold;
+ margin-bottom:15px;
+}
+
+.rule{
+ background:#f5f3ff;
+ border-left:5px solid #7c3aed;
+ padding:12px;
+ border-radius:10px;
+ margin-bottom:15px;
+ font-size:16px;
+ line-height:1.7;
+}
+
+.expression{
+ background:#f8fafc;
+ border:2px solid #6366f1;
+ border-radius:15px;
+ padding:20px 10px;
+ text-align:center;
+ font-size:28px;
+ font-weight:bold;
+ margin-bottom:18px;
+ overflow-x:auto;
+}
+
+.options{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:12px;
+}
+
+.option{
+ background:white;
+ border:2px solid #d1d5db;
+ border-radius:14px;
+ padding:14px;
+ cursor:pointer;
+ text-align:center;
+ font-size:18px;
+ font-weight:bold;
+ transition:.15s;
+}
+
+.option:hover{
+ border-color:#6366f1;
+}
+
+.option.correct{
+ background:#22c55e!important;
+ border-color:#15803d!important;
+ color:white;
+}
+
+.option.wrong{
+ background:#ef4444!important;
+ border-color:#b91c1c!important;
+ color:white;
+}
+
+.feedback{
+ display:none;
+ margin-top:14px;
+ padding:13px;
+ border-radius:12px;
+ text-align:center;
+ font-weight:bold;
+ line-height:1.6;
+}
+
+.good{
+ background:#dcfce7;
+ color:#166534;
+}
+
+.bad{
+ background:#fee2e2;
+ color:#991b1b;
+}
+
+.next{
+ display:none;
+ width:100%;
+ margin-top:14px;
+ padding:14px;
+ border:0;
+ border-radius:14px;
+ background:linear-gradient(135deg,#2563eb,#7c3aed);
+ color:white;
+ font-size:17px;
+ font-weight:bold;
+}
+
+.result{
+ display:none;
+ text-align:center;
+}
+
+.restart{
+ padding:13px 25px;
+ border:0;
+ border-radius:12px;
+ background:#2563eb;
+ color:white;
+ font-weight:bold;
+}
+
+@media(max-width:650px){
+ .options{grid-template-columns:1fr}
+ .expression{font-size:23px}
+ .question{font-size:18px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🧮 Mathematical Operations</h1>
+<p>CG Exam Hub • 200 Mixed Reasoning Questions</p>
+<a class="home" href="reasoning.html">← Reasoning Home</a>
+</header>
+
+<div class="container">
+
+<div class="top">
+<b>प्रश्न <span id="qn">1</span> / 200</b>
+<span style="float:right">स्कोर: <b id="score">0</b></span>
+
+<div class="progress">
+<div id="bar"></div>
+</div>
+</div>
+
+<div class="quiz" id="quiz">
+
+<div class="qno" id="qtitle"></div>
+
+<div class="question">
+यदि दिए गए चिन्हों के अर्थ बदल दिए जाएँ, तो निम्नलिखित का मान ज्ञात कीजिए।
+</div>
+
+<div class="rule" id="rule"></div>
+
+<div class="expression" id="expression"></div>
+
+<div class="options" id="options"></div>
+
+<div id="feedback" class="feedback"></div>
+
+<button id="next" class="next" onclick="nextQuestion()">
+अगला प्रश्न →
+</button>
+
+</div>
+
+<div class="result" id="result">
+<h2>🎉 Quiz पूरा हुआ!</h2>
+<h3 id="final"></h3>
+<p id="percent"></p>
+<button class="restart" onclick="restart()">फिर से शुरू करें</button>
+</div>
+
+</div>
+
+<script>
+
+/* =====================================================
+   MATHEMATICAL OPERATIONS
+   200 UNIQUE QUESTIONS AUTOMATICALLY CREATED
+
+   नियम:
+   +  -  ×  ÷ के अर्थ आपस में बदले जाते हैं।
+   BODMAS के अनुसार हल किया जाता है।
+===================================================== */
+
+
+/* चारों मूल गणितीय चिन्ह */
+const symbols=["+","-","×","÷"];
+
+
+/* =====================================================
+   DETERMINISTIC RANDOM
+   हर बार अलग random question नहीं बदलेगा।
+   इसलिए 200 questions स्थिर रहेंगे।
+===================================================== */
+
+let seed=58317;
+
+function rnd(min,max){
+ seed=(seed*9301+49297)%233280;
+ return Math.floor(min+(seed/233280)*(max-min+1));
+}
+
+
+/* =====================================================
+   SHUFFLE
+===================================================== */
+
+function shuffle(arr){
+ for(let i=arr.length-1;i>0;i--){
+   let j=rnd(0,i);
+   [arr[i],arr[j]]=[arr[j],arr[i]];
+ }
+ return arr;
+}
+
+
+/* =====================================================
+   OPERATOR MAP
+===================================================== */
+
+function makeMap(){
+
+ let a=shuffle(["+","-","×","÷"].slice());
+
+ return {
+   "+":a[0],
+   "-":a[1],
+   "×":a[2],
+   "÷":a[3]
+ };
+}
+
+
+/* =====================================================
+   EXPRESSION CALCULATION
+
+   केवल numbers और operators generate होते हैं,
+   इसलिए Function() सुरक्षित है।
+===================================================== */
+
+function calculate(numbers,ops,map){
+
+ let exp="";
+
+ for(let i=0;i<numbers.length;i++){
+
+   exp+=numbers[i];
+
+   if(i<ops.length){
+     exp+=map[ops[i]]
+       .replace("×","*")
+       .replace("÷","/");
+   }
+ }
+
+ try{
+   return Function('"use strict";return ('+exp+')')();
+ }catch(e){
+   return NaN;
+ }
+}
+
+
+/* =====================================================
+   200 QUESTIONS GENERATE
+===================================================== */
+
+const questions=[];
+const used=new Set();
+
+while(questions.length<200){
+
+ let map=makeMap();
+
+ /*
+   5 numbers और 4 operations
+   इससे questions में काफी variety रहती है।
+ */
+ let numbers=[
+   rnd(4,40),
+   rnd(2,20),
+   rnd(2,15),
+   rnd(2,12),
+   rnd(2,10)
+ ];
+
+ let ops=[
+   symbols[rnd(0,3)],
+   symbols[rnd(0,3)],
+   symbols[rnd(0,3)],
+   symbols[rnd(0,3)]
+ ];
+
+
+ /*
+   Division से zero नहीं आना चाहिए।
+ */
+ let mappedOps=ops.map(x=>map[x]);
+
+ let valid=true;
+
+ for(let i=0;i<numbers.length;i++){
+   if(numbers[i]===0)valid=false;
+ }
+
+ if(!valid)continue;
+
+
+ /*
+   question text unique रखना।
+ */
+ let key=
+ numbers.join(",")+
+ "|"+
+ ops.join("")+
+ "|"+
+ Object.values(map).join("");
+
+ if(used.has(key))continue;
+
+ let answer=calculate(numbers,ops,map);
+
+ /*
+   केवल साफ integer answers लें।
+ */
+ if(!Number.isFinite(answer))continue;
+
+ if(Math.abs(answer-Math.round(answer))>0.000001)continue;
+
+ answer=Math.round(answer);
+
+ /*
+   बहुत बड़े/छोटे answers से बचें।
+ */
+ if(answer<-9999 || answer>9999)continue;
+
+
+ used.add(key);
+
+ questions.push({
+   numbers:numbers,
+   ops:ops,
+   map:map,
+   answer:answer
+ });
+}
+
+
+/* =====================================================
+   EXPRESSION DISPLAY
+===================================================== */
+
+function displayExpression(q){
+
+ let s="";
+
+ for(let i=0;i<q.numbers.length;i++){
+
+   s+=q.numbers[i];
+
+   if(i<q.ops.length){
+     s+=" "+q.ops[i]+" ";
+   }
+ }
+
+ return s;
+}
+
+
+/* =====================================================
+   RULE DISPLAY
+===================================================== */
+
+function displayRule(map){
+
+ return `
+ <b>चिन्हों के बदले हुए अर्थ:</b><br>
+ + का अर्थ = ${map["+"]}<br>
+ − का अर्थ = ${map["-"]}<br>
+ × का अर्थ = ${map["×"]}<br>
+ ÷ का अर्थ = ${map["÷"]}
+ `;
+}
+
+
+/* =====================================================
+   OPTIONS
+===================================================== */
+
+function makeOptions(correct,index){
+
+ let set=new Set();
+
+ set.add(correct);
+
+ /*
+   अलग-अलग प्रकार के distractors
+ */
+ let candidates=[
+   correct+2,
+   correct-2,
+   correct+4,
+   correct-4,
+   correct+5,
+   correct-5,
+   correct*2,
+   correct+10,
+   correct-10,
+   correct+3
+ ];
+
+ candidates.forEach(x=>{
+   if(Number.isFinite(x) && x!==correct){
+     set.add(x);
+   }
+ });
+
+ let arr=[...set].slice(0,4);
+
+ /*
+   कभी-कभी negative/odd values भी ठीक हैं।
+   Correct option हमेशा मौजूद रहेगा।
+ */
+ while(arr.length<4){
+   arr.push(correct+arr.length+7);
+ }
+
+ arr=arr.slice(0,4);
+
+ /*
+   सही option position को भी mix करें।
+ */
+ let pos=(index*7+3)%4;
+
+ let result=new Array(4);
+
+ result[pos]=correct;
+
+ let k=0;
+
+ for(let i=0;i<4;i++){
+
+   if(result[i]===undefined){
+
+     let value=arr[k];
+
+     if(value===correct){
+       k++;
+       value=arr[k];
+     }
+
+     result[i]=value;
+     k++;
+   }
+ }
+
+ return result;
+}
+
+
+/* =====================================================
+   QUIZ VARIABLES
+===================================================== */
+
+let current=0;
+let score=0;
+let locked=false;
+
+
+/* =====================================================
+   LOAD QUESTION
+===================================================== */
+
+function loadQuestion(){
+
+ locked=false;
+
+ let q=questions[current];
+
+ document.getElementById("qn").textContent=current+1;
+
+ document.getElementById("qtitle").textContent=
+ "प्रश्न "+(current+1);
+
+ document.getElementById("bar").style.width=
+ ((current+1)/200*100)+"%";
+
+ document.getElementById("rule").innerHTML=
+ displayRule(q.map);
+
+ document.getElementById("expression").textContent=
+ displayExpression(q);
+
+ let options=makeOptions(q.answer,current);
+
+ let correctIndex=options.indexOf(q.answer);
+
+ let box=document.getElementById("options");
+
+ box.innerHTML="";
+
+ options.forEach(function(opt,i){
+
+   let div=document.createElement("div");
+
+   div.className="option";
+
+   div.textContent=
+   "विकल्प "+String.fromCharCode(65+i)+": "+opt;
+
+   div.onclick=function(){
+     checkAnswer(div,i,correctIndex);
+   };
+
+   box.appendChild(div);
+ });
+
+ let feedback=document.getElementById("feedback");
+
+ feedback.style.display="none";
+ feedback.className="feedback";
+ feedback.innerHTML="";
+
+ document.getElementById("next").style.display="none";
+}
+
+
+/* =====================================================
+   CHECK ANSWER
+===================================================== */
+
+function checkAnswer(clicked,selected,correct){
+
+ if(locked)return;
+
+ locked=true;
+
+ let all=document.querySelectorAll(".option");
+
+ let letter=
+ String.fromCharCode(65+correct);
+
+ let answer=questions[current].answer;
+
+ if(selected===correct){
+
+   score++;
+
+   clicked.classList.add("correct");
+
+   document.getElementById("feedback").className=
+   "feedback good";
+
+   document.getElementById("feedback").innerHTML=
+   "✅ सही!<br>सही उत्तर: विकल्प "+
+   letter+" ("+answer+")";
+
+ }else{
+
+   clicked.classList.add("wrong");
+
+   all[correct].classList.add("correct");
+
+   document.getElementById("feedback").className=
+   "feedback bad";
+
+   document.getElementById("feedback").innerHTML=
+   "❌ गलत!<br>सही उत्तर: विकल्प "+
+   letter+" ("+answer+")";
+ }
+
+ document.getElementById("feedback").style.display="block";
+
+ document.getElementById("score").textContent=score;
+
+ document.getElementById("next").style.display="block";
+}
+
+
+/* =====================================================
+   NEXT
+===================================================== */
+
+function nextQuestion(){
+
+ current++;
+
+ if(current>=questions.length){
+
+   finish();
+
+ }else{
+
+   loadQuestion();
+
+   window.scrollTo(0,0);
+ }
+}
+
+
+/* =====================================================
+   RESULT
+===================================================== */
+
+function finish(){
+
+ document.getElementById("quiz").style.display="none";
+
+ document.getElementById("result").style.display="block";
+
+ let percent=
+ Math.round(score/questions.length*100);
+
+ document.getElementById("final").textContent=
+ "आपका स्कोर: "+score+" / 200";
+
+ document.getElementById("percent").textContent=
+ "प्रतिशत: "+percent+"%";
+}
+
+
+/* =====================================================
+   RESTART
+===================================================== */
+
+function restart(){
+
+ current=0;
+ score=0;
+ locked=false;
+
+ document.getElementById("score").textContent="0";
+
+ document.getElementById("result").style.display="none";
+
+ document.getElementById("quiz").style.display="block";
+
+ loadQuestion();
+
+ window.scrollTo(0,0);
+}
+
+
+/* START */
+loadQuestion();
+
+</script>
+
+</body>
+</html>
