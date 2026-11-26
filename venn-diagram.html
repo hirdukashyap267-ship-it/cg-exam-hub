@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Venn Diagram Quiz 200 | CG Exam Hub</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+ margin:0;
+ background:#eef2ff;
+ color:#111827;
+ font-family:Arial,"Noto Sans Devanagari",sans-serif;
+}
+
+header{
+ background:linear-gradient(135deg,#2563eb,#7c3aed);
+ color:#fff;
+ text-align:center;
+ padding:20px 10px;
+}
+
+header h1{
+ margin:0;
+ font-size:24px;
+}
+
+header p{
+ margin:7px 0 12px;
+}
+
+.home{
+ display:inline-block;
+ background:#fff;
+ color:#2563eb;
+ padding:9px 18px;
+ border-radius:25px;
+ text-decoration:none;
+ font-weight:bold;
+}
+
+.container{
+ max-width:1000px;
+ margin:auto;
+ padding:14px;
+}
+
+.top,.quiz,.result{
+ background:#fff;
+ border-radius:18px;
+ padding:15px;
+ margin-bottom:14px;
+ box-shadow:0 3px 16px #0002;
+}
+
+.progress{
+ height:10px;
+ background:#dbeafe;
+ border-radius:20px;
+ overflow:hidden;
+ margin-top:10px;
+}
+
+.progress div{
+ height:100%;
+ width:0;
+ background:#22c55e;
+ transition:.3s;
+}
+
+.qno{
+ color:#7c3aed;
+ font-weight:bold;
+ margin-bottom:10px;
+}
+
+.question{
+ font-size:18px;
+ font-weight:bold;
+ line-height:1.8;
+ margin-bottom:15px;
+ text-align:center;
+}
+
+.labels{
+ background:#f8fafc;
+ border:2px solid #e5e7eb;
+ border-radius:14px;
+ padding:12px;
+ text-align:center;
+ margin-bottom:15px;
+ font-weight:bold;
+ color:#374151;
+}
+
+.options{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:14px;
+}
+
+.option{
+ background:#fff;
+ border:2px solid #d1d5db;
+ border-radius:16px;
+ padding:10px;
+ cursor:pointer;
+ transition:.15s;
+}
+
+.option:hover{
+ border-color:#6366f1;
+ transform:translateY(-2px);
+}
+
+.option.correct{
+ background:#dcfce7!important;
+ border-color:#16a34a!important;
+}
+
+.option.wrong{
+ background:#fee2e2!important;
+ border-color:#dc2626!important;
+}
+
+.option-title{
+ text-align:center;
+ font-weight:bold;
+ margin-bottom:5px;
+ color:#374151;
+}
+
+svg{
+ display:block;
+ width:100%;
+ height:190px;
+}
+
+.feedback{
+ display:none;
+ margin-top:14px;
+ padding:13px;
+ border-radius:12px;
+ text-align:center;
+ font-weight:bold;
+ line-height:1.7;
+}
+
+.good{
+ background:#dcfce7;
+ color:#166534;
+}
+
+.bad{
+ background:#fee2e2;
+ color:#991b1b;
+}
+
+.next{
+ display:none;
+ width:100%;
+ margin-top:14px;
+ padding:14px;
+ border:0;
+ border-radius:14px;
+ background:linear-gradient(135deg,#2563eb,#7c3aed);
+ color:#fff;
+ font-size:17px;
+ font-weight:bold;
+}
+
+.result{
+ display:none;
+ text-align:center;
+}
+
+.restart{
+ padding:13px 25px;
+ border:0;
+ border-radius:12px;
+ background:#2563eb;
+ color:#fff;
+ font-weight:bold;
+}
+
+@media(max-width:700px){
+ .options{
+  grid-template-columns:1fr;
+ }
+
+ svg{
+  height:205px;
+ }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>⭕ Venn Diagram Quiz</h1>
+<p>CG Exam Hub • 200 Mixed Reasoning Questions</p>
+<a class="home" href="reasoning.html">← Reasoning Home</a>
+</header>
+
+<div class="container">
+
+<div class="top">
+<b>प्रश्न <span id="qn">1</span> / 200</b>
+<span style="float:right">स्कोर: <b id="score">0</b></span>
+
+<div class="progress">
+<div id="bar"></div>
+</div>
+</div>
+
+<div class="quiz" id="quiz">
+
+<div class="qno" id="qtitle"></div>
+
+<div class="question">
+निम्नलिखित शब्दों के बीच सही संबंध दर्शाने वाला Venn Diagram चुनिए:
+</div>
+
+<div class="labels" id="labels"></div>
+
+<div class="options" id="options"></div>
+
+<div id="feedback" class="feedback"></div>
+
+<button id="next" class="next" onclick="nextQuestion()">
+अगला प्रश्न →
+</button>
+
+</div>
+
+<div class="result" id="result">
+<h2>🎉 Quiz पूरा हुआ!</h2>
+<h3 id="final"></h3>
+<p id="percent"></p>
+<button class="restart" onclick="restart()">फिर से शुरू करें</button>
+</div>
+
+</div>
+
+<script>
+
+/*
+=========================================================
+VENN DIAGRAM QUIZ
+200 QUESTIONS
+40 अलग-अलग विषय × 5 variations
+
+हर प्रश्न में:
+OUTER = बड़ा समूह
+LEFT  = एक उपसमूह
+RIGHT = दूसरा अलग उपसमूह
+INNER = LEFT के अंदर का छोटा समूह
+
+उदाहरण:
+जीव
+ ├── स्तनधारी
+ │    └── गाय
+ └── पक्षी
+=========================================================
+*/
+
+
+const groups=[
+
+/* 1 */
+["खाद्य पदार्थ","फल","सब्जियाँ","आम"],
+
+/* 2 */
+["जीव","स्तनधारी","पक्षी","गाय"],
+
+/* 3 */
+["जानवर","पालतू","जंगली","कुत्ता"],
+
+/* 4 */
+["पौधे","फलदार पौधे","औषधीय पौधे","आम"],
+
+/* 5 */
+["वनस्पति","वृक्ष","झाड़ियाँ","नीम"],
+
+/* 6 */
+["वाहन","स्थल वाहन","जल वाहन","कार"],
+
+/* 7 */
+["वाहन","जल वाहन","वायु वाहन","नाव"],
+
+/* 8 */
+["वाहन","वायु वाहन","स्थल वाहन","विमान"],
+
+/* 9 */
+["कंप्यूटर","हार्डवेयर","सॉफ्टवेयर","CPU"],
+
+/* 10 */
+["कंप्यूटर उपकरण","इनपुट उपकरण","आउटपुट उपकरण","कीबोर्ड"],
+
+/* 11 */
+["शिक्षा संस्थान","विद्यालय","महाविद्यालय","प्राथमिक विद्यालय"],
+
+/* 12 */
+["पुस्तकें","पाठ्यपुस्तक","साहित्यिक पुस्तक","गणित की पुस्तक"],
+
+/* 13 */
+["भाषाएँ","भारतीय भाषाएँ","विदेशी भाषाएँ","हिंदी"],
+
+/* 14 */
+["देश","एशियाई देश","यूरोपीय देश","भारत"],
+
+/* 15 */
+["खेल","टीम खेल","व्यक्तिगत खेल","क्रिकेट"],
+
+/* 16 */
+["दस्तावेज","पहचान दस्तावेज","यात्रा दस्तावेज","आधार कार्ड"],
+
+/* 17 */
+["संचार","डिजिटल संचार","पारंपरिक संचार","ई-मेल"],
+
+/* 18 */
+["विज्ञान","भौतिक विज्ञान","जीव विज्ञान","बल"],
+
+/* 19 */
+["विज्ञान","रसायन विज्ञान","भौतिक विज्ञान","अम्ल"],
+
+/* 20 */
+["विज्ञान","खगोल विज्ञान","जीव विज्ञान","ग्रह"],
+
+/* 21 */
+["ग्रह","स्थलीय ग्रह","गैसीय ग्रह","पृथ्वी"],
+
+/* 22 */
+["संख्या","सम संख्याएँ","विषम संख्याएँ","2"],
+
+/* 23 */
+["संख्या","अभाज्य संख्याएँ","संयुक्त संख्याएँ","7"],
+
+/* 24 */
+["संख्या","धनात्मक संख्याएँ","ऋणात्मक संख्याएँ","5"],
+
+/* 25 */
+["आकार","त्रिभुज","चतुर्भुज","समबाहु त्रिभुज"],
+
+/* 26 */
+["ज्यामितीय आकृतियाँ","वृत्त","बहुभुज","वृत्त"],
+
+/* 27 */
+["पेशे","चिकित्सा पेशे","कानूनी पेशे","डॉक्टर"],
+
+/* 28 */
+["कर्मचारी","सरकारी कर्मचारी","निजी कर्मचारी","शिक्षक"],
+
+/* 29 */
+["विद्यार्थी","स्कूल विद्यार्थी","कॉलेज विद्यार्थी","कक्षा 10 का विद्यार्थी"],
+
+/* 30 */
+["संगीत वाद्य","तार वाद्य","वायु वाद्य","सितार"],
+
+/* 31 */
+["कला","चित्रकला","संगीत","जलरंग चित्रकला"],
+
+/* 32 */
+["परिवहन","सार्वजनिक परिवहन","निजी परिवहन","बस"],
+
+/* 33 */
+["ऊर्जा","नवीकरणीय ऊर्जा","अनवीकरणीय ऊर्जा","सौर ऊर्जा"],
+
+/* 34 */
+["ईंधन","जीवाश्म ईंधन","जैव ईंधन","पेट्रोल"],
+
+/* 35 */
+["फसलें","खाद्यान्न फसलें","नकदी फसलें","गेहूँ"],
+
+/* 36 */
+["मसाले","बीज मसाले","जड़ मसाले","जीरा"],
+
+/* 37 */
+["फल","खट्टे फल","मीठे फल","संतरा"],
+
+/* 38 */
+["पक्षी","जल पक्षी","स्थलीय पक्षी","बतख"],
+
+/* 39 */
+["स्तनधारी","शाकाहारी","मांसाहारी","गाय"],
+
+/* 40 */
+["प्राकृतिक संसाधन","जल संसाधन","खनिज संसाधन","नदी"]
+
+];
+
+
+/*
+=========================================================
+5 VARIATIONS EACH = 200
+सवालों के चार labels हर बार अलग क्रम में दिखेंगे।
+=========================================================
+*/
+
+const variations=[
+ [0,1,2,3],
+ [3,0,2,1],
+ [2,3,0,1],
+ [1,2,3,0],
+ [2,0,3,1]
+];
+
+let questions=[];
+
+
+/*
+हर group के 5 questions को एक साथ रखने के बजाय
+पूरे 200 questions को ROUND-ROBIN तरीके से बनाया गया है।
+इससे categories सच में mixed रहेंगी।
+*/
+
+for(let v=0;v<5;v++){
+
+ for(let g=0;g<groups.length;g++){
+
+   let data=groups[g];
+
+   let order=variations[v];
+
+   questions.push({
+     labels:order.map(i=>data[i]),
+     outer:data[0],
+     left:data[1],
+     right:data[2],
+     inner:data[3]
+   });
+
+ }
+
+}
+
+
+/*
+=========================================================
+SVG TEXT
+=========================================================
+*/
+
+function safeText(text){
+
+ return String(text)
+ .replace(/&/g,"&amp;")
+ .replace(/</g,"&lt;")
+ .replace(/>/g,"&gt;");
+}
+
+
+/*
+=========================================================
+TEXT SIZE
+लंबे Hindi labels के लिए छोटा font
+=========================================================
+*/
+
+function fs(text){
+
+ let n=String(text).length;
+
+ if(n>16)return 10;
+ if(n>11)return 12;
+ return 14;
+}
+
+
+/*
+=========================================================
+CORRECT DIAGRAM
+
+Outer rectangle = Universal group
+दो अलग circles = LEFT + RIGHT
+INNER = LEFT के अंदर
+=========================================================
+*/
+
+function correctSVG(q){
+
+ let outer=safeText(q.outer);
+ let left=safeText(q.left);
+ let right=safeText(q.right);
+ let inner=safeText(q.inner);
+
+ return `
+ <svg viewBox="0 0 420 205">
+
+ <rect x="8" y="8" width="404" height="189"
+ rx="18"
+ fill="#f8fafc"
+ stroke="#374151"
+ stroke-width="2"/>
+
+ <text x="25" y="30"
+ font-size="${fs(q.outer)+2}"
+ font-weight="bold"
+ fill="#111827">${outer}</text>
+
+ <circle cx="145" cy="112" r="70"
+ fill="#dbeafe"
+ stroke="#2563eb"
+ stroke-width="2"/>
+
+ <circle cx="275" cy="112" r="70"
+ fill="#ede9fe"
+ stroke="#7c3aed"
+ stroke-width="2"/>
+
+ <text x="145" y="70"
+ text-anchor="middle"
+ font-size="${fs(q.left)}"
+ font-weight="bold"
+ fill="#1d4ed8">${left}</text>
+
+ <text x="275" y="70"
+ text-anchor="middle"
+ font-size="${fs(q.right)}"
+ font-weight="bold"
+ fill="#6d28d9">${right}</text>
+
+ <circle cx="145" cy="128" r="31"
+ fill="#bfdbfe"
+ stroke="#1d4ed8"
+ stroke-width="2"/>
+
+ <text x="145" y="132"
+ text-anchor="middle"
+ font-size="${fs(q.inner)}"
+ font-weight="bold"
+ fill="#111827">${inner}</text>
+
+ </svg>
+ `;
+}
+
+
+/*
+=========================================================
+WRONG DIAGRAM 1
+INNER को RIGHT में डाल दिया
+=========================================================
+*/
+
+function wrongRightSVG(q){
+
+ return `
+ <svg viewBox="0 0 420 205">
+
+ <rect x="8" y="8" width="404" height="189"
+ rx="18"
+ fill="#f8fafc"
+ stroke="#374151"
+ stroke-width="2"/>
+
+ <text x="25" y="30"
+ font-size="${fs(q.outer)+2}"
+ font-weight="bold">${safeText(q.outer)}</text>
+
+ <circle cx="145" cy="112" r="70"
+ fill="#dbeafe"
+ stroke="#2563eb"
+ stroke-width="2"/>
+
+ <circle cx="275" cy="112" r="70"
+ fill="#ede9fe"
+ stroke="#7c3aed"
+ stroke-width="2"/>
+
+ <text x="145" y="70"
+ text-anchor="middle"
+ font-size="${fs(q.left)}"
+ font-weight="bold">${safeText(q.left)}</text>
+
+ <text x="275" y="70"
+ text-anchor="middle"
+ font-size="${fs(q.right)}"
+ font-weight="bold">${safeText(q.right)}</text>
+
+ <circle cx="275" cy="128" r="31"
+ fill="#ddd6fe"
+ stroke="#7c3aed"
+ stroke-width="2"/>
+
+ <text x="275" y="132"
+ text-anchor="middle"
+ font-size="${fs(q.inner)}"
+ font-weight="bold">${safeText(q.inner)}</text>
+
+ </svg>
+ `;
+}
+
+
+/*
+=========================================================
+WRONG DIAGRAM 2
+INNER अलग कर दिया
+=========================================================
+*/
+
+function wrongSeparateSVG(q){
+
+ return `
+ <svg viewBox="0 0 420 205">
+
+ <rect x="8" y="8" width="404" height="189"
+ rx="18"
+ fill="#f8fafc"
+ stroke="#374151"
+ stroke-width="2"/>
+
+ <text x="25" y="30"
+ font-size="${fs(q.outer)+2}"
+ font-weight="bold">${safeText(q.outer)}</text>
+
+ <circle cx="135" cy="115" r="62"
+ fill="#dbeafe"
+ stroke="#2563eb"
+ stroke-width="2"/>
+
+ <circle cx="285" cy="115" r="62"
+ fill="#ede9fe"
+ stroke="#7c3aed"
+ stroke-width="2"/>
+
+ <text x="135" y="115"
+ text-anchor="middle"
+ font-size="${fs(q.left)}"
+ font-weight="bold">${safeText(q.left)}</text>
+
+ <text x="285" y="115"
+ text-anchor="middle"
+ font-size="${fs(q.right)}"
+ font-weight="bold">${safeText(q.right)}</text>
+
+ <circle cx="210" cy="65" r="27"
+ fill="#fef3c7"
+ stroke="#d97706"
+ stroke-width="2"/>
+
+ <text x="210" y="69"
+ text-anchor="middle"
+ font-size="${fs(q.inner)}"
+ font-weight="bold">${safeText(q.inner)}</text>
+
+ </svg>
+ `;
+}
+
+
+/*
+=========================================================
+WRONG DIAGRAM 3
+LEFT और RIGHT को overlap कर दिया
+=========================================================
+*/
+
+function wrongOverlapSVG(q){
+
+ return `
+ <svg viewBox="0 0 420 205">
+
+ <rect x="8" y="8" width="404" height="189"
+ rx="18"
+ fill="#f8fafc"
+ stroke="#374151"
+ stroke-width="2"/>
+
+ <text x="25" y="30"
+ font-size="${fs(q.outer)+2}"
+ font-weight="bold">${safeText(q.outer)}</text>
+
+ <circle cx="180" cy="112" r="72"
+ fill="#dbeafe"
+ fill-opacity=".8"
+ stroke="#2563eb"
+ stroke-width="2"/>
+
+ <circle cx="240" cy="112" r="72"
+ fill="#ede9fe"
+ fill-opacity=".8"
+ stroke="#7c3aed"
+ stroke-width="2"/>
+
+ <text x="135" y="75"
+ text-anchor="middle"
+ font-size="${fs(q.left)}"
+ font-weight="bold">${safeText(q.left)}</text>
+
+ <text x="285" y="75"
+ text-anchor="middle"
+ font-size="${fs(q.right)}"
+ font-weight="bold">${safeText(q.right)}</text>
+
+ <circle cx="180" cy="125" r="29"
+ fill="#bfdbfe"
+ stroke="#1d4ed8"
+ stroke-width="2"/>
+
+ <text x="180" y="129"
+ text-anchor="middle"
+ font-size="${fs(q.inner)}"
+ font-weight="bold">${safeText(q.inner)}</text>
+
+ </svg>
+ `;
+}
+
+
+/*
+=========================================================
+OPTIONS
+हर प्रश्न में चार अलग diagrams
+=========================================================
+*/
+
+function makeOptions(q,index){
+
+ let correct=correctSVG(q);
+ let wrong1=wrongRightSVG(q);
+ let wrong2=wrongSeparateSVG(q);
+ let wrong3=wrongOverlapSVG(q);
+
+ let arr=[
+   {svg:correct,correct:true},
+   {svg:wrong1,correct:false},
+   {svg:wrong2,correct:false},
+   {svg:wrong3,correct:false}
+ ];
+
+ /*
+ correct position mixed
+ */
+ let pos=(index*7+2)%4;
+
+ let result=new Array(4);
+
+ result[pos]=arr[0];
+
+ let wrongs=arr.slice(1);
+ let k=0;
+
+ for(let i=0;i<4;i++){
+
+   if(!result[i]){
+     result[i]=wrongs[k++];
+   }
+ }
+
+ return {
+   options:result,
+   correct:pos
+ };
+}
+
+
+/*
+=========================================================
+QUIZ
+=========================================================
+*/
+
+let current=0;
+let score=0;
+let locked=false;
+
+
+function loadQuestion(){
+
+ locked=false;
+
+ let q=questions[current];
+
+ document.getElementById("qn").textContent=current+1;
+
+ document.getElementById("qtitle").textContent=
+ "प्रश्न "+(current+1);
+
+ document.getElementById("bar").style.width=
+ ((current+1)/200*100)+"%";
+
+
+ /*
+ labels को वही shuffled order में दिखाएँ
+ */
+ document.getElementById("labels").textContent=
+ q.labels.join(" • ");
+
+
+ let data=makeOptions(q,current);
+
+ let box=document.getElementById("options");
+
+ box.innerHTML="";
+
+ data.options.forEach(function(item,i){
+
+   let div=document.createElement("div");
+
+   div.className="option";
+
+   div.innerHTML=
+   `<div class="option-title">
+   विकल्प ${String.fromCharCode(65+i)}
+   </div>`+
+   item.svg;
+
+   div.onclick=function(){
+     checkAnswer(div,i,data.correct);
+   };
+
+   box.appendChild(div);
+ });
+
+
+ let feedback=document.getElementById("feedback");
+
+ feedback.style.display="none";
+ feedback.className="feedback";
+ feedback.innerHTML="";
+
+ document.getElementById("next").style.display="none";
+}
+
+
+/*
+=========================================================
+ANSWER
+=========================================================
+*/
+
+function checkAnswer(clicked,selected,correct){
+
+ if(locked)return;
+
+ locked=true;
+
+ let all=document.querySelectorAll(".option");
+
+ let letter=
+ String.fromCharCode(65+correct);
+
+ if(selected===correct){
+
+   score++;
+
+   clicked.classList.add("correct");
+
+   document.getElementById("feedback").className=
+   "feedback good";
+
+   document.getElementById("feedback").innerHTML=
+   "✅ सही!<br>सही उत्तर: विकल्प "+letter;
+
+ }else{
+
+   clicked.classList.add("wrong");
+
+   all[correct].classList.add("correct");
+
+   document.getElementById("feedback").className=
+   "feedback bad";
+
+   document.getElementById("feedback").innerHTML=
+   "❌ गलत!<br>सही उत्तर: विकल्प "+letter;
+ }
+
+ document.getElementById("feedback").style.display="block";
+
+ document.getElementById("score").textContent=score;
+
+ document.getElementById("next").style.display="block";
+}
+
+
+/*
+=========================================================
+NEXT
+=========================================================
+*/
+
+function nextQuestion(){
+
+ current++;
+
+ if(current>=questions.length){
+
+   finish();
+
+ }else{
+
+   loadQuestion();
+
+   window.scrollTo(0,0);
+ }
+}
+
+
+/*
+=========================================================
+RESULT
+=========================================================
+*/
+
+function finish(){
+
+ document.getElementById("quiz").style.display="none";
+
+ document.getElementById("result").style.display="block";
+
+ let percent=Math.round(score/200*100);
+
+ document.getElementById("final").textContent=
+ "आपका स्कोर: "+score+" / 200";
+
+ document.getElementById("percent").textContent=
+ "प्रतिशत: "+percent+"%";
+}
+
+
+/*
+=========================================================
+RESTART
+=========================================================
+*/
+
+function restart(){
+
+ current=0;
+ score=0;
+ locked=false;
+
+ document.getElementById("score").textContent="0";
+
+ document.getElementById("result").style.display="none";
+
+ document.getElementById("quiz").style.display="block";
+
+ loadQuestion();
+
+ window.scrollTo(0,0);
+}
+
+
+/*
+START
+*/
+
+loadQuestion();
+
+</script>
+
+</body>
+</html>
