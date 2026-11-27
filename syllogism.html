@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Syllogism Venn Diagram Quiz | CG Exam Hub</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+ margin:0;
+ font-family:Arial,"Noto Sans Devanagari",sans-serif;
+ background:linear-gradient(135deg,#eef5ff,#f8fbff);
+ color:#172033;
+}
+
+.header{
+ background:linear-gradient(135deg,#1646a0,#2575fc);
+ color:#fff;
+ text-align:center;
+ padding:18px 10px;
+}
+
+.header h1{
+ margin:0;
+ font-size:23px;
+}
+
+.header p{
+ margin:6px 0 0;
+ font-size:14px;
+}
+
+.container{
+ max-width:900px;
+ margin:auto;
+ padding:14px;
+}
+
+.progress{
+ background:#fff;
+ padding:12px;
+ border-radius:14px;
+ box-shadow:0 3px 12px #0001;
+ margin-bottom:14px;
+ font-weight:bold;
+}
+
+.question{
+ background:#fff;
+ padding:17px;
+ border-radius:18px;
+ box-shadow:0 4px 18px #0002;
+}
+
+.qno{
+ color:#1769e0;
+ font-size:18px;
+ font-weight:bold;
+ margin-bottom:12px;
+}
+
+.statements{
+ background:#f3f7ff;
+ border-left:5px solid #2878ee;
+ padding:14px;
+ border-radius:12px;
+ line-height:1.8;
+ margin-bottom:14px;
+}
+
+.task{
+ background:#fff7df;
+ border-left:5px solid #f0a000;
+ padding:12px;
+ border-radius:12px;
+ font-weight:bold;
+ margin-bottom:15px;
+}
+
+.options{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:12px;
+}
+
+.option{
+ background:#fff;
+ border:2px solid #dce3ee;
+ border-radius:15px;
+ padding:8px;
+ cursor:pointer;
+ transition:.2s;
+}
+
+.option:hover{
+ border-color:#4285ee;
+ transform:translateY(-2px);
+}
+
+.option.correct{
+ background:#d9f8df;
+ border-color:#16a34a;
+}
+
+.option.wrong{
+ background:#ffe0e0;
+ border-color:#dc2626;
+}
+
+.optionTitle{
+ font-weight:bold;
+ font-size:16px;
+ padding:5px 4px;
+}
+
+svg{
+ width:100%;
+ height:190px;
+ display:block;
+}
+
+.feedback{
+ display:none;
+ margin-top:15px;
+ padding:13px;
+ border-radius:12px;
+ font-weight:bold;
+}
+
+.next{
+ width:100%;
+ margin-top:16px;
+ border:0;
+ background:linear-gradient(135deg,#1769e0,#673ab7);
+ color:#fff;
+ padding:14px;
+ border-radius:13px;
+ font-size:17px;
+ font-weight:bold;
+}
+
+.result{
+ display:none;
+ background:#fff;
+ border-radius:18px;
+ padding:25px;
+ text-align:center;
+ box-shadow:0 4px 18px #0002;
+}
+
+.result h2{
+ color:#1769e0;
+}
+
+.restart{
+ border:0;
+ background:#1769e0;
+ color:#fff;
+ padding:13px 25px;
+ border-radius:12px;
+ font-size:16px;
+ font-weight:bold;
+}
+
+.home{
+ display:block;
+ text-align:center;
+ margin:15px;
+ color:#1769e0;
+ font-weight:bold;
+ text-decoration:none;
+}
+
+@media(max-width:650px){
+ .options{
+  grid-template-columns:1fr;
+ }
+ svg{
+  height:180px;
+ }
+ .header h1{
+  font-size:20px;
+ }
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+ <h1>🧠 Syllogism • Venn Diagram Quiz</h1>
+ <p>CG Exam Hub • Reasoning • 200 प्रश्न</p>
+</div>
+
+<div class="container">
+
+<div class="progress" id="progress"></div>
+
+<div id="quizBox" class="question"></div>
+
+<div id="result" class="result"></div>
+
+<a href="index.html" class="home">🏠 CG Exam Hub Home</a>
+
+</div>
+
+<script>
+
+/* =========================================================
+   50 MIXED CATEGORIES
+   प्रत्येक से 4 प्रश्न = 200 प्रश्न
+   ========================================================= */
+
+const sets=[
+
+["विद्यार्थी","शिक्षित व्यक्ति","पाठक"],
+["डॉक्टर","चिकित्सक","विशेषज्ञ"],
+["शिक्षक","कर्मचारी","शिक्षित व्यक्ति"],
+["कवि","लेखक","कलाकार"],
+["इंजीनियर","तकनीकी व्यक्ति","कर्मचारी"],
+["पक्षी","जीव","प्राणी"],
+["मछली","जलचर","जीव"],
+["कुत्ता","पालतू पशु","जानवर"],
+["गाय","शाकाहारी","जानवर"],
+["शेर","मांसाहारी","जानवर"],
+["आम","फल","खाद्य पदार्थ"],
+["गाजर","सब्जी","खाद्य पदार्थ"],
+["कमल","फूल","पौधा"],
+["नीम","वृक्ष","पौधा"],
+["कार","वाहन","मशीन"],
+["बस","सार्वजनिक वाहन","वाहन"],
+["ट्रेन","रेल वाहन","वाहन"],
+["विमान","वायुयान","वाहन"],
+["कंप्यूटर","इलेक्ट्रॉनिक उपकरण","मशीन"],
+["मोबाइल","संचार उपकरण","इलेक्ट्रॉनिक उपकरण"],
+["कीबोर्ड","इनपुट उपकरण","कंप्यूटर उपकरण"],
+["प्रिंटर","आउटपुट उपकरण","कंप्यूटर उपकरण"],
+["ई-मेल","डिजिटल संचार","संचार माध्यम"],
+["अखबार","मुद्रित माध्यम","संचार माध्यम"],
+["हिंदी","भाषा","विषय"],
+["गणित","विषय","शैक्षणिक क्षेत्र"],
+["इतिहास","विषय","शैक्षणिक क्षेत्र"],
+["भौतिक विज्ञान","विज्ञान","विषय"],
+["रसायन विज्ञान","विज्ञान","विषय"],
+["जीव विज्ञान","विज्ञान","विषय"],
+["सोना","धातु","पदार्थ"],
+["लोहा","धातु","पदार्थ"],
+["तांबा","धातु","पदार्थ"],
+["जल","तरल पदार्थ","पदार्थ"],
+["ऑक्सीजन","गैस","पदार्थ"],
+["पृथ्वी","ग्रह","खगोलीय पिंड"],
+["मंगल","ग्रह","खगोलीय पिंड"],
+["सूर्य","तारा","खगोलीय पिंड"],
+["शतरंज","बौद्धिक खेल","खेल"],
+["क्रिकेट","टीम खेल","खेल"],
+["फुटबॉल","टीम खेल","खेल"],
+["बैडमिंटन","व्यक्तिगत खेल","खेल"],
+["संतरा","खट्टा फल","फल"],
+["सेब","मीठा फल","फल"],
+["तुलसी","औषधीय पौधा","पौधा"],
+["गेहूँ","खाद्यान्न","फसल"],
+["जीरा","बीज मसाला","मसाला"],
+["नदी","जल संसाधन","प्राकृतिक संसाधन"],
+["कोयला","खनिज संसाधन","प्राकृतिक संसाधन"],
+["सौर ऊर्जा","नवीकरणीय ऊर्जा","ऊर्जा"]
+];
+
+
+/* =========================================================
+   SVG HELPERS
+   ========================================================= */
+
+function esc(t){
+ return t.replace(/&/g,"&amp;")
+         .replace(/</g,"&lt;")
+         .replace(/>/g,"&gt;");
+}
+
+function text(x,y,t,size=12){
+ return `<text x="${x}" y="${y}"
+ fill="#172033"
+ font-size="${size}"
+ text-anchor="middle"
+ font-family="Arial,Noto Sans Devanagari,sans-serif">${esc(t)}</text>`;
+}
+
+
+/*
+  Diagram types:
+
+  0 = A inside B, C outside B
+  1 = B inside A, C outside A
+  2 = A and B separate, C inside A
+  3 = A/B overlap, C separate
+*/
+
+function diagram(type,A,B,C){
+
+ let s=`<svg viewBox="0 0 360 190"
+ xmlns="http://www.w3.org/2000/svg">`;
+
+ if(type===0){
+
+  s+=`
+  <rect x="20" y="15" width="320" height="160"
+        rx="15" fill="#f8fbff" stroke="#667085" stroke-width="2"/>
+  <circle cx="125" cy="95" r="67"
+          fill="#dceaff" stroke="#2474e8" stroke-width="3"/>
+  <circle cx="125" cy="95" r="30"
+          fill="#fff1bf" stroke="#e3a400" stroke-width="3"/>
+  <circle cx="260" cy="95" r="43"
+          fill="#e7f8e9" stroke="#20a34a" stroke-width="3"/>
+  ${text(125,57,B,12)}
+  ${text(125,100,A,11)}
+  ${text(260,100,C,12)}
+  `;
+
+ }else if(type===1){
+
+  s+=`
+  <rect x="20" y="15" width="320" height="160"
+        rx="15" fill="#f8fbff" stroke="#667085" stroke-width="2"/>
+  <circle cx="125" cy="95" r="67"
+          fill="#dceaff" stroke="#2474e8" stroke-width="3"/>
+  <circle cx="125" cy="95" r="30"
+          fill="#fff1bf" stroke="#e3a400" stroke-width="3"/>
+  <circle cx="260" cy="95" r="43"
+          fill="#e7f8e9" stroke="#20a34a" stroke-width="3"/>
+  ${text(125,57,A,12)}
+  ${text(125,100,B,11)}
+  ${text(260,100,C,12)}
+  `;
+
+ }else if(type===2){
+
+  s+=`
+  <rect x="20" y="15" width="320" height="160"
+        rx="15" fill="#f8fbff" stroke="#667085" stroke-width="2"/>
+  <circle cx="105" cy="95" r="55"
+          fill="#dceaff" stroke="#2474e8" stroke-width="3"/>
+  <circle cx="255" cy="95" r="55"
+          fill="#e7f8e9" stroke="#20a34a" stroke-width="3"/>
+  <circle cx="105" cy="95" r="25"
+          fill="#fff1bf" stroke="#e3a400" stroke-width="3"/>
+  ${text(105,62,A,12)}
+  ${text(105,100,C,10)}
+  ${text(255,100,B,12)}
+  `;
+
+ }else{
+
+  s+=`
+  <rect x="20" y="15" width="320" height="160"
+        rx="15" fill="#f8fbff" stroke="#667085" stroke-width="2"/>
+  <circle cx="135" cy="95" r="57"
+          fill="#dceaff" fill-opacity=".8"
+          stroke="#2474e8" stroke-width="3"/>
+  <circle cx="205" cy="95" r="57"
+          fill="#e7f8e9" fill-opacity=".8"
+          stroke="#20a34a" stroke-width="3"/>
+  <circle cx="275" cy="135" r="28"
+          fill="#fff1bf" stroke="#e3a400" stroke-width="3"/>
+  ${text(115,55,A,11)}
+  ${text(225,55,B,11)}
+  ${text(275,140,C,9)}
+  `;
+ }
+
+ s+=`</svg>`;
+ return s;
+}
+
+
+/* =========================================================
+   QUESTION PATTERNS
+   ========================================================= */
+
+const questions=[];
+
+sets.forEach((s,g)=>{
+
+ let A=s[0],B=s[1],C=s[2];
+
+ /*
+   Pattern 1:
+   All A are B
+   No B are C
+
+   Correct diagram:
+   A inside B
+   C outside B
+ */
+
+ questions.push({
+  statement:
+  `सभी ${A}, ${B} हैं।<br>
+   कोई भी ${B}, ${C} नहीं है।`,
+  ask:`कथनों को सही दर्शाने वाला Venn Diagram चुनिए।`,
+  correct:0,
+  labels:[A,B,C]
+ });
+
+
+ /*
+   Pattern 2:
+   All A are B
+   All B are C
+
+   Correct:
+   A inside B inside C
+ */
+
+ questions.push({
+  statement:
+  `सभी ${A}, ${B} हैं।<br>
+   सभी ${B}, ${C} हैं।`,
+  ask:`कथनों को सही दर्शाने वाला Venn Diagram चुनिए।`,
+  correct:1,
+  labels:[A,B,C],
+  special:"nested"
+ });
+
+
+ /*
+   Pattern 3:
+   Some A are B
+   Some B are C
+
+   Correct: A-B overlap and B-C overlap.
+ */
+
+ questions.push({
+  statement:
+  `कुछ ${A}, ${B} हैं।<br>
+   कुछ ${B}, ${C} हैं।`,
+  ask:`कथनों को सही दर्शाने वाला Venn Diagram चुनिए।`,
+  correct:3,
+  labels:[A,B,C],
+  special:"overlap"
+ });
+
+
+ /*
+   Pattern 4:
+   No A are B
+   All C are A
+
+   Correct:
+   C inside A, B separate.
+ */
+
+ questions.push({
+  statement:
+  `कोई भी ${A}, ${B} नहीं है।<br>
+   सभी ${C}, ${A} हैं।`,
+  ask:`कथनों को सही दर्शाने वाला Venn Diagram चुनिए।`,
+  correct:2,
+  labels:[A,B,C],
+  special:"cinside"
+ });
+
+});
+
+
+/* =========================================================
+   SPECIAL DIAGRAM ENGINE
+   ========================================================= */
+
+function makeDiagram(kind,A,B,C,variant){
+
+ /* Standard */
+ if(kind==="standard"){
+   return diagram(variant,A,B,C);
+ }
+
+ /* Nested:
+    A inside B inside C
+ */
+ if(kind==="nested"){
+
+   if(variant===0){
+    return `
+    <svg viewBox="0 0 360 190">
+    <rect x="20" y="15" width="320" height="160"
+      rx="15" fill="#f8fbff" stroke="#667085" stroke-width="2"/>
+    <circle cx="180" cy="95" r="72"
+      fill="#e8f2ff" stroke="#2474e8" stroke-width="3"/>
+    <circle cx="180" cy="95" r="49"
+      fill="#e9faed" stroke="#20a34a" stroke-width="3"/>
+    <circle cx="180" cy="95" r="25"
+      fill="#fff1bf" stroke="#e3a400" stroke-width="3"/>
+    ${text(180,45,C,12)}
+    ${text(180,76,B,11)}
+    ${text(180,100,A,10)}
+    </svg>`;
+   }
+
+   if(variant===1){
+    return `
+    <svg viewBox="0 0 360 190">
+    <rect x="20" y="15" width="320" height="160"
+      rx="15" fill="#f8fbff" stroke="#667085" stroke-width="2"/>
+    <circle cx="135" cy="95" r="62"
+      fill="#dceaff" stroke="#2474e8" stroke-width="3"/>
+    <circle cx="135" cy="95" r="30"
+      fill="#fff1bf" stroke="#e3a400" stroke-width="3"/>
+    <circle cx="260" cy="95" r="45"
+      fill="#e7f8e9" stroke="#20a34a" stroke-width="3"/>
+    ${text(135,57,B,11)}
+    ${text(135,100,A,10)}
+    ${text(260,100,C,11)}
+    </svg>`;
+   }
+
+   if(variant===2){
+    return `
+    <svg viewBox="0 0 360 190">
+    <rect x="20" y="15" width="320" height="160"
+      rx="15" fill="#f8fbff" stroke="#667085" stroke-width="2"/>
+    <circle cx="105" cy="95" r="45"
+      fill="#dceaff" stroke="#2474e8" stroke-width="3"/>
+    <circle cx="255" cy="95" r="60"
+      fill="#e7f8e9" stroke="#20a34a" stroke-width="3"/>
+    <circle cx="255" cy="95" r="27"
+      fill="#fff1bf" stroke="#e3a400" stroke-width="3"/>
+    ${text(105,100,A,11)}
+    ${text(255,57,C,11)}
+    ${text(255,100,B,10)}
+    </svg>`;
+   }
+
+   return `
+   <svg viewBox="0 0 360 190">
+   <rect x="20" y="15" width="320" height="160"
+     rx="15" fill="#f8fbff" stroke="#667085" stroke-width="2"/>
+   <circle cx="130" cy="95" r="58"
+     fill="#dceaff" stroke="#2474e8" stroke-width="3"/>
+   <circle cx="200" cy="95" r="58"
+     fill="#e7f8e9" stroke="#20a34a" stroke-width="3"/>
+   <circle cx="165" cy="95" r="27"
+     fill="#fff1bf" stroke="#e3a400" stroke-width="3"/>
+   ${text(115,55,A,10)}
+   ${text(215,55,B,10)}
+   ${text(165,99,C,9)}
+   </svg>`;
+ }
+
+
+ /* overlap pattern */
+ if(kind==="overlap"){
+
+   if(variant===0){
+    return `
+    <svg viewBox="0 0 360 190">
+    <rect x="20" y="15" width="320" height="160" rx="15"
+    fill="#f8fbff" stroke="#667085" stroke-width="2"/>
+    <circle cx="130" cy="90" r="55" fill="#dceaff"
+    stroke="#2474e8" stroke-width="3"/>
+    <circle cx="200" cy="90" r="55" fill="#e7f8e9"
+    stroke="#20a34a" stroke-width="3"/>
+    <circle cx="165" cy="90" r="25" fill="#fff1bf"
+    stroke="#e3a400" stroke-width="3"/>
+    ${text(120,52,A,11)}${text(210,52,B,11)}${text(165,95,C,9)}
+    </svg>`;
+   }
+
+   if(variant===1){
+    return diagram(3,A,B,C);
+
+   }
+
+   if(variant===2){
+    return `
+    <svg viewBox="0 0 360 190">
+    <rect x="20" y="15" width="320" height="160" rx="15"
+    fill="#f8fbff" stroke="#667085" stroke-width="2"/>
+    <circle cx="105" cy="95" r="58" fill="#dceaff"
+    stroke="#2474e8" stroke-width="3"/>
+    <circle cx="255" cy="95" r="58" fill="#e7f8e9"
+    stroke="#20a34a" stroke-width="3"/>
+    <circle cx="180" cy="95" r="25" fill="#fff1bf"
+    stroke="#e3a400" stroke-width="3"/>
+    ${text(105,100,A,11)}${text(255,100,B,11)}${text(180,99,C,9)}
+    </svg>`;
+   }
+
+   return `
+   <svg viewBox="0 0 360 190">
+   <rect x="20" y="15" width="320" height="160" rx="15"
+   fill="#f8fbff" stroke="#667085" stroke-width="2"/>
+   <circle cx="145" cy="95" r="55" fill="#dceaff"
+   stroke="#2474e8" stroke-width="3"/>
+   <circle cx="215" cy="95" r="55" fill="#e7f8e9"
+   stroke="#20a34a" stroke-width="3"/>
+   <circle cx="290" cy="140" r="25" fill="#fff1bf"
+   stroke="#e3a400" stroke-width="3"/>
+   ${text(135,55,A,10)}${text(225,55,B,10)}${text(290,145,C,9)}
+   </svg>`;
+ }
+
+
+ /* C inside A */
+ if(kind==="cinside"){
+
+   if(variant===0){
+    return diagram(2,A,B,C);
+   }
+
+   if(variant===1){
+    return diagram(0,A,B,C);
+   }
+
+   if(variant===2){
+    return `
+    <svg viewBox="0 0 360 190">
+    <rect x="20" y="15" width="320" height="160" rx="15"
+    fill="#f8fbff" stroke="#667085" stroke-width="2"/>
+    <circle cx="125" cy="95" r="62" fill="#dceaff"
+    stroke="#2474e8" stroke-width="3"/>
+    <circle cx="125" cy="95" r="28" fill="#fff1bf"
+    stroke="#e3a400" stroke-width="3"/>
+    <circle cx="245" cy="95" r="45" fill="#e7f8e9"
+    stroke="#20a34a" stroke-width="3"/>
+    ${text(125,57,A,11)}${text(125,100,C,10)}
+    ${text(245,100,B,11)}
+    </svg>`;
+   }
+
+   return `
+   <svg viewBox="0 0 360 190">
+   <rect x="20" y="15" width="320" height="160" rx="15"
+   fill="#f8fbff" stroke="#667085" stroke-width="2"/>
+   <circle cx="140" cy="95" r="55" fill="#dceaff"
+   stroke="#2474e8" stroke-width="3"/>
+   <circle cx="210" cy="95" r="55" fill="#e7f8e9"
+   stroke="#20a34a" stroke-width="3"/>
+   <circle cx="175" cy="95" r="26" fill="#fff1bf"
+   stroke="#e3a400" stroke-width="3"/>
+   ${text(140,55,A,10)}${text(210,55,B,10)}${text(175,99,C,9)}
+   </svg>`;
+ }
+}
+
+
+/* =========================================================
+   SHUFFLE
+   ========================================================= */
+
+function shuffle(arr){
+ let a=[...arr];
+ for(let i=a.length-1;i>0;i--){
+   let j=(i*17+7)% (i+1);
+   [a[i],a[j]]=[a[j],a[i]];
+ }
+ return a;
+}
+
+
+/* =========================================================
+   CREATE OPTIONS
+   ========================================================= */
+
+questions.forEach((q,i)=>{
+
+ let [A,B,C]=q.labels;
+
+ let kind="standard";
+
+ if(q.special==="nested") kind="nested";
+ if(q.special==="overlap") kind="overlap";
+ if(q.special==="cinside") kind="cinside";
+
+ let diagrams=[
+   makeDiagram(kind,A,B,C,0),
+   makeDiagram(kind,A,B,C,1),
+   makeDiagram(kind,A,B,C,2),
+   makeDiagram(kind,A,B,C,3)
+ ];
+
+ /*
+   Question number के अनुसार diagrams की position बदलेंगे।
+   इससे सही answer हमेशा A नहीं रहेगा।
+ */
+
+ let order=[
+   0,1,2,3
+ ];
+
+ const shift=(i*3)%4;
+
+ order=[
+   ...order.slice(shift),
+   ...order.slice(0,shift)
+ ];
+
+ q.options=order.map((d,position)=>({
+   html:diagrams[d],
+   original:d
+ }));
+
+ q.answer=q.options.findIndex(x=>x.original===q.correct);
+
+});
+
+
+let current=0;
+let score=0;
+let answered=false;
+
+
+/* =========================================================
+   SHOW QUESTION
+   ========================================================= */
+
+function showQuestion(){
+
+ answered=false;
+
+ const q=questions[current];
+
+ document.getElementById("progress").innerHTML=
+ `प्रश्न ${current+1} / ${questions.length}
+  &nbsp; | &nbsp; अंक: ${score}`;
+
+ const box=document.getElementById("quizBox");
+
+ box.innerHTML=`
+
+ <div class="qno">प्रश्न ${current+1}</div>
+
+ <div class="statements">
+   <b>कथन:</b><br>
+   ${q.statement}
+ </div>
+
+ <div class="task">
+   ${q.ask}
+ </div>
+
+ <div class="options">
+
+ ${q.options.map((op,i)=>`
+
+   <div class="option"
+        onclick="selectOption(${i})">
+
+     <div class="optionTitle">
+       विकल्प ${String.fromCharCode(65+i)}
+     </div>
+
+     ${op.html}
+
+   </div>
+
+ `).join("")}
+
+ </div>
+
+ <div id="feedback" class="feedback"></div>
+
+ <button class="next" onclick="nextQuestion()">
+ ${current===questions.length-1
+   ? "🏆 परिणाम देखें"
+   : "अगला प्रश्न ➜"}
+ </button>
+
+ `;
+}
+
+
+/* =========================================================
+   ANSWER
+   ========================================================= */
+
+function selectOption(index){
+
+ if(answered) return;
+
+ answered=true;
+
+ const q=questions[current];
+
+ const options=document.querySelectorAll(".option");
+
+ const feedback=document.getElementById("feedback");
+
+ if(index===q.answer){
+
+   options[index].classList.add("correct");
+
+   score++;
+
+   feedback.style.display="block";
+   feedback.style.background="#d9f8df";
+   feedback.style.color="#08752d";
+
+   feedback.innerHTML=
+   `✅ सही! सही उत्तर: विकल्प
+    ${String.fromCharCode(65+q.answer)}`;
+
+ }else{
+
+   options[index].classList.add("wrong");
+
+   options[q.answer].classList.add("correct");
+
+   feedback.style.display="block";
+   feedback.style.background="#ffe0e0";
+   feedback.style.color="#a40000";
+
+   feedback.innerHTML=
+   `❌ गलत! सही उत्तर: विकल्प
+    ${String.fromCharCode(65+q.answer)}`;
+ }
+
+ document.getElementById("progress").innerHTML=
+ `प्रश्न ${current+1} / ${questions.length}
+  &nbsp; | &nbsp; अंक: ${score}`;
+}
+
+
+/* =========================================================
+   NEXT
+   ========================================================= */
+
+function nextQuestion(){
+
+ if(!answered){
+   alert("पहले कोई Venn Diagram चुनिए।");
+   return;
+ }
+
+ current++;
+
+ if(current<questions.length){
+
+   showQuestion();
+
+   window.scrollTo({
+     top:0,
+     behavior:"smooth"
+   });
+
+ }else{
+
+   showResult();
+ }
+}
+
+
+/* =========================================================
+   RESULT
+   ========================================================= */
+
+function showResult(){
+
+ document.getElementById("quizBox").style.display="none";
+ document.getElementById("progress").style.display="none";
+
+ const percentage=
+ Math.round((score/questions.length)*100);
+
+ const result=document.getElementById("result");
+
+ result.style.display="block";
+
+ result.innerHTML=`
+
+ <h2>🎉 Quiz Complete!</h2>
+
+ <p style="font-size:25px;font-weight:bold">
+ ${score} / ${questions.length}
+ </p>
+
+ <p>
+ प्रतिशत: <b>${percentage}%</b>
+ </p>
+
+ <p>
+ 🧠 Syllogism के 200 Visual Questions पूरे हुए।
+ </p>
+
+ <button class="restart"
+ onclick="location.reload()">
+ 🔄 फिर से शुरू करें
+ </button>
+
+ `;
+}
+
+
+/* START */
+showQuestion();
+
+</script>
+
+</body>
+</html>
